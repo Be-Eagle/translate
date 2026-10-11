@@ -8,20 +8,20 @@ import {
   normalizeTargetLanguage,
   STYLE_PRESETS,
   LEANING_PRESETS,
-} from './prompts.js?v=0.51.0';
+} from './prompts.js?v=0.51.4';
 // The same judgement the reading applies everywhere else a line is heard (tts.js's plainLineText):
 // struck-through and redacted content dropped with its words, so a segment carries it for the
 // translation to see — that stays in `text`, unaffected — while what the floor's own words are read
 // with, `speech`/`reading`, never says a word neither the floor nor its reader is meant to hear.
-import { dropHiddenMarkup } from './tts-sanitizer.js?v=0.51.0';
+import { dropHiddenMarkup } from './tts-sanitizer.js?v=0.51.4';
 // A move's colour is recomputed against the current band on restyle (`restyleBilingual` below), the
 // same maths index.js `moveStyleFor` used to paint it the first time.
-import { resolveMoveStyle } from './palette.js?v=0.51.0';
-import { DOUBAO_RESOURCES, MINIMAX_HOSTS, MINIMAX_MODELS } from './tts-cloud.js?v=0.51.0';
+import { resolveMoveStyle } from './palette.js?v=0.51.4';
+import { DOUBAO_RESOURCES, MINIMAX_HOSTS, MINIMAX_MODELS } from './tts-cloud.js?v=0.51.4';
 
 export const MODULE_ID = 'jingyi-translator';
 export const APP_NAME = '镜译 · 正文翻译器';
-export const APP_VERSION = '0.51.0';
+export const APP_VERSION = '0.51.4';
 // How a floor's own segmentation rules read: 1 is v0.36.0 and older (a <br> mid-line glues its words,
 // a <say> shell or a custom preserve rule's indentation is matched literally). 2 adds the v0.36.1
 // built-in-regex fixes. 3 adds v0.40.0's 「音乐卡片」 tightening: a run of <br> rows is only treated as a
@@ -2539,18 +2539,27 @@ export function createIndependentRequest(settings, messages, { thinkingOff = fal
   }
   const off = thinkingOff ? thinkingOffFor(model) : null;
   if (off) {
-    // The custom source is the one that passes extra fields on. Its key would be the host's own stored
-    // one; the connection's key (or none) is written over it, so no other secret goes to this address.
-    payload.chat_completion_source = 'custom';
-    payload.custom_url = payload.reverse_proxy;
-    payload.custom_include_headers = JSON.stringify({ Authorization: payload.proxy_password ? `Bearer ${payload.proxy_password}` : '' });
-    payload.custom_include_body = JSON.stringify(off.body);
-    delete payload.reverse_proxy;
-    delete payload.proxy_password;
     delete payload.reasoning_effort;
+    throughCustomSource(payload, off.body);
     Object.defineProperty(payload, 'thinkingOff', { value: off, enumerable: false });
+  } else if (payload.reasoning_effort) {
+    // The host passes reasoning_effort on only for OpenAI's own reasoning models, named exactly; any
+    // other name (a relay's, DeepSeek, Gemini, Grok…) lost it. Written into the request body it reaches
+    // every model, and the host still maps it for the models it knows.
+    throughCustomSource(payload, { reasoning_effort: payload.reasoning_effort });
   }
   return payload;
+}
+
+// The custom source is the one that passes extra fields on. Its key would be the host's own stored one;
+// the connection's key (or none) is written over it, so no other secret goes to this address.
+function throughCustomSource(payload, body) {
+  payload.chat_completion_source = 'custom';
+  payload.custom_url = payload.reverse_proxy;
+  payload.custom_include_headers = JSON.stringify({ Authorization: payload.proxy_password ? `Bearer ${payload.proxy_password}` : '' });
+  payload.custom_include_body = JSON.stringify(body);
+  delete payload.reverse_proxy;
+  delete payload.proxy_password;
 }
 
 export function parseModelListResponse(data) {

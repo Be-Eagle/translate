@@ -63,9 +63,9 @@ test('what turns a model\'s thinking off is picked by its name, and nothing for 
 
 test('a request with thinking turned off goes out as the custom source, carrying the connection\'s own key', () => {
   const channel = normalizeChannel({ id: 'c1', url: 'https://relay.example/v1/chat/completions', key: 'k-call', model: 'deepseek-chat', reasoningEffort: 'low' });
-  const plain = createIndependentRequest(channel, [{ role: 'user', content: '在吗' }]);
+  const plain = createIndependentRequest({ ...channel, reasoningEffort: '' }, [{ role: 'user', content: '在吗' }]);
   assert.equal(plain.chat_completion_source, 'openai', 'other requests are as they were');
-  assert.equal(plain.reasoning_effort, 'low');
+  assert.equal('reasoning_effort' in plain, false);
   const off = createIndependentRequest(channel, [{ role: 'user', content: '在吗' }], { thinkingOff: true });
   assert.equal(off.chat_completion_source, 'custom');
   assert.equal(off.custom_url, 'https://relay.example/v1');
@@ -76,8 +76,37 @@ test('a request with thinking turned off goes out as the custom source, carrying
   assert.equal(JSON.stringify(off).includes('thinkingOff'), false, 'the label is not sent');
   const keyless = createIndependentRequest({ ...channel, key: '' }, [{ role: 'user', content: '在吗' }], { thinkingOff: true });
   assert.deepEqual(JSON.parse(keyless.custom_include_headers), { Authorization: '' }, 'no stored key of the host goes to this address');
-  const unknown = createIndependentRequest({ ...channel, model: 'labeler' }, [{ role: 'user', content: '在吗' }], { thinkingOff: true });
+  const unknown = createIndependentRequest({ ...channel, model: 'labeler', reasoningEffort: '' }, [{ role: 'user', content: '在吗' }], { thinkingOff: true });
   assert.equal(unknown.chat_completion_source, 'openai', 'a model not known is sent as before');
+});
+
+test('a connection\'s reasoning effort reaches any model name, written into the request body', () => {
+  const channel = normalizeChannel({ id: 'c1', url: 'https://relay.example/v1/chat/completions', key: 'k-call', model: 'deepseek-reasoner', reasoningEffort: 'high' });
+  const relayed = createIndependentRequest(channel, [{ role: 'user', content: '在吗' }]);
+  assert.equal(relayed.chat_completion_source, 'custom');
+  assert.equal(relayed.custom_url, 'https://relay.example/v1');
+  assert.deepEqual(JSON.parse(relayed.custom_include_headers), { Authorization: 'Bearer k-call' });
+  assert.deepEqual(JSON.parse(relayed.custom_include_body), { reasoning_effort: 'high' });
+  assert.equal(relayed.reasoning_effort, 'high', 'still there for the host to map on the models it knows');
+  assert.equal('reverse_proxy' in relayed || 'proxy_password' in relayed, false);
+  assert.equal(relayed.model, 'deepseek-reasoner');
+  assert.equal(relayed.max_tokens, channel.maxTokens);
+
+  // OpenAI's own names go the same way; a relay's prefixed name too.
+  for (const model of ['gpt-5', 'openai/gpt-5.1', 'gemini-2.5-pro', 'grok-3-mini']) {
+    const payload = createIndependentRequest({ ...channel, model, reasoningEffort: 'minimal' }, [{ role: 'user', content: '在吗' }]);
+    assert.deepEqual(JSON.parse(payload.custom_include_body), { reasoning_effort: 'minimal' }, model);
+  }
+
+  // Taken out by the connection's own 排除参数: nothing is sent, the way it was.
+  const excluded = createIndependentRequest({ ...channel, excludeParams: ['reasoning_effort'] }, [{ role: 'user', content: '在吗' }]);
+  assert.equal(excluded.chat_completion_source, 'openai');
+  assert.equal('reasoning_effort' in excluded || 'custom_include_body' in excluded, false);
+
+  // Thinking turned off wins over an effort, where the model's switch is known.
+  const off = createIndependentRequest({ ...channel, model: 'deepseek-chat' }, [{ role: 'user', content: '在吗' }], { thinkingOff: true });
+  assert.deepEqual(JSON.parse(off.custom_include_body), { thinking: { type: 'disabled' } });
+  assert.equal('reasoning_effort' in off, false);
 });
 
 test('a call asks with thinking off, says so, and asks again without it where the field is refused', async t => {
