@@ -155,3 +155,76 @@ test('thinking written into the reply itself counts as thinking; an empty block 
   await __testing.apiLlmStream({ messages: [{ role: 'user', content: '在吗？' }] });
   assert.match(readDiagnostics().at(-1).message, /已关思考（Qwen）/);
 });
+
+test('a reasoning effort the provider refuses on a stream is asked for again without it, and not sent again this session', async t => {
+  const refused = '{"error":"unrecognized request argument: reasoning_effort"}';
+  const sent = host(t, payload => (String(payload.custom_include_body ?? '').includes('reasoning_effort') ? { ok: false, status: 400, body: null, text: async () => refused } : sse([{ content: '在的。' }])));
+  const channel = normalizeChannel({ id: 'c1', name: '通话', url: 'https://relay.example/v1', key: 'k-call', model: 'grok-3-mini', reasoningEffort: 'high' });
+  __testing.configureForTest({ settings: { channels: [channel], selectedChannelId: 'c1', apiMode: 'follow', tts: { enabled: true, callChannelId: 'c1', fish: FISH } }, initialized: true });
+  assert.equal(await __testing.apiLlmStream({ messages: [{ role: 'user', content: '在吗？' }] }), '在的。');
+  assert.equal(sent.length, 2);
+  assert.deepEqual(JSON.parse(sent[0].custom_include_body), { reasoning_effort: 'high' });
+  assert.equal(sent[1].chat_completion_source, 'openai', 'asked again without the field');
+  assert.equal('reasoning_effort' in sent[1], false);
+  assert.ok(readDiagnostics().some(entry => entry.scope === 'translation.effort-refused' && /grok-3-mini 不接受「推理强度」参数/.test(entry.message)));
+  assert.equal(await __testing.apiLlmStream({ messages: [{ role: 'user', content: '还在吗？' }] }), '在的。');
+  assert.equal(sent.length, 3);
+  assert.equal(sent[2].chat_completion_source, 'openai', 'not sent again this session');
+});
+
+test('a translation whose provider refuses the reasoning effort goes through without it; another 400 does not count', async t => {
+  const before = { host: globalThis.SillyTavern, toastr: globalThis.toastr };
+  t.after(() => {
+    globalThis.SillyTavern = before.host;
+    globalThis.toastr = before.toastr;
+  });
+  globalThis.toastr = { success() {}, error() {}, warning() {}, info() {} };
+  const sent = [];
+  let refuse = payload => String(payload.custom_include_body ?? '').includes('reasoning_effort');
+  const context = {
+    chat: [], chatId: 'effort-refused', name1: '玩家', name2: '樱井', characterId: 0,
+    characters: [{ name: '樱井', avatar: 'a.png', description: '', personality: '', scenario: '' }],
+    extensionSettings: {}, substituteParams: value => value, saveChat: async () => {}, updateMessageBlock() {},
+    getRequestHeaders: () => ({ 'Content-Type': 'application/json' }), saveSettingsDebounced() {},
+    eventTypes: {}, eventSource: { emit: async () => {}, on() {}, removeListener() {} },
+    ChatCompletionService: {
+      async processRequest(payload) {
+        sent.push(payload);
+        // The host relays a provider's refusal as its status text.
+        if (refuse(payload)) throw new Error('Bad Request');
+        const body = JSON.parse(payload.messages.at(-1).content);
+        return { content: `\`\`\`json\n${JSON.stringify({ translations: body.segments.map(segment => ({ id: segment.id, text: `译文${segment.id}` })) })}\n\`\`\`` };
+      },
+    },
+  };
+  globalThis.SillyTavern = { getContext: () => context };
+  __testing.initializeSettings();
+  const floor = text => ({ name: '樱井', is_user: false, is_system: false, mes: text, swipe_id: 0, swipes: [text], extra: {} });
+  const configure = model => __testing.configureForTest({
+    settings: { apiMode: 'independent', channels: [normalizeChannel({ id: 'c1', name: 'x', url: 'https://relay.example/v1', key: 'k', model, reasoningEffort: 'low' })], selectedChannelId: 'c1', retries: 0 },
+    initialized: true,
+  });
+
+  configure('qwen-max-strict');
+  context.chat.push(floor('<story_scene>\n雨が降っている。\n</story_scene>'));
+  assert.equal((await __testing.translateMessage(0, { quiet: true })).skipped, false);
+  assert.equal(sent.length, 2);
+  assert.deepEqual(JSON.parse(sent[0].custom_include_body), { reasoning_effort: 'low' });
+  assert.equal(sent[1].chat_completion_source, 'openai');
+  assert.ok(context.chat[0].mes.includes('译文1'));
+  context.chat.push(floor('<story_scene>\n風が吹いている。\n</story_scene>'));
+  await __testing.translateMessage(1, { quiet: true });
+  assert.equal(sent.length, 3, 'one request, without the field, for the next floor');
+  assert.equal(sent[2].chat_completion_source, 'openai');
+
+  // Every request refused (a wrong key, say): said as it is, and the field still goes next time.
+  configure('glm-4.6-strict');
+  refuse = () => true;
+  context.chat.push(floor('<story_scene>\n星が見える。\n</story_scene>'));
+  await assert.rejects(__testing.translateMessage(2, { quiet: true }), /Bad Request/);
+  assert.equal(readDiagnostics().some(entry => /glm-4\.6-strict 不接受/.test(entry.message)), false);
+  refuse = payload => String(payload.custom_include_body ?? '').includes('reasoning_effort');
+  const count = sent.length;
+  await __testing.translateMessage(2, { quiet: true });
+  assert.deepEqual(JSON.parse(sent[count].custom_include_body), { reasoning_effort: 'low' }, 'the field is still sent');
+});

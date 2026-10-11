@@ -2693,6 +2693,33 @@ function withoutUntranslated(recovered, segments, settings, { quiet = false } = 
   return recovered;
 }
 
+// What a provider refusing a field it does not know answers with: the status itself on a stream, the
+// host's relay of its status text on a whole request.
+const REFUSED_REQUEST_RE = /HTTP (400|422)|Bad Request|Unprocessable/i;
+
+/**
+ * A connection's 推理强度 goes to every model (createIndependentRequest), and a provider that does not
+ * know the field may refuse the whole request for it. Such a request is asked again without it; only one
+ * that then works shows the field was what was refused (a wrong key or an overlong conversation comes
+ * back as 400 too), and that model is not sent it again this session. `send(effort)` makes the request
+ * with or without it; `payload` is the request as first made.
+ */
+async function withEffortFallback(payload, send) {
+  const refused = runtime.effortRefused ??= new Set();
+  // Nothing to fall back from: none picked, excluded by the connection, or thinking turned off instead.
+  if (!payload.reasoning_effort) return send(true);
+  if (refused.has(payload.model)) return send(false);
+  try {
+    return await send(true);
+  } catch (error) {
+    if (isAbortError(error) || !REFUSED_REQUEST_RE.test(String(error?.message ?? error))) throw error;
+    const answer = await send(false);
+    refused.add(payload.model);
+    recordDiagnostic('warn', 'translation.effort-refused', `${payload.model} 不接受「推理强度」参数，这次会话不再发：${safeError(error)}`, { model: payload.model });
+    return answer;
+  }
+}
+
 // One whole-request call to the secondary model, on whichever channel the settings pick. Translation and
 // the read-aloud analysis both go through here, so a channel that works for one works for the other.
 async function requestSubModelRaw(messages, settings, signal, { limitSec = 0 } = {}) {
@@ -2701,12 +2728,12 @@ async function requestSubModelRaw(messages, settings, signal, { limitSec = 0 } =
   if (settings.apiMode === 'independent') {
     const service = context.ChatCompletionService;
     if (!service?.processRequest) throw new Error('当前 SillyTavern 不提供独立聊天补全请求接口。');
-    return withAbortTimeout(signal, { seconds: channel.timeoutSec, limitSec }, requestSignal => service.processRequest(
-      createIndependentRequest(settings, messages),
+    return withEffortFallback(createIndependentRequest(settings, messages), effort => withAbortTimeout(signal, { seconds: channel.timeoutSec, limitSec }, requestSignal => service.processRequest(
+      createIndependentRequest(settings, messages, { effort }),
       {},
       true,
       requestSignal,
-    ));
+    )));
   }
   if (typeof context.generateRaw !== 'function') throw new Error('当前 SillyTavern 不提供静默生成接口。');
   // The host's quiet generation takes no signal and has no timeout of its own. A request that never
@@ -3392,8 +3419,16 @@ async function translateMessage(messageId = null, { force = false, quiet = false
 // the floor as completed JSON items arrive. The final pass reuses the ordinary write pipeline, so
 // the finished floor is byte-identical to a non-streaming run.
 async function streamTranslationBatch(messages, settings, signal, onDelta = null, onThinking = null, { limitSec = 0, thinkingOff = false } = {}) {
+  const first = createIndependentRequest(settings, messages, { thinkingOff });
+  // A refused field is refused before anything streams, so asking again without it starts clean.
+  return withEffortFallback(first, effort => streamOnce({
+    ...(effort ? first : createIndependentRequest(settings, messages, { thinkingOff, effort })),
+    stream: true,
+  }, settings, signal, onDelta, onThinking, { limitSec }));
+}
+
+async function streamOnce(payload, settings, signal, onDelta, onThinking, { limitSec = 0 } = {}) {
   const channel = getActiveChannel(settings);
-  const payload = { ...createIndependentRequest(settings, messages, { thinkingOff }), stream: true };
   // The whole-request path has always honoured the channel timeout. Without the same wrapper a
   // stalled upstream kept the task "running" forever once the response headers had arrived.
   return withAbortTimeout(signal, { seconds: channel.timeoutSec, limitSec }, async (streamSignal, renew) => {

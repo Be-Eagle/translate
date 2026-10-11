@@ -2509,7 +2509,7 @@ export function thinkingOffFor(model) {
   return null;
 }
 
-export function createIndependentRequest(settings, messages, { thinkingOff = false } = {}) {
+export function createIndependentRequest(settings, messages, { thinkingOff = false, effort = true } = {}) {
   const channel = Array.isArray(settings?.channels)
     ? getActiveChannel(settings)
     : normalizeChannel(settings);
@@ -2531,8 +2531,9 @@ export function createIndependentRequest(settings, messages, { thinkingOff = fal
     presence_penalty: 0,
     frequency_penalty: 0,
   };
-  // Sent only when the channel picks one; stays excludable like the numeric knobs above.
-  if (channel.reasoningEffort) payload.reasoning_effort = channel.reasoningEffort;
+  // Sent only when the channel picks one (and `effort` is not turned down for a model whose provider
+  // refused it); stays excludable like the numeric knobs above.
+  if (channel.reasoningEffort && effort) payload.reasoning_effort = channel.reasoningEffort;
   const protectedFields = new Set(['stream', 'messages', 'model', 'chat_completion_source', 'reverse_proxy', 'proxy_password', 'custom_url', 'custom_include_body', 'custom_include_headers']);
   for (const parameter of channel.excludeParams) {
     if (!protectedFields.has(parameter)) delete payload[parameter];
