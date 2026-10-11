@@ -478,6 +478,7 @@ if (jy?.features?.includes('reading')) {
 | 酒馆助手 | 不依赖。它的 `generate()` / `generateRaw()` 被认作脚本自己的模型调用，不影响自动翻译和边写边读 |
 | 通用通讯终端 V4（小手机） | 能同时用。它的「自动主动消息」按楼层文字记指纹，要打配套补丁（改用 `floor.original` 读楼层）才不会因为镜译翻译而丢消息 |
 | 「东京都2051」卡片 | 用 `reading` 读正文（正文标签是 `cxx-story`，要用户加进提取标签）；`apiVersion` 2 起要处理 `conflict` 状态 |
+| tokimemo | 用 `tts.speak` 读台词和睡前故事，用 `tts.stream`、`llm.stream`、`stt` 打电话 |
 | 往正文里插图的生图插件（比如百宝汇的 `bbi_image`） | 把插图的标签加进排除标签后，插图不触发重翻；「只留译文」的楼层插图后会变成 `conflict` |
 | 开着登录保护（`basicAuthMode`）的酒馆 | 经代理时 Key 不放 `Authorization`，不会弹出登录框 |
 
