@@ -128,8 +128,8 @@ import {
   isGsvVoiceId,
   languageBase,
   normalizeGsvVoice,
-} from './core.js?v=0.50.1';
-import { resolveAutosaveWrite, ensureAutosaveIndicator } from './console-autosave.js?v=0.50.1';
+} from './core.js?v=0.51.0';
+import { resolveAutosaveWrite, ensureAutosaveIndicator } from './console-autosave.js?v=0.51.0';
 import {
   FISH_EMOTIONS,
   FISH_MIME,
@@ -202,10 +202,10 @@ import {
   gsvVoiceFor,
   scaleWavVolume,
   wavInfo,
-} from './tts.js?v=0.50.1';
-import { createTtsStore } from './tts-store.js?v=0.50.1';
-import { SPEAKER_SOURCE_LABELS, discoverSpeakerAliases, pinSpeakers, refineCast, resolveSpeakers, speakerHints, speakersOf } from './tts-speakers.js?v=0.50.1';
-import { DEEP_PROMPT, DEEP_STATUS, acousticCallRules, acousticCallUtterances, buildDeepAnalysisMessages, buildDeepRefineMessages, deepRequestSettings, intimateAllowed, isAcousticPrompt, parseDeepAnalysis, pauseDisplay, stressDisplay } from './tts-deep.js?v=0.50.1';
+} from './tts.js?v=0.51.0';
+import { createTtsStore } from './tts-store.js?v=0.51.0';
+import { SPEAKER_SOURCE_LABELS, discoverSpeakerAliases, pinSpeakers, refineCast, resolveSpeakers, speakerHints, speakersOf } from './tts-speakers.js?v=0.51.0';
+import { DEEP_PROMPT, DEEP_STATUS, acousticCallRules, acousticCallUtterances, buildDeepAnalysisMessages, buildDeepRefineMessages, deepRequestSettings, intimateAllowed, isAcousticPrompt, parseDeepAnalysis, pauseDisplay, stressDisplay } from './tts-deep.js?v=0.51.0';
 
 // The built-in prompts by name: the deep reading's comes from its own module.
 const TTS_PROMPT_DEFAULTS = Object.freeze({ ...DEFAULT_TTS_PROMPTS, deep: DEEP_PROMPT });
@@ -215,7 +215,7 @@ import {
   captureProcessingProfile, selectProcessingProfile, exportProcessingProfile, importProcessingProfile,
   importNativeRegex, makeBuiltinReadingProfile, detectBuiltinReadingStyle, syncNativeRegex, readNativeRegexEdits,
   dedupeManagedRegexScripts, planRegexCleanup, planScopedRegexCleanup,
-} from './processing.js?v=0.50.1';
+} from './processing.js?v=0.51.0';
 import {
   CORE_TRANSLATION_SPEC,
   DEFAULT_AVOID_PHRASES,
@@ -233,15 +233,15 @@ import {
   normalizeTargetLanguage,
   promptOptionLabel,
   resolvePromptVariables,
-} from './prompts.js?v=0.50.1';
-import { buildTranslationMessages, collectTranslationContext } from './workflow.js?v=0.50.1';
-import { SCENE_TONES, mergeScenes, normalizeScene, recoverScene } from './scene.js?v=0.50.1';
-import { READING_API_VERSION, READING_STATES, readingPositions, readingSnapshot, readingState } from './reading.js?v=0.50.1';
-import { describeLog, describeRemaining, estimateRemaining, filterLogs, floorRows, floorState, segmentAnchors, segmentAtPosition, untranslatedFloors } from './mini.js?v=0.50.1';
-import { mergeStreamText, readableStreamText, takeStreamPieces } from './tts-stream.js?v=0.50.1';
-import { callAppNames, callAppSummary, callMissing, callReminder, createCall, createCallApps, createCallHistory } from './call.js?v=0.50.1';
-import { createPcmPlayer, createWavStreamFeed, pcmDataOffset } from './pcm-player.js?v=0.50.1';
-import { CLOUD_VOICE_LABELS, spacedLatin, cloudBodyFailure, cloudFailure, cloudRequestGroups, createCloudAudioReader, doubaoRequest, minimaxRequest, parseVoiceMap } from './tts-cloud.js?v=0.50.1';
+} from './prompts.js?v=0.51.0';
+import { buildTranslationMessages, collectTranslationContext } from './workflow.js?v=0.51.0';
+import { SCENE_TONES, mergeScenes, normalizeScene, recoverScene } from './scene.js?v=0.51.0';
+import { READING_API_VERSION, READING_STATES, readingPositions, readingSnapshot, readingState } from './reading.js?v=0.51.0';
+import { describeLog, describeRemaining, estimateRemaining, filterLogs, floorRows, floorState, segmentAnchors, segmentAtPosition, untranslatedFloors } from './mini.js?v=0.51.0';
+import { mergeStreamText, readableStreamText, takeStreamPieces } from './tts-stream.js?v=0.51.0';
+import { callAppNames, callAppSummary, callMissing, callReminder, createCall, createCallApps, createCallHistory } from './call.js?v=0.51.0';
+import { createPcmPlayer, createWavStreamFeed, pcmDataOffset } from './pcm-player.js?v=0.51.0';
+import { CLOUD_VOICE_LABELS, spacedLatin, cloudBodyFailure, cloudFailure, cloudRequestGroups, createCloudAudioReader, doubaoRequest, minimaxRequest, parseVoiceMap } from './tts-cloud.js?v=0.51.0';
 import {
   DEFAULT_MIN_CONTRAST,
   EMOTION_STYLES,
@@ -259,8 +259,8 @@ import {
   spreadHues,
   srgbToOklch,
   toHex,
-} from './palette.js?v=0.50.1';
-import { sampleThemeBackground } from './theme-probe.js?v=0.50.1';
+} from './palette.js?v=0.51.0';
+import { sampleThemeBackground } from './theme-probe.js?v=0.51.0';
 import {
   addDiagnostic,
   clearDiagnostics,
@@ -268,7 +268,7 @@ import {
   formatFullDiagnosticReport,
   listDiagnosticFloors,
   readDiagnostics,
-} from './diagnostics.js?v=0.50.1';
+} from './diagnostics.js?v=0.51.0';
 import {
   DEFAULT_HELPER_PROMPT,
   HELPER_QUICK_QUESTIONS,
@@ -279,7 +279,7 @@ import {
   resolveHelperPrompt,
   validateHelperSuggestion,
   validateHelperSuggestions,
-} from './helper.js?v=0.50.1';
+} from './helper.js?v=0.51.0';
 
 const MENU_ENTRY_ID = `${MODULE_ID}-menu-entry`;
 const SETTINGS_ID = `${MODULE_ID}-settings`;
@@ -695,7 +695,7 @@ const CONTROL_CENTER_MARKUP = `
 <input type="file" accept=".json,application/json" data-jy-processing-import hidden>
 </div>
 <div class="jy-processing-columns">
-<div class="jy-text-scope"><h2>提取范围</h2><label><span class="jy-label">提取标签</span><textarea rows="3" data-jy-field="bodyTags" placeholder="story_scene" spellcheck="false"></textarea></label><div class="jy-actions"><button type="button" class="jy-button" data-jy-action="inspect-tags">检查当前楼层</button></div><pre class="jy-inspection" data-jy-tag-inspection hidden></pre><p class="jy-muted">每行一个标签名，只取每种标签的最后一组完整内容。一个标签写在另一个里面时，按外层整块翻译。</p><label><span class="jy-label">正文起点（找不到提取标签时用）</span><textarea rows="2" data-jy-field="bodyStartMarkers" placeholder="&lt;/thinking&gt;" spellcheck="false"></textarea></label><p class="jy-muted">回复里一个提取标签都没有时，从这里写的文字后面开始算正文，一直到楼层末尾；只写了结束标签的，算到结束标签为止。每行一个，比如思维链的结束标记 <code>&lt;/konatan_planning~&gt;</code>，写了几个就从最后出现的那个后面算。正文后面的摘要、建议之类，记得加进排除标签。</p><label><span class="jy-label">替换标签（译文直接替换原文）</span><textarea rows="2" data-jy-field="replaceTags" placeholder="replace_scene" spellcheck="false"></textarea></label><p class="jy-muted">该标签内的内容照常翻译，但写回时译文直接顶替原文：显示与主模型都只看到译文，原文隐藏保留在楼层里，点小铅笔可见，重新翻译时自动还原。</p><label><span class="jy-label">排除标签</span><textarea rows="2" data-jy-field="excludedTags" placeholder="thinking&#10;status" spellcheck="false"></textarea></label><p class="jy-muted">标签及内部内容保留在原位，不翻译，也不朗读（比如生图插件的 &lt;image&gt;）。镜译自己的 <code>&lt;say&gt;</code> 说话人标记不用加在这里：翻译时自动去掉，显示时自动隐藏，朗读时自动读取。</p></div>
+<div class="jy-text-scope"><h2>提取范围</h2><label><span class="jy-label">提取标签</span><textarea rows="3" data-jy-field="bodyTags" placeholder="story_scene" spellcheck="false"></textarea></label><div class="jy-actions"><button type="button" class="jy-button" data-jy-action="inspect-tags">检查当前楼层</button></div><pre class="jy-inspection" data-jy-tag-inspection hidden></pre><p class="jy-muted">每行一个标签名。同一种标签出现好几组时，每组都翻译；写在排除标签里面的那组不翻译。一个标签写在另一个里面时，按外层整块翻译。</p><label><span class="jy-label">正文起点（找不到提取标签时用）</span><textarea rows="2" data-jy-field="bodyStartMarkers" placeholder="&lt;/thinking&gt;" spellcheck="false"></textarea></label><p class="jy-muted">回复里一个提取标签都没有时，从这里写的文字后面开始算正文，一直到楼层末尾；只写了结束标签的，算到结束标签为止。每行一个，比如思维链的结束标记 <code>&lt;/konatan_planning~&gt;</code>，写了几个就从最后出现的那个后面算。正文后面的摘要、建议之类，记得加进排除标签。</p><label><span class="jy-label">替换标签（译文直接替换原文）</span><textarea rows="2" data-jy-field="replaceTags" placeholder="replace_scene" spellcheck="false"></textarea></label><p class="jy-muted">该标签内的内容照常翻译，但写回时译文直接顶替原文：显示与主模型都只看到译文，原文隐藏保留在楼层里，点小铅笔可见，重新翻译时自动还原。</p><label><span class="jy-label">排除标签</span><textarea rows="2" data-jy-field="excludedTags" placeholder="thinking&#10;status" spellcheck="false"></textarea></label><p class="jy-muted">标签及内部内容保留在原位，不翻译，也不朗读（比如生图插件的 &lt;image&gt;）。镜译自己的 <code>&lt;say&gt;</code> 说话人标记不用加在这里：翻译时自动去掉，显示时自动隐藏，朗读时自动读取。</p></div>
 <div class="jy-text-scope" data-jy-coloring><h2>说话人着色</h2>
 <div class="jy-behaviors"><label class="jy-check"><input type="checkbox" data-jy-field="coloringSpeakers">说话人着色（按发色 / 瞳色）</label></div>
 <div class="jy-dependent" data-jy-dependent="coloringEffects"><label class="jy-check"><input type="checkbox" data-jy-field="coloringEffects">特效字（招式上色、搬运原文排版）</label><p class="jy-muted jy-dependent-reason">先打开上面的「说话人着色」，这一项才会生效。</p>
@@ -1510,9 +1510,14 @@ async function readMessageSnapshot(messageId = null, settings = runtime.settings
   const existingTranslations = new Map();
   if (metadataMatches) {
     nextId = 1;
+    // Several groups of one tag are read back in order: the second of the original with the second here.
+    const originals = new Map();
+    for (const candidate of originalExtraction.regions) {
+      const key = `${candidate.mode}|${candidate.tagName.toLowerCase()}`;
+      originals.set(key, [...(originals.get(key) ?? []), candidate]);
+    }
     for (const region of extraction.regions) {
-      const originalRegion = originalExtraction.regions.find(candidate =>
-        candidate.tagName.toLowerCase() === region.tagName.toLowerCase() && candidate.mode === region.mode);
+      const originalRegion = originals.get(`${region.mode}|${region.tagName.toLowerCase()}`)?.shift();
       if (originalRegion) {
         const seeds = region.mode === 'replace'
           ? extractReplaceTranslations(originalRegion.inner, { ...segmentOptions, startId: nextId })
@@ -13530,6 +13535,26 @@ async function refreshCurrentCard(root) {
   }
 }
 
+// One tag's line in 「检查当前楼层」: its groups, which of them are translated, and how. `nested`: the
+// report's nestedTags entries for this tag, one a group written inside another block.
+function tagGroupsLine(item, nested = []) {
+  const names = (item.enclosedIn ?? []).map(tag => tag === '!--' ? '注释' : `<${tag}>`).join('、');
+  const inside = item.enclosed ?? 0;
+  if (inside >= item.count) return `${item.count} 组，${item.count > 1 ? '都' : ''}在 ${names} 里面，不翻译`;
+  const used = item.count - inside;
+  const outers = [...new Set(nested.map(entry => `<${entry.outer}>`))].join('、');
+  const parts = [`${item.count} 组`];
+  if (nested.length && nested.length >= used) {
+    parts.push(`${used > 1 ? '都' : ''}在 ${outers} 里面，随外层一起翻译`);
+  } else {
+    if (inside) parts.push(`翻译其中 ${used} 组`);
+    else if (item.count > 1) parts.push('都翻译');
+    if (nested.length) parts.push(`其中 ${nested.length} 组在 ${outers} 里面，随外层一起翻译`);
+  }
+  if (inside) parts.push(`另 ${inside} 组在 ${names} 里面，不翻译`);
+  return parts.join('，');
+}
+
 async function inspectCurrentFloor(root) {
   const settings = collectSettings(root);
   const context = getContext();
@@ -13559,10 +13584,8 @@ async function inspectCurrentFloor(root) {
     },
   );
   const lines = ['正文标签：'];
-  const nestedIn = new Map((report.nestedTags ?? []).map(item => [item.tag, item.outer]));
   for (const item of report.bodyTags) {
-    if (item.count && nestedIn.has(item.tag)) lines.push(`  <${item.tag}>：${item.count} 组，采用第 ${item.selected} 组，它在 <${nestedIn.get(item.tag)}> 里面，随外层一起翻译`);
-    else if (item.count) lines.push(`  <${item.tag}>：${item.count} 组，采用第 ${item.selected} 组`);
+    if (item.count) lines.push(`  <${item.tag}>：${tagGroupsLine(item, (report.nestedTags ?? []).filter(entry => entry.tag === item.tag))}`);
     else if (item.streaming) lines.push(`  <${item.tag}>：标签已出现但尚未闭合，这一楼可能还在生成`);
     else lines.push(`  <${item.tag}>：未找到`);
   }
@@ -13574,7 +13597,7 @@ async function inspectCurrentFloor(root) {
   }
   lines.push('替换标签：');
   if (!report.replaceTags.length) lines.push('  未设置');
-  for (const item of report.replaceTags) lines.push(`  <${item.tag}>：${item.count} 组`);
+  for (const item of report.replaceTags) lines.push(`  <${item.tag}>：${item.count ? tagGroupsLine(item) : '0 组'}`);
   lines.push('排除标签：');
   if (!report.excludedTags.length) lines.push('  未设置');
   for (const item of report.excludedTags) lines.push(`  <${item.tag}>：${item.count} 组`);
@@ -13977,9 +14000,9 @@ async function helperFloorSnapshot(settings) {
     swipeLabel: `${snapshot.swipeId + 1} / ${Math.max(1, totalSwipes)}`,
     segmentCount: totalCount,
     translationState,
-    bodyTagsFound: report.bodyTags.filter(item => item.count).map(item => item.tag),
+    bodyTagsFound: report.bodyTags.filter(item => item.count > (item.enclosed ?? 0)).map(item => item.tag),
     startMarkerFound: report.startMarker?.marker ?? '',
-    replaceTagsFound: report.replaceTags.filter(item => item.count).map(item => item.tag),
+    replaceTagsFound: report.replaceTags.filter(item => item.count > (item.enclosed ?? 0)).map(item => item.tag),
     excludedTagsFound: report.excludedTags.filter(item => item.count).map(item => item.tag),
     translationOnly: Boolean(snapshot.stripped),
     errors,
@@ -19039,10 +19062,14 @@ function scheduleAuto(messageId, reason) {
       if (autoTranslateSuppressed(id)) return;
       runtime.tts.awaiting.set(id, { since: Date.now(), token });
       recordDiagnostic('info', 'translation.auto', `第 ${messageId} 楼${reason === 'generation' ? '生成结束' : reason === 'swipe' ? '划动了' : '编辑过'}，自动翻译开始。`, { floor: id, reason });
-      const result = await startTranslation(id, { force: reason === 'edit', quiet: true });
+      // Not forced, an edit too: what it left of the text to translate keeps its translation. A picture an
+      // image plugin writes into the body (an excluded tag) or a translation line fixed by hand asks for
+      // nothing; a changed original is a floor not translated yet, asked for whole.
+      const result = await startTranslation(id, { quiet: true });
       wrote = Boolean(result) && !result.skipped;
       if (result?.skipped) {
-        recordDiagnostic('info', 'translation.auto', `第 ${messageId} 楼自动翻译没有进行：${AUTO_SKIP_REASONS[result.reason] ?? result.reason}${result.detail ? `（${result.detail.replace(/[。.]$/, '')}）` : ''}。`, { floor: id, reason, skipped: result.reason });
+        const why = reason === 'edit' && result.reason === 'already-translated' ? '改动没有碰到要翻译的原文，译文照旧' : AUTO_SKIP_REASONS[result.reason] ?? result.reason;
+        recordDiagnostic('info', 'translation.auto', `第 ${messageId} 楼自动翻译没有进行：${why}${result.detail ? `（${result.detail.replace(/[。.]$/, '')}）` : ''}。`, { floor: id, reason, skipped: result.reason });
         if (/正文标签/.test(result.detail ?? '')) noteMissingBodyTag(id, result.detail);
       }
     } catch (error) {
@@ -21850,6 +21877,8 @@ export const __testing = Object.freeze({
   restoreChatOriginals,
   clearFloorTranslation,
   autoTranslateSuppressed,
+  scheduleAuto,
+  tagGroupsLine,
   renumberSwipeRecords,
   initializeSettings,
   configureForTest,

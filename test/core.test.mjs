@@ -382,17 +382,18 @@ test('tag extraction and rebuild preserve everything outside story_scene', () =>
   assert.equal(rebuilt, '<meta>x</meta>\n<story_scene mood="quiet">\n改。\n</story_scene>\n<footer>y</footer>');
 });
 
-test('multiple extraction tags select only the last complete group of each tag', () => {
-  const source = '<story_scene>旧。</story_scene>\n<meta>保留</meta>\n<story_scene>新。</story_scene>\n<after_story>后记。</after_story>';
+test('every complete group of an extraction tag is translated, in floor order', () => {
+  const source = '<story_scene>一。</story_scene>\n<meta>保留</meta>\n<story_scene>二。</story_scene>\n<after_story>后记。</after_story>';
   const extraction = extractTaggedRegions(source, ['story_scene', 'after_story', 'missing']);
   assert.deepEqual(extraction.regions.map(region => [region.tagName, region.inner]), [
-    ['story_scene', '新。'],
+    ['story_scene', '一。'],
+    ['story_scene', '二。'],
     ['after_story', '后记。'],
   ]);
   assert.deepEqual(extraction.missingTags, ['missing']);
   assert.equal(
-    rebuildTaggedRegions(extraction, region => region.tagName === 'story_scene' ? '新译。' : '后记译。'),
-    '<story_scene>旧。</story_scene>\n<meta>保留</meta>\n<story_scene>新译。</story_scene>\n<after_story>后记译。</after_story>',
+    rebuildTaggedRegions(extraction, region => `${region.inner.slice(0, -1)}译。`),
+    '<story_scene>一译。</story_scene>\n<meta>保留</meta>\n<story_scene>二译。</story_scene>\n<after_story>后记译。</after_story>',
   );
 });
 
@@ -666,16 +667,16 @@ test('self-closing excluded tags are opaque and semantic signatures ignore exclu
   assert.match(after.regions[0].layout[0].sourceText, /image_prompt/);
 });
 
-test('tag inspection reports last-group selection, excluded blocks and structural errors', () => {
+test('tag inspection reports every group, excluded blocks and structural errors', () => {
   const report = inspectTagConfiguration(
-    '<story_scene>旧。</story_scene>\n<story_scene>新。\n\n二。</story_scene><image_prompt/>',
+    '<story_scene>一。</story_scene>\n<story_scene>二。\n\n三。</story_scene><image_prompt/>',
     ['story_scene'],
     ['image_prompt'],
   );
-  assert.deepEqual(report.bodyTags, [{ tag: 'story_scene', count: 2, selected: 2 }]);
+  assert.deepEqual(report.bodyTags, [{ tag: 'story_scene', count: 2 }]);
   assert.deepEqual(report.excludedTags, [{ tag: 'image_prompt', count: 1 }]);
-  assert.equal(report.paragraphs, 2);
-  assert.equal(report.translationUnits, 2);
+  assert.equal(report.paragraphs, 3);
+  assert.equal(report.translationUnits, 3);
   assert.equal(report.customPreservedLines, 0);
   assert.deepEqual(report.errors, []);
   assert.match(inspectTagConfiguration('<story_scene>未闭合', ['story_scene'], []).errors[0], /没有结束标签/);

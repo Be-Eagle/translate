@@ -1,8 +1,8 @@
-import { extractFloorRegions, extractTaggedRegions, floorText, getActiveChannel, getActivePromptProfile, normalizeTts, stripGeneratedTranslationLines, withoutSpeechMarks, DEFAULT_QUOTE_PAIRS, MESSAGE_META_KEY } from './core.js?v=0.50.1';
-import { composeAnnotationSection, composeLyricsSection, composeTranslationSpecification, normalizeTargetLanguage, resolvePromptVariables } from './prompts.js?v=0.50.1';
-import { EMOTION_KEYS } from './palette.js?v=0.50.1';
-import { composeSceneSection } from './scene.js?v=0.50.1';
-import { ANNOTATION_SOUNDS, FISH_EMOTIONS, FISH_EMOTION_GROUPS, FISH_TONES, SOFT_MOODS, SOUND_CUES, SOUND_PLACE_RULE, SOUND_TAGS, TONE_CUES } from './tts.js?v=0.50.1';
+import { extractFloorRegions, extractTaggedRegions, floorText, getActiveChannel, getActivePromptProfile, normalizeTts, stripGeneratedTranslationLines, withoutSpeechMarks, DEFAULT_QUOTE_PAIRS, MESSAGE_META_KEY } from './core.js?v=0.51.0';
+import { composeAnnotationSection, composeLyricsSection, composeTranslationSpecification, normalizeTargetLanguage, resolvePromptVariables } from './prompts.js?v=0.51.0';
+import { EMOTION_KEYS } from './palette.js?v=0.51.0';
+import { composeSceneSection } from './scene.js?v=0.51.0';
+import { ANNOTATION_SOUNDS, FISH_EMOTIONS, FISH_EMOTION_GROUPS, FISH_TONES, SOFT_MOODS, SOUND_CUES, SOUND_PLACE_RULE, SOUND_TAGS, TONE_CUES } from './tts.js?v=0.51.0';
 
 const WORLD_INFO_SCAN_CONTEXT = 65536;
 
@@ -82,7 +82,7 @@ function referenceBody(message, settings) {
   if (!regions.length) for (const [tags, mode] of [[settings.bodyTags, 'bilingual'], [settings.replaceTags, 'replace']]) {
     if (!Array.isArray(tags) || !tags.length) continue;
     try {
-      regions.push(...extractTaggedRegions(stripped, tags, { mode }).regions);
+      regions.push(...extractTaggedRegions(stripped, tags, { mode, excludedTags: settings.excludedTags }).regions);
     } catch {
       // No usable tag pair here. That is an error on the floor being translated and merely an
       // absence on a floor being quoted, so it stays quiet and contributes nothing.

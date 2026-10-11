@@ -8,20 +8,20 @@ import {
   normalizeTargetLanguage,
   STYLE_PRESETS,
   LEANING_PRESETS,
-} from './prompts.js?v=0.50.1';
+} from './prompts.js?v=0.51.0';
 // The same judgement the reading applies everywhere else a line is heard (tts.js's plainLineText):
 // struck-through and redacted content dropped with its words, so a segment carries it for the
 // translation to see — that stays in `text`, unaffected — while what the floor's own words are read
 // with, `speech`/`reading`, never says a word neither the floor nor its reader is meant to hear.
-import { dropHiddenMarkup } from './tts-sanitizer.js?v=0.50.1';
+import { dropHiddenMarkup } from './tts-sanitizer.js?v=0.51.0';
 // A move's colour is recomputed against the current band on restyle (`restyleBilingual` below), the
 // same maths index.js `moveStyleFor` used to paint it the first time.
-import { resolveMoveStyle } from './palette.js?v=0.50.1';
-import { DOUBAO_RESOURCES, MINIMAX_HOSTS, MINIMAX_MODELS } from './tts-cloud.js?v=0.50.1';
+import { resolveMoveStyle } from './palette.js?v=0.51.0';
+import { DOUBAO_RESOURCES, MINIMAX_HOSTS, MINIMAX_MODELS } from './tts-cloud.js?v=0.51.0';
 
 export const MODULE_ID = 'jingyi-translator';
 export const APP_NAME = '镜译 · 正文翻译器';
-export const APP_VERSION = '0.50.1';
+export const APP_VERSION = '0.51.0';
 // How a floor's own segmentation rules read: 1 is v0.36.0 and older (a <br> mid-line glues its words,
 // a <say> shell or a custom preserve rule's indentation is matched literally). 2 adds the v0.36.1
 // built-in-regex fixes. 3 adds v0.40.0's 「音乐卡片」 tightening: a run of <br> rows is only treated as a
@@ -2716,6 +2716,40 @@ export function stripTranslationAffixes(text, affixes = {}) {
   return body;
 }
 
+// A paragraph's written text without the excluded blocks in it, and without the lines they leave
+// empty: a picture put on a line of its own next to a line already translated joins that paragraph,
+// while the source block written for it holds the line alone.
+function withoutExcludedBlocks(text, excludedTags) {
+  let ranges;
+  try {
+    ranges = outermostExcludedRanges(text, excludedTags, { quoteAware: true });
+  } catch {
+    return text;
+  }
+  if (!ranges.length) return text;
+  let kept = '';
+  let cursor = 0;
+  for (const range of ranges) {
+    kept += text.slice(cursor, range.start);
+    cursor = range.end;
+  }
+  kept += text.slice(cursor);
+  return kept.split('\n').filter(line => line.trim()).join('\n');
+}
+
+// Where `from` stands once the excluded blocks right after it (and the blank space between them) are
+// stepped over: at the line break before what follows them, or `from` itself when none follows.
+function pastExcludedBlocks(source, from, ranges) {
+  let at = from;
+  for (;;) {
+    let next = at;
+    while (next < source.length && /\s/u.test(source[next])) next += 1;
+    const range = ranges.find(item => item.start === next && item.end > next);
+    if (!range) return at === from ? from : next > at && source[next - 1] === '\n' ? next - 1 : next;
+    at = range.end;
+  }
+}
+
 export function extractGeneratedTranslations(text, options = {}) {
   const source = normalizeNewlines(text);
   const segmented = segmentSource(stripGeneratedTranslationLines(source), {
@@ -2723,6 +2757,12 @@ export function extractGeneratedTranslations(text, options = {}) {
   });
   const prefix = typeof options.segmentPrefix === 'string' ? options.segmentPrefix : '';
   const suffix = typeof options.segmentSuffix === 'string' ? options.segmentSuffix : '';
+  let excludedRanges = [];
+  try {
+    excludedRanges = outermostExcludedRanges(source, options.excludedTags, { quoteAware: true });
+  } catch {
+    // Read as written: only a translation right under its line.
+  }
   const translations = new Map();
   let cursor = 0;
 
@@ -2734,9 +2774,11 @@ export function extractGeneratedTranslations(text, options = {}) {
     const original = layoutPart.lyric ? String(rawOriginal).replace(TRAILING_BR_RE, '') : rawOriginal;
     const ownedSources = new RegExp(SOURCE_BLOCK_RE.source, 'g');
     ownedSources.lastIndex = cursor;
+    const bare = excludedRanges.length && original.includes('<') ? withoutExcludedBlocks(original, options.excludedTags) : original;
     let match, start = -1, renderedSource = '';
     while ((match = ownedSources.exec(source))) {
-      if (match[1].replace(AFFIX_RE, '') !== original) continue;
+      const written = match[1].replace(AFFIX_RE, '');
+      if (written !== original && written !== bare) continue;
       start = match.index;
       renderedSource = match[0];
       break;
@@ -2747,7 +2789,15 @@ export function extractGeneratedTranslations(text, options = {}) {
     }
     if (start < 0) continue;
     const end = start + renderedSource.length;
-    const generated = generatedBlockAfter(source.slice(end));
+    let at = end;
+    let generated = generatedBlockAfter(source.slice(end));
+    if (!generated) {
+      // A block put between the line and its translation since (an image plugin's picture written under
+      // the line) leaves the translation where it was: the excluded blocks in between are stepped over.
+      const past = pastExcludedBlocks(source, end, excludedRanges);
+      generated = past > end ? generatedBlockAfter(source.slice(past)) : null;
+      if (generated) at = past;
+    }
     if (generated?.text?.trim()) {
       const body = generated.owned ? generated.text : stripTranslationAffixes(generated.text, {
         prefix: options.translationPrefix ?? '', suffix: options.translationSuffix ?? '',
@@ -2762,7 +2812,7 @@ export function extractGeneratedTranslations(text, options = {}) {
         translations.set(ids[0], normalizeNewlines(body).replace(/\n+/g, ' ').trim());
       }
     }
-    cursor = end + (generated?.full?.length || 0);
+    cursor = at + (generated?.full?.length || 0);
   }
   return translations;
 }
@@ -3100,24 +3150,60 @@ export function hasUnclosedTag(text, tagName) {
   return depth > 0;
 }
 
+/**
+ * The blocks a tag group standing inside one belongs to: the excluded tags' complete pairs and the
+ * closed comments. What is inside them stays as it is (排除标签), a body tag's group too — a preset's
+ * anti-truncation log may carry a copy of the body tag of its own. An excluded tag left open, or a
+ * comment, covers nothing here.
+ */
+function enclosingExcludedRanges(source, excludedTags) {
+  const ranges = [];
+  for (let start = source.indexOf('<!--'); start >= 0;) {
+    const close = source.indexOf('-->', start + 4);
+    if (close < 0) break;
+    ranges.push({ start, end: close + 3, tagName: '!--' });
+    start = source.indexOf('<!--', close + 3);
+  }
+  for (const tag of parseTagNames(excludedTags)) {
+    for (const group of scanTagGroups(source, tag, { quoteAware: true })) {
+      ranges.push({ start: group.openStart, end: group.closeEnd, tagName: tag });
+    }
+  }
+  return ranges;
+}
+
+// The excluded block `[start, end)` stands inside, or null.
+function enclosingRange(ranges, start, end) {
+  return ranges.find(range => range.start < start && end <= range.end) ?? null;
+}
+
 export function extractTaggedRegions(text, tagNames = DEFAULT_SETTINGS.bodyTags, options = {}) {
   const source = normalizeNewlines(text);
   const tags = parseTagNames(tagNames, DEFAULT_SETTINGS.bodyTags);
   const mode = options.mode === 'replace' ? 'replace' : 'bilingual';
+  const enclosing = enclosingExcludedRanges(source, options.excludedTags);
   const regions = [];
   const missingTags = [];
+  // Groups left where they are because they stand inside an excluded block.
+  const enclosed = [];
   // Closing tags written without their opening one: where a body found by its 「正文起点」 ends.
   const strayCloseAt = [];
   let unbalanced = 0;
   let assumedCloses = 0;
   for (const tag of tags) {
-    const groups = scanTagGroups(source, tag);
-    unbalanced += (groups.unclosedOpens || 0) + (groups.strayCloses || 0);
-    strayCloseAt.push(...(groups.strayCloseStack ?? []));
+    const scanned = scanTagGroups(source, tag);
+    unbalanced += (scanned.unclosedOpens || 0) + (scanned.strayCloses || 0);
+    strayCloseAt.push(...(scanned.strayCloseStack ?? []));
+    const groups = [];
+    for (const group of scanned) {
+      const range = enclosingRange(enclosing, group.openStart, group.closeEnd);
+      if (range) enclosed.push({ tagName: tag, excludedTagName: range.tagName });
+      else groups.push(group);
+    }
     // Some presets never emit the closing tag at all. A hard failure helps nobody, so an opener with
     // no partner is read as running to the end of the message. Complete groups always win over this.
-    if (!groups.length && groups.unclosedStack?.length) {
-      const open = groups.unclosedStack.at(-1);
+    const open = groups.length ? null : (scanned.unclosedStack ?? []).filter(item => !enclosingRange(enclosing, item.start, item.end)).at(-1);
+    if (open) {
       groups.push({
         tagName: tag,
         openStart: open.start,
@@ -3134,20 +3220,26 @@ export function extractTaggedRegions(text, tagNames = DEFAULT_SETTINGS.bodyTags,
       missingTags.push(tag);
       continue;
     }
-    const selected = groups.at(-1);
-    regions.push({
-      ...selected,
-      mode,
-      inner: source.slice(selected.contentStart, selected.closeStart),
-    });
+    // Every group is translated: a preset may write its body in several, one after another.
+    for (const group of groups) {
+      regions.push({
+        ...group,
+        mode,
+        inner: source.slice(group.contentStart, group.closeStart),
+      });
+    }
   }
   if (!regions.length) {
     if (mode === 'replace') {
-      return { source, regions, missingTags, unbalanced, assumedCloses };
+      return { source, regions, missingTags, unbalanced, assumedCloses, enclosed };
     }
     // None of the tags, but one of the 「正文起点」 markers: the body is what follows it.
     const fallback = markerRegion(source, options.startMarkers, { closes: strayCloseAt, stopsAt: options.stopsAt, excludedTags: options.excludedTags });
-    if (fallback) return { source, regions: [fallback], missingTags, unbalanced, assumedCloses, nested: [], startMarker: fallback.openTag };
+    if (fallback) return { source, regions: [fallback], missingTags, unbalanced, assumedCloses, nested: [], enclosed, startMarker: fallback.openTag };
+    if (enclosed.length) {
+      const names = list => [...new Set(list)].map(tag => `<${tag === '!--' ? '!-- -->' : tag}>`).join('、');
+      throw noBodyError(`当前 AI 回复中没有找到排除标签以外的正文标签：${names(enclosed.map(item => item.tagName))} 都写在 ${names(enclosed.map(item => item.excludedTagName))} 里面。`);
+    }
     if (unbalanced) {
       throw noBodyError(`正文标签没有成对闭合：${tags.map(tag => `<${tag}>`).join('、')}。这一楼可能还在生成，或预设输出的标签不完整。`);
     }
@@ -3177,7 +3269,7 @@ export function extractTaggedRegions(text, tagNames = DEFAULT_SETTINGS.bodyTags,
   }
   kept.unbalanced = unbalanced;
   kept.assumedCloses = assumedCloses;
-  return { source, regions: kept, missingTags, unbalanced, assumedCloses, nested };
+  return { source, regions: kept, missingTags, unbalanced, assumedCloses, nested, enclosed };
 }
 
 /**
@@ -3186,7 +3278,7 @@ export function extractTaggedRegions(text, tagNames = DEFAULT_SETTINGS.bodyTags,
  */
 export function extractFloorRegions(text, { bodyTags, replaceTags, startMarkers, excludedTags } = {}) {
   const replaceList = parseTagNames(replaceTags);
-  const replace = replaceList.length ? extractTaggedRegions(text, replaceList, { mode: 'replace' }) : null;
+  const replace = replaceList.length ? extractTaggedRegions(text, replaceList, { mode: 'replace', excludedTags }) : null;
   const body = extractTaggedRegions(text, bodyTags, { startMarkers, excludedTags, stopsAt: (replace?.regions ?? []).map(region => region.openStart) });
   return mergeExtractedRegions(body, replace);
 }
@@ -3208,6 +3300,7 @@ export function mergeExtractedRegions(body, replace) {
     missingTags: [...(body?.missingTags ?? []), ...(replace?.missingTags ?? [])],
     unbalanced: (body?.unbalanced || 0) + (replace?.unbalanced || 0),
     assumedCloses: (body?.assumedCloses || 0) + (replace?.assumedCloses || 0),
+    enclosed: [...(body?.enclosed ?? []), ...(replace?.enclosed ?? [])],
     // The 「正文起点」 the body was found by, when none of the body tags was there.
     startMarker: body?.startMarker ?? null,
   };
@@ -3218,21 +3311,35 @@ export function inspectTagConfiguration(text, bodyTags, excludedTags, segmentOpt
   const body = parseTagNames(bodyTags, DEFAULT_SETTINGS.bodyTags);
   const excluded = parseTagNames(excludedTags);
   const errors = [];
+  let enclosing = [];
+  try {
+    enclosing = enclosingExcludedRanges(source, excluded);
+  } catch {
+    // The excluded tags' own trouble is reported with them below.
+  }
+  // The groups left out for standing inside an excluded block, as extractTaggedRegions leaves them out;
+  // only there when there are any, so the common shape stays clean.
+  const enclosedOf = groups => {
+    const inside = groups.map(group => enclosingRange(enclosing, group.openStart, group.closeEnd)).filter(Boolean);
+    return inside.length ? { enclosed: inside.length, enclosedIn: [...new Set(inside.map(range => range.tagName))] } : {};
+  };
   const bodyResults = body.map(tag => {
     try {
       const groups = scanTagGroups(source, tag);
       const unclosedOpens = groups.unclosedOpens || 0;
       const strayCloses = groups.strayCloses || 0;
+      const enclosed = enclosedOf(groups);
+      const usable = groups.length - (enclosed.enclosed ?? 0);
       // Still reported, but no longer fatal: the complete groups above remain usable.
       if (unclosedOpens) {
-        errors.push(groups.length
-          ? `最后一组 <${tag}> 没有对应的结束标签，已改用前面 ${groups.length} 组完整内容。`
+        errors.push(usable
+          ? `最后一组 <${tag}> 没有对应的结束标签，已改用前面 ${usable} 组完整内容。`
           : `<${tag}> 没有结束标签，已把开标签之后到楼层末尾的内容当作正文。`);
       }
       return {
         tag,
         count: groups.length,
-        selected: groups.length ? groups.length : null,
+        ...enclosed,
         // Only present when something is actually unbalanced, so the common shape stays clean.
         ...(unclosedOpens ? { unclosedOpens } : {}),
         ...(strayCloses ? { strayCloses } : {}),
@@ -3241,7 +3348,7 @@ export function inspectTagConfiguration(text, bodyTags, excludedTags, segmentOpt
       errors.push(error.message);
       // A tag that opens but has not closed yet is a floor still being written, not a wrong setting.
       const streaming = hasUnclosedTag(source, tag);
-      return { tag, count: 0, selected: null, streaming, error: error.message };
+      return { tag, count: 0, streaming, error: error.message };
     }
   });
   const excludedResults = excluded.map(tag => {
@@ -3261,16 +3368,17 @@ export function inspectTagConfiguration(text, bodyTags, excludedTags, segmentOpt
   const replaceResults = replace.map(tag => {
     try {
       const groups = scanTagGroups(source, tag);
-      return { tag, count: groups.length };
+      return { tag, count: groups.length, ...enclosedOf(groups) };
     } catch (error) {
       errors.push(error.message);
       return { tag, count: 0, error: error.message };
     }
   });
-  // None of the body tags there at all: the body its 「正文起点」 finds instead, when one is set and there.
+  // None of the body tags there at all (or only inside excluded blocks): the body its 「正文起点」 finds
+  // instead, when one is set and there.
   const startMarkers = parseStartMarkers(segmentOptions.bodyStartMarkers);
   let fallback = null;
-  if (startMarkers.length && bodyResults.every(result => !result.count && !result.unclosedOpens && !result.error)) {
+  if (startMarkers.length && bodyResults.every(result => result.count === (result.enclosed ?? 0) && !result.unclosedOpens && !result.error)) {
     try {
       fallback = extractFloorRegions(source, { bodyTags: body, replaceTags: replace, startMarkers, excludedTags: excluded });
       if (!fallback.startMarker) fallback = null;
@@ -3295,13 +3403,13 @@ export function inspectTagConfiguration(text, bodyTags, excludedTags, segmentOpt
     try {
       let extraction = fallback;
       if (!extraction) {
-        const bodyExtraction = extractTaggedRegions(source, body);
+        const bodyExtraction = extractTaggedRegions(source, body, { excludedTags: excluded });
         // A body block written inside another one is translated with it (extractTaggedRegions); the report
-        // says so, so 「采用第 N 组」 is not read as that block being translated on its own.
+        // says so, so its groups are not read as translated on their own.
         nested = bodyExtraction.nested ?? [];
         extraction = mergeExtractedRegions(
           bodyExtraction,
-          replace.length ? extractTaggedRegions(source, replace, { mode: 'replace' }) : null,
+          replace.length ? extractTaggedRegions(source, replace, { mode: 'replace', excludedTags: excluded }) : null,
         );
       }
       let nextId = 1;
