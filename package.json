@@ -4,8 +4,10 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "check": "node --check index.js && node --check core.js && node --check palette.js && node --check theme-probe.js && node --check processing.js && node --check jailbreak-default.js && node --check prompts.js && node --check workflow.js && node --check diagnostics.js && node --check tts.js && node --check tts-store.js && node --check console-autosave.js && node --check helper.js && node --check tts-stream.js && node --check pcm-player.js && node --check tts-cloud.js && node --check call.js && node --check reading.js && node --check scripts/preview-server.mjs",
+    "check": "node --check index.js && node --check core.js && node --check palette.js && node --check theme-probe.js && node --check processing.js && node --check jailbreak-default.js && node --check prompts.js && node --check workflow.js && node --check diagnostics.js && node --check tts.js && node --check tts-store.js && node --check console-autosave.js && node --check helper.js && node --check tts-stream.js && node --check pcm-player.js && node --check tts-cloud.js && node --check call.js && node --check reading.js && node --check scripts/preview-server.mjs && node --check scripts/mock-services.mjs && node --check scripts/sandbox-tavern.mjs",
     "preview": "node scripts/preview-server.mjs",
+    "mock": "node scripts/mock-services.mjs",
+    "sandbox": "node scripts/sandbox-tavern.mjs",
     "test": "node --test",
     "validate": "npm run check && npm test"
   }
