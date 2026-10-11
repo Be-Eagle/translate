@@ -128,8 +128,8 @@ import {
   isGsvVoiceId,
   languageBase,
   normalizeGsvVoice,
-} from './core.js?v=0.50.0';
-import { resolveAutosaveWrite, ensureAutosaveIndicator } from './console-autosave.js?v=0.50.0';
+} from './core.js?v=0.50.1';
+import { resolveAutosaveWrite, ensureAutosaveIndicator } from './console-autosave.js?v=0.50.1';
 import {
   FISH_EMOTIONS,
   FISH_MIME,
@@ -202,10 +202,10 @@ import {
   gsvVoiceFor,
   scaleWavVolume,
   wavInfo,
-} from './tts.js?v=0.50.0';
-import { createTtsStore } from './tts-store.js?v=0.50.0';
-import { SPEAKER_SOURCE_LABELS, discoverSpeakerAliases, pinSpeakers, refineCast, resolveSpeakers, speakerHints, speakersOf } from './tts-speakers.js?v=0.50.0';
-import { DEEP_PROMPT, DEEP_STATUS, acousticCallRules, acousticCallUtterances, buildDeepAnalysisMessages, buildDeepRefineMessages, deepRequestSettings, intimateAllowed, isAcousticPrompt, parseDeepAnalysis, pauseDisplay, stressDisplay } from './tts-deep.js?v=0.50.0';
+} from './tts.js?v=0.50.1';
+import { createTtsStore } from './tts-store.js?v=0.50.1';
+import { SPEAKER_SOURCE_LABELS, discoverSpeakerAliases, pinSpeakers, refineCast, resolveSpeakers, speakerHints, speakersOf } from './tts-speakers.js?v=0.50.1';
+import { DEEP_PROMPT, DEEP_STATUS, acousticCallRules, acousticCallUtterances, buildDeepAnalysisMessages, buildDeepRefineMessages, deepRequestSettings, intimateAllowed, isAcousticPrompt, parseDeepAnalysis, pauseDisplay, stressDisplay } from './tts-deep.js?v=0.50.1';
 
 // The built-in prompts by name: the deep reading's comes from its own module.
 const TTS_PROMPT_DEFAULTS = Object.freeze({ ...DEFAULT_TTS_PROMPTS, deep: DEEP_PROMPT });
@@ -215,7 +215,7 @@ import {
   captureProcessingProfile, selectProcessingProfile, exportProcessingProfile, importProcessingProfile,
   importNativeRegex, makeBuiltinReadingProfile, detectBuiltinReadingStyle, syncNativeRegex, readNativeRegexEdits,
   dedupeManagedRegexScripts, planRegexCleanup, planScopedRegexCleanup,
-} from './processing.js?v=0.50.0';
+} from './processing.js?v=0.50.1';
 import {
   CORE_TRANSLATION_SPEC,
   DEFAULT_AVOID_PHRASES,
@@ -233,15 +233,15 @@ import {
   normalizeTargetLanguage,
   promptOptionLabel,
   resolvePromptVariables,
-} from './prompts.js?v=0.50.0';
-import { buildTranslationMessages, collectTranslationContext } from './workflow.js?v=0.50.0';
-import { SCENE_TONES, mergeScenes, normalizeScene, recoverScene } from './scene.js?v=0.50.0';
-import { READING_API_VERSION, READING_STATES, readingPositions, readingSnapshot, readingState } from './reading.js?v=0.50.0';
-import { describeLog, describeRemaining, estimateRemaining, filterLogs, floorRows, floorState, segmentAnchors, segmentAtPosition, untranslatedFloors } from './mini.js?v=0.50.0';
-import { mergeStreamText, readableStreamText, takeStreamPieces } from './tts-stream.js?v=0.50.0';
-import { callAppNames, callAppSummary, callMissing, callReminder, createCall, createCallApps, createCallHistory } from './call.js?v=0.50.0';
-import { createPcmPlayer, createWavStreamFeed, pcmDataOffset } from './pcm-player.js?v=0.50.0';
-import { CLOUD_VOICE_LABELS, spacedLatin, cloudBodyFailure, cloudFailure, cloudRequestGroups, createCloudAudioReader, doubaoRequest, minimaxRequest, parseVoiceMap } from './tts-cloud.js?v=0.50.0';
+} from './prompts.js?v=0.50.1';
+import { buildTranslationMessages, collectTranslationContext } from './workflow.js?v=0.50.1';
+import { SCENE_TONES, mergeScenes, normalizeScene, recoverScene } from './scene.js?v=0.50.1';
+import { READING_API_VERSION, READING_STATES, readingPositions, readingSnapshot, readingState } from './reading.js?v=0.50.1';
+import { describeLog, describeRemaining, estimateRemaining, filterLogs, floorRows, floorState, segmentAnchors, segmentAtPosition, untranslatedFloors } from './mini.js?v=0.50.1';
+import { mergeStreamText, readableStreamText, takeStreamPieces } from './tts-stream.js?v=0.50.1';
+import { callAppNames, callAppSummary, callMissing, callReminder, createCall, createCallApps, createCallHistory } from './call.js?v=0.50.1';
+import { createPcmPlayer, createWavStreamFeed, pcmDataOffset } from './pcm-player.js?v=0.50.1';
+import { CLOUD_VOICE_LABELS, spacedLatin, cloudBodyFailure, cloudFailure, cloudRequestGroups, createCloudAudioReader, doubaoRequest, minimaxRequest, parseVoiceMap } from './tts-cloud.js?v=0.50.1';
 import {
   DEFAULT_MIN_CONTRAST,
   EMOTION_STYLES,
@@ -259,8 +259,8 @@ import {
   spreadHues,
   srgbToOklch,
   toHex,
-} from './palette.js?v=0.50.0';
-import { sampleThemeBackground } from './theme-probe.js?v=0.50.0';
+} from './palette.js?v=0.50.1';
+import { sampleThemeBackground } from './theme-probe.js?v=0.50.1';
 import {
   addDiagnostic,
   clearDiagnostics,
@@ -268,7 +268,7 @@ import {
   formatFullDiagnosticReport,
   listDiagnosticFloors,
   readDiagnostics,
-} from './diagnostics.js?v=0.50.0';
+} from './diagnostics.js?v=0.50.1';
 import {
   DEFAULT_HELPER_PROMPT,
   HELPER_QUICK_QUESTIONS,
@@ -279,7 +279,7 @@ import {
   resolveHelperPrompt,
   validateHelperSuggestion,
   validateHelperSuggestions,
-} from './helper.js?v=0.50.0';
+} from './helper.js?v=0.50.1';
 
 const MENU_ENTRY_ID = `${MODULE_ID}-menu-entry`;
 const SETTINGS_ID = `${MODULE_ID}-settings`;
@@ -1441,17 +1441,8 @@ async function readMessageSnapshot(messageId = null, settings = runtime.settings
 
   const shownSwipe = Number(message.swipe_id ?? 0);
   const swipeId = wantedSwipe === null ? shownSwipe : Number(wantedSwipe);
-  // An alternative other than the one shown (only ever asked for by reading.get) is read from its own
-  // text and record, the way the shown one is read from the floor.
-  const subject = swipeId === shownSwipe ? message : swipeView(message, swipeId);
-  // A floor with only its translation left in it is read from the bilingual text kept for it.
-  const floor = readFloor(subject);
-  const metadata = floor.metadata ?? subject.extra?.[MESSAGE_META_KEY];
-  const upgraded = upgradeLegacyBilingual(floor.text, metadata);
+  const { floor, metadata, upgraded, original: cleanMessage } = readAlternative(message, swipeId);
   const originalExtraction = extractAllRegions(upgraded, settings);
-  // Metadata carries the affixes this floor was written with, so a wrapper that lost its invisible
-  // boundaries is removed here instead of being re-wrapped on the next write.
-  const cleanMessage = stripGeneratedTranslationLines(upgraded, metadata);
   // Reading a floor aloud re-reads it on every render; the warning belongs to translating it.
   if (!quiet && metadata && detectUnmarkedAffixes(cleanMessage, metadata)) {
     recordDiagnostic('warn', 'translation.affix-leftover', '楼层里发现失去不可见边界的前后缀文本，重新翻译前请先清理，否则可能出现重复前后缀。', {
@@ -1573,6 +1564,24 @@ async function readMessageSnapshot(messageId = null, settings = runtime.settings
     outdated: floor.diverged
       || Boolean(metadata && !metadataMatches && (floor.stripped || Number(metadata.swipe_id ?? 0) === swipeId)),
   };
+}
+
+/**
+ * One alternative of a floor before anything is extracted from it: the floor as read (readFloor), its
+ * record, its text with legacy bilingual lines brought up to date, and its original — that text with
+ * every line 镜译 wrote taken out.
+ */
+function readAlternative(message, swipeId = Number(message.swipe_id ?? 0)) {
+  // An alternative other than the one shown (only ever asked for by reading.get) is read from its own
+  // text and record, the way the shown one is read from the floor.
+  const subject = swipeId === Number(message.swipe_id ?? 0) ? message : swipeView(message, swipeId);
+  // A floor with only its translation left in it is read from the bilingual text kept for it.
+  const floor = readFloor(subject);
+  const metadata = floor.metadata ?? subject.extra?.[MESSAGE_META_KEY];
+  const upgraded = upgradeLegacyBilingual(floor.text, metadata);
+  // Metadata carries the affixes this floor was written with, so a wrapper that lost its invisible
+  // boundaries is removed here instead of being re-wrapped on the next write.
+  return { floor, metadata, upgraded, original: stripGeneratedTranslationLines(upgraded, metadata) };
 }
 
 /** A swipe that is not the one shown, as a message of its own: its text, and the record kept for it. */
@@ -21365,16 +21374,15 @@ async function apiScenes({ from = 0, to = null } = {}) {
 /**
  * A floor's original: the floor's number or the message itself, with every line 镜译 wrote into it
  * taken out; a floor with only its translation left in it (「只留译文」) gives the original from the
- * record kept beside it. A floor changed by hand after that gives what it holds. '' for no floor.
+ * record kept beside it. A floor changed by hand after that gives what it holds (a fingerprint follows
+ * the change; reading.get calls that floor a 'conflict'). '' for no floor.
  */
 function apiFloorOriginal(target) {
   const message = typeof target === 'number' || (typeof target === 'string' && /^\d+$/.test(target.trim()))
     ? getContext().chat?.[Number(target)]
     : target;
   if (!message || typeof message !== 'object' || typeof message.mes !== 'string') return '';
-  const floor = readFloor(message);
-  const metadata = floor.metadata ?? message.extra?.[MESSAGE_META_KEY];
-  return stripGeneratedTranslationLines(upgradeLegacyBilingual(floor.text, metadata), metadata);
+  return readAlternative(message).original;
 }
 
 // ---------------------------------------------------------------------------------------------
@@ -21383,6 +21391,9 @@ function apiFloorOriginal(target) {
 // line's translation for its own view — and a word whenever that may have changed. Nothing here
 // translates, asks a model, speaks, saves or changes a setting.
 // ---------------------------------------------------------------------------------------------
+
+// Why a floor has no original to give (reading's 'conflict'), in words the reader can act on.
+const READING_CONFLICT_REASON = '这一楼只留了译文，后来又被改过，镜译存的原文已经对不上楼层，给不出原文。在镜译总控页点「恢复本聊天的原文」可以放回原文，这一楼的改动会丢。';
 
 /** reading.get: one floor's alternative (the one shown when `swipeId` is left out); null when there is none. */
 async function apiReadingGet({ messageId, swipeId = null } = {}) {
@@ -21402,7 +21413,21 @@ async function apiReadingGet({ messageId, swipeId = null } = {}) {
   if (message.is_user || message.is_system) {
     return readingSnapshot({ ...owner, source: String((swipe === shown ? message.mes : message.swipes?.[swipe]) ?? '') });
   }
-  const snapshot = await readMessageSnapshot(id, runtime.settings, { quiet: true, swipeId: swipe });
+  // Only its translation left in it and changed since: what the floor holds is no original, and the
+  // original kept beside it is no longer what the floor says. Neither is handed out as the original.
+  const alternative = readAlternative(message, swipe);
+  if (alternative.floor.diverged) {
+    return readingSnapshot({ ...owner, source: null, state: readingState({ conflict: true }), error: READING_CONFLICT_REASON });
+  }
+  let snapshot;
+  try {
+    snapshot = await readMessageSnapshot(id, runtime.settings, { quiet: true, swipeId: swipe });
+  } catch (error) {
+    // None of its body where 镜译 is told to look (its body tag not in 提取标签, say): nothing in it to
+    // translate, and its original all the same. Tags that are there but cannot be read stay an error.
+    if (error?.code !== 'JY_NO_BODY') throw error;
+    return readingSnapshot({ ...owner, source: alternative.original });
+  }
   const key = `${chatId}|${id}|${swipe}`;
   const failure = runtime.readingFailures.get(key);
   // The speaker a line's own <say> mark names stands in where no translation has marked one yet.

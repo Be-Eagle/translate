@@ -8,20 +8,20 @@ import {
   normalizeTargetLanguage,
   STYLE_PRESETS,
   LEANING_PRESETS,
-} from './prompts.js?v=0.50.0';
+} from './prompts.js?v=0.50.1';
 // The same judgement the reading applies everywhere else a line is heard (tts.js's plainLineText):
 // struck-through and redacted content dropped with its words, so a segment carries it for the
 // translation to see — that stays in `text`, unaffected — while what the floor's own words are read
 // with, `speech`/`reading`, never says a word neither the floor nor its reader is meant to hear.
-import { dropHiddenMarkup } from './tts-sanitizer.js?v=0.50.0';
+import { dropHiddenMarkup } from './tts-sanitizer.js?v=0.50.1';
 // A move's colour is recomputed against the current band on restyle (`restyleBilingual` below), the
 // same maths index.js `moveStyleFor` used to paint it the first time.
-import { resolveMoveStyle } from './palette.js?v=0.50.0';
-import { DOUBAO_RESOURCES, MINIMAX_HOSTS, MINIMAX_MODELS } from './tts-cloud.js?v=0.50.0';
+import { resolveMoveStyle } from './palette.js?v=0.50.1';
+import { DOUBAO_RESOURCES, MINIMAX_HOSTS, MINIMAX_MODELS } from './tts-cloud.js?v=0.50.1';
 
 export const MODULE_ID = 'jingyi-translator';
 export const APP_NAME = '镜译 · 正文翻译器';
-export const APP_VERSION = '0.50.0';
+export const APP_VERSION = '0.50.1';
 // How a floor's own segmentation rules read: 1 is v0.36.0 and older (a <br> mid-line glues its words,
 // a <say> shell or a custom preserve rule's indentation is matched literally). 2 adds the v0.36.1
 // built-in-regex fixes. 3 adds v0.40.0's 「音乐卡片」 tightening: a run of <br> rows is only treated as a
@@ -2951,6 +2951,14 @@ export function extractTranslationBlockText(text) {
   return chunks.join('\n');
 }
 
+// None of a floor's body where 镜译 is told to look: nothing in it to translate, which a reading of the
+// floor tells apart from tags that are there but cannot be read.
+function noBodyError(message) {
+  const error = new Error(message);
+  error.code = 'JY_NO_BODY';
+  return error;
+}
+
 function scanTagGroups(source, tagName, options = {}) {
   const tag = String(tagName || '').trim();
   if (!VALID_TAG_RE.test(tag)) throw new Error(`标签名称无效：${tag || '（空）'}`);
@@ -3141,10 +3149,10 @@ export function extractTaggedRegions(text, tagNames = DEFAULT_SETTINGS.bodyTags,
     const fallback = markerRegion(source, options.startMarkers, { closes: strayCloseAt, stopsAt: options.stopsAt, excludedTags: options.excludedTags });
     if (fallback) return { source, regions: [fallback], missingTags, unbalanced, assumedCloses, nested: [], startMarker: fallback.openTag };
     if (unbalanced) {
-      throw new Error(`正文标签没有成对闭合：${tags.map(tag => `<${tag}>`).join('、')}。这一楼可能还在生成，或预设输出的标签不完整。`);
+      throw noBodyError(`正文标签没有成对闭合：${tags.map(tag => `<${tag}>`).join('、')}。这一楼可能还在生成，或预设输出的标签不完整。`);
     }
     const noMarker = parseStartMarkers(options.startMarkers).length ? '，也没有找到正文起点' : '';
-    throw new Error(`当前 AI 回复中没有找到正文标签：${tags.map(tag => `<${tag}>`).join('、')}${noMarker}。`);
+    throw noBodyError(`当前 AI 回复中没有找到正文标签：${tags.map(tag => `<${tag}>`).join('、')}${noMarker}。`);
   }
   regions.sort((left, right) => left.openStart - right.openStart);
   // A main model does not always put a block in the same place: <parallel_line> after <story_scene> one

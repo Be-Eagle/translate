@@ -59,7 +59,8 @@ test('a line whose words carry markup stands as the whole line; one written twic
   assert.ok(twice[0] < twice[1], 'the second one after the first');
 });
 
-test('a floor\'s state: a run in flight first, then complete, outdated, failed, some lines, none', () => {
+test('a floor\'s state: no original first, then a run in flight, complete, outdated, failed, some lines, none', () => {
+  assert.equal(readingState({ total: 3, done: 3, complete: true, processing: true, conflict: true }), 'conflict');
   assert.equal(readingState({ total: 3, done: 3, complete: true, processing: true }), 'processing');
   assert.equal(readingState({ total: 3, done: 3, complete: true }), 'ready');
   assert.equal(readingState({ total: 3, done: 0, outdated: true }), 'stale');
@@ -67,7 +68,7 @@ test('a floor\'s state: a run in flight first, then complete, outdated, failed, 
   assert.equal(readingState({ total: 3, done: 1 }), 'partial');
   assert.equal(readingState({ total: 3, done: 0 }), 'absent');
   assert.equal(readingState({ total: 0, complete: true }), 'absent', 'nothing to translate is nothing translated');
-  assert.deepEqual([...READING_STATES], ['absent', 'processing', 'partial', 'ready', 'failed', 'stale']);
+  assert.deepEqual([...READING_STATES], ['absent', 'processing', 'partial', 'ready', 'failed', 'stale', 'conflict']);
 });
 
 test('a snapshot reads null for a line with no translation, and its revisions follow the original and the reading', () => {
@@ -88,6 +89,12 @@ test('a snapshot reads null for a line with no translation, and its revisions fo
   const failed = readingSnapshot({ ...base, state: 'failed', error: '超时' });
   assert.equal(failed.error, '超时');
   assert.equal(readingSnapshot({ ...base, state: 'nonsense' }).state, 'absent');
+  const conflict = readingSnapshot({ ...base, source: null, state: 'conflict', error: '改过了' });
+  assert.equal(conflict.sourceMessage, null);
+  assert.equal(conflict.sourceRevision, null);
+  assert.deepEqual(conflict.segments, [], 'no original, no line placed in it');
+  assert.equal(conflict.readingRevision, 'none');
+  assert.equal(conflict.error, '改过了');
 });
 
 // A headless stand-in for the parts of the host a translation touches.
@@ -184,6 +191,66 @@ test('a floor with only its translation left in it reads its original back', asy
   assert.equal(snapshot.segments[1].reading.text, '明天见啦。');
 });
 
+test('a floor whose body is nowhere 镜译 looks reads absent with its original; tags that cannot be read stay an error', async t => {
+  const context = useHost(t, [floorOf([SOURCE])], { settings: { bodyTags: ['story_scene'] } });
+  const { reading } = globalThis.__JINGYI__;
+  const missing = await reading.get({ messageId: 0 });
+  assert.equal(missing.state, 'absent');
+  assert.equal(missing.sourceMessage, SOURCE);
+  assert.equal(missing.sourceRevision, readingSnapshot({ source: SOURCE }).sourceRevision);
+  assert.deepEqual(missing.segments, []);
+  assert.equal(missing.readingRevision, 'none');
+  assert.equal(missing.error, null);
+
+  // A closing tag with no opening one, and no 正文起点: no body either.
+  context.chat[0].mes = context.chat[0].swipes[0] = '雨停了。\n</story_scene>';
+  assert.equal((await reading.get({ messageId: 0 })).state, 'absent');
+
+  // Translated with the body tag, then the tag taken out of 提取标签: what 镜译 wrote still is not the original.
+  context.chat[0].mes = context.chat[0].swipes[0] = SOURCE;
+  __testing.configureForTest({ settings: { bodyTags: ['cxx-story'] } });
+  await __testing.startTranslation(0, { quiet: true });
+  __testing.configureForTest({ settings: { bodyTags: ['story_scene'] } });
+  const untagged = await reading.get({ messageId: 0 });
+  assert.equal(untagged.state, 'absent');
+  assert.equal(untagged.sourceMessage, SOURCE);
+
+  context.chat[0].mes = context.chat[0].swipes[0] = '<cxx-story>\n甲\n<ztl>乙\n</cxx-story>\n丙</ztl>';
+  __testing.configureForTest({ settings: { bodyTags: ['cxx-story', 'ztl'] } });
+  await assert.rejects(reading.get({ messageId: 0 }), /交叉/);
+});
+
+test('a floor with only its translation left, changed inside its body, has no original to give until the change is undone', async t => {
+  const context = useHost(t, [floorOf([SOURCE])], { settings: { translationOnly: true } });
+  const { reading, floor } = globalThis.__JINGYI__;
+  await __testing.startTranslation(0, { quiet: true });
+  const written = context.chat[0].mes;
+  assert.ok(written.includes('明天见啦。'));
+  const edit = text => { context.chat[0].mes = context.chat[0].swipes[0] = text; };
+
+  edit(written.replace('明天见啦。', '明天见啦。后来手改'));
+  const conflict = await reading.get({ messageId: 0 });
+  assert.equal(conflict.state, 'conflict');
+  assert.deepEqual(conflict.owner, { chatId: 'reading-fixture', messageId: 0, swipeId: 0 });
+  assert.equal(conflict.sourceMessage, null, 'the translation is not handed out as the original');
+  assert.equal(conflict.sourceRevision, null);
+  assert.equal(conflict.readingRevision, 'none');
+  assert.deepEqual(conflict.segments, []);
+  assert.match(conflict.error, /恢复本聊天的原文/);
+  assert.match(floor.original(0), /后来手改/, 'floor.original gives what the floor holds, for a fingerprint');
+
+  // Text added around the body changes nothing in it: the original comes back, with that text kept.
+  edit(`${written}\n<img>雨中的校门</img>`);
+  const added = await reading.get({ messageId: 0 });
+  assert.equal(added.state, 'ready');
+  assert.equal(added.sourceMessage, `${SOURCE}\n<img>雨中的校门</img>`);
+
+  edit(written);
+  const undone = await reading.get({ messageId: 0 });
+  assert.equal(undone.state, 'ready');
+  assert.equal(undone.sourceMessage, SOURCE);
+});
+
 test('a floor changed after its translation is stale; a failed translation says so, until it succeeds', async t => {
   let fail = true;
   const context = useHost(t, [floorOf([SOURCE])], { reply: () => (fail ? Promise.reject(new Error('模拟的接口错误')) : Promise.resolve(REPLY)) });
@@ -258,7 +325,7 @@ test('reading asks no model, saves nothing and changes no setting', async t => {
 test('reading.status gives the settings a reading is shaped by and nothing secret; tts.status says whether speak can read', async t => {
   useHost(t, [floorOf([SOURCE])]);
   const status = globalThis.__JINGYI__.reading.status();
-  assert.equal(status.apiVersion, 1);
+  assert.equal(status.apiVersion, 2);
   assert.equal(status.autoGeneration, true);
   assert.equal(status.translationOnly, false);
   assert.equal(typeof status.targetLanguage, 'string');

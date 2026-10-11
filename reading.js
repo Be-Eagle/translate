@@ -1,11 +1,12 @@
-import { hashTextSync } from './core.js?v=0.50.0';
+import { hashTextSync } from './core.js?v=0.50.1';
 
 // ---------------------------------------------------------------------------------------------
 // The public interface's reading of a floor (window.__JINGYI__.reading), in the shape agreed with the
 // 东京都2051 card (schema 1): the floor's original — what the main model wrote and other extensions added
 // after it, without anything 镜译 wrote — each line 镜译 translates, placed in that original by UTF-16
 // offsets (start inclusive, end exclusive), the translation written for the line, the speaker and mood
-// the translation marked, and where the floor stands.
+// the translation marked, and where the floor stands. Where 镜译 cannot tell the original (a floor with
+// only its translation left in it, changed since), it gives none rather than another text in its place.
 //
 // Pure: index.js reads the floor (readMessageSnapshot) and the runtime (a run in flight, the last failure)
 // and hands them over; everything here is arithmetic on what it is given. Reading never translates, asks a
@@ -13,7 +14,7 @@ import { hashTextSync } from './core.js?v=0.50.0';
 // ---------------------------------------------------------------------------------------------
 
 export const READING_SCHEMA = 1;
-export const READING_API_VERSION = 1;
+export const READING_API_VERSION = 2;
 
 /**
  * Where a floor stands:
@@ -22,12 +23,18 @@ export const READING_API_VERSION = 1;
  * - partial: some lines translated, the others not yet;
  * - ready: every line translated;
  * - failed: the last translation of this very text failed;
- * - stale: the translation on the floor was written for text the floor no longer holds.
+ * - stale: the translation on the floor was written for text the floor no longer holds;
+ * - conflict: only the translation was left on the floor, and it has been changed since: what the floor
+ *   holds is no original, and the original kept for it is no longer what the floor says. No original.
  */
-export const READING_STATES = Object.freeze(['absent', 'processing', 'partial', 'ready', 'failed', 'stale']);
+export const READING_STATES = Object.freeze(['absent', 'processing', 'partial', 'ready', 'failed', 'stale', 'conflict']);
 
-/** The state of a floor, from what its snapshot and the runtime say. A run in flight says it first. */
-export function readingState({ total = 0, done = 0, complete = false, processing = false, outdated = false, failed = false } = {}) {
+/**
+ * The state of a floor, from what its snapshot and the runtime say. A floor with no original to give says
+ * it first, then a run in flight.
+ */
+export function readingState({ total = 0, done = 0, complete = false, processing = false, outdated = false, failed = false, conflict = false } = {}) {
+  if (conflict) return 'conflict';
   if (processing) return 'processing';
   if (total > 0 && complete) return 'ready';
   if (outdated) return 'stale';
@@ -98,15 +105,17 @@ export function readingPositions(source, regions, texts = new Map()) {
  * floor's record holds them; `language` the language the translations are in. A line with no translation
  * reads `reading: null`, never another alternative's. The original's revision changes only with the
  * original itself; the reading's revision only with the translations and their marks ('none' while there
- * are none).
+ * are none). `source` null is a floor with no original to give: no original, no revision of it, no lines.
+ * `error` is the reason a floor failed, or has no original.
  */
 export function readingSnapshot({
   chatId = '', messageId = null, swipeId = null, source = '', segments = [], positions = new Map(),
   translations = new Map(), annotations = new Map(), language = '', state = 'absent', error = null,
 } = {}) {
-  const text = String(source ?? '');
+  const known = source !== null;
+  const text = known ? String(source ?? '') : '';
   const list = [];
-  for (const segment of Array.isArray(segments) ? segments : []) {
+  for (const segment of known && Array.isArray(segments) ? segments : []) {
     const where = positions.get(segment?.id);
     if (!where) continue;
     const translated = translations.get(segment.id);
@@ -125,13 +134,13 @@ export function readingSnapshot({
   return {
     schema: READING_SCHEMA,
     owner: { chatId: String(chatId ?? ''), messageId, swipeId },
-    sourceRevision: hashTextSync(text),
+    sourceRevision: known ? hashTextSync(text) : null,
     readingRevision: read.length
       ? hashTextSync(JSON.stringify(list.map(item => [item.id, item.reading?.text ?? null, item.annotations])))
       : 'none',
     state: READING_STATES.includes(state) ? state : 'absent',
-    sourceMessage: text,
+    sourceMessage: known ? text : null,
     segments: list,
-    error: state === 'failed' ? String(error ?? '') : null,
+    error: state === 'failed' || state === 'conflict' ? String(error ?? '') : null,
   };
 }
