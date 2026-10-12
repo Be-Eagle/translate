@@ -130,7 +130,7 @@ import {
   normalizeGsvVoice,
 } from './core.js?v=0.51.4';
 import { resolveAutosaveWrite, ensureAutosaveIndicator } from './console-autosave.js?v=0.51.4';
-import { BING_TRANSLATION_LABEL, BING_TRANSLATION_PROVIDER, translateBingSegments } from './bing-translate.js?v=0.51.4';
+import { BING_TRANSLATION_LABEL, BING_TRANSLATION_PROVIDER, translateBingSegments } from './bing-translate.js?v=0.51.5-test';
 import {
   FISH_EMOTIONS,
   FISH_MIME,

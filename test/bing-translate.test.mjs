@@ -35,6 +35,8 @@ test('parses JSON-escaped Bing HTML', () => {
 test('builds a no-key web translator request', () => {
   const request = buildBingRequest('こんにちは', parseBingSession(sessionHtml), { targetLanguage: '简体中文' });
   assert.match(request.url, /ttranslatev3\?/);
+  assert.match(request.url, /isVertical=1/);
+  assert.doesNotMatch(request.url, /edgepdftranslator|ref=TThis/);
   assert.equal(request.body.get('fromLang'), 'auto-detect');
   assert.equal(request.body.get('to'), 'zh-Hans');
   assert.equal(request.body.get('text'), 'こんにちは');
@@ -54,6 +56,18 @@ test('translates segments with one session fetch and bounded requests', async ()
   assert.deepEqual([...result], [[1, '译文:one'], [2, '译文:two']]);
   assert.equal(calls.filter(call => call.init.method === 'GET').length, 1);
   assert.equal(calls.filter(call => call.init.method === 'POST').length, 2);
+});
+
+test('keeps remote query strings inside the SillyTavern proxy path', async () => {
+  const calls = [];
+  const fetchImpl = async (url, init = {}) => {
+    calls.push({ url, init });
+    if (init.method === 'GET') return { ok: true, text: async () => sessionHtml };
+    return { ok: true, text: async () => JSON.stringify([{ translations: [{ text: 'ok' }] }]) };
+  };
+  await translateBingSegments([{ id: 1, text: 'one' }], { fetchImpl });
+  assert.equal(calls[0].url, '/proxy/https://www.bing.com/translator%3Fref%3DTThis%26from%3Dauto-detect%26to%3Dzh-Hans');
+  assert.match(calls[1].url, /^\/proxy\/https:\/\/www\.bing\.com\/ttranslatev3%3F/);
 });
 
 test('extracts the translated text from the web response', () => {

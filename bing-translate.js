@@ -1,4 +1,7 @@
-const BING_TRANSLATOR_PAGE = 'https://www.bing.com/translator';
+const BING_TRANSLATOR_PAGES = [
+  'https://www.bing.com/translator?ref=TThis&from=auto-detect&to=zh-Hans',
+  'https://cn.bing.com/translator?ref=TThis&from=auto-detect&to=zh-Hans',
+];
 const BING_TRANSLATOR_ENDPOINT = 'https://www.bing.com/ttranslatev3';
 const BING_PROXY_PREFIX = '/proxy/';
 
@@ -13,7 +16,12 @@ const LANGUAGE_ALIASES = new Map([
 ]);
 
 function proxyUrl(url, useProxy) {
-  return useProxy ? `${BING_PROXY_PREFIX}${url}` : url;
+  if (!useProxy) return url;
+  const separator = String(url).indexOf('?');
+  if (separator < 0) return `${BING_PROXY_PREFIX}${url}`;
+  const base = String(url).slice(0, separator);
+  const search = String(url).slice(separator + 1);
+  return `${BING_PROXY_PREFIX}${base}%3F${encodeURIComponent(search)}`;
 }
 
 async function request(fetchImpl, url, init, { useProxy, signal }) {
@@ -21,7 +29,16 @@ async function request(fetchImpl, url, init, { useProxy, signal }) {
   let lastError = null;
   for (const candidate of candidates) {
     try {
-      const response = await fetchImpl(candidate, { ...init, signal, cache: 'no-store' });
+      const response = await fetchImpl(candidate, {
+        ...init,
+        signal,
+        cache: 'no-store',
+        headers: {
+          Accept: init.method === 'POST' ? 'application/json, text/plain, */*' : 'text/html, application/xhtml+xml',
+          'Accept-Language': 'zh-CN,zh;q=0.9,en;q=0.8',
+          ...(init.headers || {}),
+        },
+      });
       if (!response?.ok) throw new Error(`Bing 网页翻译请求失败（HTTP ${response?.status ?? '未知'}）。`);
       return await response.text();
     } catch (error) {
@@ -61,7 +78,7 @@ export function parseBingSession(html) {
 export function buildBingRequest(text, session, { fromLanguage = 'auto-detect', targetLanguage = 'zh-Hans' } = {}) {
   const query = new URLSearchParams({
     isVertical: '1', IID: session?.iid || 'translator.5028.1',
-    SFX: String(session?.sfx ?? 1), ref: 'TThis', edgepdftranslator: '1',
+    SFX: String(session?.sfx ?? 1),
   });
   if (session?.ig) query.set('IG', session.ig);
   const body = new URLSearchParams({
@@ -82,7 +99,7 @@ export function extractBingTranslation(payload) {
 
 async function loadBingSession(fetchImpl, signal, useProxy) {
   let lastError = null;
-  for (const page of [BING_TRANSLATOR_PAGE, 'https://cn.bing.com/translator']) {
+  for (const page of BING_TRANSLATOR_PAGES) {
     try {
       return parseBingSession(await request(fetchImpl, page, { method: 'GET' }, { useProxy, signal }));
     } catch (error) {
