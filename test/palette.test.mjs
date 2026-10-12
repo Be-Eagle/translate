@@ -191,7 +191,7 @@ test('an emotion label that names a built-in object property is refused like any
     assert.equal(normalizeEmotion(probe), '', `${probe} 不是情绪标签`);
     const style = resolveSegmentStyle({ speakerColor: '#c0392b', emotion: probe, intensity: 2, band, name: '英梨梨' });
     // The label reaches a class attribute verbatim, so a non-string here would be written into the
-    // floor as jy-emo-[object Object] and split into stray class tokens.
+    // floor as bgt-emo-[object Object] and split into stray class tokens.
     assert.equal(typeof style.emotion, 'string');
     assert.equal(style.emotion, '');
     assert.equal(style.intensity, 0, '认不出的情绪不带强度，等同没标注');

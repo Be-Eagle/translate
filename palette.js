@@ -563,7 +563,7 @@ export function normalizeEmotion(value) {
   if (!raw) return '';
   if (Object.hasOwn(EMOTION_STYLES, raw)) return raw;
   // Own properties only. A plain index would walk the prototype chain and answer `__proto__` or
-  // `constructor` with an object, which then reaches a class attribute as "jy-emo-[object Object]".
+  // `constructor` with an object, which then reaches a class attribute as "bgt-emo-[object Object]".
   return Object.hasOwn(EMOTION_ALIASES, raw) ? EMOTION_ALIASES[raw] : '';
 }
 

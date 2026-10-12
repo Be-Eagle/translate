@@ -11,7 +11,7 @@ globalThis.document = {
 };
 globalThis.toastr = Object.fromEntries(['success', 'error', 'warning', 'info'].map(kind => [kind, message => toasts.push([kind, message])]));
 
-const { onActivate, onDisable, __testing } = await import('../index.js');
+const { BeEagleTestTranslator_onActivate, BeEagleTestTranslator_onDisable, __testing } = await import('../index.js');
 const { readDiagnostics, clearDiagnostics } = await import('../diagnostics.js');
 
 class Emitter {
@@ -42,12 +42,12 @@ for (let index = 0; index <= 6; index += 1) {
 }
 const context = {
   // No page here to put the floating button on.
-  chat, chatId: 'gate-chat', extensionSettings: { 'jingyi-translator': { showFloatingButton: false } }, characters: [{ name: '樱井' }], characterId: 0,
+  chat, chatId: 'gate-chat', extensionSettings: { 'beagle-test-translator': { showFloatingButton: false } }, characters: [{ name: '樱井' }], characterId: 0,
   substituteParams: value => String(value ?? ''), saveChat: async () => {}, updateMessageBlock: () => {}, getRequestHeaders: () => ({}),
   saveSettingsDebounced: () => {}, eventTypes: T, eventSource, streamingProcessor: null,
 };
 globalThis.SillyTavern = { getContext: () => context };
-await onActivate();
+await BeEagleTestTranslator_onActivate();
 await eventSource.emit(T.CHAT_CHANGED, 'gate-chat');
 
 const started = floor => readDiagnostics().filter(entry => entry.scope === 'translation.auto' && entry.message.startsWith(`第 ${floor} 楼生成结束，自动翻译开始`)).length;
@@ -448,7 +448,7 @@ test('a script\'s own prompt has the translations taken out, and the host is not
 
 test('reading.onChange tells of an edit, a write, deleted floors and another chat, once per burst', async () => {
   const heard = [];
-  const stop = globalThis.__JINGYI__.reading.onChange(event => heard.push(event));
+  const stop = globalThis.__BE_EAGLE_TEST_TRANSLATOR__.reading.onChange(event => heard.push(event));
   await eventSource.emit(T.MESSAGE_EDITED, 6);
   await eventSource.emit(T.MESSAGE_UPDATED, 6);
   await wait(250);
@@ -457,7 +457,7 @@ test('reading.onChange tells of an edit, a write, deleted floors and another cha
   assert.equal(heard[0].owner.chatId, context.chatId);
   assert.deepEqual([...heard[0].reasons].sort(), ['edit', 'update']);
   assert.equal(typeof heard[0].sourceRevision, 'string');
-  assert.ok(globalThis.__JINGYI__.reading.states.includes(heard[0].state));
+  assert.ok(globalThis.__BE_EAGLE_TEST_TRANSLATOR__.reading.states.includes(heard[0].state));
 
   await eventSource.emit(T.MESSAGE_DELETED, chat.length);
   await wait(250);
@@ -480,4 +480,4 @@ test('reading.onChange tells of an edit, a write, deleted floors and another cha
   await eventSource.emit(T.CHAT_CHANGED, before);
 });
 
-test.after(() => onDisable());
+test.after(() => BeEagleTestTranslator_onDisable());

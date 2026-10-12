@@ -51,7 +51,7 @@ function paintAt(background, overrides = {}) {
   return options => resolveMoveStyle({ name: '红莲拳', tier: 1, band: coloring.band, vividness: coloring.vividness, ...overrides, ...options });
 }
 
-const moveSpan = extra => `<span data-jy-move-element="火焰" data-jy-move-name="红莲拳" data-jy-move-tier="1"${extra}>`;
+const moveSpan = extra => `<span data-bgt-move-element="火焰" data-bgt-move-name="红莲拳" data-bgt-move-tier="1"${extra}>`;
 
 // ---------------------------------------------------------------------------------------------
 // core.js — what gets saved
@@ -105,7 +105,7 @@ test('a restyle draws a move by the element, tier and colour set by hand, the sp
   const body = `他打出了${moveSpan(` style="${style({ element: '火焰' }).css}"`)}红莲拳</span>。`;
   const iced = recolorMoveSpans(body, { coloring, moveOverrideList: [{ name: '红莲拳', element: '冰霜', tier: 3 }] });
   assert.ok(iced.includes(`style="${style({ element: '冰霜', tier: 3 }).css}"`), '按手动选的属性和等级上色');
-  assert.ok(iced.includes('data-jy-move-element="火焰"') && iced.includes('data-jy-move-tier="1"'), '标注里还是自动的属性和等级');
+  assert.ok(iced.includes('data-bgt-move-element="火焰"') && iced.includes('data-bgt-move-tier="1"'), '标注里还是自动的属性和等级');
   const picked = recolorMoveSpans(body, { coloring, moveOverrideList: [{ name: '红莲拳', color: '#ff8a65' }] });
   assert.match(picked, /color:#ff8a65 !important/, '深色背景上看得清的自选颜色原样用');
   const unrelated = recolorMoveSpans(body, { coloring, moveOverrideList: [{ name: '霜针', element: '冰霜' }] });
@@ -125,7 +125,7 @@ test('不上色 hands the move back what the words around it wear, and turning i
   const coloring = { speakers: true, effects: true, band: computeSafeBand(['#101010']), vividness: 0.7 };
   const speaker = 'color:#e80036 !important;-webkit-text-fill-color:#e80036 !important';
   const own = style({ element: '火焰' }).css;
-  const quoted = `「${moveSpan(` style="${own}" data-jy-move-base="${speaker}"`)}红莲拳</span>！」`;
+  const quoted = `「${moveSpan(` style="${own}" data-bgt-move-base="${speaker}"`)}红莲拳</span>！」`;
   const off = recolorMoveSpans(quoted, { coloring, moveOverrideList: [{ name: '红莲拳', off: true }] });
   assert.ok(off.includes(`style="${speaker}"`), '跟着说话人的颜色走');
   assert.ok(!off.includes(own), '招式自己的颜色和加粗都去掉');
@@ -177,8 +177,8 @@ test('a move set to 不上色 is still cut out on first render, wearing its spea
 
   const options = { translationPrefix: '', translationSuffix: '', styleFor };
   const floor = assembleBilingual(segmentSource('原文。', options).layout, new Map([[1, text]]), options);
-  assert.match(floor, /data-jy-move-name="红莲拳"/, '招式的 span 还在，之后才能重新上色');
-  assert.ok(floor.includes(`data-jy-move-base="${around.css}"`), '记下了周围的颜色');
+  assert.match(floor, /data-bgt-move-name="红莲拳"/, '招式的 span 还在，之后才能重新上色');
+  assert.ok(floor.includes(`data-bgt-move-base="${around.css}"`), '记下了周围的颜色');
   const restored = recolorMoveSpans(floor, { coloring: settings.coloring });
   const own = resolveMoveStyle({ element: '火焰', name: '红莲拳', tier: 2, band: normalizeColoring(settings.coloring).band, vividness: normalizeColoring(settings.coloring).vividness });
   assert.ok(restored.includes(`style="${own.css}"`), '勾回来之后按招式自己的属性和等级上色');

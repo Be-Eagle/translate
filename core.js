@@ -19,9 +19,9 @@ import { dropHiddenMarkup } from './tts-sanitizer.js?v=0.51.4';
 import { resolveMoveStyle } from './palette.js?v=0.51.4';
 import { DOUBAO_RESOURCES, MINIMAX_HOSTS, MINIMAX_MODELS } from './tts-cloud.js?v=0.51.4';
 
-export const MODULE_ID = 'jingyi-translator';
-export const APP_NAME = '镜译 · 正文翻译器';
-export const APP_VERSION = '0.51.4';
+export const MODULE_ID = 'beagle-test-translator';
+export const APP_NAME = '测试翻译 · 正文翻译器';
+export const APP_VERSION = '0.1.0-test';
 // How a floor's own segmentation rules read: 1 is v0.36.0 and older (a <br> mid-line glues its words,
 // a <say> shell or a custom preserve rule's indentation is matched literally). 2 adds the v0.36.1
 // built-in-regex fixes. 3 adds v0.40.0's 「音乐卡片」 tightening: a run of <br> rows is only treated as a
@@ -35,9 +35,9 @@ export const APP_VERSION = '0.51.4';
 // actually written; a floor with no record yet always starts on the latest rules. See segmentSource's
 // `segmentationVersion` option.
 export const SEGMENTATION_RULES_VERSION = 4;
-export const MESSAGE_META_KEY = 'jingyi_translation';
+export const MESSAGE_META_KEY = 'beagle_test_translation';
 export const INVISIBLE_MARKER = '\u2063';
-// These boundaries belong to MirrorTranslate; visible affixes never identify a block.
+// These boundaries belong to BeEagleTestTranslator; visible affixes never identify a block.
 export const SOURCE_START = '\u2063\u2060\u2063';
 export const SOURCE_END = '\u2063\u2061\u2063';
 export const TRANSLATION_START = '\u2063\u2062\u2063';
@@ -85,7 +85,7 @@ const GENERATED_BLOCK_RE = new RegExp(`(?:^|\\n)\\{${INVISIBLE_MARKER}([\\s\\S]*
 const LEGACY_GENERATED_LINE_RE = new RegExp(`^\\{${INVISIBLE_MARKER}[^\\r\\n]*\\}[ \\t]*$`);
 // The wrapper speaker/emotion styling is rendered into. Kept here so the restyle pass can recognise
 // and carry over a wrapper it did not generate.
-export const SPEAKER_CLASS = 'jy-spk';
+export const SPEAKER_CLASS = 'bgt-spk';
 // Speech marks, and the narration that surrounds them.
 //
 // Speaker colour used to run across a whole line, so a line like 「あ、そう」と呟き、通話を切った
@@ -1074,7 +1074,7 @@ export const DEFAULT_TTS = Object.freeze({
   // What the deep reading is allowed to see besides the floor itself.
   context: Object.freeze({ character: true, worldbook: true, recent: true, floors: 2 }),
   // Read when a floor carries no translation written by this extension.
-  sourceTags: Object.freeze(['jy-translation']),
+  sourceTags: Object.freeze(['bgt-translation']),
   narratorVoice: '',
   narratorTitle: '',
   // Narrator voices per language, for a reader who switches between the translation and the original.
@@ -1235,7 +1235,7 @@ export function resolvePageForMode(pageId, mode) {
 // DESIGN.md §15.4 折叠组: "收起时同一行写当前值摘要". Each of these is the pure half of one collapsed
 // fold's summary line on the 正文处理 / 朗读 advanced pages — given the settings already on the page, no
 // DOM. The DOM-facing sync functions in index.js call these and write the result into that fold's
-// `[data-jy-fold-summary]` span.
+// `[data-bgt-fold-summary]` span.
 // -------------------------------------------------------------------------------------------
 
 /** "N 条" for a rule list with content, "空" for none — 原样保留白名单 and 歌词行 share this reading. */
@@ -3013,11 +3013,11 @@ export function extractTranslationBlockText(text) {
   return chunks.join('\n');
 }
 
-// None of a floor's body where 镜译 is told to look: nothing in it to translate, which a reading of the
+// None of a floor's body where 测试翻译 is told to look: nothing in it to translate, which a reading of the
 // floor tells apart from tags that are there but cannot be read.
 function noBodyError(message) {
   const error = new Error(message);
-  error.code = 'JY_NO_BODY';
+  error.code = 'BGT_NO_BODY';
   return error;
 }
 
@@ -3542,7 +3542,7 @@ function maskExcludedTags(source, tagNames, options = {}) {
   let masked = '';
   let cursor = 0;
   for (const [index, range] of outermostExcludedRanges(source, tagNames, options).entries()) {
-    const token = `\uE000JY_EXCLUDED_${index}\uE001`;
+    const token = `\uE000BGT_EXCLUDED_${index}\uE001`;
     masked += `${source.slice(cursor, range.start)}${token}`;
     blocks.push({ token, text: source.slice(range.start, range.end) });
     cursor = range.end;
@@ -5343,19 +5343,19 @@ function styledBody(translation, styleBody, wrap = markedAffix, id = undefined) 
         piece.css ? `style="${piece.css}"` : '',
         // A move's own element/name/tier (index.js `moveStyleFor`), carried on the span so a restyle
         // can recolour it later without the chat's annotations — see `recolorMoveSpans` below.
-        piece.moveElement !== undefined ? `data-jy-move-element="${escapeMoveAttribute(piece.moveElement)}"` : '',
-        piece.moveName !== undefined ? `data-jy-move-name="${escapeMoveAttribute(piece.moveName)}"` : '',
-        piece.moveTier !== undefined ? `data-jy-move-tier="${escapeMoveAttribute(piece.moveTier)}"` : '',
+        piece.moveElement !== undefined ? `data-bgt-move-element="${escapeMoveAttribute(piece.moveElement)}"` : '',
+        piece.moveName !== undefined ? `data-bgt-move-name="${escapeMoveAttribute(piece.moveName)}"` : '',
+        piece.moveTier !== undefined ? `data-bgt-move-tier="${escapeMoveAttribute(piece.moveTier)}"` : '',
         // 字号二选一 (design §2 item 4): this move was carved out of a piece that was itself a <big>/
         // <small> carried fragment, so `carvedCss` already dropped its own font-size for this render
         // (`piece.dropSurroundingCss` rides onto the move piece unchanged — moves carry no such field of
         // their own to override it with). A later restyle (`recolorMoveSpans`) rebuilds this span's style
         // from scratch against a new band, with only the span's own attributes to go on and no piece tree
         // left to ask, so the same choice has to survive as a marker here or the size comes back.
-        piece.moveElement !== undefined && piece.dropSurroundingCss ? 'data-jy-move-nosize="1"' : '',
+        piece.moveElement !== undefined && piece.dropSurroundingCss ? 'data-bgt-move-nosize="1"' : '',
         // What the words around it wear (`carveRuns`), for a restyle that takes the move's own colour
         // away (招式表's 不上色) to put back.
-        piece.moveName !== undefined && piece.moveBaseCss ? `data-jy-move-base="${escapeMoveAttribute(piece.moveBaseCss)}"` : '',
+        piece.moveName !== undefined && piece.moveBaseCss ? `data-bgt-move-base="${escapeMoveAttribute(piece.moveBaseCss)}"` : '',
       ].filter(Boolean).join(' ');
       const inner = attributes
         ? `${wrap(`<span ${attributes}>`)}${piece.text}${wrap('</span>')}`
@@ -5401,7 +5401,7 @@ function dropSizeCss(css) {
 // (below carveRuns' two main passes): a hidden run whose text also occurs outside the move's own name
 // must find *that* occurrence, or the standalone one stays legible while the in-move one gets redacted
 // for no reason. Only when nothing else claims it does it carve out of the move-applied piece instead,
-// and the piece it takes does not keep the move's own colour or its data-jy-move-* identity: leaving
+// and the piece it takes does not keep the move's own colour or its data-bgt-move-* identity: leaving
 // either would let a later restyle's recolorMoveSpans (core.js, which matches by that same data
 // attribute and adds a `style` back onto a tag missing one) repaint or re-tag exactly the characters
 // this run hides. Whatever text of the move piece is left over keeps the move's colour as it did before,
@@ -5520,7 +5520,7 @@ function carveRuns(pieces, ordered) {
       }
       claimed = true;
       if (at > 0) next.push({ ...piece, text: text.slice(0, at) });
-      // The redaction wins outright here: none of the move's own colour, class or data-jy-move-*
+      // The redaction wins outright here: none of the move's own colour, class or data-bgt-move-*
       // identity survives onto this piece, or a later restyle's recolorMoveSpans (core.js, matches by
       // that same data attribute) would repaint or re-tag exactly the characters this run hides.
       next.push({
@@ -5843,7 +5843,7 @@ export function renderTranslationBlock(translation, options = {}) {
   const { prefix, suffix } = translationAffixes(options);
   const padding = options.padAfter === true ? '\n' : '';
   // The speaker/emotion wrapper sits inside the visible affixes, so a beautify regex written against
-  // <jy-source>…</jy-translation> keeps matching whether or not colouring is on.
+  // <bgt-source>…</bgt-translation> keeps matching whether or not colouring is on.
   const open = markedAffix(`${prefix}${options.stylePrefix ?? ''}`);
   const close = markedAffix(`${options.styleSuffix ?? ''}${suffix}`);
   const body = styledBody(String(translation ?? ''), options.styleBody);
@@ -5952,7 +5952,7 @@ function translationBlockBody(translation, metadata) {
 // data attribute nothing else on a translation body writes, whatever else the tag carries and in
 // whatever order — a speaker's own class can sit on the same span when a move lands inside a painted
 // quote.
-const MOVE_SPAN_OPEN_RE = /<span\b[^>]*\sdata-jy-move-element="[^"]*"[^>]*>/g;
+const MOVE_SPAN_OPEN_RE = /<span\b[^>]*\sdata-bgt-move-element="[^"]*"[^>]*>/g;
 
 /**
  * A restyle keeps a translation body byte for byte (`translationBlockBody`, below) because it has no
@@ -5968,22 +5968,22 @@ const MOVE_SPAN_OPEN_RE = /<span\b[^>]*\sdata-jy-move-element="[^"]*"[^>]*>/g;
  * that text too.
  */
 export function recolorMoveSpans(body, options) {
-  if (typeof body !== 'string' || !body.includes('data-jy-move-element="')) return body;
+  if (typeof body !== 'string' || !body.includes('data-bgt-move-element="')) return body;
   const coloring = normalizeColoring(options?.coloring);
   if (!coloring.speakers || !coloring.effects || !coloring.band) return body;
   // 招式表's hand settings for this chat's card (DESIGN §17.5), laid over the automatic element and tier
   // the span itself carries — which is why the span keeps those and never the hand-set ones.
   const overrides = new Map(normalizeMoveOverrides(options?.moveOverrideList).map(item => [item.name, item]));
   return body.replace(MOVE_SPAN_OPEN_RE, tag => {
-    const element = unescapeMoveAttribute(tag.match(/\sdata-jy-move-element="([^"]*)"/)?.[1]);
-    const name = unescapeMoveAttribute(tag.match(/\sdata-jy-move-name="([^"]*)"/)?.[1]);
-    const tier = unescapeMoveAttribute(tag.match(/\sdata-jy-move-tier="([^"]*)"/)?.[1]);
+    const element = unescapeMoveAttribute(tag.match(/\sdata-bgt-move-element="([^"]*)"/)?.[1]);
+    const name = unescapeMoveAttribute(tag.match(/\sdata-bgt-move-name="([^"]*)"/)?.[1]);
+    const tier = unescapeMoveAttribute(tag.match(/\sdata-bgt-move-tier="([^"]*)"/)?.[1]);
     const override = overrides.get(name);
     if (override?.off) {
       // 不上色: the move reads like the words around it — whatever they wore when it was cut out of them
-      // (`data-jy-move-base`), or nothing of its own when they wore nothing.
+      // (`data-bgt-move-base`), or nothing of its own when they wore nothing.
       // Still attribute-escaped as written, which is what a style attribute needs anyway.
-      const base = tag.match(/\sdata-jy-move-base="([^"]*)"/)?.[1] ?? '';
+      const base = tag.match(/\sdata-bgt-move-base="([^"]*)"/)?.[1] ?? '';
       if (/\sstyle="[^"]*"/.test(tag)) return tag.replace(/\sstyle="[^"]*"/, base ? ` style="${base}"` : '');
       return base ? tag.replace(/>$/, ` style="${base}">`) : tag;
     }
@@ -5991,11 +5991,11 @@ export function recolorMoveSpans(body, options) {
       element: override?.element || element, name, tier: override?.tier || tier, band: coloring.band, vividness: coloring.vividness, color: override?.color || '',
     });
     if (!resolved) return tag;
-    // 字号二选一 (design §2 item 4): `data-jy-move-nosize` (`styledBody`, above) says this move was
+    // 字号二选一 (design §2 item 4): `data-bgt-move-nosize` (`styledBody`, above) says this move was
     // carved out of a <big>/<small> carried fragment on first render, so its own font-size was dropped
     // then for the same reason it must be dropped again here -- resolveMoveStyle knows nothing about the
     // wrapper it is about to sit inside, only the marker left for it does.
-    const css = /\sdata-jy-move-nosize="/.test(tag) ? dropSizeCss(resolved.css) : resolved.css;
+    const css = /\sdata-bgt-move-nosize="/.test(tag) ? dropSizeCss(resolved.css) : resolved.css;
     return /\sstyle="[^"]*"/.test(tag)
       ? tag.replace(/\sstyle="[^"]*"/, ` style="${css}"`)
       : tag.replace(/>$/, ` style="${css}">`);

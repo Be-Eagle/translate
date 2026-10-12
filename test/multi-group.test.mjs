@@ -72,7 +72,7 @@ test('every group of a body tag is translated, and none standing inside an exclu
 test('a floor whose body groups all stand inside excluded blocks says so, or is read by its 正文起点', () => {
   const inside = '<secure_log>\n<content>控え。</content>\n</secure_log>';
   assert.throws(() => extractTaggedRegions(inside, ['content'], { excludedTags: ['secure_log'] }), error => {
-    assert.equal(error.code, 'JY_NO_BODY');
+    assert.equal(error.code, 'BGT_NO_BODY');
     assert.match(error.message, /没有找到排除标签以外的正文标签：<content> 都写在 <secure_log> 里面/);
     return true;
   });

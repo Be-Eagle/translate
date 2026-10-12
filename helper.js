@@ -15,7 +15,7 @@
 //    anything secret-shaped that slipped in through a field nobody meant to be a credential (a
 //    connection named after its own key, say).
 //  - the default prompt and HELPER_QUICK_QUESTIONS, the fixed list a reader can click instead of typing.
-//  - parseHelperReply / validateHelperSuggestion: reading a reply's trailing ```jingyi-suggest``` block
+//  - parseHelperReply / validateHelperSuggestion: reading a reply's trailing ```beagle-test-suggest``` block
 //    leniently, and keeping only whitelisted, valid, non-no-op suggestions.
 
 import {
@@ -40,14 +40,14 @@ import {
 // Default prompt and quick questions
 // ---------------------------------------------------------------------------------------------
 
-export const DEFAULT_HELPER_PROMPT = `你是镜译（MirrorTranslate）内置的小助手，只根据这次对话末尾给你的资料（版本、设置、当前楼层、运行记录、正则情况、控制中心自己的说明文字）回答问题，不了解镜译之外的事情，也不知道资料里没写的内容。
+export const DEFAULT_HELPER_PROMPT = `你是测试翻译（BeEagleTestTranslator）内置的小助手，只根据这次对话末尾给你的资料（版本、设置、当前楼层、运行记录、正则情况、控制中心自己的说明文字）回答问题，不了解测试翻译之外的事情，也不知道资料里没写的内容。
 
 规则：
 1. 用简体中文回答，尽量简短；需要分步骤时用数字编号列出。
 2. 只依据给你的资料作答，资料里没有的就说不确定，不要编造。
 3. 提到界面位置时，照资料里给的原样说法，格式是「页 › 卡 › 控件」，不要换一种说法或翻译成别的名字。
 4. 不管什么理由都不要向使用者索要 API Key、密钥或其他凭据；资料里的密钥只会写「已填」或「没填」。
-5. 如果你想让使用者去改一项设置或做一个操作，在回答最后另起一段，用一个 \`\`\`jingyi-suggest\`\`\` 代码块给出建议，内容是一个 JSON 数组，数组每一项是 {"type":"set","field":"字段名","value":新值,"why":"一句话原因"} 或 {"type":"action","action":"动作名","value":"需要值的动作才填，比如打开哪个页面","why":"一句话原因"}；field、action 和 value 只能用资料里「可用建议」列出的名字和取值，其他一律不会生效，没有建议就不要写这个代码块。
+5. 如果你想让使用者去改一项设置或做一个操作，在回答最后另起一段，用一个 \`\`\`beagle-test-suggest\`\`\` 代码块给出建议，内容是一个 JSON 数组，数组每一项是 {"type":"set","field":"字段名","value":新值,"why":"一句话原因"} 或 {"type":"action","action":"动作名","value":"需要值的动作才填，比如打开哪个页面","why":"一句话原因"}；field、action 和 value 只能用资料里「可用建议」列出的名字和取值，其他一律不会生效，没有建议就不要写这个代码块。
 6. 正文里可以正常给出操作步骤，照资料里的原样说法写清楚「在哪个页 › 哪张卡 › 点哪个控件」，不必回避"点击""填入"这类字眼；只有「可用建议」里列出的那些字段和动作才能同时放进建议块，让使用者一键照改，其余操作只能在正文里说明，由使用者自己动手。`;
 
 export const HELPER_QUICK_QUESTIONS = Object.freeze([
@@ -240,7 +240,7 @@ export function buildRunLogLines(entries) {
 export function buildRegexLines(regex) {
   if (!regex) return ['正则：未知。'];
   const installClause = regex.toInstall ? `，缺 ${regex.toInstall} 条固定正则未装` : '';
-  const lines = [`镜译自己的正则：${regex.expected ?? 0} 条应有，多余 ${regex.surplus ?? 0} 条（含全局、角色绑定与预设绑定）${installClause}`];
+  const lines = [`测试翻译自己的正则：${regex.expected ?? 0} 条应有，多余 ${regex.surplus ?? 0} 条（含全局、角色绑定与预设绑定）${installClause}`];
   if (regex.nativeRegexInstalled === false) lines.push('酒馆自身的正则引擎这次没有接上，「删除多余正则」看不到角色/预设绑定的那部分。');
   return lines;
 }
@@ -286,27 +286,27 @@ const KNOWLEDGE_LINES_PER_PAGE = 300;
  * own text when it has none — covers the whole <details>. A description line takes the nearest heading
  * among its own ancestors, so a row title never leaks onto an unrelated row further down the same card.
  *
- * A <label class="jy-check"> is the 区 for the one jy-muted paragraph right after it (流式写回, 特效字,
+ * A <label class="bgt-check"> is the 区 for the one bgt-muted paragraph right after it (流式写回, 特效字,
  * 让主模型给台词标上说话人和情绪) when it is the only checkbox in its own group; a paragraph after a group
  * of several checkboxes is shared by all of them and stays under the card's own heading.
  *
- * Description text is a <p> or <span> carrying jy-muted, a <span class="jy-label">, or any title
+ * Description text is a <p> or <span> carrying bgt-muted, a <span class="bgt-label">, or any title
  * attribute. */
 export function extractControlCenterKnowledge(markup) {
   const text = String(markup ?? '');
   const lines = [];
-  const pageRe = /<section class="jy-page" data-jy-page="([a-z]+)"[^>]*>([\s\S]*?)(?=<section class="jy-page" data-jy-page="|$)/g;
+  const pageRe = /<section class="bgt-page" data-bgt-page="([a-z]+)"[^>]*>([\s\S]*?)(?=<section class="bgt-page" data-bgt-page="|$)/g;
   let pageMatch;
   while ((pageMatch = pageRe.exec(text))) {
     const pageId = pageMatch[1];
     const pageLabel = KNOWLEDGE_PAGE_LABELS[pageId] || pageId;
-    // The shared per-connection edit form (index.js's single reusable <div data-jy-channel-detail>,
+    // The shared per-connection edit form (index.js's single reusable <div data-bgt-channel-detail>,
     // moved under whichever channel card is expanded) has no heading of its own until its first fold
     // (请求参数); its 连接名称/API 基础地址/API 密钥/当前模型 fields belong to whichever card it is moved
     // under, which the static markup cannot say. That headerless prefix is left out rather than filed
     // under a label that appears nowhere on the page.
     const body = pageMatch[2].replace(
-      /<div\s+class="jy-connection-form"[^>]*data-jy-channel-detail[^>]*>[\s\S]*?(?=<details\s+class="jy-fold"\s+data-jy-fold="channel-request")/,
+      /<div\s+class="bgt-connection-form"[^>]*data-bgt-channel-detail[^>]*>[\s\S]*?(?=<details\s+class="bgt-fold"\s+data-bgt-fold="channel-request")/,
       '',
     );
     let countThisPage = 0;
@@ -363,11 +363,11 @@ function walkKnowledgeMarkup(body, pageLabel, emit) {
       const cls = /\bclass\s*=\s*"([^"]*)"/.exec(attrs)?.[1] ?? '';
       stack.push({ tag, cls, heading: null, checks: 0, hidden: /(?:^|\s)hidden(?:[\s=]|$)/.test(attrs) });
       if (capture) continue;
-      const description = (tag === 'p' || tag === 'span') && hasClass(attrs, 'jy-muted');
+      const description = (tag === 'p' || tag === 'span') && hasClass(attrs, 'bgt-muted');
       const at = stack.length - 1;
       if (tag === 'h2' || tag === 'h3' || tag === 'summary') capture = { kind: 'heading', at, text: '' };
-      else if (tag === 'label' && hasClass(attrs, 'jy-check')) capture = { kind: 'check', at, text: '' };
-      else if (description || (tag === 'span' && hasClass(attrs, 'jy-label'))) {
+      else if (tag === 'label' && hasClass(attrs, 'bgt-check')) capture = { kind: 'check', at, text: '' };
+      else if (description || (tag === 'span' && hasClass(attrs, 'bgt-label'))) {
         capture = { kind: 'line', at, text: '', area: description && tag === 'p' && pendingCheck ? pendingCheck.text : null };
       }
       pendingCheck = null;
@@ -391,7 +391,7 @@ function walkKnowledgeMarkup(body, pageLabel, emit) {
         // has one — names the <details> it opens, so every line anywhere in that fold files under it.
         const inner = tag === 'summary' ? /<h[23]\b[^>]*>([\s\S]*?)<\/h[23]>/i.exec(done.text) : null;
         const heading = stripTags(inner ? inner[1] : done.text);
-        // A wrapper that exists only to lay the heading out beside a pill (jy-card-head) passes it on
+        // A wrapper that exists only to lay the heading out beside a pill (bgt-card-head) passes it on
         // to the card around it.
         let index = done.at - 1;
         if (stack[index]?.tag === 'summary' || /(?:^|\s)[\w-]+-head(?:\s|$)/.test(stack[index]?.cls ?? '')) index -= 1;
@@ -462,7 +462,7 @@ export function buildHelperContext({
   cap = HELPER_CONTEXT_CAP,
 } = {}) {
   const streamingLabel = versions.streaming === true ? '开' : versions.streaming === false ? '关' : '未知';
-  const versionsLine = `镜译 ${versions.appVersion || '未知版本'} · SillyTavern ${versions.hostVersion || '未知'} · 主 API：${versions.mainApi || '未知'} · 流式：${streamingLabel}`;
+  const versionsLine = `测试翻译 ${versions.appVersion || '未知版本'} · SillyTavern ${versions.hostVersion || '未知'} · 主 API：${versions.mainApi || '未知'} · 流式：${streamingLabel}`;
   const settingsText = section('设置摘要', buildSettingsSummaryLines(settings));
   const floorText = section('当前楼层', buildFloorSnapshotLines(floor));
   const regexText = section('正则', buildRegexLines(regex));
@@ -736,14 +736,14 @@ export function applyHelperSuggestion(settings, suggestion) {
 }
 
 // ---------------------------------------------------------------------------------------------
-// Reply parsing — splitting the trailing ```jingyi-suggest``` block off a reply's display text.
+// Reply parsing — splitting the trailing ```beagle-test-suggest``` block off a reply's display text.
 // ---------------------------------------------------------------------------------------------
 
-const SUGGEST_BLOCK_RE = /```jingyi-suggest\s*([\s\S]*?)```/i;
+const SUGGEST_BLOCK_RE = /```beagle-test-suggest\s*([\s\S]*?)```/i;
 // A reply cut off at max tokens never gets its closing fence — without this fallback the whole
-// ```jingyi-suggest block, JSON and all, used to fall through untouched into the display text
+// ```beagle-test-suggest block, JSON and all, used to fall through untouched into the display text
 // (review finding helper.js:533).
-const SUGGEST_BLOCK_OPEN_RE = /```jingyi-suggest\s*([\s\S]*)$/i;
+const SUGGEST_BLOCK_OPEN_RE = /```beagle-test-suggest\s*([\s\S]*)$/i;
 
 // A reasoning model's own <think>/<thinking> block, only where such a block actually sits: at the very
 // start of the reply, closed by the same tag it opened with. Anywhere else a tag like this is part of

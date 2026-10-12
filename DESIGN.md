@@ -1,4 +1,4 @@
-# DESIGN.md — 镜译界面与动效规约
+# DESIGN.md — 测试翻译界面与动效规约
 
 > 状态：常夜灯 2026-09-23 批准，第 12 节按效果图确认。第 11 节「待定项」里的冲突暂不改代码；第 12 节与前文冲突处以第 12 节为准。
 > 对应版本：v0.34.0（`index.js` 中 `APP_VERSION`）。
@@ -10,7 +10,7 @@
 |---|---|
 | `style.css:29` | 仓库文件与行号（`style.css` / `host.css` / `reading.css` / `index.js` / `core.js` / `palette.js`） |
 | `Motion.dc.html:125` | `design/` 下的设计画布与行号；`canvas.json` 为画布总表 |
-| 设计稿 v1.2 第 N 页 | `镜译-前端最终设计-v1.2.pdf`（仓库外，常夜灯本机 Downloads），页码为 PDF 页 |
+| 设计稿 v1.2 第 N 页 | `测试翻译-前端最终设计-v1.2.pdf`（仓库外，常夜灯本机 Downloads），页码为 PDF 页 |
 | 实测 | 本地预览宿主 `preview.html` 的计算值：桌面 1184×805；手机模拟 390×844、触屏、`pointer: coarse`、`hover: none` |
 
 ---
@@ -22,9 +22,9 @@
 | 界面 | 所在文档 | 样式文件 | 构建位置 |
 |---|---|---|---|
 | 悬浮入口（悬浮球 / 胶囊 / 贴边条） | 酒馆主文档 | `host.css:21-287, 418-423` | `index.js:10305-10439` |
-| 悬浮窗（小窗 / 卡片 / 满屏） | 独立 shadow root | `style.css:501-1012` 中 `.jy-mini*` | `index.js:10562-12069` |
+| 悬浮窗（小窗 / 卡片 / 满屏） | 独立 shadow root | `style.css:501-1012` 中 `.bgt-mini*` | `index.js:10562-12069` |
 | 控制中心 | 独立 shadow root | `style.css:1-499` | `index.js:10062-10110`，标记 `index.js:305` 起 |
-| 小对话框（要不要分析、保存、重新分析） | 独立 shadow root | `style.css:976-1012` 中 `.jy-ask*` | `index.js:4352-4378`（`ttsDialogShell`）、`4385`、`4434`、`5972` |
+| 小对话框（要不要分析、保存、重新分析） | 独立 shadow root | `style.css:976-1012` 中 `.bgt-ask*` | `index.js:4352-4378`（`ttsDialogShell`）、`4385`、`4434`、`5972` |
 | 楼层装饰（段落按钮、每句按钮、楼底栏、朗读高亮） | 酒馆主文档 `#chat` | `host.css:289-541` | `index.js:6262-6308`（`makeTtsBar`）、`6425-6436` |
 | 阅读美化（可爱 / 极简 / 原文折叠）与说话人、情绪排版 | 酒馆主文档 | `reading.css`（由 `host.css:1` 引入） | 写入楼层 HTML |
 
@@ -79,7 +79,7 @@ shadow root 内的界面共用一份 `style.css`（`index.js:10575` 等处 `load
 | `compact` 小窗（默认） | 宽 300px | 宽 300px | `style.css:950`；默认值 `index.js:10524`；实测桌面 300×137、手机 300×160 |
 | `card` 卡片 | 宽 360px，`max-width: calc(100vw - 20px)`，`max-height: calc(100dvh - 16px)` | 宽 92vw，最宽 400px，`max-height: 70dvh` | `style.css:745, 503, 644`；`867`；实测桌面 360×682（5 段）、手机 359×591 |
 | `max` 满屏（仅触屏） | —（桌面自动回到 card） | `100vw` × `100dvh`，圆角 0，无边框 | `style.css:903`；`index.js:10868`；实测 390×844 |
-| 键盘弹出 | — | 高度改为 `var(--jy-mini-vh)`（可视视口高） | `style.css:973-974`；判定 `visualViewport.height < innerHeight - 120`，`index.js:11211-11217` |
+| 键盘弹出 | — | 高度改为 `var(--bgt-mini-vh)`（可视视口高） | `style.css:973-974`；判定 `visualViewport.height < innerHeight - 120`，`index.js:11211-11217` |
 
 尺寸切换顺序：`compact → card → (触屏) max → compact`（`index.js:10528-10532`）。选择写入 `localStorage`（`index.js:10534-10540`）。
 
@@ -154,7 +154,7 @@ shadow root 内的界面共用一份 `style.css`（`index.js:10575` 等处 `load
 | 表单分节 | `padding: 18px 0`，标签列 132px（≤900 120px），列距 20px | `style.css:217, 353` |
 | 字段之间 | 下边距 19px | `style.css:221` |
 | 悬浮窗内容区各块间距 | 12px | `style.css:526` |
-| 悬浮窗分节 | 上方 `padding-top: 12px` + 1px `--jy-line-soft` 分隔线 | `style.css:534, 538, 620` |
+| 悬浮窗分节 | 上方 `padding-top: 12px` + 1px `--bgt-line-soft` 分隔线 | `style.css:534, 538, 620` |
 | 悬浮窗动作区按钮间距 | 6px（触屏 8px） | `style.css:531`；`877` |
 | 列表行内边距 | `8px 4px`（触屏 `10px 6px`） | `style.css:778`；`873` |
 | 传输键间距 | 10px | `style.css:822` |
@@ -169,8 +169,8 @@ shadow root 内的界面共用一份 `style.css`（`index.js:10575` 等处 `load
 
 | Token | 值 | 用途 | 出处 |
 |---|---|---|---|
-| `--jy-radius` | 10px | 卡片、日志条、编辑区 | `style.css:27` |
-| `--jy-radius-sm` | 6px | 按钮、输入框、菜单、预览行 | `style.css:28` |
+| `--bgt-radius` | 10px | 卡片、日志条、编辑区 | `style.css:27` |
+| `--bgt-radius-sm` | 6px | 按钮、输入框、菜单、预览行 | `style.css:28` |
 
 **非 token 取值（现状）**
 
@@ -221,7 +221,7 @@ shadow root 内的界面共用一份 `style.css`（`index.js:10575` 等处 `load
 | 正文与表单值 | 13 / 400 | `style.css:33`；`Baseline.dc.html:104-105` |
 | 悬浮窗句子、改句原文 | 12.5 | `style.css:625, 790` |
 | 按钮 | 12 / 600（控制中心大按钮 13） | `style.css:94`；`138` |
-| 次要说明（`.jy-muted`） | 12，行高 1.7 | `style.css:78` |
+| 次要说明（`.bgt-muted`） | 12，行高 1.7 | `style.css:78` |
 | 悬浮窗译文、思考行 | 11.5 | `style.css:769, 789` |
 | 字段标签、状态、overline | 11 / 600–700 | `style.css:77, 107, 156`；`Baseline.dc.html:108-109` |
 | 药丸 | 10.5 | `style.css:794` |
@@ -252,32 +252,32 @@ shadow root 内的界面共用一份 `style.css`（`index.js:10575` 等处 `load
 
 | Token | 用途 | day `style.css:3-26` | night `:422-431` | fresh `:432-440` | vampire `:441-450` | glass `:455-465` |
 |---|---|---|---|---|---|---|
-| `--jy-paper` | 控制中心底、吸底页脚 | #f6f4ee | #191e25 | #edf3e7 | #20131b | rgba(243,246,248,.83) |
-| `--jy-surface` | 卡片、按钮、悬浮窗底 | #fffdf7 | #222932 | #f7faee | #2b1a23 | rgba(255,255,255,.55) |
-| `--jy-field` | 输入框底 | #fffef9 | #222932 | #f7faee | #2b1a23 | rgba(255,255,255,.55) |
-| `--jy-text` | 正文 | #22332e | #e4e7ed | #344932 | #f0ddd6 | #293b46 |
-| `--jy-muted` | 次要文字 | #6b7770 | #a6b0bf | #6b7c58 | #b99c9d | #637b85 |
-| `--jy-muted-soft` | 更弱的说明、空闲状态点 | #8b958c | #8994a3 | #8a9a78 | #9c8285 | #7d939c |
-| `--jy-placeholder` | 占位符 | #919b8b | #7d8797 | #8fa07d | #8d7376 | #8aa0a9 |
-| `--jy-line` | 默认边框 | #d8dccf | #39434d | #cfdbc0 | #50313e | rgba(102,131,151,.25) |
-| `--jy-line-soft` | 分隔线、列表行上边线 | #ebeade | #2e3741 | #dbe5cd | #3d242f | rgba(102,131,151,.18) |
-| `--jy-line-strong` | 悬浮窗外框、悬停边框 | #c2c9ba | #4a5663 | #b7c8a5 | #6b4152 | rgba(102,131,151,.42) |
-| `--jy-accent` | 主按钮、选中、聚焦边框、进度填充 | #255d4e | #a4c6bb | #527548 | #d5b174 | #43697b |
-| `--jy-on-accent` | 主色上的文字 | #fffef3 | #172b25 | （继承 day） | #28171c | （继承 day） |
-| `--jy-accent-soft` | 悬停底、进度轨、当前句 | #e7ede2 | #303e3c | #dde9d0 | #442631 | rgba(216,231,239,.7) |
-| `--jy-accent-tint` | 已改动 / 已选中浅底 | #eaefe3 | #2a3a37 | #dcead0 | #3b2330 | rgba(214,232,240,.72) |
-| `--jy-accent-ink` | 强调文字（已改动的状态字、药丸字） | #4a6357 | #b7d5c9 | #43613b | #e2c08a | #35586a |
-| `--jy-band` | 次级区块底（思考、结果、旁白行） | #eef1e7 | #232b34 | #e3ecd8 | #2e1c26 | rgba(226,238,244,.6) |
-| `--jy-band-line` | 次级区块边框 | #dfe3d5 | #3a4550 | #c6d5b6 | #573544 | rgba(102,131,151,.3) |
-| `--jy-rail` | 控制中心左栏、悬浮窗标题栏与页签底 | #163a30 | #11191c | #354d32 | #190b13 | rgba(38,63,79,.86) |
-| `--jy-switch-off` | 开关关闭轨道 | #bcc6b8 | #49535f | #bcc9ae | #5b3846 | rgba(102,131,151,.4) |
-| `--jy-focus` | 焦点环；也用于「进行中 / 需注意」金色 | #b18537 | #d7b26a | #a8842f | #d5b174 | #b1863c |
-| `--jy-ok` | 完成 | #3f7a5f | #7fc4a4 | #4d8a5c | #8fc0a0 | #3f8474 |
-| `--jy-warn` | 进行中状态点、警告日志 | #b08a3c | #d8b26a | #a8842f | #d5b174 | #b1863c |
-| `--jy-error` | 出错、危险 | #b54332 | #e88b7c | #b04a37 | #e8908d | #b54332 |
-| `--jy-error-soft` | 出错边框与浅底 | #e2c3bc | #6b3b36 | #d9b3ab | #7a3f43 | rgba(181,67,50,.35) |
+| `--bgt-paper` | 控制中心底、吸底页脚 | #f6f4ee | #191e25 | #edf3e7 | #20131b | rgba(243,246,248,.83) |
+| `--bgt-surface` | 卡片、按钮、悬浮窗底 | #fffdf7 | #222932 | #f7faee | #2b1a23 | rgba(255,255,255,.55) |
+| `--bgt-field` | 输入框底 | #fffef9 | #222932 | #f7faee | #2b1a23 | rgba(255,255,255,.55) |
+| `--bgt-text` | 正文 | #22332e | #e4e7ed | #344932 | #f0ddd6 | #293b46 |
+| `--bgt-muted` | 次要文字 | #6b7770 | #a6b0bf | #6b7c58 | #b99c9d | #637b85 |
+| `--bgt-muted-soft` | 更弱的说明、空闲状态点 | #8b958c | #8994a3 | #8a9a78 | #9c8285 | #7d939c |
+| `--bgt-placeholder` | 占位符 | #919b8b | #7d8797 | #8fa07d | #8d7376 | #8aa0a9 |
+| `--bgt-line` | 默认边框 | #d8dccf | #39434d | #cfdbc0 | #50313e | rgba(102,131,151,.25) |
+| `--bgt-line-soft` | 分隔线、列表行上边线 | #ebeade | #2e3741 | #dbe5cd | #3d242f | rgba(102,131,151,.18) |
+| `--bgt-line-strong` | 悬浮窗外框、悬停边框 | #c2c9ba | #4a5663 | #b7c8a5 | #6b4152 | rgba(102,131,151,.42) |
+| `--bgt-accent` | 主按钮、选中、聚焦边框、进度填充 | #255d4e | #a4c6bb | #527548 | #d5b174 | #43697b |
+| `--bgt-on-accent` | 主色上的文字 | #fffef3 | #172b25 | （继承 day） | #28171c | （继承 day） |
+| `--bgt-accent-soft` | 悬停底、进度轨、当前句 | #e7ede2 | #303e3c | #dde9d0 | #442631 | rgba(216,231,239,.7) |
+| `--bgt-accent-tint` | 已改动 / 已选中浅底 | #eaefe3 | #2a3a37 | #dcead0 | #3b2330 | rgba(214,232,240,.72) |
+| `--bgt-accent-ink` | 强调文字（已改动的状态字、药丸字） | #4a6357 | #b7d5c9 | #43613b | #e2c08a | #35586a |
+| `--bgt-band` | 次级区块底（思考、结果、旁白行） | #eef1e7 | #232b34 | #e3ecd8 | #2e1c26 | rgba(226,238,244,.6) |
+| `--bgt-band-line` | 次级区块边框 | #dfe3d5 | #3a4550 | #c6d5b6 | #573544 | rgba(102,131,151,.3) |
+| `--bgt-rail` | 控制中心左栏、悬浮窗标题栏与页签底 | #163a30 | #11191c | #354d32 | #190b13 | rgba(38,63,79,.86) |
+| `--bgt-switch-off` | 开关关闭轨道 | #bcc6b8 | #49535f | #bcc9ae | #5b3846 | rgba(102,131,151,.4) |
+| `--bgt-focus` | 焦点环；也用于「进行中 / 需注意」金色 | #b18537 | #d7b26a | #a8842f | #d5b174 | #b1863c |
+| `--bgt-ok` | 完成 | #3f7a5f | #7fc4a4 | #4d8a5c | #8fc0a0 | #3f8474 |
+| `--bgt-warn` | 进行中状态点、警告日志 | #b08a3c | #d8b26a | #a8842f | #d5b174 | #b1863c |
+| `--bgt-error` | 出错、危险 | #b54332 | #e88b7c | #b04a37 | #e8908d | #b54332 |
+| `--bgt-error-soft` | 出错边框与浅底 | #e2c3bc | #6b3b36 | #d9b3ab | #7a3f43 | rgba(181,67,50,.35) |
 
-`--jy-focus` 的非焦点用法：未保存提示（`style.css:208`）、隐私提示（`334`）、进行中批次（`763`）、估时（`768`）、进行中段落标记（`785`）。
+`--bgt-focus` 的非焦点用法：未保存提示（`style.css:208`）、隐私提示（`334`）、进行中批次（`763`）、估时（`768`）、进行中段落标记（`785`）。
 
 **主题专属覆盖**
 
@@ -305,12 +305,12 @@ shadow root 内的界面共用一份 `style.css`（`index.js:10575` 等处 `load
 
 | 状态 | 颜色 | 符号与写法 | 出处 |
 |---|---|---|---|
-| 完成 | `--jy-ok` | ✓ + 名词（已译 · 细读 3/3） | `style.css:115, 724, 762, 783`；设计稿 v1.2 第 12 页 |
-| 进行中 | `--jy-focus`（批次、段落、估时）；`--jy-warn`（状态点） | ◌ + 进度 + 秒 | `style.css:763, 768, 785`；`113` |
-| 待做 | `--jy-muted` | 灰字，不加符号 | `style.css:728, 792`；设计稿 v1.2 第 12 页 |
-| 出错 | `--jy-error`，浅底 `--jy-error-soft` | ! + 人话 + 一个动作 | `style.css:114, 269-270, 784, 797` |
-| 已改动 | 左竖条 `--jy-accent` + `--jy-accent-tint` 底 + `--jy-accent-ink` 字 | | `style.css:181-183`；`Baseline.dc.html:162-166` |
-| 选中 | `--jy-accent` 实底 + `--jy-on-accent` 字 | | `style.css:184`；`Baseline.dc.html:156-160` |
+| 完成 | `--bgt-ok` | ✓ + 名词（已译 · 细读 3/3） | `style.css:115, 724, 762, 783`；设计稿 v1.2 第 12 页 |
+| 进行中 | `--bgt-focus`（批次、段落、估时）；`--bgt-warn`（状态点） | ◌ + 进度 + 秒 | `style.css:763, 768, 785`；`113` |
+| 待做 | `--bgt-muted` | 灰字，不加符号 | `style.css:728, 792`；设计稿 v1.2 第 12 页 |
+| 出错 | `--bgt-error`，浅底 `--bgt-error-soft` | ! + 人话 + 一个动作 | `style.css:114, 269-270, 784, 797` |
+| 已改动 | 左竖条 `--bgt-accent` + `--bgt-accent-tint` 底 + `--bgt-accent-ink` 字 | | `style.css:181-183`；`Baseline.dc.html:162-166` |
+| 选中 | `--bgt-accent` 实底 + `--bgt-on-accent` 字 | | `style.css:184`；`Baseline.dc.html:156-160` |
 
 ### 6.5 酒馆主文档里的颜色
 
@@ -364,7 +364,7 @@ shadow root 内的界面共用一份 `style.css`（`index.js:10575` 等处 `load
 | 下拉菜单 | `0 8px 24px #0000001f`；方案菜单 `0 6px 18px #163a3012` | `style.css:170, 88` |
 | 播放键 | `0 6px 16px rgba(4,14,11,.22)` | `style.css:824` |
 | 输入聚焦光晕 | `0 0 0 3px` accent 16% | `style.css:161` |
-| 进度旋钮描边 | `0 0 0 2px var(--jy-surface)` | `style.css:737` |
+| 进度旋钮描边 | `0 0 0 2px var(--bgt-surface)` | `style.css:737` |
 | 入口 | `0 7px 20px #07181344`；悬停 `0 13px 36px rgba(0,0,0,.5), 0 0 0 4px rgba(117,213,201,.15)`；贴边条 `-4px 6px 18px #07181366` | `host.css:40, 261, 85` |
 | vampire 主卡 | `5px 5px 0 #140b11` | `style.css:452` |
 
@@ -399,9 +399,9 @@ shadow root 内的界面共用一份 `style.css`（`index.js:10575` 等处 `load
 
 | Token | 值 | 用途 | 出处 |
 |---|---|---|---|
-| `--jy-enter` | `200ms cubic-bezier(.2, .8, .24, 1)` | 进入 | `style.css:29`；`Motion.dc.html:125-126, 208` |
-| `--jy-exit` | `130ms cubic-bezier(.4, 0, 1, 1)` | 退出 | `style.css:30`；`Motion.dc.html:134-135, 209` |
-| `--jy-hover` | `120ms ease` | 悬停、颜色、折叠箭头 | `style.css:31`；`Motion.dc.html:188-189` |
+| `--bgt-enter` | `200ms cubic-bezier(.2, .8, .24, 1)` | 进入 | `style.css:29`；`Motion.dc.html:125-126, 208` |
+| `--bgt-exit` | `130ms cubic-bezier(.4, 0, 1, 1)` | 退出 | `style.css:30`；`Motion.dc.html:134-135, 209` |
+| `--bgt-hover` | `120ms ease` | 悬停、颜色、折叠箭头 | `style.css:31`；`Motion.dc.html:188-189` |
 
 ### 8.2 曲线（现状）
 
@@ -473,46 +473,46 @@ shadow root 内的界面共用一份 `style.css`（`index.js:10575` 等处 `load
 
 | 类型 | 类名 | 规格 | 出处 |
 |---|---|---|---|
-| 次要（默认） | `.jy-button` | 最小高 32，`padding: 6px 13px`，1px `--jy-line`，圆角 6，底 `--jy-surface`，12 / 600，图标间距 6；悬停底 `--jy-accent-soft`、边框 `--jy-line-strong` | `style.css:94-95`；`Baseline.dc.html:125` |
-| 主要 | `.jy-button-primary` | 底与边框 `--jy-accent`，字 `--jy-on-accent`；悬停 `brightness(.94)` | `style.css:96-97`；`Baseline.dc.html:124` |
-| 文字 | `.jy-text-button` | 无边框，字 `--jy-accent`，`padding: 8px 4px`，12；悬停下划线 | `style.css:98-99`；`Baseline.dc.html:126` |
-| 图标 | `.jy-icon-button` | 30×30 起，1px 边框，圆角 6，字 `--jy-accent`，16 | `style.css:100` |
-| 危险 | 行内：`.jy-mini-row-button-danger`；动作区「停止」 | 边框与字 `--jy-error` | `style.css:803, 533`；`Baseline.dc.html:127` |
+| 次要（默认） | `.bgt-button` | 最小高 32，`padding: 6px 13px`，1px `--bgt-line`，圆角 6，底 `--bgt-surface`，12 / 600，图标间距 6；悬停底 `--bgt-accent-soft`、边框 `--bgt-line-strong` | `style.css:94-95`；`Baseline.dc.html:125` |
+| 主要 | `.bgt-button-primary` | 底与边框 `--bgt-accent`，字 `--bgt-on-accent`；悬停 `brightness(.94)` | `style.css:96-97`；`Baseline.dc.html:124` |
+| 文字 | `.bgt-text-button` | 无边框，字 `--bgt-accent`，`padding: 8px 4px`，12；悬停下划线 | `style.css:98-99`；`Baseline.dc.html:126` |
+| 图标 | `.bgt-icon-button` | 30×30 起，1px 边框，圆角 6，字 `--bgt-accent`，16 | `style.css:100` |
+| 危险 | 行内：`.bgt-mini-row-button-danger`；动作区「停止」 | 边框与字 `--bgt-error` | `style.css:803, 533`；`Baseline.dc.html:127` |
 | 禁用 | `button:disabled` | 不透明度 .48，光标 wait | `style.css:40` |
-| 焦点 | `:focus-visible` | 2px `--jy-focus` 描边，外移 3px | `style.css:42` |
-| 控制中心大按钮 | `.jy-launch .jy-button` | 最小高 38，`padding: 0 20px`，13 | `style.css:138`；`Main.dc.html:112` |
-| 对话框按钮 | `.jy-ask-actions button` | 最小高 40（≤560px 44 并整行），圆角 10，13.5；主键 `.is-primary` 底 `--jy-accent`、字 #fff | `style.css:989-996` |
+| 焦点 | `:focus-visible` | 2px `--bgt-focus` 描边，外移 3px | `style.css:42` |
+| 控制中心大按钮 | `.bgt-launch .bgt-button` | 最小高 38，`padding: 0 20px`，13 | `style.css:138`；`Main.dc.html:112` |
+| 对话框按钮 | `.bgt-ask-actions button` | 最小高 40（≤560px 44 并整行），圆角 10，13.5；主键 `.is-primary` 底 `--bgt-accent`、字 #fff | `style.css:989-996` |
 
 ### 9.2 药丸、chip、徽章
 
 | 类型 | 类名 | 规格 | 出处 |
 |---|---|---|---|
-| 状态药丸 | `.jy-mini-pill` | 圆角 999，`padding: 1px 7px`，10.5，底 `--jy-accent-soft`、字 `--jy-accent-ink`；`data-state` 为 done / active / error / plain / pending 各有配色；触屏 12，`padding: 2px 9px` | `style.css:794-799`；`895` |
-| 筛选 chip | `.jy-mini-chip` | 圆角 999，1px `--jy-line`，11，`padding: 3px 9px`；按下态 `aria-pressed="true"` 实底 `--jy-accent`；触屏 13，`padding: 8px 12px` | `style.css:634-635, 841`；`900` |
-| 说话人 chip | `.jy-speaker-chip` | 圆角 999，底 `--jy-band`，11.5；未上色的名字虚线描边 | `style.css:287, 290` |
-| 对话框快捷说法 | `.jy-ask-chips button` | 圆角 999，12，`padding: 4px 10px` | `style.css:1009-1010` |
-| 徽章 | `.jy-badge` | 圆角 4，1px `--jy-line`，底 `--jy-accent-soft`，字 `--jy-muted`，10 | `style.css:101` |
-| 页签出错数 | `[data-errors]::after` | 高 14，圆角 7，底 `--jy-error`，字 #fff，9；上限 99 | `style.css:751`；`index.js:11940` |
+| 状态药丸 | `.bgt-mini-pill` | 圆角 999，`padding: 1px 7px`，10.5，底 `--bgt-accent-soft`、字 `--bgt-accent-ink`；`data-state` 为 done / active / error / plain / pending 各有配色；触屏 12，`padding: 2px 9px` | `style.css:794-799`；`895` |
+| 筛选 chip | `.bgt-mini-chip` | 圆角 999，1px `--bgt-line`，11，`padding: 3px 9px`；按下态 `aria-pressed="true"` 实底 `--bgt-accent`；触屏 13，`padding: 8px 12px` | `style.css:634-635, 841`；`900` |
+| 说话人 chip | `.bgt-speaker-chip` | 圆角 999，底 `--bgt-band`，11.5；未上色的名字虚线描边 | `style.css:287, 290` |
+| 对话框快捷说法 | `.bgt-ask-chips button` | 圆角 999，12，`padding: 4px 10px` | `style.css:1009-1010` |
+| 徽章 | `.bgt-badge` | 圆角 4，1px `--bgt-line`，底 `--bgt-accent-soft`，字 `--bgt-muted`，10 | `style.css:101` |
+| 页签出错数 | `[data-errors]::after` | 高 14，圆角 7，底 `--bgt-error`，字 #fff，9；上限 99 | `style.css:751`；`index.js:11940` |
 
 ### 9.3 开关与勾选
 
 | 类型 | 规格 | 出处 |
 |---|---|---|
-| 开关 `.jy-switch` | 轨道 42×25，圆角 20；旋钮 17×17 白色，内缩 4px，开启右移 17px，.15s；关 `--jy-switch-off`，开 `--jy-accent`；焦点描边同按钮 | `style.css:149-155` |
-| 勾选框 | 16×16，`accent-color: var(--jy-accent)` | `style.css:148` |
-| 勾选行 `.jy-check` | 间距 8，`padding: 7px 0`，12 | `style.css:147` |
-| 二选一卡片 `.jy-connection-choice` | 两列，间距 12；卡片 `padding: 13px 16px`，圆角 9；选中边框 `--jy-accent`、底 `--jy-accent-tint` | `style.css:209-216`；`Connection.dc.html:82, 89` |
+| 开关 `.bgt-switch` | 轨道 42×25，圆角 20；旋钮 17×17 白色，内缩 4px，开启右移 17px，.15s；关 `--bgt-switch-off`，开 `--bgt-accent`；焦点描边同按钮 | `style.css:149-155` |
+| 勾选框 | 16×16，`accent-color: var(--bgt-accent)` | `style.css:148` |
+| 勾选行 `.bgt-check` | 间距 8，`padding: 7px 0`，12 | `style.css:147` |
+| 二选一卡片 `.bgt-connection-choice` | 两列，间距 12；卡片 `padding: 13px 16px`，圆角 9；选中边框 `--bgt-accent`、底 `--bgt-accent-tint` | `style.css:209-216`；`Connection.dc.html:82, 89` |
 
 ### 9.4 输入框
 
-最小高 34，`padding: 7px 11px`，1px `--jy-line`，圆角 6，底 `--jy-field`；聚焦边框 `--jy-accent` + 3px 光晕；占位符 `--jy-placeholder`；≤640px 字号 16（`style.css:157-164, 496`；`Baseline.dc.html:131-132`）。标签 `.jy-label` 11 / 650，`--jy-muted`，下边距 7（`style.css:156`）。
+最小高 34，`padding: 7px 11px`，1px `--bgt-line`，圆角 6，底 `--bgt-field`；聚焦边框 `--bgt-accent` + 3px 光晕；占位符 `--bgt-placeholder`；≤640px 字号 16（`style.css:157-164, 496`；`Baseline.dc.html:131-132`）。标签 `.bgt-label` 11 / 650，`--bgt-muted`，下边距 7（`style.css:156`）。
 
 ### 9.5 折叠
 
 | 形式 | 标识 | 动效 | 出处 |
 |---|---|---|---|
-| 分节折叠 `.jy-fold` | 7px 描边箭头，2px `--jy-accent` | 旋转 120ms | `style.css:678-686` |
-| 角色行 `.jy-tts-voice-row` | 6px 描边箭头，1.5px `--jy-muted` | 旋转 120ms | `style.css:687-691` |
+| 分节折叠 `.bgt-fold` | 7px 描边箭头，2px `--bgt-accent` | 旋转 120ms | `style.css:678-686` |
+| 角色行 `.bgt-tts-voice-row` | 6px 描边箭头，1.5px `--bgt-muted` | 旋转 120ms | `style.css:687-691` |
 | 调音台与标点标签 | 文字 ▸ / ▾ | 无 | `style.css:927-931, 937-941` |
 | 随手翻 | 文字 ＋ / − | 行高 320ms | `style.css:542-552` |
 | 思考框 | 实心三角 | 旋转 180°，120ms | `style.css:126-127` |
@@ -520,9 +520,9 @@ shadow root 内的界面共用一份 `style.css`（`index.js:10575` 等处 `load
 
 ### 9.6 对话框
 
-**控制中心**：见 2.2；关闭按钮 32×32 圆形，底 `--jy-accent-soft`（`style.css:54, 472-473`）；Esc 关闭，Tab 在对话框内循环（`index.js:10114-10133`）；点遮罩关闭（`index.js:10111-10113`）。
+**控制中心**：见 2.2；关闭按钮 32×32 圆形，底 `--bgt-accent-soft`（`style.css:54, 472-473`）；Esc 关闭，Tab 在对话框内循环（`index.js:10114-10133`）；点遮罩关闭（`index.js:10111-10113`）。
 
-**小对话框**（`.jy-ask`）：宽 `min(420px, 100%)`，圆角 14，`padding: 16px 16px 14px`，13.5 / 1.6；标题 15（`style.css:982-983`）。外壳优先 `<dialog>` + `showModal()`，否则回退为 fixed 遮罩；点暗处关闭，Esc（`cancel`）关闭（`index.js:4352-4378`）。
+**小对话框**（`.bgt-ask`）：宽 `min(420px, 100%)`，圆角 14，`padding: 16px 16px 14px`，13.5 / 1.6；标题 15（`style.css:982-983`）。外壳优先 `<dialog>` + `showModal()`，否则回退为 fixed 遮罩；点暗处关闭，Esc（`cancel`）关闭（`index.js:4352-4378`）。
 
 ### 9.7 悬浮窗
 
@@ -530,16 +530,16 @@ shadow root 内的界面共用一份 `style.css`（`index.js:10575` 等处 `load
 
 | 部件 | 规格 | 出处 |
 |---|---|---|
-| 外框 | 圆角 13，1px `--jy-line-strong`，底 `--jy-surface`，纵向 flex，内容区滚动 | `style.css:502-506, 644-646` |
-| 标题栏 | 底 `--jy-rail`，整条可拖（按钮除外），`touch-action: none`；字标 22×24；标题「第 N 楼 · 状态」+ 6px 状态点；右侧三个按钮：尺寸切换（⤢ / ⤡）、控制中心（⚙）、收起（−） | `style.css:519-525`；`index.js:10587-10593, 10846-10851, 11985` |
-| 小窗概要（`compact`） | 楼层行 13 / 650，任务行 12 `--jy-muted`，播放条，两个等宽按钮「读这一楼」「展开」（主要） | `style.css:949-959`；`index.js:10594-10603` |
+| 外框 | 圆角 13，1px `--bgt-line-strong`，底 `--bgt-surface`，纵向 flex，内容区滚动 | `style.css:502-506, 644-646` |
+| 标题栏 | 底 `--bgt-rail`，整条可拖（按钮除外），`touch-action: none`；字标 22×24；标题「第 N 楼 · 状态」+ 6px 状态点；右侧三个按钮：尺寸切换（⤢ / ⤡）、控制中心（⚙）、收起（−） | `style.css:519-525`；`index.js:10587-10593, 10846-10851, 11985` |
+| 小窗概要（`compact`） | 楼层行 13 / 650，任务行 12 `--bgt-muted`，播放条，两个等宽按钮「读这一楼」「展开」（主要） | `style.css:949-959`；`index.js:10594-10603` |
 | 页签 | 三等分，12 / 650，字距 .06em；选中字 #f2f7f0 + 2px #e2cf9c 下划线；朗读关闭时隐藏「朗读」 | `style.css:611-614, 746-750`；`index.js:10604-10608, 10828-10832` |
 | 翻译页 | 状态区（‹ 楼层 ›、状态、批次条 6px、任务行 + 金色估时、思考行）→ 段落列表 → 动作区 → 快捷行（翻译模型、方案、未译楼入口）→ 随手翻 → 播放条 | `index.js:10609-10662`；`style.css:755-817` |
 | 动作区 | 自适应网格，列最小 64px；「翻译本楼」与「停止」为主要按钮，按状态显隐；「自动 开 / 关」为开关按钮 | `style.css:805-807`；`index.js:10625-10631` |
-| 段落行 | 三列 `16px / 1fr / auto`，行间 1px `--jy-line-soft`，圆角 6；原文 11 灰单行，译文 11.5；编辑态底 `--jy-accent-soft` | `style.css:778-803` |
-| 播放条 | 圆角 999，1px `--jy-line`，进度 4px；只在朗读进行中出现，点击切到朗读页 | `style.css:812-817`；`index.js:10656-10661` |
+| 段落行 | 三列 `16px / 1fr / auto`，行间 1px `--bgt-line-soft`，圆角 6；原文 11 灰单行，译文 11.5；编辑态底 `--bgt-accent-soft` | `style.css:778-803` |
+| 播放条 | 圆角 999，1px `--bgt-line`，进度 4px；只在朗读进行中出现，点击切到朗读页 | `style.css:812-817`；`index.js:10656-10661` |
 | 朗读页 · 播放器 | 标题 14 / 650；可拖进度条；两端时间 11；传输键「上一段 / ▶ / 下一段」；药丸；步骤清单（最高 190）；文字链接 | `style.css:818-830, 716-742`；`index.js:10664-10682` |
-| 朗读页 · 句子列表 | 每行：标记、句子（两行截断）、标签、文字按钮「播放 / 重新生成 / 缓存 / 详细」；当前句底 `--jy-accent-soft` | `style.css:778-790, 961-966`；`index.js:11474-11488` |
+| 朗读页 · 句子列表 | 每行：标记、句子（两行截断）、标签、文字按钮「播放 / 重新生成 / 缓存 / 详细」；当前句底 `--bgt-accent-soft` | `style.css:778-790, 961-966`；`index.js:11474-11488` |
 | 朗读页 · 改句面板 | 说话人选择、原文、发给 Fish 的文本（等宽 12）、标签 chip、自定义指令、语速与音量、「重新生成并播放」（改过才出现） | `style.css:620-642, 969-972`；`index.js:10685-10702` |
 | 日志页 | 筛选 chip「本楼 / 全部 / 翻译 / 朗读 / 只看出错」+「复制全部」；每条两行（元信息 10.5 + 正文 12 两行截断）；出错条浅红底；详情页 | `style.css:839-862`；`index.js:10704-10716` |
 | 桌面快捷键 | Esc 收起；窗体聚焦且未在输入时：Space 播放 / 暂停，← → 进度 5%，[ ] 上一段 / 下一段；触屏不响应 | `index.js:12080-12100` |
@@ -566,7 +566,7 @@ shadow root 内的界面共用一份 `style.css`（`index.js:10575` 等处 `load
 | 原文折叠下的原文段落按钮 | 不挂在段末，挂在「原文」胶囊右边，间距 .5em、垂直居中；折起时与胶囊同一行（折起的 `details` 为 inline-block），展开时在原文块下方。一个折叠块只挂一对：播放读完块内各段就停，重新生成逐段重做后连读。常夜灯 2026-09-24 指定位置 | `reading.css` 原文折叠段；`index.js` `foldedOriginalOf`、`decorateTtsMessage` |
 | 每句按钮 | 每句后播放（1.3em 圆）+ 编辑（1.3em 圆，更淡）；触屏 1.55em | `host.css:291-344, 425-460, 476-484`；`index.js:6430-6434` |
 | 楼底栏 | 每楼都有：「朗读本楼」（双语时「朗读译文」「朗读原文」）、说明文字（不透明度 .6）、状态（`aria-live`）、「暂停」「停止」（播放时出现）、「缓存」及选择模式（全选 / 缓存所选 / 退出选择 / 计数）、「朗读面板」文字链接 | `index.js:6262-6308, 6436`；`host.css:346-399, 461-475, 537-541` |
-| 朗读高亮 | `::highlight(jy-tts-current)`；美化风格各有高亮色，极简风改为下划线 | `host.css:401-403`；`reading.css:88-91, 128-133, 165-168` |
+| 朗读高亮 | `::highlight(bgt-tts-current)`；美化风格各有高亮色，极简风改为下划线 | `host.css:401-403`；`reading.css:88-91, 128-133, 165-168` |
 | 颜色 | 取周围文字颜色，不读主题；美化风格内取卡片主色 | `host.css:289-290`；`reading.css:67-72` |
 
 ---
@@ -624,22 +624,22 @@ shadow root 内的界面共用一份 `style.css`（`index.js:10575` 等处 `load
 16. **触屏图标**：设计稿 v1.2 第 6、12 页规定触屏只用 ▶ ❚❚ ×；代码触屏标题栏为 ⤢ / ⤡、⚙、−（`index.js:10590-10592`），楼层箭头 ‹ ›（`10613, 10615`）。设计稿标题栏有「×」关闭（第 3、6、7 页），代码没有「×」，「−」即关闭回入口。
 17. **每句按钮的默认值**：设计稿 v1.2 第 8 页为「触屏默认关、桌面默认开」；代码所有设备默认 `line`（每段一对，`core.js:610`），`sentence` 在触屏上也能选（`index.js:397`）。「触屏不放每句控件」目前只靠默认值保证。
 18. **桌面卡片的动作区位置**：桌面内容区整页滚动（`style.css:646`），动作区排在段落列表之后（`index.js:10624-10631`），段落越多「翻译本楼 / 停止」越靠下（实测 5 段时动作区距页顶 444px）；触屏是列表自己滚动、动作区固定在底部（`style.css:891-894`）。两端行为不同，设计稿未规定动作区是否常驻可见。
-19. **楼底栏触控目标**：实测手机上「朗读本楼」89×31、「缓存」43×25、「朗读面板」50×29，低于同楼段落按钮的 40px（`host.css:531`）与设计稿 v1.2 第 2 页「触控目标不小于 44px」。`.jy-tts-bar-pick`、`.jy-tts-bar-pick-all`、`.jy-tts-bar-pick-exit` 在 `host.css` 中没有样式（只有 `540-541` 两条），显示为宿主的默认按钮外观（实测为灰色方块）。
+19. **楼底栏触控目标**：实测手机上「朗读本楼」89×31、「缓存」43×25、「朗读面板」50×29，低于同楼段落按钮的 40px（`host.css:531`）与设计稿 v1.2 第 2 页「触控目标不小于 44px」。`.bgt-tts-bar-pick`、`.bgt-tts-bar-pick-all`、`.bgt-tts-bar-pick-exit` 在 `host.css` 中没有样式（只有 `540-541` 两条），显示为宿主的默认按钮外观（实测为灰色方块）。
 20. **句子行按钮数**：`style.css:961` 注释写三个按钮，实际四个「播放 / 重新生成 / 缓存 / 详细」（`index.js:11478`）；设计稿 v1.2 第 4 页为一个「改这句」。
 
 ### 11.3 颜色
 
-21. **「停止」按钮对比度**：它同时是主要按钮（`index.js:10627`，底 `--jy-accent`）和红字（`style.css:533`），实测 #b54332 字在 #255d4e 底上对比度 1.38:1。`Baseline.dc.html:127` 的危险动作是描边按钮加红字。
+21. **「停止」按钮对比度**：它同时是主要按钮（`index.js:10627`，底 `--bgt-accent`）和红字（`style.css:533`），实测 #b54332 字在 #255d4e 底上对比度 1.38:1。`Baseline.dc.html:127` 的危险动作是描边按钮加红字。
 22. **不随主题的字面色**：药丸 done / active / edited（`style.css:795-799`：#e3efe7、#fbf1dc、#8a6a2a）、出错日志底 #fbf3f1（`846`）。实测夜间主题下「✓ 深度分析」药丸为浅底 #e3efe7 配 #7fc4a4 字（对比度约 1.7:1），浮在深色卡片上。
-23. **未定义的 token**：`--jy-danger`（`style.css:579`，回退 #c0392b）、`--jy-ink`（`982`，回退 #1f2a24）。`.jy-ask*` 的回退值（#f6f4ec、#5d6a63、#cfd6cf、#2f6b4f，`style.css:982-1010`）与真实 token 不同；调音台滑块回退为蓝色 #4c7cf3（`915`）。
+23. **未定义的 token**：`--bgt-danger`（`style.css:579`，回退 #c0392b）、`--bgt-ink`（`982`，回退 #1f2a24）。`.bgt-ask*` 的回退值（#f6f4ec、#5d6a63、#cfd6cf、#2f6b4f，`style.css:982-1010`）与真实 token 不同；调音台滑块回退为蓝色 #4c7cf3（`915`）。
 24. **小对话框不跟主题**：询问 / 保存 / 重新分析三个宿主没有设置 `data-theme`（`index.js:4388-4391, 4437-4440, 5975-5978`），而主题选择器要求该属性（`style.css:422` 等），推断这些对话框始终是日间配色。未实测。
-25. **「进行中」两种金色**：设计稿 v1.2 第 12 页定「进行中 = `--jy-focus`」；状态点用 `--jy-warn`（`style.css:113`），批次、段落、估时用 `--jy-focus`（`763, 768, 785`）；日间两者为 #b18537 与 #b08a3c；`Main.dc.html:83` 的运行点又是 #c29740。
-26. **深色底固定色未 token 化**：见 6.3，这组颜色在 fresh、glass 等主题下保持不变，而 `--jy-rail` 会变。
+25. **「进行中」两种金色**：设计稿 v1.2 第 12 页定「进行中 = `--bgt-focus`」；状态点用 `--bgt-warn`（`style.css:113`），批次、段落、估时用 `--bgt-focus`（`763, 768, 785`）；日间两者为 #b18537 与 #b08a3c；`Main.dc.html:83` 的运行点又是 #c29740。
+26. **深色底固定色未 token 化**：见 6.3，这组颜色在 fresh、glass 等主题下保持不变，而 `--bgt-rail` 会变。
 27. **入口配色**：入口按主题换底色（`host.css:418-423`），但进度环轨道 #35604f（`157`）与 day 以外主题的标签色（仅 fresh 覆盖，`420-421`）不随主题。
 28. **主题数量**：设计稿 v1.2 第 1 页写「沿用现有四款主题」；代码有五套（`core.js:1171`）。
 29. **开关规格**：`Baseline.dc.html:136-142`、`Processing.dc.html:139, 149` 为 38×21、旋钮 15、关闭色 #c9d0c2；代码 42×25、旋钮 17、#bcc6b8（`style.css:149-152, 20`）。
 30. **聚焦光晕浓度**：`Baseline.dc.html:132` 为 accent 14%；代码 16%（`style.css:161`）。
-31. **按钮与徽章**：`Baseline.dc.html:124` 主要按钮 `padding: 0 15px`、字重 650；代码与次要按钮共用 `6px 13px`、600（`style.css:94`）。`Baseline.dc.html:146` 状态徽章 700、`--jy-accent-ink` 字；代码 `.jy-badge` 为 `--jy-muted` 字、无字重（`style.css:101`）。
+31. **按钮与徽章**：`Baseline.dc.html:124` 主要按钮 `padding: 0 15px`、字重 650；代码与次要按钮共用 `6px 13px`、600（`style.css:94`）。`Baseline.dc.html:146` 状态徽章 700、`--bgt-accent-ink` 字；代码 `.bgt-badge` 为 `--bgt-muted` 字、无字重（`style.css:101`）。
 32. **遮罩浓度**：`Motion.dc.html:228` 为 rgba(7,27,24,.62)；代码 #071b18b3（约 .70，`style.css:48`）。
 33. **警示色块**：#faf3e4 底、#e6d5ae 边、#6d5522 字只出现在画布（`Motion.dc.html:194-197`，`Logs.dc.html:79`），代码没有对应 token。
 
@@ -657,18 +657,18 @@ shadow root 内的界面共用一份 `style.css`（`index.js:10575` 等处 `load
 40. **胶囊停留时长**：`canvas.json:98` 为 1.6 秒，`MiniStates.dc.html:71` 为「两秒」，代码默认 2200ms、关窗后 1800ms（`index.js:10213, 12066`）。
 41. **按压反馈**：`Motion.dc.html:185-189` 列了「悬停 / 按下 120ms ease」；代码没有 `:active` 视觉。
 42. **减少动态效果的两种写法并存**：`style.css:419` 全局 `none !important`，同文件 `336-340, 562-568, 907-909` 又写 1ms；`host.css` 入口用 1ms（`278-287`），楼层按钮用 none（`410-416`）。设计稿 v1.2 第 12 页要求「全关」，`Motion.dc.html:197` 写「降到 1ms」。
-43. **无效声明**：`.jy-mini-tabs::after` 的滑动下划线（`style.css:651-652`）被 `749` 的 `content: none` 关掉；随手翻 ＋ / − 的 `transform` 过渡（`542`）没有对应的 transform 变化。
+43. **无效声明**：`.bgt-mini-tabs::after` 的滑动下划线（`style.css:651-652`）被 `749` 的 `content: none` 关掉；随手翻 ＋ / − 的 `transform` 过渡（`542`）没有对应的 transform 变化。
 44. **曲线未命名**：`cubic-bezier(0.22, 0.72, 0.2, 1)` 用在 5 处、`cubic-bezier(0.3, 0.7, 0.4, 1)` 用在 1 处，没有对应 token；是否命名、叫什么，待常夜灯确定。
 
 ### 11.6 样式文件组织
 
-45. **分层覆盖**：`style.css` 中同一组件有多段定义，后段覆盖前段：宽度（`503 → 745`）、动作区列（`531 → 805`）、传输键（`616-619 → 822-823`）、页签（`611-614 → 746-750`）、`.jy-close`（`54-55 → 472-473`）、`.jy-tts-voice-row`（`306 → 574 → 687`）、`.jy-tts-lang-block`（`589 → 667`）。读某个组件的最终值需要看完整个文件。
+45. **分层覆盖**：`style.css` 中同一组件有多段定义，后段覆盖前段：宽度（`503 → 745`）、动作区列（`531 → 805`）、传输键（`616-619 → 822-823`）、页签（`611-614 → 746-750`）、`.bgt-close`（`54-55 → 472-473`）、`.bgt-tts-voice-row`（`306 → 574 → 687`）、`.bgt-tts-lang-block`（`589 → 667`）。读某个组件的最终值需要看完整个文件。
 
 ---
 
 ## 12 悬浮窗页面结构与楼层朗读入口（v0.34.0 起）
 
-> 来源：`镜译-悬浮窗改版提案.md` 第二、三节，常夜灯 2026-09-23 批准，楼层入口选方案 A，按效果图确认。本节与第 2、9、10 节冲突处以本节为准。
+> 来源：`测试翻译-悬浮窗改版提案.md` 第二、三节，常夜灯 2026-09-23 批准，楼层入口选方案 A，按效果图确认。本节与第 2、9、10 节冲突处以本节为准。
 
 ### 12.1 页面结构
 
@@ -676,9 +676,9 @@ shadow root 内的界面共用一份 `style.css`（`index.js:10575` 等处 `load
 
 | 区 | 内容 | 规则 |
 |---|---|---|
-| 滚动区 `.jy-mini-scroll` | 翻译页：状态 + 段落列表；朗读页：标题与楼层、状态胶囊、步骤、句子列表、改句面板；日志页：列表与详情 | 每页唯一的滚动区；`overscroll-behavior: contain`；内边距 `13px 14px 14px`，满屏 `14px 16px` |
-| 更多 `.jy-mini-more` | 翻译页：翻译模型、方案、全翻、清除这一楼的译文（文字按钮，先确认）、随手翻；朗读页：从头读、重新分析、保存到本地、定位到正文、复制分析 | 夹在滚动区和页脚之间，最高占 55%，自身滚动；页脚「更多」开合，右上 × 收起；底色 `--jy-band` |
-| 页脚 `.jy-mini-foot` | 翻译页：朗读时的播放条 + 翻译本楼 / 停止、补译、重翻、自动、更多；朗读页：进度条、时间、停止、上一段、▶ / ❚❚、下一段、更多 | 不滚动；上边框 1px `--jy-line-soft`；内边距 `10px 14px 12px`；底色 `--jy-surface` |
+| 滚动区 `.bgt-mini-scroll` | 翻译页：状态 + 段落列表；朗读页：标题与楼层、状态胶囊、步骤、句子列表、改句面板；日志页：列表与详情 | 每页唯一的滚动区；`overscroll-behavior: contain`；内边距 `13px 14px 14px`，满屏 `14px 16px` |
+| 更多 `.bgt-mini-more` | 翻译页：翻译模型、方案、全翻、清除这一楼的译文（文字按钮，先确认）、随手翻；朗读页：从头读、重新分析、保存到本地、定位到正文、复制分析 | 夹在滚动区和页脚之间，最高占 55%，自身滚动；页脚「更多」开合，右上 × 收起；底色 `--bgt-band` |
+| 页脚 `.bgt-mini-foot` | 翻译页：朗读时的播放条 + 翻译本楼 / 停止、补译、重翻、自动、更多；朗读页：进度条、时间、停止、上一段、▶ / ❚❚、下一段、更多 | 不滚动；上边框 1px `--bgt-line-soft`；内边距 `10px 14px 12px`；底色 `--bgt-surface` |
 | 日志页筛选 | 固定在滚动区上方 | 内边距 `12px 14px 8px` |
 
 ### 12.2 尺寸
@@ -705,7 +705,7 @@ shadow root 内的界面共用一份 `style.css`（`index.js:10575` 等处 `load
 
 | 项 | 规则 |
 |---|---|
-| 停止类（停止翻译、停止朗读、页脚「停止」） | 危险按钮 `.jy-mini-danger`：底色 `--jy-surface`，边框与文字 `--jy-error`；悬停底色 `--jy-error-soft`；不可用 45% 不透明 |
+| 停止类（停止翻译、停止朗读、页脚「停止」） | 危险按钮 `.bgt-mini-danger`：底色 `--bgt-surface`，边框与文字 `--bgt-error`；悬停底色 `--bgt-error-soft`；不可用 45% 不透明 |
 | 「更多」 | 文字按钮；图标仍只用 ▶ ❚❚ × |
 | 传输区 | 按钮等分剩余宽度，间距 6px；▶ 52px（触屏 56px） |
 
@@ -721,7 +721,7 @@ shadow root 内的界面共用一份 `style.css`（`index.js:10575` 等处 `load
 
 | 项 | 规则 |
 |---|---|
-| 进度条 | 填充用 `transform: scaleX(var(--jy-seek))`，圆点在一条整宽轨道上用 `translateX` 移动，两者过渡 `120ms linear`；不对 width 做动画 |
+| 进度条 | 填充用 `transform: scaleX(var(--bgt-seek))`，圆点在一条整宽轨道上用 `translateX` 移动，两者过渡 `120ms linear`；不对 width 做动画 |
 | 刷新频率 | 朗读中时钟和进度每秒最多刷新 4 次；其余部分只在句子或状态变化时重画 |
 | 循环动画 | 转圈加 `will-change: transform`，呼吸 / 脉冲加 `will-change: opacity` |
 
@@ -749,10 +749,10 @@ shadow root 内的界面共用一份 `style.css`（`index.js:10575` 等处 `load
 
 | 区 | 内容 | 用的现有组件 |
 |---|---|---|
-| 滚动区 · 状态 | 标题「打给{角色}」/「和{角色}通话中」，右侧时长；一行状态（在想 / 在说 / 该你说了 / 在听 / 在转写 / 通话结束）＋已等秒数；需要时一段说明（出错原因、语音输入没开的原因、跟随酒馆时要等整段写完） | `.jy-mini-status`、`.jy-mini-status-top`、`.jy-mini-taskline` ＋ `.jy-mini-eta`、`.jy-muted` |
-| 滚动区 · 通话记录 | 一句一行：上面小字是谁说的，下面是话；对方正在说的那一行用当前行底色，标记 ♪（在说）/ …（在想）/ ·；被打断的一句末尾加「……」 | `.jy-mini-sentences` / `.jy-mini-sentence`（`data-current`）、`.jy-mini-sentence-mark`、`.jy-mini-sentence-echo`、`.jy-mini-sentence-text` |
-| 更多 | 「往期通话」列表（时间 · 时长 · 句数，末句），点开看全文，右上 × 回列表；「清空这个角色的通话记录」（先确认）；「通话设置」（打开控制中心 → 朗读 → 06） | `.jy-mini-more`、`.jy-mini-log` / `.jy-mini-log-item`、`.jy-mini-log-detail`、`.jy-mini-links` ＋ `.jy-text-button` |
-| 页脚 | 没通话：拨打（主按钮）、更多。通话中：按住说话（主按钮）、打断（危险按钮，对方在想或在说时才有）、挂断（危险按钮）、更多；浏览器要先点一下才出声时，「继续」（主按钮）代替「打断」；语音输入没开时，「按住说话」换成一行输入框 ＋「发送」 | `.jy-mini-actions` 里的 `.jy-button-primary` / `.jy-mini-danger` / `.jy-button`；输入行用 `.jy-mini-inspect-custom` |
+| 滚动区 · 状态 | 标题「打给{角色}」/「和{角色}通话中」，右侧时长；一行状态（在想 / 在说 / 该你说了 / 在听 / 在转写 / 通话结束）＋已等秒数；需要时一段说明（出错原因、语音输入没开的原因、跟随酒馆时要等整段写完） | `.bgt-mini-status`、`.bgt-mini-status-top`、`.bgt-mini-taskline` ＋ `.bgt-mini-eta`、`.bgt-muted` |
+| 滚动区 · 通话记录 | 一句一行：上面小字是谁说的，下面是话；对方正在说的那一行用当前行底色，标记 ♪（在说）/ …（在想）/ ·；被打断的一句末尾加「……」 | `.bgt-mini-sentences` / `.bgt-mini-sentence`（`data-current`）、`.bgt-mini-sentence-mark`、`.bgt-mini-sentence-echo`、`.bgt-mini-sentence-text` |
+| 更多 | 「往期通话」列表（时间 · 时长 · 句数，末句），点开看全文，右上 × 回列表；「清空这个角色的通话记录」（先确认）；「通话设置」（打开控制中心 → 朗读 → 06） | `.bgt-mini-more`、`.bgt-mini-log` / `.bgt-mini-log-item`、`.bgt-mini-log-detail`、`.bgt-mini-links` ＋ `.bgt-text-button` |
+| 页脚 | 没通话：拨打（主按钮）、更多。通话中：按住说话（主按钮）、打断（危险按钮，对方在想或在说时才有）、挂断（危险按钮）、更多；浏览器要先点一下才出声时，「继续」（主按钮）代替「打断」；语音输入没开时，「按住说话」换成一行输入框 ＋「发送」 | `.bgt-mini-actions` 里的 `.bgt-button-primary` / `.bgt-mini-danger` / `.bgt-button`；输入行用 `.bgt-mini-inspect-custom` |
 
 ### 13.3 交互
 
@@ -761,15 +761,15 @@ shadow root 内的界面共用一份 `style.css`（`index.js:10575` 等处 `load
 | 按住说话 | 按下开始录，松开发出；按下时对方正在想或正在说，就先停下它（打断）；按下不到 0.35 秒算误触，不发；按住时按钮字换成「松开发送」，没有另做按下态视觉（8.3 未定按下态，沿用） |
 | 键盘 | 按钮获得焦点时，空格或回车按住等同按住 |
 | 挂断、打断、拨打 | 只用文字，不用电话图标（1.2 规则 4） |
-| 结束通话的情况 | 点挂断、换聊天、关掉悬浮窗、镜译停用 |
+| 结束通话的情况 | 点挂断、换聊天、关掉悬浮窗、测试翻译停用 |
 
 ### 13.4 排布（这一页仅有的新样式，`style.css` 末尾）
 
 | 规则 | 原因 |
 |---|---|
-| 「按住说话」在 `.jy-mini-actions` 里占两列；`touch-action: none`、禁止选字和长按菜单 | 主操作要最大；手机上长按不能弹出系统菜单 |
+| 「按住说话」在 `.bgt-mini-actions` 里占两列；`touch-action: none`、禁止选字和长按菜单 | 主操作要最大；手机上长按不能弹出系统菜单 |
 | 通话记录的正文不截成两行 | 句子列表默认截两行，通话要看全 |
-| 输入行在按钮行上方，隐藏时不占位 | `.jy-mini-inspect-custom` 自带 `display:flex`，会盖过 `hidden` |
+| 输入行在按钮行上方，隐藏时不占位 | `.bgt-mini-inspect-custom` 自带 `display:flex`，会盖过 `hidden` |
 | 输入行的「发送」不换行；触屏下输入框和「发送」至少 44px | 12.5 的触控目标；输入框占满剩下的宽度时「发送」会被挤成两行 |
 
 ### 13.5 触控目标（触屏）
@@ -781,13 +781,13 @@ shadow root 内的界面共用一份 `style.css`（`index.js:10575` 等处 `load
 | 项 | 规格 |
 |---|---|
 | 位置 | 高级模式「朗读 › 更多 › 实时通话」折叠组正文最上面，在「边写边读」之前；没有应用连上时整块 `hidden` |
-| 应用行 | `.jy-summary-row`：`.jy-state-mark`（都设好了 `done` ✓，有缺项 `idle` ·）＋ `.jy-summary-copy`：h3「已连接的应用：{app}」，p「都设好了」/「还缺 N 项」；多个应用按第一次连上的顺序排 |
-| 缺项行 | `.jy-summary-row.jy-summary-row-sub`（缩进 28px，§15.4）：· ＋ h3 设置名 ＋ p 原因（与接口返回的 reason 同一句）＋ 行尾 `.jy-text-button`「去设置」 |
+| 应用行 | `.bgt-summary-row`：`.bgt-state-mark`（都设好了 `done` ✓，有缺项 `idle` ·）＋ `.bgt-summary-copy`：h3「已连接的应用：{app}」，p「都设好了」/「还缺 N 项」；多个应用按第一次连上的顺序排 |
+| 缺项行 | `.bgt-summary-row.bgt-summary-row-sub`（缩进 28px，§15.4）：· ＋ h3 设置名 ＋ p 原因（与接口返回的 reason 同一句）＋ 行尾 `.bgt-text-button`「去设置」 |
 | 顺序 | 朗读功能 → Key → 角色音色 → 语音输入 → 通话用的连接；只列应用在 needs 里要的 |
 | 去设置 | 跳到对应设置并聚焦，滚到可视区中间：Key 框（声音来源是 GPT-SoVITS 时到「边写边读和通话用的声音」）；角色表里第一个没有音色的角色那一行，展开后聚焦 Voice ID（设成不朗读的聚焦「不朗读」），没有这一行就聚焦「添加角色」；转写地址 / 转写 Key / 语音输入下拉；「通话用的连接」下拉，选的连接没填好时到「模型连接」页展开那条连接 |
 | 更新 | 任何页面改了设置、应用再连一次、通话里读到新的说话人，都马上重画；内容没变不重画 |
 | 折叠摘要 | 原摘要后加「{app}还缺 N 项」或「{app}已连接」，用 ` · ` 隔开 |
-| 提醒 | toast（warning），每个应用每次打开酒馆最多一次，只在连上时有缺项才出：「{app}连上了镜译，还缺 N 项：{各项名称}。到「朗读 → 更多 → 实时通话」看怎么补。」 |
+| 提醒 | toast（warning），每个应用每次打开酒馆最多一次，只在连上时有缺项才出：「{app}连上了测试翻译，还缺 N 项：{各项名称}。到「朗读 → 更多 → 实时通话」看怎么补。」 |
 | 手机 | 同 §15.5 单列 |
 
 不新增颜色、字号、圆角或动效 token，也没有新 CSS。
@@ -797,7 +797,7 @@ shadow root 内的界面共用一份 `style.css`（`index.js:10575` 等处 `load
 | 项 | 规格 |
 |---|---|
 | 下拉 | 「边写边读和通话用的声音」在「Fish Audio（和楼层朗读同一套）」后面加「GPT-SoVITS（和楼层朗读同一套）」 |
-| 说明 | 选 GPT-SoVITS 时下拉下面出现一段 `.jy-muted`（`data-jy-stream-voice="gsv"`，同豆包、MiniMax 那两块的显隐规则）：用「GPT-SoVITS」卡里的接口地址和默认音色、角色按角色表绑的音色读、那张卡在「声音来源」选 GPT-SoVITS 时才显示、换人要等模型 |
+| 说明 | 选 GPT-SoVITS 时下拉下面出现一段 `.bgt-muted`（`data-bgt-stream-voice="gsv"`，同豆包、MiniMax 那两块的显隐规则）：用「GPT-SoVITS」卡里的接口地址和默认音色、角色按角色表绑的音色读、那张卡在「声音来源」选 GPT-SoVITS 时才显示、换人要等模型 |
 | 边收边放 | 勾选框的说明改为不只说 Fish：「生成一点就播一点……Fish 的延迟模式是 normal 时会换成 balanced」；下面的说明段补「GPT-SoVITS 用它出声最快的流式档，先攒半秒再播」 |
 | 已连接的应用 | GPT-SoVITS 不要 Key；「GPT-SoVITS 接口地址」没填才算缺项。角色音色：音色库里有 GPT-SoVITS 参考音频的算有，其余用卡里的默认音色读，默认音色也没填的「通话里读不出来」 |
 | 去设置 | 接口地址：声音来源是 GPT-SoVITS 时到「GPT-SoVITS」卡的接口地址，否则到「Fish Audio」卡的「声音来源」下拉 |
@@ -810,7 +810,7 @@ shadow root 内的界面共用一份 `style.css`（`index.js:10575` 等处 `load
 |---|---|
 | 名称 | 折叠组「实时通话（测试版）」改为「实时通话」；悬浮窗页签「通话测试」不变；所有提示和去哪里设置的路径同步去掉「（测试版）」 |
 | 说明文字 | 折叠组里接口说明段去掉「这一栏和通话测试页只在测试版里有。」 |
-| 接口 | `window.__JINGYI__.beta` 仍为 `true`，给按测试版写的插件用；新代码只看 `features` |
+| 接口 | `window.__BE_EAGLE_TEST_TRANSLATOR__.beta` 仍为 `true`，给按测试版写的插件用；新代码只看 `features` |
 
 不新增颜色、字号、圆角或动效 token。
 
@@ -820,7 +820,7 @@ shadow root 内的界面共用一份 `style.css`（`index.js:10575` 等处 `load
 | 部件 | 规格 | 出处 |
 |---|---|---|
 | 正文处理 · 歌词行规则 | 复用「原样保留白名单」的 details + textarea，写法相同（精确 / 前缀 / 正则） | `index.js` 正文处理页 |
-| 正文处理 · 音乐卡片 | 复用 `.jy-check` 勾选行，默认关 | 同上 |
+| 正文处理 · 音乐卡片 | 复用 `.bgt-check` 勾选行，默认关 | 同上 |
 | 着色 · 特效字 | 「说话人着色」下的子开关，复用同组开关样式，勾选即保存 | `index.js` 着色设置 |
 | 招式色 | 招式 span 同时写 `color` 与 `-webkit-text-fill-color`；三级 = 加粗 + 发光 + 大一号，不用渐变；颜色经 `adaptColorToBand` 达到背景对比下限 | `palette.js` `resolveMoveStyle`；`reading.css` |
 | 总控 · 清除这一楼的译文 | 与「翻译当前回复」「补译缺失段落」同一行，普通按钮，点了先确认 | `index.js` 总控页 |
@@ -837,7 +837,7 @@ shadow root 内的界面共用一份 `style.css`（`index.js:10575` 等处 `load
 
 | 项 | 规格 |
 |---|---|
-| 切换 | 左栏品牌下方，两段式「正常模式 \| 高级模式」；底 `#0f2c24`，选中段 `#f2f7f0` 底、`--jy-rail` 字、650 字重；每段高 ≥ 34（触屏 ≥ 44）；两种模式都显示 |
+| 切换 | 左栏品牌下方，两段式「正常模式 \| 高级模式」；底 `#0f2c24`，选中段 `#f2f7f0` 底、`--bgt-rail` 字、650 字重；每段高 ≥ 34（触屏 ≥ 44）；两种模式都显示 |
 | 默认 | 新装默认正常模式；从旧版升级默认高级模式；选择记在设置里 |
 | 正常模式左栏 | 翻译台 · 微调 · 运行记录 |
 | 高级模式左栏 | 翻译台 · 翻译规则 · 模型连接 · 正文处理 · 朗读 · 运行记录（与现在相同） |
@@ -847,10 +847,10 @@ shadow root 内的界面共用一份 `style.css`（`index.js:10575` 等处 `load
 
 | 区 | 规格 |
 |---|---|
-| 套餐 | 2×2 选择卡（`.jy-connection-choice` 的可点版）：只看翻译〔最省〕/ 看得舒服〔推荐〕/ 有声小说 / 全都要〔最费〕；选中 `--jy-accent` 边框 + `--jy-accent-tint` 底；选了就生效 |
+| 套餐 | 2×2 选择卡（`.bgt-connection-choice` 的可点版）：只看翻译〔最省〕/ 看得舒服〔推荐〕/ 有声小说 / 全都要〔最费〕；选中 `--bgt-accent` 边框 + `--bgt-accent-tint` 底；选了就生效 |
 | 改过提示 | 手动改过套餐管的项时一行 ◌「改过 N 项，已不是「套餐名」原样」+ 文字按钮「恢复原样」「看改了什么」 |
 | 你自己的设置 | 左列卡片：提取标签、姓名与术语表；套餐永远不碰 |
-| 朗读 · Fish Audio | 左列卡片：API Key、模型、测试连接、分析模式，下面一行灰字写所选分析模式的说明；没填且套餐要用时以 `--jy-error-soft` 边框 + 「没填」红药丸标出 |
+| 朗读 · Fish Audio | 左列卡片：API Key、模型、测试连接、分析模式，下面一行灰字写所选分析模式的说明；没填且套餐要用时以 `--bgt-error-soft` 边框 + 「没填」红药丸标出 |
 | API Key | 右列卡片，可以放多条连接：最上面「各功能用哪条连接」三行下拉（§17.1，v0.41.0 起代替原来每格的用途勾选）；下面一行「跟随酒馆」（不用填）；每条连接一格，正在编辑的一格展开（API 基础地址、API 密钥、当前模型、测试这条连接、删除〔红字，先确认〕），其余收成一行摘要；卡底「＋ 添加连接」 |
 | 页脚 | 翻译当前回复（主按钮）· 补译缺失段落（文字按钮） |
 
@@ -865,10 +865,10 @@ shadow root 内的界面共用一份 `style.css`（`index.js:10575` 等处 `load
 | 规则 | 规格 |
 |---|---|
 | 常用在上 | 每页最上面放最常用的卡片，其余按用途分组 |
-| 折叠组 | 不常用的收进折叠行，收起时同一行写当前值摘要（12px `--jy-muted`），展开按 §9.5 |
-| 改了就存 | 去掉保存按钮；页头右侧 11px `--jy-ok`「改了就存 ✓」 |
+| 折叠组 | 不常用的收进折叠行，收起时同一行写当前值摘要（12px `--bgt-muted`），展开按 §9.5 |
+| 改了就存 | 去掉保存按钮；页头右侧 11px `--bgt-ok`「改了就存 ✓」 |
 | 依赖 | 子项缩进 28px；父开关关着时子项变灰并写一句原因 |
-| 危险操作 | 红字文字按钮放每组末尾，点了先 `.jy-ask` 确认 |
+| 危险操作 | 红字文字按钮放每组末尾，点了先 `.bgt-ask` 确认 |
 | 翻译规则 | 去掉左侧目录，改三张卡：常用（选择题）/ 进阶（要写几句）/ 专家（直接改发给模型的话，标总字数）；改过的挂「改过」；方案管理放页底，危险两项红字 |
 | 模型连接 | 最上面「各功能用哪条连接」（§17.1）；每条连接一张卡，卡头不带勾；请求参数、后置提示词为折叠组 |
 | 正文处理 | 提取范围 · 说话人着色 · 保留与歌词 · 写回 四卡；界面与正则为折叠组 |
@@ -896,11 +896,11 @@ shadow root 内的界面共用一份 `style.css`（`index.js:10575` 等处 `load
 
 | 区 | 规格 |
 |---|---|
-| 页头 | 标题「小助手」+ 11px `--jy-muted` 一句说明；右侧「改了就存 ✓」不出现（本页不存设置） |
-| 快捷问题 | 一行 `.jy-ask-chips` 样式的圆角文字按钮（12，`padding: 4px 10px`），点了直接当问题发出 |
-| 对话 | v0.41.0 起改为聊天框，见 §17.3；出错时回答文字 `--jy-error`，不弹 toast 以外的东西 |
-| 建议 | 回答卡片底部，每条一行：左侧一句「把「项」改成「值」」，右侧 `.jy-button`「照这样改」；点完按钮换成 `--jy-ok`「✓ 已改」并禁用；动作类建议（识别角色、打开某页、删除多余正则）同一行样式，危险动作仍走 `.jy-ask` 确认 |
-| 输入区 | 页底：textarea（3 行，规格同 §9.4）+ 主按钮 + 文字按钮「清空」（`.jy-text-button`，放行尾，点了先 `.jy-ask` 确认）；下方一行 11px `--jy-muted` 写明会发送什么、走哪条连接，连接名是去「模型连接」页的文字链接 |
+| 页头 | 标题「小助手」+ 11px `--bgt-muted` 一句说明；右侧「改了就存 ✓」不出现（本页不存设置） |
+| 快捷问题 | 一行 `.bgt-ask-chips` 样式的圆角文字按钮（12，`padding: 4px 10px`），点了直接当问题发出 |
+| 对话 | v0.41.0 起改为聊天框，见 §17.3；出错时回答文字 `--bgt-error`，不弹 toast 以外的东西 |
+| 建议 | 回答卡片底部，每条一行：左侧一句「把「项」改成「值」」，右侧 `.bgt-button`「照这样改」；点完按钮换成 `--bgt-ok`「✓ 已改」并禁用；动作类建议（识别角色、打开某页、删除多余正则）同一行样式，危险动作仍走 `.bgt-ask` 确认 |
+| 输入区 | 页底：textarea（3 行，规格同 §9.4）+ 主按钮 + 文字按钮「清空」（`.bgt-text-button`，放行尾，点了先 `.bgt-ask` 确认）；下方一行 11px `--bgt-muted` 写明会发送什么、走哪条连接，连接名是去「模型连接」页的文字链接 |
 | 手机 | 输入区贴页底，卡片单列 |
 
 ### 16.3 连接与提示词
@@ -908,7 +908,7 @@ shadow root 内的界面共用一份 `style.css`（`index.js:10575` 等处 `load
 | 项 | 规格 |
 |---|---|
 | 用哪条连接 | v0.41.0 起在「各功能用哪条连接」里选（§17.1），连接卡不再带勾 |
-| 提示词 | 模型连接页一个 `.jy-fold` 折叠组「小助手的提示词」，收起时摘要写「默认」或「已改 N 字」；textarea 留空即用默认（默认写在占位里），行尾文字按钮恢复默认 |
+| 提示词 | 模型连接页一个 `.bgt-fold` 折叠组「小助手的提示词」，收起时摘要写「默认」或「已改 N 字」；textarea 留空即用默认（默认写在占位里），行尾文字按钮恢复默认 |
 
 不新增颜色、字号、圆角或动效 token。
 
@@ -920,10 +920,10 @@ shadow root 内的界面共用一份 `style.css`（`index.js:10575` 等处 `load
 
 | 项 | 规格 |
 |---|---|
-| 位置 | 高级模式「模型连接」页最上面一张 `.jy-card`；正常模式翻译台「API Key」卡最上面 |
+| 位置 | 高级模式「模型连接」页最上面一张 `.bgt-card`；正常模式翻译台「API Key」卡最上面 |
 | 标题 | 「各功能用哪条连接」 |
-| 行 | 固定三行：翻译 / 分析模式 / 小助手。左边功能名（`.jy-card-row-text h3`），右边一个下拉框（§9.4），选项为「跟随酒馆」加每条存好的连接名；手机上下拉框换到名字下面整行 |
-| 说明 | 分析模式一行在朗读功能关着时，名字下面 11px `--jy-muted`「朗读没开，眼下用不到」；朗读开着、分析模式关着时「分析模式没开，眼下用不到」 |
+| 行 | 固定三行：翻译 / 分析模式 / 小助手。左边功能名（`.bgt-card-row-text h3`），右边一个下拉框（§9.4），选项为「跟随酒馆」加每条存好的连接名；手机上下拉框换到名字下面整行 |
+| 说明 | 分析模式一行在朗读功能关着时，名字下面 11px `--bgt-muted`「朗读没开，眼下用不到」；朗读开着、分析模式关着时「分析模式没开，眼下用不到」 |
 | 连接卡 | 高级模式每条连接一张卡、正常模式每条连接一格，都去掉用途勾选；卡头只留名字、地址 · 模型摘要、内置徽章（跟随酒馆） |
 | 删除连接 | 被某个功能用着的连接删掉时，那个功能改回跟随酒馆，提示里写改了哪几个 |
 | 同步 | 翻译台（高级）「翻译用哪条连接」、朗读页与微调的「分析模式用的连接」和这里是同一个选择，改一处其余跟着变 |
@@ -933,9 +933,9 @@ shadow root 内的界面共用一份 `style.css`（`index.js:10575` 等处 `load
 
 | 项 | 规格 |
 |---|---|
-| 控件 | 「分析模式」一个开关（`.jy-switch`，§9.3）：关着是不分析，开着就是原来的深度分析 |
+| 控件 | 「分析模式」一个开关（`.bgt-switch`，§9.3）：关着是不分析，开着就是原来的深度分析 |
 | 位置 | 正常模式翻译台「朗读 · Fish Audio」卡、微调「朗读」卡、朗读页「读法」 |
-| 说明 | 开关下面一行 `--jy-muted` 灰字写当前这一档做什么 |
+| 说明 | 开关下面一行 `--bgt-muted` 灰字写当前这一档做什么 |
 | 改名 | 原来写「深度分析」的地方都叫「分析模式」：朗读页「更多」的折叠组、「分析模式用的连接」、提示词折叠里的标签、套餐说明「再加：分析模式、特效字」、悬浮窗步骤与药丸（「分析模式（N 句）」「分析模式 · N 秒」）、运行记录 |
 | 删掉 | 简单分析这一档、「朗读分析用的连接」、简单分析的提示词 |
 | 升级 | 旧设置选了简单分析的按不分析读入；深度分析原来「和朗读分析用同一条」的，定成当时朗读分析用的那条 |
@@ -947,19 +947,19 @@ shadow root 内的界面共用一份 `style.css`（`index.js:10575` 等处 `load
 | 区 | 规格 |
 |---|---|
 | 页面 | 自上而下：页头、快捷问题、聊天框、输入区；整页不滚，聊天框自己滚 |
-| 聊天框 | 1px `--jy-line`，圆角 `--jy-radius`，底 `--jy-field`，内边距 12；高度占满页头、快捷问题、输入区以外的空间，最小 240（手机 200）；多了在框里滚 |
-| 气泡 | 一问一答各一个气泡，间距 8；问题靠右，底 `--jy-accent-soft`，12.5；回答靠左，底 `--jy-surface` + 1px `--jy-line-soft`，13.5 / 1.6；圆角 `--jy-radius`，内边距 `8px 11px`，最宽 88%；建议列在回答气泡里（规格同 §16.2） |
+| 聊天框 | 1px `--bgt-line`，圆角 `--bgt-radius`，底 `--bgt-field`，内边距 12；高度占满页头、快捷问题、输入区以外的空间，最小 240（手机 200）；多了在框里滚 |
+| 气泡 | 一问一答各一个气泡，间距 8；问题靠右，底 `--bgt-accent-soft`，12.5；回答靠左，底 `--bgt-surface` + 1px `--bgt-line-soft`，13.5 / 1.6；圆角 `--bgt-radius`，内边距 `8px 11px`，最宽 88%；建议列在回答气泡里（规格同 §16.2） |
 | 新消息 | 发出问题、收到回答时滚到最底；读者往上翻着看（离底部超过 80px）时收到回答不强行滚 |
 | 关面板 | 请求不取消，回答照常收下，下次打开还在；只有「清空」会取消正在问的 |
 | 没问到或取消 | 问题放回输入框（输入框空着才放），改了可以再发 |
 | 草稿 | 输入框里没发出去的字，关掉面板再打开还在（本次打开酒馆期间） |
-| 等待中 | 回答气泡里 `.jy-state-mark` busy「◌ 正在想…」；发送按钮禁用 |
+| 等待中 | 回答气泡里 `.bgt-state-mark` busy「◌ 正在想…」；发送按钮禁用 |
 
 ### 17.4 音色库与角色表
 
 | 项 | 规格 |
 |---|---|
-| 列表框 | 角色表、音色库的列表各在一个框里：1px `--jy-line`，圆角 `--jy-radius`，左右内边距 10；最高 360（手机 50dvh），多了在框里滚 |
+| 列表框 | 角色表、音色库的列表各在一个框里：1px `--bgt-line`，圆角 `--bgt-radius`，左右内边距 10；最高 360（手机 50dvh），多了在框里滚 |
 | 行 | 每行默认收起，一行写名字和音色（绑了音色写音色名或 Voice ID 前 8 位；角色没绑写「跟随对白默认音色」，音色库没填写「没填 Voice ID」）；点开才显示输入框；展开箭头同 §9.5 角色行 |
 | 添加 | 「添加角色」「添加音色」仍在列表上面；新的一行插在列表最上面，展开并把光标放进名字框，列表框滚回顶部；其余行不动 |
 | 顺序 | 新加的排在最前，存下来也是这个顺序 |
@@ -987,7 +987,7 @@ shadow root 内的界面共用一份 `style.css`（`index.js:10575` 等处 `load
 | 控件 | 一个开关「点正文跳到悬浮窗」，默认开 |
 | 开 | 同 §14 片段跳转：单击正文里已翻译的段落，悬浮窗开着就滚到那一段并高亮一次，关着就先打开再定位 |
 | 关 | 单击正文什么都不做：悬浮窗不打开，也不滚动 |
-| 位置 | 高级模式「正文处理 › 界面与正则」，`.jy-check` 勾选行，紧跟「楼层里的朗读按钮」；正常模式「微调 › 显示」卡最下面一行（`.jy-summary-row` + `.jy-switch`） |
+| 位置 | 高级模式「正文处理 › 界面与正则」，`.bgt-check` 勾选行，紧跟「楼层里的朗读按钮」；正常模式「微调 › 显示」卡最下面一行（`.bgt-summary-row` + `.bgt-switch`） |
 | 同步 | 两处是同一个设置，改一处另一处跟着变 |
 | 折叠摘要 | 「界面与正则」收起时，关着才在摘要里加「点正文跳到悬浮窗 · 关」 |
 | 套餐 | 套餐不碰 |
@@ -997,7 +997,7 @@ shadow root 内的界面共用一份 `style.css`（`index.js:10575` 等处 `load
 | 项 | 规格 |
 |---|---|
 | 位置 | 高级模式「朗读 › 更多 › 副模型提示词（高级）」最上面，在「分析模式」提示词上面；正常模式没有 |
-| 控件 | `.jy-label`「破限词」+ 4 行输入框（占位「留空即不发送」）；下面 `.jy-processing-toolbar` 一个 `.jy-text-button`「破限词」（按钮名常夜灯 2026-10-02 定）；再下面一行 `--jy-muted` 说明，开头先说这个按钮做什么 |
+| 控件 | `.bgt-label`「破限词」+ 4 行输入框（占位「留空即不发送」）；下面 `.bgt-processing-toolbar` 一个 `.bgt-text-button`「破限词」（按钮名常夜灯 2026-10-02 定）；再下面一行 `--bgt-muted` 说明，开头先说这个按钮做什么 |
 | 发送 | 填了就作为第一条 system 消息，放在发给副模型的每个请求最前面：分析这一楼、按意见改标注、从世界书识别角色；翻译和小助手不带；`{{char}}`、`{{user}}` 等酒馆宏照常替换；留空不发 |
 | 「破限词」按钮 | 把当前翻译方案的破限词（语言占位符换成实际值）填进框里，替换原有内容，马上保存并把光标放进框里；翻译方案没填时只提示一句，框不动 |
 | 保存 | 同页其他提示词框，改完离开输入框就存 |
@@ -1008,9 +1008,9 @@ shadow root 内的界面共用一份 `style.css`（`index.js:10575` 等处 `load
 
 | 项 | 规格 |
 |---|---|
-| 「亲密场景」 | 高级模式「朗读 › 读法」卡「分析模式」行下面一行 `.jy-card-row-dependent`，`.jy-check` 勾选，默认关；下面一行 `.jy-muted` 说明；分析模式关着时变灰，`.jy-dependent-reason` 写「先打开上面的「分析模式」，这一项才会生效。」 |
-| 微调 | 「微调 › 朗读」卡「分析模式用的连接」下面一行 `.jy-summary-row-sub` 开关「亲密场景」，分析模式关着时整行隐藏 |
-| 悬浮窗 | 朗读页「更多」里「重新分析」下面一项 `.jy-text-button`「亲密场景 开」/「亲密场景 关」，`aria-pressed`，关时 `--jy-muted`（同翻译页「自动 开/关」）；分析模式关着时隐藏；点一下切换并保存，提示「亲密场景已打开（关闭）。没按这个设置分析过的楼层，读的时候会重新分析。」；与朗读页、微调页的「亲密场景」是同一个设置（常夜灯 2026-10-02 要求在悬浮窗加一个，开关不交给模型自动判断） |
+| 「亲密场景」 | 高级模式「朗读 › 读法」卡「分析模式」行下面一行 `.bgt-card-row-dependent`，`.bgt-check` 勾选，默认关；下面一行 `.bgt-muted` 说明；分析模式关着时变灰，`.bgt-dependent-reason` 写「先打开上面的「分析模式」，这一项才会生效。」 |
+| 微调 | 「微调 › 朗读」卡「分析模式用的连接」下面一行 `.bgt-summary-row-sub` 开关「亲密场景」，分析模式关着时整行隐藏 |
+| 悬浮窗 | 朗读页「更多」里「重新分析」下面一项 `.bgt-text-button`「亲密场景 开」/「亲密场景 关」，`aria-pressed`，关时 `--bgt-muted`（同翻译页「自动 开/关」）；分析模式关着时隐藏；点一下切换并保存，提示「亲密场景已打开（关闭）。没按这个设置分析过的楼层，读的时候会重新分析。」；与朗读页、微调页的「亲密场景」是同一个设置（常夜灯 2026-10-02 要求在悬浮窗加一个，开关不交给模型自动判断） |
 | 改句面板 | 「语速」「音量 dB」一行里加「张力」数字框（1~5，步长 1，留空按分析的），改了和语速音量一样要点「重新生成并播放」 |
 | 摘要 | 改句面板的分析摘要多一行「张力」；语速多「很慢」「很快」两档 |
 | 套餐 | 套餐不碰「亲密场景」 |
@@ -1022,7 +1022,7 @@ shadow root 内的界面共用一份 `style.css`（`index.js:10575` 等处 `load
 | 项 | 规格 |
 |---|---|
 | 位置 | 高级模式「正文处理 › 提取范围」卡，「提取标签」的说明下面、「替换标签」上面 |
-| 控件 | 复用「替换标签」的 label + textarea（`rows="2"`，`spellcheck="false"`，占位「</thinking>」），标签文字「正文起点（找不到提取标签时用）」；下面一行 `.jy-muted` 说明 |
+| 控件 | 复用「替换标签」的 label + textarea（`rows="2"`，`spellcheck="false"`，占位「</thinking>」），标签文字「正文起点（找不到提取标签时用）」；下面一行 `.bgt-muted` 说明 |
 | 行为 | 一个提取标签都没有时，从最后出现的那个起点后面算正文，到楼层末尾；只写了结束标签的，算到结束标签为止；正文末尾紧挨着的排除块留在正文外面。改了就存 |
 | 检查当前楼层 | 「正文标签」各行下面多一行「正文起点：没找到提取标签，从「X」后面开始算正文，到 … 为止 / 到楼层末尾 / 到替换标签前」；填了但没找到时写「正文起点：「X」都没有找到」 |
 | 正常模式 | 「你自己的设置 › 提取标签」摘要在标签后面加「 · 正文起点 X」 |
@@ -1035,9 +1035,9 @@ shadow root 内的界面共用一份 `style.css`（`index.js:10575` 等处 `load
 | 项 | 规格 |
 |---|---|
 | 三档 | 关 / 自动 / 开（`tts.intimate` = off / auto / on，默认关；旧设置里勾着的读成开）。自动：分析模式自己判断整楼是不是亲密戏，只有叙述里写出了实质的亲密接触，tone 才写「亲密」，判成亲密才放开喘息和低吟 |
-| 朗读 › 读法 | 「亲密场景」行改为 `.jy-card-row-field`：文字 + `<select>`（关 / 自动 / 开）；下面一行 `.jy-muted` 依次说明三档；分析模式关着时同 §17.9 变灰并写原因 |
-| 微调 › 朗读 | 「分析模式用的连接」下面一行改为 `.jy-summary-row.jy-summary-select.jy-summary-row-sub`（同连接那一行）：「亲密场景」+ `<select>`；分析模式关着时整行隐藏 |
-| 悬浮窗 | 朗读页「更多」里的 `.jy-text-button` 点一下换一档：关 → 自动 → 开 → 关，文字「亲密场景 关 / 自动 / 开」，`aria-pressed` 不是关时为 true；提示「亲密场景改成「X」。没按这个设置分析过的楼层，读的时候会重新分析。」 |
+| 朗读 › 读法 | 「亲密场景」行改为 `.bgt-card-row-field`：文字 + `<select>`（关 / 自动 / 开）；下面一行 `.bgt-muted` 依次说明三档；分析模式关着时同 §17.9 变灰并写原因 |
+| 微调 › 朗读 | 「分析模式用的连接」下面一行改为 `.bgt-summary-row.bgt-summary-select.bgt-summary-row-sub`（同连接那一行）：「亲密场景」+ `<select>`；分析模式关着时整行隐藏 |
+| 悬浮窗 | 朗读页「更多」里的 `.bgt-text-button` 点一下换一档：关 → 自动 → 开 → 关，文字「亲密场景 关 / 自动 / 开」，`aria-pressed` 不是关时为 true；提示「亲密场景改成「X」。没按这个设置分析过的楼层，读的时候会重新分析。」 |
 | 基调 | 分析模式的回答最前面写整楼 tone，从翻译场景卡同一套 11 个词里选（日常、轻松、温馨、浪漫、亲密、悲伤、紧张、悬疑、恐怖、战斗、壮阔）；运行记录写「基调「X」」，自动档再写判没判成亲密戏 |
 | 基调约束 | 程序按 tone 去掉不该有的标签：紧张、悬疑、恐怖、战斗、壮阔去掉 [breathy]、[groan]；日常、轻松、温馨、悲伤去掉 [groan]；浪漫、亲密交给亲密场景。旁白张力最多 3 |
 | 套餐 | 套餐不碰「亲密场景」 |
@@ -1046,8 +1046,8 @@ shadow root 内的界面共用一份 `style.css`（`index.js:10575` 等处 `load
 
 | 项 | 规格 |
 |---|---|
-| 位置 | 朗读 › 音色 › 角色表每一行展开后，「＋ 多国语言音色」右边加 `.jy-button.jy-tts-lang-button`「＋ 情绪音色」；行列表放在多国语言音色下面（grid-area `moods`） |
-| 一行 | 复用多国语言音色行（`.jy-tts-lang-row.jy-tts-mood-row`）：条件 `<select>`（耳语、气声 / 笑着说 / 张力 4 以上 / 基调：X × 11）+ Voice ID 输入框与音色库选择 + ×；条件列 112px，手机 96px |
+| 位置 | 朗读 › 音色 › 角色表每一行展开后，「＋ 多国语言音色」右边加 `.bgt-button.bgt-tts-lang-button`「＋ 情绪音色」；行列表放在多国语言音色下面（grid-area `moods`） |
+| 一行 | 复用多国语言音色行（`.bgt-tts-lang-row.bgt-tts-mood-row`）：条件 `<select>`（耳语、气声 / 笑着说 / 张力 4 以上 / 基调：X × 11）+ Voice ID 输入框与音色库选择 + ×；条件列 112px，手机 96px |
 | 行为 | 念每一句时在本地按分析结果挑：句子开头是 [whisper]/[breathy] → 耳语、气声；开头是 [laughter]/[snicker] → 笑着说；张力 4 以上 → 张力 4 以上；这一楼的基调 → 基调：X。按行里的顺序取第一个对得上的；有这门语言的专属音色时先用语言音色；没开分析模式不换。每个条件一个音色，一行最多 8 个 |
 | 折叠摘要 | 角色行收起时的说明里加「情绪音色 N」 |
 
@@ -1057,11 +1057,11 @@ shadow root 内的界面共用一份 `style.css`（`index.js:10575` 等处 `load
 
 | 项 | 规格 |
 |---|---|
-| 位置 | 悬浮窗朗读页改句面板（句子行「详细」）：标签一行最前面加 `.jy-mini-chip`「唱」，在「插入情绪…」左边 |
-| 状态 | 「发给 Fish 的内容」开头几个标签里有 `[singing]` 时为按下态 `aria-pressed="true"`（§9.2 筛选 chip 的按下态：实底 `--jy-accent`，字 `--jy-on-accent`；原先只写在日志筛选里，改为所有 `.jy-mini-chip` 通用，只影响带 `aria-pressed` 的 chip） |
+| 位置 | 悬浮窗朗读页改句面板（句子行「详细」）：标签一行最前面加 `.bgt-mini-chip`「唱」，在「插入情绪…」左边 |
+| 状态 | 「发给 Fish 的内容」开头几个标签里有 `[singing]` 时为按下态 `aria-pressed="true"`（§9.2 筛选 chip 的按下态：实底 `--bgt-accent`，字 `--bgt-on-accent`；原先只写在日志筛选里，改为所有 `.bgt-mini-chip` 通用，只影响带 `aria-pressed` 的 chip） |
 | 按下 | 内容改成 `[singing]` + 这句的字（其余标签去掉）；再按一次只去掉开头的 `[singing]`；之后照常「重新生成并播放」，存成这一句的改写，整楼朗读时这句单独一条，唱完接着正常读；「恢复自动」回到程序的判断 |
 | 模型 | S2 系列才能唱；选 s1 时 chip 不可用（§9.1 禁用态），提示写「s1 不能唱。换成 S2 系列模型…」；已经存成唱的句子在 s1 下去掉 `[singing]` 照常念，面板说明里写明 |
-| 句子列表 | 唱的句子药丸写「唱」（代替「改过」，同一个 `.jy-mini-pill.jy-mini-pill-edited`） |
+| 句子列表 | 唱的句子药丸写「唱」（代替「改过」，同一个 `.bgt-mini-pill.bgt-mini-pill-edited`） |
 | 情绪音色 | §17.12 的条件下拉加「唱」（在「张力 4 以上」后面）：唱的句子用这个音色，比如同一个声优另外克隆的唱歌音色；不需要开分析模式；语言音色仍然优先 |
 | 说明文字 | 面板说明：「这句会唱出来：Fish 带旋律感地念，不会照某首歌的曲调唱；角色有「唱」的情绪音色时用那个音色。唱完接着正常读…」；朗读页「楼层朗读」说明末尾补一句怎么找到「唱」 |
 
@@ -1072,11 +1072,11 @@ shadow root 内的界面共用一份 `style.css`（`index.js:10575` 等处 `load
 | 项 | 规格 |
 |---|---|
 | 声音来源 | 朗读页第一张卡最上面一行加下拉「声音来源」：`Fish Audio` / `GPT-SoVITS（本地）`。选哪个就只显示哪张卡：「Fish Audio」卡或「GPT-SoVITS」卡；「更多」里同理只显示「Fish 参数」或「GPT-SoVITS 参数」。两张卡各有一份这个下拉（同一字段的两个副本，§15.2 的同步规则），切换后立即保存 |
-| GPT-SoVITS 卡 | 标题 `h2`「GPT-SoVITS」；第一行「声音来源」+「接口地址」（默认 `http://127.0.0.1:9880`）；「测试连接」按钮（`.jy-button`）右边一行结果文字；「经酒馆 CORS 代理发送」勾选框和说明（沿用 Fish 卡的写法）；下面一个分组框「默认音色」（沿用「多国语言」分组框 `.jy-tts-lang-block` 的样式）：参考音频、参考音频的文字、参考音频语言（中文 / 日语 / 英语 / 韩语 / 粤语 / 自动）、GPT 模型（.ckpt，可不填）、SoVITS 模型（.pth，可不填）；卡底一段 `.jy-muted` 说明怎么启动 api_v2.py、路径怎么复制 |
+| GPT-SoVITS 卡 | 标题 `h2`「GPT-SoVITS」；第一行「声音来源」+「接口地址」（默认 `http://127.0.0.1:9880`）；「测试连接」按钮（`.bgt-button`）右边一行结果文字；「经酒馆 CORS 代理发送」勾选框和说明（沿用 Fish 卡的写法）；下面一个分组框「默认音色」（沿用「多国语言」分组框 `.bgt-tts-lang-block` 的样式）：参考音频、参考音频的文字、参考音频语言（中文 / 日语 / 英语 / 韩语 / 粤语 / 自动）、GPT 模型（.ckpt，可不填）、SoVITS 模型（.pth，可不填）；卡底一段 `.bgt-muted` 说明怎么启动 api_v2.py、路径怎么复制 |
 | 测试连接 | 先问服务器版本（结果写「GPT-SoVITS 连接正常（v2）」）；填了默认音色就用它读一句并直接播放，结果写秒数；没填就提示填好再点 |
-| 音色库 | 每个音色展开后，在原来那一行（名字、Fish Voice ID、语言、移除）下面加一块「GPT-SoVITS」：一条 1px `--jy-line-soft` 分隔线，小标题用 `.jy-label`，两行输入：参考音频路径、参考音频的文字、参考音频语言；GPT 模型、SoVITS 模型、「试听」按钮（`.jy-button`）。手机（≤640px）排成两列。Voice ID 框占位字改为「Fish Voice ID（只用 GPT-SoVITS 可以不填）」；只填了 GPT-SoVITS 的音色，Voice ID 框留空，收起时一行写「GPT-SoVITS · 语言」 |
+| 音色库 | 每个音色展开后，在原来那一行（名字、Fish Voice ID、语言、移除）下面加一块「GPT-SoVITS」：一条 1px `--bgt-line-soft` 分隔线，小标题用 `.bgt-label`，两行输入：参考音频路径、参考音频的文字、参考音频语言；GPT 模型、SoVITS 模型、「试听」按钮（`.bgt-button`）。手机（≤640px）排成两列。Voice ID 框占位字改为「Fish Voice ID（只用 GPT-SoVITS 可以不填）」；只填了 GPT-SoVITS 的音色，Voice ID 框留空，收起时一行写「GPT-SoVITS · 语言」 |
 | 试听 | 用这个音色读一句固定的短句（按音色的语言：中文、日语、英语、韩语、粤语），点了按钮字变「生成中…」，读完恢复 |
-| GPT-SoVITS 参数（更多） | 折叠组，摘要「语速 1 · temperature 1 · top_k 15」；超时 / 秒、失败后自动重试次数；语速（0.6–1.65）、音量调整 / dB、temperature、top_p、top_k、重复惩罚、切句方式（按标点切（默认）/ 不切 / 凑四句一切 / 凑 50 字一切 / 按中文句号切 / 按英文句号切）；「发给 GPT-SoVITS 前去掉正文里的 HTML」「按分析出的语速、音量读」两个勾选框（和 Fish 参数里的同一字段）；两段 `.jy-muted` 说明 |
+| GPT-SoVITS 参数（更多） | 折叠组，摘要「语速 1 · temperature 1 · top_k 15」；超时 / 秒、失败后自动重试次数；语速（0.6–1.65）、音量调整 / dB、temperature、top_p、top_k、重复惩罚、切句方式（按标点切（默认）/ 不切 / 凑四句一切 / 凑 50 字一切 / 按中文句号切 / 按英文句号切）；「发给 GPT-SoVITS 前去掉正文里的 HTML」「按分析出的语速、音量读」两个勾选框（和 Fish 参数里的同一字段）；两段 `.bgt-muted` 说明 |
 | 悬浮窗 | 改句面板的文本框标题按声音来源写「发给 GPT-SoVITS 的内容（它只读字，方括号里的标签会被去掉）」；「唱」chip 在 GPT-SoVITS 下不可用（§9.1 禁用态），提示「GPT-SoVITS 不能唱…」；句子行「重新生成」「详细」的提示文字、确认框里的「向 Fish 要一次」都换成当前的声音来源 |
 | 翻译台 | 「朗读（有声小说）」卡说明末尾改为「需要 Fish Audio 的 API Key，或者在自己电脑上运行 GPT-SoVITS」；声音来源是 GPT-SoVITS 时，Fish 卡不显示「没填」 |
 
@@ -1088,11 +1088,11 @@ shadow root 内的界面共用一份 `style.css`（`index.js:10575` 等处 `load
 |---|---|
 | 句子行 | 悬浮窗朗读页句子行的按钮为「播放」「唱」「重新生成」「缓存」「详细」（§12.6 的收起 / 展开规则不变）。按「唱」：这句改成唱（内容为 `[singing]` + 这句的字），重新生成并播放；已经在唱的句子这个位置写「取消唱」，按了回到程序自己的版本（歌词行则改成照常念，存成这句的改写）；生成时按钮字为「生成中…」 |
 | 歌词行 | 「正文处理 → 歌词行」规则命中的行（含「音乐卡片」按歌词处理的行）进入朗读：每行一句，唱原文（读译文、对白读原文时也唱原文，括号里的译文照常显示），默认用旁白的音色；改句面板的说话人下拉对歌词行也显示，选了角色就由这个角色唱（情绪音色「唱」照常生效）；歌词行不送分析模式，也不等分析结果；朗读范围（只读对白 / 只读旁白）不管歌词行 |
-| 楼层按钮 | 一段连续的歌词行只挂一对：`.jy-tts-line-play`「唱」（图标为两个连着的八分音符，画法同播放三角）＋「重新生成」，挂在这段最后一行显示出来的末尾（「原文 (译文)」的右括号后面）；「唱」唱完这一段就停（同 §9.9 原文折叠块）；原文折叠里的歌词段单独挂，不并进折叠块那一对；「每句一个」模式下歌词行不加每句按钮 |
+| 楼层按钮 | 一段连续的歌词行只挂一对：`.bgt-tts-line-play`「唱」（图标为两个连着的八分音符，画法同播放三角）＋「重新生成」，挂在这段最后一行显示出来的末尾（「原文 (译文)」的右括号后面）；「唱」唱完这一段就停（同 §9.9 原文折叠块）；原文折叠里的歌词段单独挂，不并进折叠块那一对；「每句一个」模式下歌词行不加每句按钮 |
 | 整楼朗读 | 读到歌词行就唱，唱完接着读正文；歌词与前后正文分开请求（`[singing]` 开头会让同一请求里后面的句子也带旋律感） |
-| 开关 | 「正文处理 → 歌词行」折叠组里加勾选框「朗读时唱出来」（默认勾上，`.jy-behaviors` 里的 `.jy-check`），下面一段 `.jy-muted` 说明；不勾时歌词行不进朗读，楼层里也没有「唱」 |
+| 开关 | 「正文处理 → 歌词行」折叠组里加勾选框「朗读时唱出来」（默认勾上，`.bgt-behaviors` 里的 `.bgt-check`），下面一段 `.bgt-muted` 说明；不勾时歌词行不进朗读，楼层里也没有「唱」 |
 | 不能唱时 | 声音来源是 GPT-SoVITS，或 Fish 模型选了 s1：歌词行不进朗读；楼层歌词段只剩一个「唱」；句子行的「唱」/「取消唱」、楼层的「唱」、改句面板的「唱」chip 都是淡化态，用 `aria-disabled="true"` 而不是 `disabled`，按了用 toast 说原因（「GPT-SoVITS 不能唱，换成 Fish 的 S2 系列才能唱。」/「s1 不能唱，换成 Fish 的 S2 系列才能唱。」），改句面板说明里也写这句 |
-| 淡化态 | 控制中心与悬浮窗（`.jy-text-button`、`.jy-mini-chip`）：§9.1 禁用态的不透明度 .48，光标 default，悬停不变化；楼层按钮平时 .5、悬停 1，淡化态按同一比例取 .24 / .48 |
+| 淡化态 | 控制中心与悬浮窗（`.bgt-text-button`、`.bgt-mini-chip`）：§9.1 禁用态的不透明度 .48，光标 default，悬停不变化；楼层按钮平时 .5、悬停 1，淡化态按同一比例取 .24 / .48 |
 | 句子列表药丸 | 歌词行自带药丸「唱」；改成照常念的歌词行为「改过」 |
 | 改句面板说明 | 歌词行：「这句是歌词行，会唱出来……点上面的「唱」再「重新生成并播放」，就改成照常念。」；设成唱但现在不能唱：「这句设成了唱，但{原因}这句先照常念。」（歌词行：「这句是歌词行，但{原因}歌词行先不读。」） |
 | 说明文字 | 朗读页「楼层朗读」说明末尾：想让一句唱出来，在朗读页点这一句再点「唱」；歌词行默认就唱，楼层里一段歌词的末尾有「唱」按钮，开关在「正文处理 → 歌词行」 |

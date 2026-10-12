@@ -1,6 +1,6 @@
 @import url('./reading.css?v=0.51.4');
 
-#jingyi-translator-settings .jingyi-entry-row {
+#beagle-test-translator-settings .beagle-test-entry-row {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -8,17 +8,17 @@
   margin: 10px 0 4px;
 }
 
-#jingyi-translator-settings .jingyi-entry-state {
+#beagle-test-translator-settings .beagle-test-entry-state {
   color: var(--SmartThemeBodyColor, #b8bec8);
   font-size: 0.88em;
 }
 
-#jingyi-translator-settings .jingyi-open-button {
+#beagle-test-translator-settings .beagle-test-open-button {
   width: auto;
   min-width: 132px;
 }
 
-#jingyi-translator-floating-button {
+#beagle-test-translator-floating-button {
   position: fixed;
   z-index: 2147482900;
   display: flex;
@@ -40,8 +40,8 @@
   box-shadow: 0 7px 20px #07181344;
   cursor: grab;
   opacity: 0.86;
-  --jy-fab-progress: 1;
-  --jy-fab-accent: #96a1ad;
+  --bgt-fab-progress: 1;
+  --bgt-fab-accent: #96a1ad;
   transition:
     width 380ms cubic-bezier(0.22, 0.72, 0.2, 1),
     border-radius 380ms cubic-bezier(0.22, 0.72, 0.2, 1),
@@ -51,33 +51,33 @@
     box-shadow 160ms ease;
 }
 
-#jingyi-translator-floating-button[data-form="pill"] {
+#beagle-test-translator-floating-button[data-form="pill"] {
   width: 124px;
   padding-right: 14px;
 }
 
 /* Only the running pill carries a progress bar and a percentage, so only it needs the extra room. */
-#jingyi-translator-floating-button[data-form="pill"][data-status="running"] {
+#beagle-test-translator-floating-button[data-form="pill"][data-status="running"] {
   width: 178px;
 }
 
 /* Hovering previews the expanded form, so the shape change is reachable even while nothing is running.
    The edge form is the phone shape and never sees a hover. */
-#jingyi-translator-floating-button:hover:not([data-form="edge"]),
-#jingyi-translator-floating-button:focus-visible:not([data-form="edge"]) {
+#beagle-test-translator-floating-button:hover:not([data-form="edge"]),
+#beagle-test-translator-floating-button:focus-visible:not([data-form="edge"]) {
   width: 124px;
   padding-right: 14px;
 }
 
-#jingyi-translator-floating-button[data-status="running"]:hover:not([data-form="edge"]),
-#jingyi-translator-floating-button[data-status="running"]:focus-visible:not([data-form="edge"]) {
+#beagle-test-translator-floating-button[data-status="running"]:hover:not([data-form="edge"]),
+#beagle-test-translator-floating-button[data-status="running"]:focus-visible:not([data-form="edge"]) {
   width: 178px;
 }
 
 /* The phone form is a tab on the right rim, as in the design: not a ball cut in half. It used to keep the
    ball's progress ring inside a half-pill, where a 32×40 core stretched the ring off-centre — the circle
    sat above and left of both the glyph and the tab's own curve. */
-#jingyi-translator-floating-button[data-form="edge"] {
+#beagle-test-translator-floating-button[data-form="edge"] {
   width: 38px;
   height: 34px;
   border-right: 0;
@@ -85,7 +85,7 @@
   box-shadow: -4px 6px 18px #07181366;
 }
 
-#jingyi-translator-floating-button .jingyi-fab-core {
+#beagle-test-translator-floating-button .beagle-test-fab-core {
   position: relative;
   display: grid;
   place-items: center;
@@ -94,7 +94,7 @@
   flex: 0 0 auto;
 }
 
-#jingyi-translator-floating-button[data-form="edge"] .jingyi-fab-core {
+#beagle-test-translator-floating-button[data-form="edge"] .beagle-test-fab-core {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -105,28 +105,28 @@
 }
 
 /* A tab carries a status dot instead of a ring, and shows progress as a hairline along its foot. */
-#jingyi-translator-floating-button[data-form="edge"] .jingyi-fab-ring,
-#jingyi-translator-floating-button[data-form="edge"] .jingyi-fab-detail {
+#beagle-test-translator-floating-button[data-form="edge"] .beagle-test-fab-ring,
+#beagle-test-translator-floating-button[data-form="edge"] .beagle-test-fab-detail {
   display: none;
 }
 
-#jingyi-translator-floating-button[data-form="edge"] .jingyi-fab-core::before {
+#beagle-test-translator-floating-button[data-form="edge"] .beagle-test-fab-core::before {
   content: '';
   width: 6px;
   height: 6px;
   flex: 0 0 auto;
   border-radius: 50%;
-  background: var(--jy-fab-accent);
+  background: var(--bgt-fab-accent);
   transition: background 260ms ease;
 }
 
-#jingyi-translator-floating-button[data-form="edge"] .jingyi-fab-glyph {
+#beagle-test-translator-floating-button[data-form="edge"] .beagle-test-fab-glyph {
   width: 14px;
   height: 14px;
   flex: 0 0 auto;
 }
 
-#jingyi-translator-floating-button[data-form="edge"]::after {
+#beagle-test-translator-floating-button[data-form="edge"]::after {
   content: '';
   position: absolute;
   left: 7px;
@@ -134,41 +134,41 @@
   bottom: 3px;
   height: 2px;
   border-radius: 1px;
-  background: var(--jy-fab-accent);
-  transform: scaleX(var(--jy-fab-progress));
+  background: var(--bgt-fab-accent);
+  transform: scaleX(var(--bgt-fab-progress));
   transform-origin: 0 50%;
   opacity: 0;
   transition: transform 240ms linear, opacity 160ms ease;
 }
 
-#jingyi-translator-floating-button[data-form="edge"][data-status="running"]::after {
+#beagle-test-translator-floating-button[data-form="edge"][data-status="running"]::after {
   opacity: 1;
 }
 
-#jingyi-translator-floating-button .jingyi-fab-ring {
+#beagle-test-translator-floating-button .beagle-test-fab-ring {
   position: absolute;
   inset: 3px;
   transform: rotate(-90deg);
   pointer-events: none;
 }
 
-#jingyi-translator-floating-button .jingyi-fab-ring .jingyi-fab-track {
+#beagle-test-translator-floating-button .beagle-test-fab-ring .beagle-test-fab-track {
   fill: none;
   stroke: #35604f;
   stroke-width: 2;
 }
 
-#jingyi-translator-floating-button .jingyi-fab-ring .jingyi-fab-value {
+#beagle-test-translator-floating-button .beagle-test-fab-ring .beagle-test-fab-value {
   fill: none;
-  stroke: var(--jy-fab-accent);
+  stroke: var(--bgt-fab-accent);
   stroke-width: 2.5;
   stroke-linecap: round;
   stroke-dasharray: 100;
-  stroke-dashoffset: calc(100 - var(--jy-fab-progress) * 100);
+  stroke-dashoffset: calc(100 - var(--bgt-fab-progress) * 100);
   transition: stroke-dashoffset 400ms cubic-bezier(0.3, 0.7, 0.4, 1), stroke 260ms ease;
 }
 
-#jingyi-translator-floating-button .jingyi-fab-glyph {
+#beagle-test-translator-floating-button .beagle-test-fab-glyph {
   display: grid;
   place-items: center;
   width: 100%;
@@ -176,7 +176,7 @@
   pointer-events: none;
 }
 
-#jingyi-translator-floating-button .jingyi-fab-glyph svg {
+#beagle-test-translator-floating-button .beagle-test-fab-glyph svg {
   width: 16px;
   height: 16px;
   fill: none;
@@ -186,12 +186,12 @@
   stroke-linejoin: round;
 }
 
-#jingyi-translator-floating-button[data-form="edge"] .jingyi-fab-glyph svg {
+#beagle-test-translator-floating-button[data-form="edge"] .beagle-test-fab-glyph svg {
   width: 14px;
   height: 14px;
 }
 
-#jingyi-translator-floating-button .jingyi-fab-detail {
+#beagle-test-translator-floating-button .beagle-test-fab-detail {
   display: flex;
   flex-direction: column;
   gap: 4px;
@@ -203,33 +203,33 @@
   transition: opacity 200ms ease;
 }
 
-#jingyi-translator-floating-button[data-form="pill"] .jingyi-fab-detail,
-#jingyi-translator-floating-button:hover:not([data-form="edge"]) .jingyi-fab-detail,
-#jingyi-translator-floating-button:focus-visible:not([data-form="edge"]) .jingyi-fab-detail {
+#beagle-test-translator-floating-button[data-form="pill"] .beagle-test-fab-detail,
+#beagle-test-translator-floating-button:hover:not([data-form="edge"]) .beagle-test-fab-detail,
+#beagle-test-translator-floating-button:focus-visible:not([data-form="edge"]) .beagle-test-fab-detail {
   opacity: 1;
   transition-delay: 210ms;
 }
 
-#jingyi-translator-floating-button .jingyi-fab-line {
+#beagle-test-translator-floating-button .beagle-test-fab-line {
   display: flex;
   align-items: baseline;
   justify-content: space-between;
   gap: 8px;
 }
 
-#jingyi-translator-floating-button .jingyi-fab-label {
+#beagle-test-translator-floating-button .beagle-test-fab-label {
   color: #e7eee3;
   font: 600 11px/1.4 system-ui, "Microsoft YaHei", sans-serif;
   white-space: nowrap;
 }
 
-#jingyi-translator-floating-button .jingyi-fab-count {
+#beagle-test-translator-floating-button .beagle-test-fab-count {
   color: #9db4a6;
   font: 10px/1.4 system-ui, "Microsoft YaHei", sans-serif;
   white-space: nowrap;
 }
 
-#jingyi-translator-floating-button .jingyi-fab-bar {
+#beagle-test-translator-floating-button .beagle-test-fab-bar {
   display: none;
   height: 3px;
   border-radius: 2px;
@@ -237,50 +237,50 @@
   overflow: hidden;
 }
 
-#jingyi-translator-floating-button .jingyi-fab-bar > i {
+#beagle-test-translator-floating-button .beagle-test-fab-bar > i {
   display: block;
   height: 100%;
   width: 100%;
-  background: var(--jy-fab-accent);
-  transform: scaleX(var(--jy-fab-progress));
+  background: var(--bgt-fab-accent);
+  transform: scaleX(var(--bgt-fab-progress));
   transform-origin: 0 50%;
   transition: transform 240ms linear, background 200ms ease;
 }
 
-#jingyi-translator-floating-button[data-status="running"] .jingyi-fab-bar { display: block; }
+#beagle-test-translator-floating-button[data-status="running"] .beagle-test-fab-bar { display: block; }
 
-#jingyi-translator-floating-button[data-status="running"] { --jy-fab-accent: #f0c56e; }
-#jingyi-translator-floating-button[data-status="success"] { --jy-fab-accent: #8ee1d6; }
-#jingyi-translator-floating-button[data-status="error"] { --jy-fab-accent: #f18f8f; }
+#beagle-test-translator-floating-button[data-status="running"] { --bgt-fab-accent: #f0c56e; }
+#beagle-test-translator-floating-button[data-status="success"] { --bgt-fab-accent: #8ee1d6; }
+#beagle-test-translator-floating-button[data-status="error"] { --bgt-fab-accent: #f18f8f; }
 
-#jingyi-translator-floating-button:hover,
-#jingyi-translator-floating-button:focus-visible,
-#jingyi-translator-floating-button.is-dragging {
+#beagle-test-translator-floating-button:hover,
+#beagle-test-translator-floating-button:focus-visible,
+#beagle-test-translator-floating-button.is-dragging {
   opacity: 1;
   transform: translateY(-1px);
   box-shadow: 0 13px 36px rgba(0, 0, 0, 0.5), 0 0 0 4px rgba(117, 213, 201, 0.15);
 }
 
-#jingyi-translator-floating-button[data-form="edge"]:hover,
-#jingyi-translator-floating-button[data-form="edge"]:focus-visible,
-#jingyi-translator-floating-button[data-form="edge"].is-dragging {
+#beagle-test-translator-floating-button[data-form="edge"]:hover,
+#beagle-test-translator-floating-button[data-form="edge"]:focus-visible,
+#beagle-test-translator-floating-button[data-form="edge"].is-dragging {
   transform: translateX(-2px);
 }
 
-#jingyi-translator-floating-button:active,
-#jingyi-translator-floating-button.is-dragging { cursor: grabbing; }
+#beagle-test-translator-floating-button:active,
+#beagle-test-translator-floating-button.is-dragging { cursor: grabbing; }
 
-#jingyi-translator-floating-button:focus-visible {
+#beagle-test-translator-floating-button:focus-visible {
   outline: 2px solid #b9f3eb;
   outline-offset: 3px;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  #jingyi-translator-floating-button,
-  #jingyi-translator-floating-button::after,
-  #jingyi-translator-floating-button .jingyi-fab-detail,
-  #jingyi-translator-floating-button .jingyi-fab-value,
-  #jingyi-translator-floating-button .jingyi-fab-bar > i {
+  #beagle-test-translator-floating-button,
+  #beagle-test-translator-floating-button::after,
+  #beagle-test-translator-floating-button .beagle-test-fab-detail,
+  #beagle-test-translator-floating-button .beagle-test-fab-value,
+  #beagle-test-translator-floating-button .beagle-test-fab-bar > i {
     transition-duration: 1ms;
     transition-delay: 0ms;
   }
@@ -288,7 +288,7 @@
 
 /* Reading aloud, inside the rendered floor. Nothing here knows the host theme: every colour is derived
    from the text around the button, so it reads on any theme and any wallpaper the floor already reads on. */
-#chat .jy-tts-play {
+#chat .bgt-tts-play {
   display: inline-grid;
   place-items: center;
   box-sizing: border-box;
@@ -311,34 +311,34 @@
   transition: opacity 120ms ease, background 120ms ease, transform 120ms ease;
 }
 
-#chat .jy-tts-play svg,
-#chat .jy-tts-bar svg {
+#chat .bgt-tts-play svg,
+#chat .bgt-tts-bar svg {
   width: 0.62em;
   height: 0.62em;
   fill: currentColor;
   pointer-events: none;
 }
 
-#chat .jy-tts-play:hover,
-#chat .jy-tts-play:focus-visible {
+#chat .bgt-tts-play:hover,
+#chat .bgt-tts-play:focus-visible {
   opacity: 1;
   background: color-mix(in srgb, currentColor 16%, transparent);
 }
 
-#chat .jy-tts-play:focus-visible,
-#chat .jy-tts-bar-play:focus-visible,
-#chat .jy-tts-bar-stop:focus-visible {
+#chat .bgt-tts-play:focus-visible,
+#chat .bgt-tts-bar-play:focus-visible,
+#chat .bgt-tts-bar-stop:focus-visible {
   outline: 2px solid color-mix(in srgb, currentColor 60%, transparent);
   outline-offset: 2px;
 }
 
-#chat .jy-tts-play[data-state="busy"] {
+#chat .bgt-tts-play[data-state="busy"] {
   opacity: 1;
-  animation: jy-tts-breathe 1.1s ease-in-out infinite;
+  animation: bgt-tts-breathe 1.1s ease-in-out infinite;
   will-change: opacity;
 }
 
-#chat .jy-tts-play[data-state="playing"] {
+#chat .bgt-tts-play[data-state="playing"] {
   opacity: 1;
   background: color-mix(in srgb, currentColor 24%, transparent);
   transform: scale(1.08);
@@ -346,7 +346,7 @@
 
 /* A small row at the floor's start: read this floor, and choose paragraphs to save. Progress, stop and
    the rest are in the floating window. */
-#chat .jy-tts-bar {
+#chat .bgt-tts-bar {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -358,12 +358,12 @@
   -webkit-user-select: none;
 }
 
-#chat .jy-tts-bar-play,
-#chat .jy-tts-bar-stop,
-#chat .jy-tts-bar-pick,
-#chat .jy-tts-bar-pick-save,
-#chat .jy-tts-bar-pick-all,
-#chat .jy-tts-bar-pick-exit {
+#chat .bgt-tts-bar-play,
+#chat .bgt-tts-bar-stop,
+#chat .bgt-tts-bar-pick,
+#chat .bgt-tts-bar-pick-save,
+#chat .bgt-tts-bar-pick-all,
+#chat .bgt-tts-bar-pick-exit {
   position: relative;
   display: inline-flex;
   align-items: center;
@@ -379,74 +379,74 @@
   cursor: pointer;
 }
 
-#chat .jy-tts-bar-play:hover,
-#chat .jy-tts-bar-stop:hover,
-#chat .jy-tts-bar-pick:hover,
-#chat .jy-tts-bar-pick-all:hover,
-#chat .jy-tts-bar-pick-exit:hover {
+#chat .bgt-tts-bar-play:hover,
+#chat .bgt-tts-bar-stop:hover,
+#chat .bgt-tts-bar-pick:hover,
+#chat .bgt-tts-bar-pick-all:hover,
+#chat .bgt-tts-bar-pick-exit:hover {
   background: color-mix(in srgb, currentColor 18%, transparent);
 }
 
-#chat .jy-tts-bar-pick,
-#chat .jy-tts-bar-pick-all,
-#chat .jy-tts-bar-pick-exit {
+#chat .bgt-tts-bar-pick,
+#chat .bgt-tts-bar-pick-all,
+#chat .bgt-tts-bar-pick-exit {
   border-color: color-mix(in srgb, currentColor 20%, transparent);
   background: transparent;
   opacity: 0.8;
 }
 
-#chat .jy-tts-bar-play[data-state="busy"] { opacity: 0.75; }
+#chat .bgt-tts-bar-play[data-state="busy"] { opacity: 0.75; }
 
-#chat .jy-tts-bar [hidden] {
+#chat .bgt-tts-bar [hidden] {
   display: none;
 }
 
-#chat .jy-tts-bar-meta {
+#chat .bgt-tts-bar-meta {
   opacity: 0.6;
 }
 
-#chat .jy-tts-bar-status {
+#chat .bgt-tts-bar-status {
   opacity: 0.85;
   overflow-wrap: anywhere;
 }
 
-#chat .jy-tts-bar[data-state="error"] .jy-tts-bar-status {
+#chat .bgt-tts-bar[data-state="error"] .bgt-tts-bar-status {
   color: #e0786b;
   -webkit-text-fill-color: #e0786b;
   opacity: 1;
 }
 
-#chat .jy-tts-bar[hidden],
-#chat .jy-tts-bar-stop[hidden] {
+#chat .bgt-tts-bar[hidden],
+#chat .bgt-tts-bar-stop[hidden] {
   display: none;
 }
 
-::highlight(jy-tts-current) {
+::highlight(bgt-tts-current) {
   background-color: rgba(240, 197, 110, 0.36);
 }
 
-@keyframes jy-tts-breathe {
+@keyframes bgt-tts-breathe {
   0%, 100% { opacity: 0.45; }
   50% { opacity: 1; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  #chat .jy-tts-play,
-  #chat .jy-tts-play[data-state="busy"] {
+  #chat .bgt-tts-play,
+  #chat .bgt-tts-play[data-state="busy"] {
     animation: none;
     transition: none;
   }
 }
 
-#jingyi-translator-floating-button[data-theme="night"] { background:#202932; color:#c5ddd0; border-color:#62766a; }
-#jingyi-translator-floating-button[data-theme="fresh"] { background:#e0ead3; color:#416239; border-color:#9eb28d; }
-#jingyi-translator-floating-button[data-theme="fresh"] .jingyi-fab-label { color:#29472f; }
-#jingyi-translator-floating-button[data-theme="fresh"] .jingyi-fab-count { color:#536d4b; }
-#jingyi-translator-floating-button[data-theme="vampire"] { background:#351724; color:#e4bd7b; border-color:#956f40; }
-#jingyi-translator-floating-button[data-theme="glass"] { background:#355d7380; backdrop-filter:blur(12px); color:#f3f8fc; border-color:#bed3df80; }
+#beagle-test-translator-floating-button[data-theme="night"] { background:#202932; color:#c5ddd0; border-color:#62766a; }
+#beagle-test-translator-floating-button[data-theme="fresh"] { background:#e0ead3; color:#416239; border-color:#9eb28d; }
+#beagle-test-translator-floating-button[data-theme="fresh"] .beagle-test-fab-label { color:#29472f; }
+#beagle-test-translator-floating-button[data-theme="fresh"] .beagle-test-fab-count { color:#536d4b; }
+#beagle-test-translator-floating-button[data-theme="vampire"] { background:#351724; color:#e4bd7b; border-color:#956f40; }
+#beagle-test-translator-floating-button[data-theme="glass"] { background:#355d7380; backdrop-filter:blur(12px); color:#f3f8fc; border-color:#bed3df80; }
 
 /* Beside every play button, the way in to the sentence's voice: what it was read as, editable. */
-#chat .jy-tts-edit {
+#chat .bgt-tts-edit {
   display: inline-grid;
   place-items: center;
   box-sizing: border-box;
@@ -468,20 +468,20 @@
   -webkit-user-select: none;
   transition: opacity 120ms ease, background 120ms ease;
 }
-#chat .jy-tts-edit svg { width: 0.7em; height: 0.7em; fill: currentColor; pointer-events: none; }
-#chat .jy-tts-edit:hover,
-#chat .jy-tts-edit:focus-visible {
+#chat .bgt-tts-edit svg { width: 0.7em; height: 0.7em; fill: currentColor; pointer-events: none; }
+#chat .bgt-tts-edit:hover,
+#chat .bgt-tts-edit:focus-visible {
   opacity: 1;
   background: color-mix(in srgb, currentColor 14%, transparent);
 }
-#chat .jy-tts-edit:focus-visible {
+#chat .bgt-tts-edit:focus-visible {
   outline: 2px solid color-mix(in srgb, currentColor 60%, transparent);
   outline-offset: 2px;
 }
 @media (hover: none) {
-  #chat .jy-tts-edit { opacity: 0.5; }
+  #chat .bgt-tts-edit { opacity: 0.5; }
 }
-#chat .jy-tts-bar-panel {
+#chat .bgt-tts-bar-panel {
   margin: 0 0 0 auto;
   padding: 0.2em 0;
   border: 0;
@@ -494,27 +494,27 @@
   text-underline-offset: 0.25em;
   cursor: pointer;
 }
-#chat .jy-tts-bar-panel:hover { opacity: 1; }
-#chat .jy-tts-bar[data-state="paused"] .jy-tts-bar-status { opacity: 0.7; }
+#chat .bgt-tts-bar-panel:hover { opacity: 1; }
+#chat .bgt-tts-bar[data-state="paused"] .bgt-tts-bar-status { opacity: 0.7; }
 /* A phone taps where a mouse hovers: the two inline buttons grow and sit a little apart. */
 @media (hover: none) {
-  #chat .jy-tts-play,
-  #chat .jy-tts-edit {
+  #chat .bgt-tts-play,
+  #chat .bgt-tts-edit {
     width: 1.55em;
     height: 1.55em;
     vertical-align: -0.28em;
   }
-  #chat .jy-tts-play { margin-right: 0.2em; }
-  #chat .jy-tts-bar-play,
-  #chat .jy-tts-bar-stop,
-  #chat .jy-tts-bar-pick,
-  #chat .jy-tts-bar-pick-save,
-  #chat .jy-tts-bar-pick-all,
-  #chat .jy-tts-bar-pick-exit {
+  #chat .bgt-tts-play { margin-right: 0.2em; }
+  #chat .bgt-tts-bar-play,
+  #chat .bgt-tts-bar-stop,
+  #chat .bgt-tts-bar-pick,
+  #chat .bgt-tts-bar-pick-save,
+  #chat .bgt-tts-bar-pick-all,
+  #chat .bgt-tts-bar-pick-exit {
     padding: 0.3em 0.85em;
   }
   /* Small to the eye, a thumb's size to the touch. */
-  #chat .jy-tts-bar button::before {
+  #chat .bgt-tts-bar button::before {
     content: "";
     position: absolute;
     inset: -8px -3px;
@@ -523,7 +523,7 @@
 
 /* 自然段末尾的两个按钮：播放和重新生成。一段一对，手机上也留着——一个自然段大小的目标，
    拇指点得准，而一段本来就是一次 Fish 请求的单位。颜色和淡入淡出仍旧交给美化风格。 */
-#chat .jy-tts-line {
+#chat .bgt-tts-line {
   display: inline-flex;
   align-items: center;
   gap: 0.3em;
@@ -531,8 +531,8 @@
   vertical-align: -0.3em;
   white-space: nowrap;
 }
-#chat .jy-tts-play.jy-tts-line-play,
-#chat .jy-tts-play.jy-tts-line-regen {
+#chat .bgt-tts-play.bgt-tts-line-play,
+#chat .bgt-tts-play.bgt-tts-line-regen {
   display: inline-flex;
   justify-content: center;
   gap: 0.3em;
@@ -544,41 +544,41 @@
   border-radius: 999px;
   font-size: 0.82em;
 }
-#chat .jy-tts-play.jy-tts-line-play > span,
-#chat .jy-tts-play.jy-tts-line-regen > span {
+#chat .bgt-tts-play.bgt-tts-line-play > span,
+#chat .bgt-tts-play.bgt-tts-line-regen > span {
   letter-spacing: 0.02em;
   white-space: nowrap;
 }
 /* A pill has no room to grow, so the sentence button's little scale would only jitter the line. */
-#chat .jy-tts-play.jy-tts-line-play[data-state="playing"],
-#chat .jy-tts-play.jy-tts-line-regen[data-state="busy"] {
+#chat .bgt-tts-play.bgt-tts-line-play[data-state="playing"],
+#chat .bgt-tts-play.bgt-tts-line-regen[data-state="busy"] {
   transform: none;
 }
 /* 唱 with a voice that cannot sing (DESIGN §17.15): the disabled fade (.48) of what the button shows at
    rest and on hover, still pressable so a phone, which shows no tooltip, can say why. */
-#chat .jy-tts-play[aria-disabled="true"] {
+#chat .bgt-tts-play[aria-disabled="true"] {
   opacity: 0.24;
   cursor: default;
 }
-#chat .jy-tts-play[aria-disabled="true"]:hover,
-#chat .jy-tts-play[aria-disabled="true"]:focus-visible {
+#chat .bgt-tts-play[aria-disabled="true"]:hover,
+#chat .bgt-tts-play[aria-disabled="true"]:focus-visible {
   opacity: 0.48;
   background: color-mix(in srgb, currentColor 7%, transparent);
 }
 
 /* 手机：两个按钮都要够大，够得着。 */
 @media (hover: none) {
-  #chat .jy-tts-line { gap: 0.4em; margin-left: 0.5em; }
-  #chat .jy-tts-play.jy-tts-line-play,
-  #chat .jy-tts-play.jy-tts-line-regen {
+  #chat .bgt-tts-line { gap: 0.4em; margin-left: 0.5em; }
+  #chat .bgt-tts-play.bgt-tts-line-play,
+  #chat .bgt-tts-play.bgt-tts-line-regen {
     min-height: 40px;
     padding: 0 0.9em;
     font-size: 0.9em;
   }
 }
 
-#chat .jy-tts-pick-box { display: none; align-items: center; margin-right: 3px; vertical-align: middle; }
-#chat .jy-tts-pick-box input { width: 17px; height: 17px; margin: 0; accent-color: var(--SmartThemeQuoteColor, #2f6b4f); }
-#chat .mes_text[data-jy-tts-pick] .jy-tts-pick-box { display: inline-flex; }
-#chat .jy-tts-bar-pick-count { font-size: 11.5px; opacity: 0.75; }
-#chat .jy-tts-bar-pick-save[disabled] { opacity: 0.5; }
+#chat .bgt-tts-pick-box { display: none; align-items: center; margin-right: 3px; vertical-align: middle; }
+#chat .bgt-tts-pick-box input { width: 17px; height: 17px; margin: 0; accent-color: var(--SmartThemeQuoteColor, #2f6b4f); }
+#chat .mes_text[data-bgt-tts-pick] .bgt-tts-pick-box { display: inline-flex; }
+#chat .bgt-tts-bar-pick-count { font-size: 11.5px; opacity: 0.75; }
+#chat .bgt-tts-bar-pick-save[disabled] { opacity: 0.5; }

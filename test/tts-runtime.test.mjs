@@ -129,9 +129,9 @@ function mockFish({ status = 200, body = null, audio = null } = {}) {
 test('a floor is read through its own boundaries whatever the visible affixes, and literal tags otherwise', async t => {
   restoreGlobals(t);
   const { context } = mockHost('tts-collect');
-  const settings = __testing.configureForTest({ settings: { translationPrefix: '<jy-translation>', translationSuffix: '</jy-translation>' } });
+  const settings = __testing.configureForTest({ settings: { translationPrefix: '<bgt-translation>', translationSuffix: '</bgt-translation>' } });
   context.chat.push(await translatedFloor('空は青い。\n\n「暑い！」', [[1, '天空很蓝。'], [2, '「好热！」']], settings));
-  context.chat.push({ mes: '<story>x</story>\n<jy-translation>风停了。\n「走吧。」</jy-translation>', swipe_id: 0, extra: {} });
+  context.chat.push({ mes: '<story>x</story>\n<bgt-translation>风停了。\n「走吧。」</bgt-translation>', swipe_id: 0, extra: {} });
   context.chat.push({ mes: '什么都没有。', swipe_id: 0, extra: {} });
 
   const translated = await __testing.collectTtsFloor(0, settings);
@@ -1482,7 +1482,7 @@ test('the public interface reads text another extension hands over, in that char
   // The text becomes a floor of its own: one paragraph per line, nothing touching the chat.
   const floor = await __testing.apiFloor('  今天也来了啊。\n\n等你很久了。  ', { speaker: '樱井' });
   assert.deepEqual(floor.lines, [{ lineId: 1, text: '今天也来了啊。' }, { lineId: 2, text: '等你很久了。' }]);
-  assert.match(floor.floorId, /^jy-api\|/);
+  assert.match(floor.floorId, /^bgt-api\|/);
   assert.equal(floor.source, 'api');
   await assert.rejects(__testing.apiFloor('   '), /没有可朗读的文字/);
   await assert.rejects(__testing.apiFloor('字'.repeat(20001)), /20000/);
@@ -1511,7 +1511,7 @@ test('the public interface reads text another extension hands over, in that char
     createElement: () => ({ set download(name) { saves.push(name); }, click() {}, remove() {}, style: {} }),
   };
   const saved = await session.download();
-  assert.match(saves[0], /^镜译-朗读-樱井-.*\.mp3$/, 'a name a user can find again');
+  assert.match(saves[0], /^测试翻译-朗读-樱井-.*\.mp3$/, 'a name a user can find again');
   assert.equal(saved.bytes, blob.size);
   await session.download('打招呼');
   assert.equal(saves[1], '打招呼.mp3', 'a name without an extension gets the right one');
@@ -1539,9 +1539,9 @@ test('the public interface reads text another extension hands over, in that char
 
   // Switched off, the door says so instead of throwing something a caller cannot show a user.
   __testing.configureForTest({ settings: { tts: { ...settings.tts, enabled: false } } });
-  await assert.rejects(__testing.apiSpeak({ text: '你好' }), /镜译的朗读没有打开/);
+  await assert.rejects(__testing.apiSpeak({ text: '你好' }), /测试翻译的朗读没有打开/);
   __testing.configureForTest({ settings: { tts: { ...settings.tts, enabled: true, fish: { ...FISH, key: '' } } } });
-  await assert.rejects(__testing.apiSpeak({ text: '你好' }), /镜译还没填 Fish Audio 的 API Key/);
+  await assert.rejects(__testing.apiSpeak({ text: '你好' }), /测试翻译还没填 Fish Audio 的 API Key/);
 });
 
 test('the public interface announces itself on the page, and says what it can do before it is asked', t => {
@@ -1554,7 +1554,7 @@ test('the public interface announces itself on the page, and says what it can do
     },
   });
   __testing.installPublicApi();
-  const api = globalThis.__JINGYI__;
+  const api = globalThis.__BE_EAGLE_TEST_TRANSLATOR__;
   assert.ok(api, 'the door exists');
   assert.equal(api.tts.apiVersion, 1);
   assert.equal(typeof api.tts.speak, 'function');
@@ -1567,7 +1567,7 @@ test('the public interface announces itself on the page, and says what it can do
   assert.deepEqual(voices.find(voice => voice.name === '樱井'), { name: '樱井', aliases: ['桜井'], hasOwnVoice: true });
   assert.equal(voices.find(voice => voice.name === '老胡').hasOwnVoice, false, 'a name with no voice of its own still answers');
   assert.equal(Object.isFrozen(api), true, 'a caller cannot rewrite the door');
-  delete globalThis.__JINGYI__;
+  delete globalThis.__BE_EAGLE_TEST_TRANSLATOR__;
 });
 
 test('asking again with an opinion only touches what the opinion is about; a name the reader set is not the model\'s to move', async t => {
@@ -2563,13 +2563,13 @@ test('the audio saves from the floor the window is looking at, with nothing play
   t.after(() => { delete globalThis.document; });
   // The file is built and handed back; writing it is the reader's own tap on a link in the dialog.
   const whole = await __testing.downloadTtsAudio({ messageId: 0, scope: 'floor' });
-  assert.equal(whole.name, '镜译-第0楼.mp3');
+  assert.equal(whole.name, '测试翻译-第0楼.mp3');
   assert.ok(whole.bytes > 0);
   assert.equal(whole.blob.size, whole.bytes, 'the audio itself comes back, not a promise that it was saved');
   assert.deepEqual(saves, [], 'nothing is written behind the reader’s back');
   // One paragraph, named by its place in the floor rather than by what is playing.
   const one = await __testing.downloadTtsAudio({ messageId: 0, lineId: 2 });
-  assert.equal(one.name, '镜译-第0楼-第2段.mp3');
+  assert.equal(one.name, '测试翻译-第0楼-第2段.mp3');
   assert.ok(one.bytes > 0);
   assert.ok(calls.length >= 1, 'what had not been made was made for the save');
   await assert.rejects(__testing.downloadTtsAudio({ messageId: 0, lineId: 99 }), /没有可朗读的句子/);
@@ -3462,8 +3462,8 @@ test('tts.status says why it cannot read, in words the caller can show as they a
   __testing.configureForTest({ initialized: true, settings: { tts: { enabled: false, fish: FISH } } });
   t.after(() => __testing.configureForTest({ initialized: false }));
   __testing.installPublicApi();
-  t.after(() => { delete globalThis.__JINGYI__; });
-  const api = globalThis.__JINGYI__;
+  t.after(() => { delete globalThis.__BE_EAGLE_TEST_TRANSLATOR__; });
+  const api = globalThis.__BE_EAGLE_TEST_TRANSLATOR__;
   assert.match(api.tts.status().reason, /朗读没有打开/);
   assert.throws(() => api.tts.stream({}), /朗读没有打开/);
   __testing.configureForTest({ settings: { tts: { enabled: true, fish: { ...FISH, key: '' } } } });
@@ -3493,8 +3493,8 @@ test('with GPT-SoVITS reading the floors, tts.stream still reads in the voice ch
   });
   t.after(() => __testing.configureForTest({ initialized: false }));
   __testing.installPublicApi();
-  t.after(() => { delete globalThis.__JINGYI__; });
-  const api = globalThis.__JINGYI__;
+  t.after(() => { delete globalThis.__BE_EAGLE_TEST_TRANSLATOR__; });
+  const api = globalThis.__BE_EAGLE_TEST_TRANSLATOR__;
   // The floors need no key under GPT-SoVITS; what is read while written still needs Fish's.
   assert.equal(api.tts.status().hasKey, true);
   assert.equal(api.tts.status().streamReady, false);
@@ -3515,7 +3515,7 @@ test('with GPT-SoVITS reading the floors, tts.stream still reads in the voice ch
   assert.deepEqual(calls.map(call => call.body.reference_id), ['voice-sakurai', 'voice-default']);
 });
 
-test('tts.stop leaves a floor being read alone; with all: true everything 镜译 is saying stops', async t => {
+test('tts.stop leaves a floor being read alone; with all: true everything 测试翻译 is saying stops', async t => {
   restoreGlobals(t);
   const { context } = mockHost('tts-api-stop-all');
   const settings = __testing.configureForTest({
@@ -3532,8 +3532,8 @@ test('tts.stop leaves a floor being read alone; with all: true everything 镜译
   URL.createObjectURL = () => `blob:take-${urls += 1}`;
   t.after(() => { URL.createObjectURL = createUrl; });
   __testing.installPublicApi();
-  t.after(() => { delete globalThis.__JINGYI__; });
-  const api = globalThis.__JINGYI__;
+  t.after(() => { delete globalThis.__BE_EAGLE_TEST_TRANSLATOR__; });
+  const api = globalThis.__BE_EAGLE_TEST_TRANSLATOR__;
 
   const transport = await __testing.createTtsTransport(0, { single: false });
   void __testing.runTtsTransport(transport);
@@ -3574,7 +3574,7 @@ test('a call read by 声学标注规则: the tags go to Fish, each 〔张力〕 
     { text: '[gasp] 你、你说什么！！', temperature: 0.8, speed: 1.12 },
   ], 'tension 1 steadier, 3 and 4 freer; ？？ tamed below 4, ！！ kept at a peak; no moan without 亲密场景');
 
-  // Another app's text is read as written: its brackets are not 镜译's marks.
+  // Another app's text is read as written: its brackets are not 测试翻译's marks.
   const before = calls.length;
   const other = __testing.apiStream({ speaker: '樱井' });
   other.push('〔1〕嗯。');
@@ -3636,8 +3636,8 @@ test('with the call voice set to GPT-SoVITS, tts.stream reads every sentence thr
   });
   t.after(() => __testing.configureForTest({ initialized: false }));
   __testing.installPublicApi();
-  t.after(() => { delete globalThis.__JINGYI__; });
-  const api = globalThis.__JINGYI__;
+  t.after(() => { delete globalThis.__BE_EAGLE_TEST_TRANSLATOR__; });
+  const api = globalThis.__BE_EAGLE_TEST_TRANSLATOR__;
   // No key is asked for: GPT-SoVITS runs on the reader's own machine.
   assert.equal(api.tts.status().streamProvider, 'gsv');
   assert.equal(api.tts.status().streamReady, true);
@@ -3701,8 +3701,8 @@ test('with the call voice on GPT-SoVITS, a character\'s voice is one with a GPT-
     __testing.configureForTest({ initialized: true, settings });
     return __testing.callFixTarget('key');
   };
-  assert.deepEqual(at({ tts: { enabled: true, provider: 'gsv', streamVoice: 'gsv' } }), { page: 'tts', selector: '[data-jy-tts-provider-card="gsv"] [data-jy-tts-gsv="baseUrl"]' });
-  assert.deepEqual(at({ tts: { enabled: true, provider: 'fish', streamVoice: 'gsv' } }), { page: 'tts', selector: '[data-jy-tts-provider-card="fish"] [data-jy-tts-field="provider"]' }, 'its card shows once it is the 声音来源');
+  assert.deepEqual(at({ tts: { enabled: true, provider: 'gsv', streamVoice: 'gsv' } }), { page: 'tts', selector: '[data-bgt-tts-provider-card="gsv"] [data-bgt-tts-gsv="baseUrl"]' });
+  assert.deepEqual(at({ tts: { enabled: true, provider: 'fish', streamVoice: 'gsv' } }), { page: 'tts', selector: '[data-bgt-tts-provider-card="fish"] [data-bgt-tts-field="provider"]' }, 'its card shows once it is the 声音来源');
 });
 
 // A box for the 「已连接的应用」 rows, with just enough of a document for renderCallApps.
@@ -3721,11 +3721,11 @@ function fakeCallAppsBox() {
   };
   const box = doc.createElement('div');
   box.hidden = true;
-  const root = { querySelector: selector => (selector === '[data-jy-call-apps]' ? box : null) };
+  const root = { querySelector: selector => (selector === '[data-bgt-call-apps]' ? box : null) };
   // Each row as [indented, mark, title, line, 「去设置」's item or null].
   const rows = () => box.children.map(row => {
     const [mark, copy, button] = row.children;
-    return [row.className.includes('jy-summary-row-sub'), mark.textContent, copy.children[0].textContent, copy.children[1].textContent, button ? `${button.textContent}:${button.dataset.jyCallFix}` : null];
+    return [row.className.includes('bgt-summary-row-sub'), mark.textContent, copy.children[0].textContent, copy.children[1].textContent, button ? `${button.textContent}:${button.dataset.bgtCallFix}` : null];
   });
   return { root, box, rows };
 }
@@ -3744,8 +3744,8 @@ test('call.connect tells an app what is still missing for what it asked for, and
   });
   t.after(() => __testing.configureForTest({ initialized: false }));
   __testing.installPublicApi();
-  t.after(() => { delete globalThis.__JINGYI__; });
-  const api = globalThis.__JINGYI__;
+  t.after(() => { delete globalThis.__BE_EAGLE_TEST_TRANSLATOR__; });
+  const api = globalThis.__BE_EAGLE_TEST_TRANSLATOR__;
   assert.ok(api.features.includes('call.connect'));
   assert.throws(() => api.call.connect({ characters: ['樱井'] }), /app/);
 
@@ -3757,7 +3757,7 @@ test('call.connect tells an app what is still missing for what it asked for, and
   assert.equal(voices.reason, '老胡还没绑音色，通话里用对白默认音色读；路人在角色表里设成了不朗读，通话里不出声。');
   assert.match(first.missing.find(item => item.id === 'llm').reason, /^通话用的连接留空，和分析模式用同一条，现在是「跟随酒馆」/);
   assert.equal(first.missing.find(item => item.id === 'stt').reason, '这个浏览器不能录音，语音输入用不了。');
-  assert.deepEqual(toasts, [['warning', '小手机连上了镜译，还缺 5 项：朗读功能、Fish Audio API Key、角色音色、语音输入、通话用的连接。到「朗读 → 更多 → 实时通话」看怎么补。']]);
+  assert.deepEqual(toasts, [['warning', '小手机连上了测试翻译，还缺 5 项：朗读功能、Fish Audio API Key、角色音色、语音输入、通话用的连接。到「朗读 → 更多 → 实时通话」看怎么补。']]);
 
   // Asked again: what the app said is replaced, and the reminder is not said twice.
   const reading = api.call.connect({ app: '小手机', characters: ['樱井'], needs: ['tts.stream'] });
@@ -3770,9 +3770,9 @@ test('call.connect tells an app what is still missing for what it asked for, and
   // Another app has a reminder of its own.
   api.call.connect({ app: 'tokimemo', needs: ['stt'] });
   assert.equal(toasts.length, 2);
-  assert.deepEqual(toasts[1], ['warning', 'tokimemo连上了镜译，还缺 1 项：语音输入。到「朗读 → 更多 → 实时通话」看怎么补。']);
+  assert.deepEqual(toasts[1], ['warning', 'tokimemo连上了测试翻译，还缺 1 项：语音输入。到「朗读 → 更多 → 实时通话」看怎么补。']);
 
-  // Before 镜译 has started there is nothing to say yet.
+  // Before 测试翻译 has started there is nothing to say yet.
   __testing.configureForTest({ initialized: false });
   assert.throws(() => api.call.connect({ app: '小手机' }), /还没启动完/);
 });
@@ -3791,8 +3791,8 @@ test('the speakers an app\'s own readings turn out to have are checked too, and 
   });
   t.after(() => __testing.configureForTest({ initialized: false }));
   __testing.installPublicApi();
-  t.after(() => { delete globalThis.__JINGYI__; });
-  const api = globalThis.__JINGYI__;
+  t.after(() => { delete globalThis.__BE_EAGLE_TEST_TRANSLATOR__; });
+  const api = globalThis.__BE_EAGLE_TEST_TRANSLATOR__;
   const { root, box, rows } = fakeCallAppsBox();
   __testing.renderCallApps(root);
   assert.equal(box.hidden, true, 'no app, no rows');
@@ -3815,7 +3815,7 @@ test('the speakers an app\'s own readings turn out to have are checked too, and 
     [true, '·', '角色音色', '老胡还没绑音色，通话里用对白默认音色读。', '去设置:voices'],
   ]);
 
-  // The 通话测试 page's own calls are 镜译's, not the app's: nobody it hears is added.
+  // The 通话测试 page's own calls are 测试翻译's, not the app's: nobody it hears is added.
   const own = __testing.apiStream({ speaker: '阿星' });
   own.push('喂？');
   own.end();
@@ -3864,24 +3864,24 @@ test('「去设置」 goes where the missing item is set, as the settings stand'
     return __testing.callFixTarget(id, app);
   };
   t.after(() => __testing.configureForTest({ initialized: false }));
-  assert.deepEqual(at({ tts: { enabled: true, fish: { key: '' } } }, 'key'), { page: 'tts', selector: '[data-jy-tts-provider-card="fish"] [data-jy-tts-fish="key"]' });
-  assert.deepEqual(at({ tts: { enabled: true, provider: 'gsv', fish: { key: '' } } }, 'key'), { page: 'tts', fold: 'tts-call', selector: '[data-jy-tts-field="streamVoice"]' });
-  assert.deepEqual(at({ tts: { enabled: true, streamVoice: 'doubao' } }, 'key'), { page: 'tts', fold: 'tts-call', selector: '[data-jy-tts-doubao="key"]' });
-  assert.equal(at({ tts: { enabled: true, sttUrl: '' } }, 'stt').selector, '[data-jy-tts-field="sttProvider"]', 'no recorder in this test host: the input choice');
-  assert.deepEqual(at({ tts: { enabled: true }, apiMode: 'follow' }, 'llm'), { page: 'tts', fold: 'tts-call', selector: '[data-jy-tts-field="callChannelId"]' });
+  assert.deepEqual(at({ tts: { enabled: true, fish: { key: '' } } }, 'key'), { page: 'tts', selector: '[data-bgt-tts-provider-card="fish"] [data-bgt-tts-fish="key"]' });
+  assert.deepEqual(at({ tts: { enabled: true, provider: 'gsv', fish: { key: '' } } }, 'key'), { page: 'tts', fold: 'tts-call', selector: '[data-bgt-tts-field="streamVoice"]' });
+  assert.deepEqual(at({ tts: { enabled: true, streamVoice: 'doubao' } }, 'key'), { page: 'tts', fold: 'tts-call', selector: '[data-bgt-tts-doubao="key"]' });
+  assert.equal(at({ tts: { enabled: true, sttUrl: '' } }, 'stt').selector, '[data-bgt-tts-field="sttProvider"]', 'no recorder in this test host: the input choice');
+  assert.deepEqual(at({ tts: { enabled: true }, apiMode: 'follow' }, 'llm'), { page: 'tts', fold: 'tts-call', selector: '[data-bgt-tts-field="callChannelId"]' });
   const relay = normalizeChannel({ id: 'c9', name: '中转', url: 'https://relay.example/v1', key: 'k', model: '' });
-  assert.deepEqual(at({ channels: [relay], tts: { enabled: true, callChannelId: 'c9' } }, 'llm'), { page: 'settings', channelId: 'c9', selector: '[data-jy-channel-field="model"]' });
+  assert.deepEqual(at({ channels: [relay], tts: { enabled: true, callChannelId: 'c9' } }, 'llm'), { page: 'settings', channelId: 'c9', selector: '[data-bgt-channel-field="model"]' });
 
   __testing.configureForTest({
     initialized: true,
     settings: { tts: { enabled: true, fish: FISH }, ttsVoices: { 'taro.png': [{ name: '老胡', aliases: [], voiceId: '' }] } },
   });
   __testing.installPublicApi();
-  t.after(() => { delete globalThis.__JINGYI__; });
-  globalThis.__JINGYI__.call.connect({ app: '小手机', characters: ['老胡', '阿星'], needs: ['tts.stream'] });
-  assert.deepEqual(__testing.callFixTarget('voices', '小手机'), { page: 'tts', row: '老胡', selector: '[data-jy-tts-voice-id]' }, 'his row, opened at the voice');
-  globalThis.__JINGYI__.call.connect({ app: '小手机', characters: ['阿星'], needs: ['tts.stream'] });
-  assert.deepEqual(__testing.callFixTarget('voices', '小手机'), { page: 'tts', selector: '[data-jy-action="tts-add-voice"]' }, 'no row yet: 添加角色');
+  t.after(() => { delete globalThis.__BE_EAGLE_TEST_TRANSLATOR__; });
+  globalThis.__BE_EAGLE_TEST_TRANSLATOR__.call.connect({ app: '小手机', characters: ['老胡', '阿星'], needs: ['tts.stream'] });
+  assert.deepEqual(__testing.callFixTarget('voices', '小手机'), { page: 'tts', row: '老胡', selector: '[data-bgt-tts-voice-id]' }, 'his row, opened at the voice');
+  globalThis.__BE_EAGLE_TEST_TRANSLATOR__.call.connect({ app: '小手机', characters: ['阿星'], needs: ['tts.stream'] });
+  assert.deepEqual(__testing.callFixTarget('voices', '小手机'), { page: 'tts', selector: '[data-bgt-action="tts-add-voice"]' }, 'no row yet: 添加角色');
 });
 
 test('a caller\'s line with several marks is read mark by mark, and a broken or unknown mark never costs the line', async t => {

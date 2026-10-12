@@ -1,7 +1,7 @@
-// Local stand-ins for the services 镜译 and the scripts around it talk to, so a real SillyTavern can be
+// Local stand-ins for the services 测试翻译 and the scripts around it talk to, so a real SillyTavern can be
 // driven end to end without any key or bill:
 //   - an OpenAI-compatible chat endpoint (/v1/chat/completions, streamed or not, /v1/models): the main
-//     chat's replies, 镜译's translation requests, and the requests of the 通用通讯终端 phone script;
+//     chat's replies, 测试翻译's translation requests, and the requests of the 通用通讯终端 phone script;
 //   - Fish Audio (/v1/tts, /v1/tts/stream/with-timestamp);
 //   - GPT-SoVITS api_v2 (/tts);
 //   - an OpenAI-style transcription endpoint (/v1/audio/transcriptions).
@@ -95,7 +95,7 @@ async function streamAudio(res, pcm, rate, prefix) {
   res.end();
 }
 
-// The main chat's reply: a short Japanese scene in the body tag 镜译 translates by default.
+// The main chat's reply: a short Japanese scene in the body tag 测试翻译 translates by default.
 const STORY = [
   '<story_scene>',
   '美咲は窓の外を見ていた。夕暮れの光が部屋をオレンジ色に染めている。',
@@ -109,7 +109,7 @@ const STORY = [
 ].join('\n');
 
 // The translations a translator would give, matched by a phrase of each line; anything else gets a
-// plain Chinese line (镜译 sends back a line still in kana as untranslated).
+// plain Chinese line (测试翻译 sends back a line still in kana as untranslated).
 const TRANSLATIONS = [
   ['窓の外', '美咲望着窗外。夕阳的余晖把房间染成了橘色。'],
   ['少し話せる', '「呐，今晚能稍微聊聊吗？」她小声说道。'],
@@ -124,7 +124,7 @@ function chineseFor(source) {
   return source.includes('「') ? '「这是一句译好的对白。」' : '这是一段译好的叙述。';
 }
 
-// 镜译's translation request: the last user message that parses as its task JSON.
+// 测试翻译's translation request: the last user message that parses as its task JSON.
 function translationTask(messages) {
   for (const message of [...messages].reverse()) {
     if (message.role !== 'user' || typeof message.content !== 'string') continue;
@@ -212,7 +212,7 @@ async function fish(req, res, body) {
 }
 
 // Fish's /v1/tts/stream/with-timestamp: server-sent events, each a base64 piece of the audio with the
-// characters it covers. 镜译 joins the pieces, so only the first carries a WAV header.
+// characters it covers. 测试翻译 joins the pieces, so only the first carries a WAV header.
 async function fishTimestamps(req, res, body) {
   let payload = {};
   try { payload = JSON.parse(body.toString('utf8') || '{}'); } catch { return json(res, 400, { message: 'bad json' }); }

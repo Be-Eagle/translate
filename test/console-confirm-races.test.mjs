@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 
 // worldInfoCharacterKey() (reached through collectColoringFields, which this stub's all-present
-// [data-jy-coloring] makes collectSettings always run) calls getContext(), so this must exist before any
+// [data-bgt-coloring] makes collectSettings always run) calls getContext(), so this must exist before any
 // of these tests run collectSettings/syncFields at all. Set before the import too, but harmless there —
 // index.js's own module-level bootstrap only fires once `document` is *also* defined (see below), which
 // it deliberately still is not at this point.
@@ -12,7 +12,7 @@ const { __testing } = await import('../index.js');
 
 // Only defined *after* the import: index.js's own module-level bootstrap (its last few lines) treats a
 // `document` that exists alongside a SillyTavern context with `extensionSettings` as the real host and
-// calls the real onActivate() at import time — registerRuntimeEvents, scheduleTtsDecorateAll and the
+// calls the real BeEagleTestTranslator_onActivate() at import time — registerRuntimeEvents, scheduleTtsDecorateAll and the
 // rest, none of which this file wants running in the background and erroring out once its mocks are torn
 // down after the tests finish. Setting `document` only now, once that check has already run and found it
 // absent, gets every function this file actually calls (which all run synchronously within a test, well
@@ -33,7 +33,7 @@ const {
 // A "black hole" DOM stand-in: every querySelector/querySelectorAll call returns a brand new, fully
 // mutable stub element rather than null/[] the way the smaller fixtures in the other console test files
 // do. syncFields()'s own sub-syncs dereference a few of their querySelector results unconditionally
-// (`root.querySelector('[data-jy-editor-placeholder]').hidden = …`, no `if (element)` guard) — real
+// (`root.querySelector('[data-bgt-editor-placeholder]').hidden = …`, no `if (element)` guard) — real
 // elements from the actual template, never absent there — so a plain null-returning fake root cannot run
 // it end to end. This file only needs syncFields (called by deleteChannel/deleteProcessingProfile once
 // they finish) to run without throwing; it does not assert anything about what it draws, only that
@@ -47,7 +47,7 @@ function makeStubDoc() {
       style: {},
       className: '',
       textContent: '',
-      // Not '': collectSettings() reads a present [data-jy-field="bodyTags"] as a real, currently-empty
+      // Not '': collectSettings() reads a present [data-bgt-field="bodyTags"] as a real, currently-empty
       // 提取标签 field and refuses to save with zero tags — a real page never shows that field with
       // nothing extractable configured. A generic, always-valid tag-shaped placeholder value keeps every
       // such optional field collectSettings might reach through this auto-vivifying stub harmless.
@@ -123,7 +123,7 @@ test('sanity: syncFields runs to completion against the stub root without throwi
 function rootWithBrokenBodyTags() {
   // Empty 提取标签 fails collectSettings with '至少填写一个有效的正文提取标签名称。' (core.js's
   // parseTagNamesWithErrors returns no tags for an empty string, and collectSettings then throws).
-  return { dataset: {}, querySelector: selector => (selector === '[data-jy-field="bodyTags"]' ? { value: '' } : null), querySelectorAll: () => [] };
+  return { dataset: {}, querySelector: selector => (selector === '[data-bgt-field="bodyTags"]' ? { value: '' } : null), querySelectorAll: () => [] };
 }
 
 // A <select> stand-in fillChannelPicker can refill: options by value, and the chosen value.
@@ -133,7 +133,7 @@ function makePicker(use, value) {
   };
   const select = {
     ownerDocument: doc,
-    dataset: { jyUsePicker: use },
+    dataset: { bgtUsePicker: use },
     value,
     options: [],
     replaceChildren(...options) { this.options = options; },

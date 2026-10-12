@@ -409,9 +409,9 @@ test('under a built-in beautify, a one-character paragraph is found in its own b
 
 test('readingBlockSide tells the built-in beautify blocks apart, with or without the host prefix', () => {
   const inside = selector => ({ parentElement: { closest: query => (query.split(', ').includes(selector) ? {} : null) } });
-  assert.equal(__testing.readingBlockSide(inside('.custom-jy-reading-translation')), 'translation');
-  assert.equal(__testing.readingBlockSide(inside('.jy-reading-source')), 'source');
-  assert.equal(__testing.readingBlockSide(inside('.custom-jy-reading-original')), 'source', 'the fold chip belongs to the original');
+  assert.equal(__testing.readingBlockSide(inside('.custom-bgt-reading-translation')), 'translation');
+  assert.equal(__testing.readingBlockSide(inside('.bgt-reading-source')), 'source');
+  assert.equal(__testing.readingBlockSide(inside('.custom-bgt-reading-original')), 'source', 'the fold chip belongs to the original');
   assert.equal(__testing.readingBlockSide(inside('.mes_text')), '');
   assert.equal(__testing.readingBlockSide({ parentElement: null }), '');
 });

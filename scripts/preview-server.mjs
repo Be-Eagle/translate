@@ -10,7 +10,7 @@ const mime = new Map([
   ['.css', 'text/css; charset=utf-8'],
   ['.json', 'application/json; charset=utf-8'],
 ]);
-const previewPort = Number(process.env.JINGYI_PREVIEW_PORT) || 8766;
+const previewPort = Number(process.env.BE_EAGLE_TEST_PREVIEW_PORT) || 8766;
 // Bumped through /preview/analysis-round so a second analysis of the same floor answers differently.
 let previewAnalysisRound = 0;
 let previewUpdateAvailable = true;
@@ -390,7 +390,7 @@ http.createServer(async (request, response) => {
   }
   if (request.method === 'GET' && pathname === '/api/extensions/discover') {
     response.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8' });
-    response.end(JSON.stringify([{ name: 'third-party/jingyi', type: 'local' }]));
+    response.end(JSON.stringify([{ name: 'third-party/beagleTest', type: 'local' }]));
     return;
   }
   if (request.method === 'POST' && pathname === '/api/extensions/version') {
@@ -399,7 +399,7 @@ http.createServer(async (request, response) => {
       currentBranchName: 'main',
       currentCommitHash: '1234567890abcdef',
       isUpToDate: !previewUpdateAvailable,
-      remoteUrl: 'https://github.com/iabil-604/jingyi',
+      remoteUrl: 'https://github.com/Be-Eagle/translate',
     }));
     return;
   }
@@ -428,5 +428,5 @@ http.createServer(async (request, response) => {
     response.end(data);
   });
 }).listen(previewPort, '127.0.0.1', () => {
-  console.log(`Jingyi preview: http://127.0.0.1:${previewPort}/`);
+  console.log(`Test translator preview: http://127.0.0.1:${previewPort}/`);
 });

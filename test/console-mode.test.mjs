@@ -8,16 +8,16 @@ const { syncTtsFeatureVisibility } = __testing;
 // A tiny DOM stand-in: exactly the surface syncTtsFeatureVisibility touches, so this needs no browser
 // or jsdom dependency (same style as console-autosave.test.mjs's fake header).
 function fakeRoot({ tabSelected = false } = {}) {
-  const tab = { hidden: false, dataset: { jyTab: 'tts' }, attrs: { 'aria-selected': tabSelected ? 'true' : 'false' } };
+  const tab = { hidden: false, dataset: { bgtTab: 'tts' }, attrs: { 'aria-selected': tabSelected ? 'true' : 'false' } };
   tab.getAttribute = name => tab.attrs[name] ?? null;
   const page = { dataset: {} };
   const shortcut = { hidden: false };
   return {
     tab, page, shortcut,
     querySelector(selector) {
-      if (selector === '[data-jy-tab="tts"]') return tab;
-      if (selector === '[data-jy-page="tts"]') return page;
-      if (selector === '[data-jy-action="open-tts"]') return shortcut;
+      if (selector === '[data-bgt-tab="tts"]') return tab;
+      if (selector === '[data-bgt-page="tts"]') return page;
+      if (selector === '[data-bgt-action="open-tts"]') return shortcut;
       return null;
     },
   };

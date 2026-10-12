@@ -289,7 +289,7 @@ const FLOATING_ID = `${MODULE_ID}-floating-button`;
 const FLOATING_POSITION_KEY = `${MODULE_ID}.floating-position.v1`;
 const MINI_HOST_ID = `${MODULE_ID}-mini-host`;
 const MINI_GAP = 10;
-const INTERCEPTOR_NAME = 'JingyiTranslator_interceptGeneration';
+const INTERCEPTOR_NAME = 'BeEagleTestTranslator_interceptGeneration';
 const EXTENSION_API_PATHS = Object.freeze({
   discover: '/api/extensions/discover',
   version: '/api/extensions/version',
@@ -488,433 +488,433 @@ const runtime = {
 };
 
 const CONTROL_CENTER_MARKUP = `
-<div class="jy-studio" data-jy-root>
-<aside class="jy-rail">
-  <div class="jy-identity"><span class="jy-monogram" aria-hidden="true">镜</span><div><strong>镜译</strong><small>正文翻译器</small></div></div>
-  <div class="jy-mode-switch" role="group" aria-label="界面模式"><button type="button" data-jy-action="set-ui-mode" data-jy-ui-mode="normal" aria-pressed="true">正常模式</button><button type="button" data-jy-action="set-ui-mode" data-jy-ui-mode="advanced" aria-pressed="false">高级模式</button></div>
-  <nav class="jy-navigation" role="tablist" aria-label="工作区">
-  <button type="button" role="tab" aria-selected="true" data-jy-tab="main"><span aria-hidden="true"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16v14H4z"/><path d="M4 10h16"/><path d="M9 14h6"/></svg></span>翻译台</button><button type="button" role="tab" aria-selected="false" data-jy-tab="finetune"><span aria-hidden="true"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h10"/><path d="M17 7h3"/><circle cx="14.5" cy="7" r="2.2"/><path d="M4 17h3"/><path d="M10 17h10"/><circle cx="7.5" cy="17" r="2.2"/></svg></span>微调</button><button type="button" role="tab" aria-selected="false" data-jy-tab="prompt"><span aria-hidden="true"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h9l5 5v11H5z"/><path d="M14 4v5h5"/><path d="M9 13h6"/><path d="M9 17h4"/></svg></span>翻译规则</button><button type="button" role="tab" aria-selected="false" data-jy-tab="settings"><span aria-hidden="true"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h13l-3-3"/><path d="M20 16H7l3 3"/></svg></span>模型连接</button><button type="button" role="tab" aria-selected="false" data-jy-tab="processing"><span aria-hidden="true"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M9 4v16"/><path d="M15 4v16"/><path d="M4 9h16"/><path d="M4 15h16"/></svg></span>正文处理</button><button type="button" role="tab" aria-selected="false" data-jy-tab="tts"><span aria-hidden="true"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9.5v5h3.5L12 18.5v-13L7.5 9.5z"/><path d="M15.5 9a4.2 4.2 0 0 1 0 6"/><path d="M18.3 6.2a8.2 8.2 0 0 1 0 11.6"/></svg></span>朗读</button><button type="button" role="tab" aria-selected="false" data-jy-tab="helper"><span aria-hidden="true"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16v11H10l-4 4v-4H4z"/><path d="M9.8 9.8a2.3 2.3 0 1 1 3.4 2c-.8.5-1.2 1-1.2 2"/><circle cx="12" cy="16.3" r="0.9" fill="currentColor" stroke="none"/></svg></span>小助手</button><button type="button" role="tab" aria-selected="false" data-jy-tab="logs"><span aria-hidden="true"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16"/><path d="M4 12h16"/><path d="M4 18h10"/></svg></span>运行记录</button>
+<div class="bgt-studio" data-bgt-root>
+<aside class="bgt-rail">
+  <div class="bgt-identity"><span class="bgt-monogram" aria-hidden="true">镜</span><div><strong>测试翻译</strong><small>正文翻译器</small></div></div>
+  <div class="bgt-mode-switch" role="group" aria-label="界面模式"><button type="button" data-bgt-action="set-ui-mode" data-bgt-ui-mode="normal" aria-pressed="true">正常模式</button><button type="button" data-bgt-action="set-ui-mode" data-bgt-ui-mode="advanced" aria-pressed="false">高级模式</button></div>
+  <nav class="bgt-navigation" role="tablist" aria-label="工作区">
+  <button type="button" role="tab" aria-selected="true" data-bgt-tab="main"><span aria-hidden="true"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16v14H4z"/><path d="M4 10h16"/><path d="M9 14h6"/></svg></span>翻译台</button><button type="button" role="tab" aria-selected="false" data-bgt-tab="finetune"><span aria-hidden="true"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h10"/><path d="M17 7h3"/><circle cx="14.5" cy="7" r="2.2"/><path d="M4 17h3"/><path d="M10 17h10"/><circle cx="7.5" cy="17" r="2.2"/></svg></span>微调</button><button type="button" role="tab" aria-selected="false" data-bgt-tab="prompt"><span aria-hidden="true"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h9l5 5v11H5z"/><path d="M14 4v5h5"/><path d="M9 13h6"/><path d="M9 17h4"/></svg></span>翻译规则</button><button type="button" role="tab" aria-selected="false" data-bgt-tab="settings"><span aria-hidden="true"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h13l-3-3"/><path d="M20 16H7l3 3"/></svg></span>模型连接</button><button type="button" role="tab" aria-selected="false" data-bgt-tab="processing"><span aria-hidden="true"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M9 4v16"/><path d="M15 4v16"/><path d="M4 9h16"/><path d="M4 15h16"/></svg></span>正文处理</button><button type="button" role="tab" aria-selected="false" data-bgt-tab="tts"><span aria-hidden="true"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9.5v5h3.5L12 18.5v-13L7.5 9.5z"/><path d="M15.5 9a4.2 4.2 0 0 1 0 6"/><path d="M18.3 6.2a8.2 8.2 0 0 1 0 11.6"/></svg></span>朗读</button><button type="button" role="tab" aria-selected="false" data-bgt-tab="helper"><span aria-hidden="true"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16v11H10l-4 4v-4H4z"/><path d="M9.8 9.8a2.3 2.3 0 1 1 3.4 2c-.8.5-1.2 1-1.2 2"/><circle cx="12" cy="16.3" r="0.9" fill="currentColor" stroke="none"/></svg></span>小助手</button><button type="button" role="tab" aria-selected="false" data-bgt-tab="logs"><span aria-hidden="true"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16"/><path d="M4 12h16"/><path d="M4 18h10"/></svg></span>运行记录</button>
   </nav>
-  <details class="jy-theme-picker"><summary><span aria-hidden="true">◐</span> 外观</summary><div class="jy-theme-options"><button type="button" data-jy-action="set-theme" data-jy-theme="day" aria-pressed="false"><i aria-hidden="true"></i>日间</button><button type="button" data-jy-action="set-theme" data-jy-theme="night" aria-pressed="false"><i aria-hidden="true"></i>夜间</button><button type="button" data-jy-action="set-theme" data-jy-theme="fresh" aria-pressed="false"><i aria-hidden="true"></i>护眼小清新</button><button type="button" data-jy-action="set-theme" data-jy-theme="vampire" aria-pressed="false"><i aria-hidden="true"></i>华美吸血鬼</button><button type="button" data-jy-action="set-theme" data-jy-theme="glass" aria-pressed="false"><i aria-hidden="true"></i>极简毛玻璃</button></div></details><div class="jy-rail-bottom"><span class="jy-version">v${APP_VERSION}</span><button type="button" data-jy-action="check-update" class="jy-update-button" hidden aria-label="检查镜译更新">↻ <span data-jy-update-label>检查更新</span></button></div><p class="jy-update-notice" data-jy-update-notice hidden role="status"></p>
+  <details class="bgt-theme-picker"><summary><span aria-hidden="true">◐</span> 外观</summary><div class="bgt-theme-options"><button type="button" data-bgt-action="set-theme" data-bgt-theme="day" aria-pressed="false"><i aria-hidden="true"></i>日间</button><button type="button" data-bgt-action="set-theme" data-bgt-theme="night" aria-pressed="false"><i aria-hidden="true"></i>夜间</button><button type="button" data-bgt-action="set-theme" data-bgt-theme="fresh" aria-pressed="false"><i aria-hidden="true"></i>护眼小清新</button><button type="button" data-bgt-action="set-theme" data-bgt-theme="vampire" aria-pressed="false"><i aria-hidden="true"></i>华美吸血鬼</button><button type="button" data-bgt-action="set-theme" data-bgt-theme="glass" aria-pressed="false"><i aria-hidden="true"></i>极简毛玻璃</button></div></details><div class="bgt-rail-bottom"><span class="bgt-version">v${APP_VERSION}</span><button type="button" data-bgt-action="check-update" class="bgt-update-button" hidden aria-label="检查测试翻译更新">↻ <span data-bgt-update-label>检查更新</span></button></div><p class="bgt-update-notice" data-bgt-update-notice hidden role="status"></p>
 </aside>
-<main class="jy-workspace">
-<section class="jy-page" data-jy-page="main" role="tabpanel">
+<main class="bgt-workspace">
+<section class="bgt-page" data-bgt-page="main" role="tabpanel">
 
-<div data-jy-mode-content="normal">
-<header class="jy-page-heading"><div><h1>翻译台</h1><span class="jy-page-context">选一套，一次设好；API Key、朗读音色、提取标签、术语表不会被套餐覆盖</span></div><span class="jy-autosave-indicator" data-jy-autosave-indicator>改了就存 ✓</span></header>
-<div class="jy-connection-choice jy-preset-grid" data-jy-preset-grid role="radiogroup" aria-label="套餐"></div>
-<p class="jy-preset-drift" data-jy-preset-drift hidden><span class="jy-state-mark" data-state="busy" aria-hidden="true">◌</span><span data-jy-preset-drift-text></span><button type="button" class="jy-text-button" data-jy-action="preset-restore">恢复原样</button><button type="button" class="jy-text-button" data-jy-action="preset-drift-toggle" aria-expanded="false">看改了什么 ▸</button></p>
-<ul class="jy-preset-drift-list" data-jy-preset-drift-list hidden></ul>
-<div class="jy-desk-columns">
- <div class="jy-desk-column">
-  <section class="jy-brief jy-desk-card">
-   <h2 class="jy-card-title">你自己的设置</h2>
-   <div class="jy-summary-row"><span class="jy-state-mark" data-jy-desk-tags-state aria-hidden="true"></span><div class="jy-summary-copy"><h3>提取标签</h3><p data-jy-desk-tags-summary></p></div><button type="button" class="jy-text-button" data-jy-action="goto-advanced" data-jy-goto-page="processing">改</button></div>
-   <div class="jy-summary-row"><span class="jy-state-mark" data-jy-desk-glossary-state aria-hidden="true"></span><div class="jy-summary-copy"><h3>姓名与术语表</h3><p data-jy-desk-glossary-summary></p></div><button type="button" class="jy-text-button" data-jy-action="goto-advanced" data-jy-goto-page="prompt">写</button></div>
+<div data-bgt-mode-content="normal">
+<header class="bgt-page-heading"><div><h1>翻译台</h1><span class="bgt-page-context">选一套，一次设好；API Key、朗读音色、提取标签、术语表不会被套餐覆盖</span></div><span class="bgt-autosave-indicator" data-bgt-autosave-indicator>改了就存 ✓</span></header>
+<div class="bgt-connection-choice bgt-preset-grid" data-bgt-preset-grid role="radiogroup" aria-label="套餐"></div>
+<p class="bgt-preset-drift" data-bgt-preset-drift hidden><span class="bgt-state-mark" data-state="busy" aria-hidden="true">◌</span><span data-bgt-preset-drift-text></span><button type="button" class="bgt-text-button" data-bgt-action="preset-restore">恢复原样</button><button type="button" class="bgt-text-button" data-bgt-action="preset-drift-toggle" aria-expanded="false">看改了什么 ▸</button></p>
+<ul class="bgt-preset-drift-list" data-bgt-preset-drift-list hidden></ul>
+<div class="bgt-desk-columns">
+ <div class="bgt-desk-column">
+  <section class="bgt-brief bgt-desk-card">
+   <h2 class="bgt-card-title">你自己的设置</h2>
+   <div class="bgt-summary-row"><span class="bgt-state-mark" data-bgt-desk-tags-state aria-hidden="true"></span><div class="bgt-summary-copy"><h3>提取标签</h3><p data-bgt-desk-tags-summary></p></div><button type="button" class="bgt-text-button" data-bgt-action="goto-advanced" data-bgt-goto-page="processing">改</button></div>
+   <div class="bgt-summary-row"><span class="bgt-state-mark" data-bgt-desk-glossary-state aria-hidden="true"></span><div class="bgt-summary-copy"><h3>姓名与术语表</h3><p data-bgt-desk-glossary-summary></p></div><button type="button" class="bgt-text-button" data-bgt-action="goto-advanced" data-bgt-goto-page="prompt">写</button></div>
   </section>
-  <section class="jy-brief jy-desk-card jy-desk-fish" data-jy-desk-fish-card>
-   <div class="jy-card-head"><h2 class="jy-card-title">朗读 · Fish Audio</h2><span class="jy-mini-pill" data-state="error" data-jy-desk-fish-missing hidden>没填</span><span class="jy-muted" data-jy-desk-fish-need hidden>有声小说、全都要 要用</span></div>
-   <div class="jy-inline-actions">
-    <input type="password" data-jy-tts-fish="key" placeholder="Fish Audio API Key" aria-label="Fish Audio API Key" autocomplete="new-password" spellcheck="false" style="flex: 1 1 160px; min-width: 0;">
-    <select data-jy-tts-fish="model" aria-label="模型"><option value="s2-pro">s2-pro</option><option value="s2.1-pro">s2.1-pro</option><option value="s2.1-pro-free">s2.1-pro-free（免费开发者档）</option><option value="drama-3-preview">drama-3-preview（预览版）</option><option value="s1">s1（旧版，不能一次用多个音色）</option></select>
-    <button type="button" class="jy-button" data-jy-action="tts-test">测试连接</button>
+  <section class="bgt-brief bgt-desk-card bgt-desk-fish" data-bgt-desk-fish-card>
+   <div class="bgt-card-head"><h2 class="bgt-card-title">朗读 · Fish Audio</h2><span class="bgt-mini-pill" data-state="error" data-bgt-desk-fish-missing hidden>没填</span><span class="bgt-muted" data-bgt-desk-fish-need hidden>有声小说、全都要 要用</span></div>
+   <div class="bgt-inline-actions">
+    <input type="password" data-bgt-tts-fish="key" placeholder="Fish Audio API Key" aria-label="Fish Audio API Key" autocomplete="new-password" spellcheck="false" style="flex: 1 1 160px; min-width: 0;">
+    <select data-bgt-tts-fish="model" aria-label="模型"><option value="s2-pro">s2-pro</option><option value="s2.1-pro">s2.1-pro</option><option value="s2.1-pro-free">s2.1-pro-free（免费开发者档）</option><option value="drama-3-preview">drama-3-preview（预览版）</option><option value="s1">s1（旧版，不能一次用多个音色）</option></select>
+    <button type="button" class="bgt-button" data-bgt-action="tts-test">测试连接</button>
    </div>
-   <label class="jy-summary-row jy-summary-select"><span class="jy-label">分析模式</span><span class="jy-switch"><input type="checkbox" data-jy-tts-field="mode" aria-label="分析模式"><span></span></span></label>
-   <p class="jy-muted" data-jy-desk-mode-help></p>
+   <label class="bgt-summary-row bgt-summary-select"><span class="bgt-label">分析模式</span><span class="bgt-switch"><input type="checkbox" data-bgt-tts-field="mode" aria-label="分析模式"><span></span></span></label>
+   <p class="bgt-muted" data-bgt-desk-mode-help></p>
   </section>
  </div>
- <section class="jy-brief jy-desk-card jy-desk-connections">
-  <h2 class="jy-card-title">API Key</h2>
-  <div class="jy-connection-uses" data-jy-connection-uses><h3>各功能用哪条连接</h3></div>
-  <div class="jy-desk-connection-list" data-jy-desk-connection-list></div>
-  <div class="jy-inline-actions"><button type="button" class="jy-button" data-jy-action="add-channel">＋ 添加连接</button></div>
+ <section class="bgt-brief bgt-desk-card bgt-desk-connections">
+  <h2 class="bgt-card-title">API Key</h2>
+  <div class="bgt-connection-uses" data-bgt-connection-uses><h3>各功能用哪条连接</h3></div>
+  <div class="bgt-desk-connection-list" data-bgt-desk-connection-list></div>
+  <div class="bgt-inline-actions"><button type="button" class="bgt-button" data-bgt-action="add-channel">＋ 添加连接</button></div>
  </section>
 </div>
-<footer class="jy-footer"><button type="button" class="jy-button jy-button-primary" data-jy-action="translate">翻译当前回复</button><button type="button" class="jy-text-button" data-jy-action="translate-missing">补译缺失段落</button></footer>
+<footer class="bgt-footer"><button type="button" class="bgt-button bgt-button-primary" data-bgt-action="translate">翻译当前回复</button><button type="button" class="bgt-text-button" data-bgt-action="translate-missing">补译缺失段落</button></footer>
 </div>
 
-<div data-jy-mode-content="advanced" hidden>
-<header class="jy-page-heading"><div><h1>翻译台</h1><span class="jy-page-context" data-jy-desk-context></span></div><span class="jy-autosave-indicator" data-jy-autosave-indicator>改了就存 ✓</span><button type="button" class="jy-button" data-jy-action="refresh">刷新楼层</button></header>
-<div class="jy-manuscript">
-  <div class="jy-run-state" aria-live="polite"><span class="jy-dot" data-jy-task-dot="idle"></span><h2 data-jy-task-title>等待正文</h2><span class="jy-run-count" data-jy-current-state>待读取</span></div>
-  <div class="jy-progress" aria-hidden="true"><span data-jy-progress></span></div>
-  <p class="jy-muted" data-jy-task-message>打开一段故事，从这里开始翻译。</p>
-  <section class="jy-thinking" data-jy-thinking hidden>
-   <button type="button" class="jy-thinking-head" data-jy-action="toggle-thinking" aria-expanded="false" aria-controls="jy-thinking-body">
-    <span class="jy-thinking-pulse" aria-hidden="true"></span>
-    <span class="jy-thinking-label" data-jy-thinking-label>模型正在思考</span>
-    <span class="jy-thinking-count" data-jy-thinking-count></span>
-    <span class="jy-thinking-caret" aria-hidden="true"></span>
+<div data-bgt-mode-content="advanced" hidden>
+<header class="bgt-page-heading"><div><h1>翻译台</h1><span class="bgt-page-context" data-bgt-desk-context></span></div><span class="bgt-autosave-indicator" data-bgt-autosave-indicator>改了就存 ✓</span><button type="button" class="bgt-button" data-bgt-action="refresh">刷新楼层</button></header>
+<div class="bgt-manuscript">
+  <div class="bgt-run-state" aria-live="polite"><span class="bgt-dot" data-bgt-task-dot="idle"></span><h2 data-bgt-task-title>等待正文</h2><span class="bgt-run-count" data-bgt-current-state>待读取</span></div>
+  <div class="bgt-progress" aria-hidden="true"><span data-bgt-progress></span></div>
+  <p class="bgt-muted" data-bgt-task-message>打开一段故事，从这里开始翻译。</p>
+  <section class="bgt-thinking" data-bgt-thinking hidden>
+   <button type="button" class="bgt-thinking-head" data-bgt-action="toggle-thinking" aria-expanded="false" aria-controls="bgt-thinking-body">
+    <span class="bgt-thinking-pulse" aria-hidden="true"></span>
+    <span class="bgt-thinking-label" data-bgt-thinking-label>模型正在思考</span>
+    <span class="bgt-thinking-count" data-bgt-thinking-count></span>
+    <span class="bgt-thinking-caret" aria-hidden="true"></span>
    </button>
-   <div class="jy-thinking-body" id="jy-thinking-body" data-jy-thinking-body hidden><pre data-jy-thinking-text></pre></div>
+   <div class="bgt-thinking-body" id="bgt-thinking-body" data-bgt-thinking-body hidden><pre data-bgt-thinking-text></pre></div>
   </section>
-  <dl class="jy-desk-facts"><div><dt>当前楼层</dt><dd data-jy-floor>—</dd></div><div><dt>滑动页</dt><dd data-jy-swipe>—</dd></div><div><dt>正文规模</dt><dd data-jy-segments>—</dd></div><div><dt>目标语言</dt><dd data-jy-desk-target>—</dd></div></dl>
-  <div class="jy-launch"><button type="button" class="jy-button jy-button-primary" data-jy-action="translate">翻译当前回复</button><button type="button" class="jy-button" data-jy-action="translate-missing">补译缺失段落</button><button type="button" class="jy-text-button jy-text-button-danger jy-launch-danger" data-jy-action="clear-floor">清除这一楼的译文</button></div>
+  <dl class="bgt-desk-facts"><div><dt>当前楼层</dt><dd data-bgt-floor>—</dd></div><div><dt>滑动页</dt><dd data-bgt-swipe>—</dd></div><div><dt>正文规模</dt><dd data-bgt-segments>—</dd></div><div><dt>目标语言</dt><dd data-bgt-desk-target>—</dd></div></dl>
+  <div class="bgt-launch"><button type="button" class="bgt-button bgt-button-primary" data-bgt-action="translate">翻译当前回复</button><button type="button" class="bgt-button" data-bgt-action="translate-missing">补译缺失段落</button><button type="button" class="bgt-text-button bgt-text-button-danger bgt-launch-danger" data-bgt-action="clear-floor">清除这一楼的译文</button></div>
 </div>
-<div class="jy-card-grid">
- <section class="jy-card">
+<div class="bgt-card-grid">
+ <section class="bgt-card">
   <h2>自动</h2>
-  <div class="jy-card-row"><div class="jy-card-row-text"><h3>自动接续翻译</h3><p class="jy-muted">主回复完成后，自动补上译文。</p></div><label class="jy-switch"><input type="checkbox" data-jy-field="autoGeneration" aria-label="主回复完成后自动翻译"><span></span></label></div>
-  <div class="jy-card-row jy-card-row-dependent" data-jy-dependent="autoSwipe"><label class="jy-check"><input type="checkbox" data-jy-field="autoSwipe">切换滑动页时补译</label><p class="jy-muted jy-dependent-reason">先打开上面的「自动接续翻译」，这一项才会生效。</p></div>
-  <div class="jy-card-row jy-card-row-dependent" data-jy-stream-row><label class="jy-check"><input type="checkbox" data-jy-field="streamingWriteback">流式写回（beta，勾选后所有翻译走流式；仅独立模式，跟随模式自动回退整包）</label><p class="jy-muted" data-jy-stream-reason>只在独立连接下生效；跟随酒馆时自动回退整包。</p></div>
-  <div class="jy-card-row"><span class="jy-label">翻译失败后自动重试</span><span class="jy-card-row-field"><input type="number" data-jy-field="retries" min="0" max="5" step="1" aria-label="翻译失败后自动重试"><span class="jy-muted">次</span></span></div>
+  <div class="bgt-card-row"><div class="bgt-card-row-text"><h3>自动接续翻译</h3><p class="bgt-muted">主回复完成后，自动补上译文。</p></div><label class="bgt-switch"><input type="checkbox" data-bgt-field="autoGeneration" aria-label="主回复完成后自动翻译"><span></span></label></div>
+  <div class="bgt-card-row bgt-card-row-dependent" data-bgt-dependent="autoSwipe"><label class="bgt-check"><input type="checkbox" data-bgt-field="autoSwipe">切换滑动页时补译</label><p class="bgt-muted bgt-dependent-reason">先打开上面的「自动接续翻译」，这一项才会生效。</p></div>
+  <div class="bgt-card-row bgt-card-row-dependent" data-bgt-stream-row><label class="bgt-check"><input type="checkbox" data-bgt-field="streamingWriteback">流式写回（beta，勾选后所有翻译走流式；仅独立模式，跟随模式自动回退整包）</label><p class="bgt-muted" data-bgt-stream-reason>只在独立连接下生效；跟随酒馆时自动回退整包。</p></div>
+  <div class="bgt-card-row"><span class="bgt-label">翻译失败后自动重试</span><span class="bgt-card-row-field"><input type="number" data-bgt-field="retries" min="0" max="5" step="1" aria-label="翻译失败后自动重试"><span class="bgt-muted">次</span></span></div>
  </section>
- <section class="jy-card">
+ <section class="bgt-card">
   <h2>用什么翻</h2>
-  <div class="jy-card-row"><div class="jy-card-row-text"><h3>翻译方案</h3><p class="jy-muted" data-jy-active-profile>待读取</p></div><button type="button" class="jy-text-button" data-jy-action="open-prompt">编辑规则 →</button></div>
-  <div class="jy-card-row"><div class="jy-card-row-text"><h3>翻译用哪条连接</h3><p class="jy-muted" data-jy-channel-summary></p></div><label class="jy-sr-only" for="jy-desk-channel">翻译用哪条连接</label><select id="jy-desk-channel" data-jy-translation-channel></select></div>
-  <div class="jy-card-row"><div class="jy-card-row-text"><h3>翻译引擎</h3><p class="jy-muted" data-jy-translation-provider-summary></p></div><label class="jy-sr-only" for="jy-translation-provider">翻译引擎</label><select id="jy-translation-provider" data-jy-field="translationProvider"><option value="model">镜译模型翻译</option><option value="bing">Bing 网页翻译（免密钥）</option></select></div>
-  <div class="jy-card-row"><p class="jy-muted">连接的地址、密钥、模型在「模型连接」页管理；翻译、分析模式、小助手各用哪条，在那一页最上面的「各功能用哪条连接」里选，互不牵连。</p><button type="button" class="jy-text-button" data-jy-action="open-settings">管理连接（地址、密钥、模型）→</button></div>
-  <div class="jy-card-row"><div class="jy-card-row-text"><h3>参考资料</h3><p class="jy-muted" data-jy-context-summary></p></div><button type="button" class="jy-text-button" data-jy-action="open-prompt">改 →</button></div>
+  <div class="bgt-card-row"><div class="bgt-card-row-text"><h3>翻译方案</h3><p class="bgt-muted" data-bgt-active-profile>待读取</p></div><button type="button" class="bgt-text-button" data-bgt-action="open-prompt">编辑规则 →</button></div>
+  <div class="bgt-card-row"><div class="bgt-card-row-text"><h3>翻译用哪条连接</h3><p class="bgt-muted" data-bgt-channel-summary></p></div><label class="bgt-sr-only" for="bgt-desk-channel">翻译用哪条连接</label><select id="bgt-desk-channel" data-bgt-translation-channel></select></div>
+  <div class="bgt-card-row"><div class="bgt-card-row-text"><h3>翻译引擎</h3><p class="bgt-muted" data-bgt-translation-provider-summary></p></div><label class="bgt-sr-only" for="bgt-translation-provider">翻译引擎</label><select id="bgt-translation-provider" data-bgt-field="translationProvider"><option value="model">测试翻译模型翻译</option><option value="bing">Bing 网页翻译（免密钥）</option></select></div>
+  <div class="bgt-card-row"><p class="bgt-muted">连接的地址、密钥、模型在「模型连接」页管理；翻译、分析模式、小助手各用哪条，在那一页最上面的「各功能用哪条连接」里选，互不牵连。</p><button type="button" class="bgt-text-button" data-bgt-action="open-settings">管理连接（地址、密钥、模型）→</button></div>
+  <div class="bgt-card-row"><div class="bgt-card-row-text"><h3>参考资料</h3><p class="bgt-muted" data-bgt-context-summary></p></div><button type="button" class="bgt-text-button" data-bgt-action="open-prompt">改 →</button></div>
  </section>
 </div>
-<section class="jy-card" data-jy-translation-only>
- <div class="jy-card-row"><div class="jy-card-row-text"><h3>只留译文</h3><p class="jy-muted">翻译完整的楼层，正文里只留译文；原文收进镜译的楼层数据，重译、朗读原文、发给主模型时自动取回。打开后新翻译的楼层生效。复制、导出 txt 和其他插件只拿得到译文；手改过的楼层不再自动翻译；卸载镜译前先点「恢复本聊天的原文」。</p></div><label class="jy-switch"><input type="checkbox" data-jy-field="translationOnly" aria-label="只留译文"><span></span></label></div>
- <div class="jy-card-row jy-card-row-end"><button type="button" class="jy-text-button jy-text-button-danger" data-jy-action="restore-originals">恢复本聊天的原文</button></div>
+<section class="bgt-card" data-bgt-translation-only>
+ <div class="bgt-card-row"><div class="bgt-card-row-text"><h3>只留译文</h3><p class="bgt-muted">翻译完整的楼层，正文里只留译文；原文收进测试翻译的楼层数据，重译、朗读原文、发给主模型时自动取回。打开后新翻译的楼层生效。复制、导出 txt 和其他插件只拿得到译文；手改过的楼层不再自动翻译；卸载测试翻译前先点「恢复本聊天的原文」。</p></div><label class="bgt-switch"><input type="checkbox" data-bgt-field="translationOnly" aria-label="只留译文"><span></span></label></div>
+ <div class="bgt-card-row bgt-card-row-end"><button type="button" class="bgt-text-button bgt-text-button-danger" data-bgt-action="restore-originals">恢复本聊天的原文</button></div>
 </section>
-<section class="jy-card" data-jy-tts-desk>
- <div class="jy-card-row"><div class="jy-card-row-text"><h3>朗读（有声小说）</h3><p class="jy-muted">把译文或原文念出来，细节在朗读页。关着就是只翻译，楼层里不加任何东西。需要 Fish Audio 的 API Key，或者在自己电脑上运行 GPT-SoVITS。</p></div><label class="jy-switch"><input type="checkbox" data-jy-tts-field="enabled" aria-label="朗读功能"><span></span></label></div>
- <div class="jy-card-row jy-card-row-end"><button type="button" class="jy-text-button" data-jy-action="open-tts" hidden>朗读设置 →</button></div>
+<section class="bgt-card" data-bgt-tts-desk>
+ <div class="bgt-card-row"><div class="bgt-card-row-text"><h3>朗读（有声小说）</h3><p class="bgt-muted">把译文或原文念出来，细节在朗读页。关着就是只翻译，楼层里不加任何东西。需要 Fish Audio 的 API Key，或者在自己电脑上运行 GPT-SoVITS。</p></div><label class="bgt-switch"><input type="checkbox" data-bgt-tts-field="enabled" aria-label="朗读功能"><span></span></label></div>
+ <div class="bgt-card-row bgt-card-row-end"><button type="button" class="bgt-text-button" data-bgt-action="open-tts" hidden>朗读设置 →</button></div>
 </section>
 </div>
 </section>
 
-<section class="jy-page" data-jy-page="finetune" role="tabpanel" hidden>
-<header class="jy-page-heading"><div><h1>微调</h1><span class="jy-page-context" data-jy-finetune-context></span></div><span class="jy-autosave-indicator" data-jy-autosave-indicator>改了就存 ✓</span></header>
-<div class="jy-desk-columns jy-finetune-columns">
- <section class="jy-brief jy-desk-card">
-  <h2 class="jy-card-title">翻译</h2>
-  <div class="jy-summary-row"><div class="jy-summary-copy"><h3>自动接续翻译</h3></div><span class="jy-mini-pill" data-jy-finetune-drift="autoGeneration" hidden>改过</span><label class="jy-switch"><input type="checkbox" data-jy-field="autoGeneration" aria-label="自动接续翻译"><span></span></label></div>
-  <div class="jy-summary-row jy-summary-row-sub" data-jy-dependent="autoSwipe"><div class="jy-summary-copy"><h3>切换滑动页时补译</h3><p class="jy-muted jy-dependent-reason">先打开上面的「自动接续翻译」，这一项才会生效。</p></div><span class="jy-mini-pill" data-jy-finetune-drift="autoSwipe" hidden>改过</span><label class="jy-switch"><input type="checkbox" data-jy-field="autoSwipe" aria-label="切换滑动页时补译"><span></span></label></div>
-  <div class="jy-summary-row"><div class="jy-summary-copy"><h3>只留译文</h3><p><button type="button" class="jy-text-button" data-jy-action="goto-advanced" data-jy-goto-page="main">打开前先看说明 →</button></p></div><label class="jy-switch"><input type="checkbox" data-jy-field="translationOnly" aria-label="只留译文"><span></span></label></div>
-  <label class="jy-summary-row jy-summary-select"><span class="jy-label">翻译文风<span class="jy-mini-pill" data-jy-finetune-profile-drift="styleMode" hidden>改过</span></span><select data-jy-finetune-profile-field="styleMode"></select></label>
-  <label class="jy-summary-row jy-summary-select"><span class="jy-label">称谓与角色口吻<span class="jy-mini-pill" data-jy-finetune-profile-drift="honorificMode" hidden>改过</span></span><select data-jy-finetune-profile-field="honorificMode"></select></label>
-  <label class="jy-summary-row jy-summary-select"><span class="jy-label">对话与标点<span class="jy-mini-pill" data-jy-finetune-profile-drift="punctuationMode" hidden>改过</span></span><select data-jy-finetune-profile-field="punctuationMode"></select></label>
-  <div class="jy-summary-row jy-summary-row-end"><button type="button" class="jy-text-button jy-text-button-danger" data-jy-action="clear-floor">清除这一楼的译文</button></div>
+<section class="bgt-page" data-bgt-page="finetune" role="tabpanel" hidden>
+<header class="bgt-page-heading"><div><h1>微调</h1><span class="bgt-page-context" data-bgt-finetune-context></span></div><span class="bgt-autosave-indicator" data-bgt-autosave-indicator>改了就存 ✓</span></header>
+<div class="bgt-desk-columns bgt-finetune-columns">
+ <section class="bgt-brief bgt-desk-card">
+  <h2 class="bgt-card-title">翻译</h2>
+  <div class="bgt-summary-row"><div class="bgt-summary-copy"><h3>自动接续翻译</h3></div><span class="bgt-mini-pill" data-bgt-finetune-drift="autoGeneration" hidden>改过</span><label class="bgt-switch"><input type="checkbox" data-bgt-field="autoGeneration" aria-label="自动接续翻译"><span></span></label></div>
+  <div class="bgt-summary-row bgt-summary-row-sub" data-bgt-dependent="autoSwipe"><div class="bgt-summary-copy"><h3>切换滑动页时补译</h3><p class="bgt-muted bgt-dependent-reason">先打开上面的「自动接续翻译」，这一项才会生效。</p></div><span class="bgt-mini-pill" data-bgt-finetune-drift="autoSwipe" hidden>改过</span><label class="bgt-switch"><input type="checkbox" data-bgt-field="autoSwipe" aria-label="切换滑动页时补译"><span></span></label></div>
+  <div class="bgt-summary-row"><div class="bgt-summary-copy"><h3>只留译文</h3><p><button type="button" class="bgt-text-button" data-bgt-action="goto-advanced" data-bgt-goto-page="main">打开前先看说明 →</button></p></div><label class="bgt-switch"><input type="checkbox" data-bgt-field="translationOnly" aria-label="只留译文"><span></span></label></div>
+  <label class="bgt-summary-row bgt-summary-select"><span class="bgt-label">翻译文风<span class="bgt-mini-pill" data-bgt-finetune-profile-drift="styleMode" hidden>改过</span></span><select data-bgt-finetune-profile-field="styleMode"></select></label>
+  <label class="bgt-summary-row bgt-summary-select"><span class="bgt-label">称谓与角色口吻<span class="bgt-mini-pill" data-bgt-finetune-profile-drift="honorificMode" hidden>改过</span></span><select data-bgt-finetune-profile-field="honorificMode"></select></label>
+  <label class="bgt-summary-row bgt-summary-select"><span class="bgt-label">对话与标点<span class="bgt-mini-pill" data-bgt-finetune-profile-drift="punctuationMode" hidden>改过</span></span><select data-bgt-finetune-profile-field="punctuationMode"></select></label>
+  <div class="bgt-summary-row bgt-summary-row-end"><button type="button" class="bgt-text-button bgt-text-button-danger" data-bgt-action="clear-floor">清除这一楼的译文</button></div>
  </section>
- <div class="jy-desk-column">
-  <section class="jy-brief jy-desk-card">
-   <h2 class="jy-card-title">显示</h2>
-   <div class="jy-summary-row"><div class="jy-summary-copy"><h3>说话人着色</h3></div><span class="jy-mini-pill" data-jy-finetune-drift="coloringSpeakers" hidden>改过</span><label class="jy-switch"><input type="checkbox" data-jy-field="coloringSpeakers" aria-label="说话人着色"><span></span></label></div>
-   <div class="jy-summary-row jy-summary-row-sub" data-jy-dependent="coloringEffects"><div class="jy-summary-copy"><h3>特效字</h3><p><button type="button" class="jy-text-button" data-jy-action="goto-advanced" data-jy-goto-page="processing" data-jy-open-fold="processing-moves">招式表 →</button></p><p class="jy-muted jy-dependent-reason">先打开上面的「说话人着色」，这一项才会生效。</p></div><span class="jy-mini-pill" data-jy-finetune-drift="coloringEffects" hidden>改过</span><label class="jy-switch"><input type="checkbox" data-jy-field="coloringEffects" aria-label="特效字"><span></span></label></div>
-   <div class="jy-summary-row"><div class="jy-summary-copy"><h3>情绪排版</h3></div><span class="jy-mini-pill" data-jy-finetune-drift="coloringEmotions" hidden>改过</span><label class="jy-switch"><input type="checkbox" data-jy-field="coloringEmotions" aria-label="情绪排版"><span></span></label></div>
-   <label class="jy-summary-row jy-summary-select"><span class="jy-label">内置美化</span><select data-jy-finetune-reading-style aria-label="内置美化"><option value="">（当前方案不是内置美化）</option><option value="cute">可爱风</option><option value="minimal">极简风</option><option value="fold">原文折叠</option></select></label>
-   <div class="jy-summary-row"><div class="jy-summary-copy"><h3>点正文跳到悬浮窗</h3></div><label class="jy-switch"><input type="checkbox" data-jy-field="segmentJump" aria-label="点正文跳到悬浮窗"><span></span></label></div>
+ <div class="bgt-desk-column">
+  <section class="bgt-brief bgt-desk-card">
+   <h2 class="bgt-card-title">显示</h2>
+   <div class="bgt-summary-row"><div class="bgt-summary-copy"><h3>说话人着色</h3></div><span class="bgt-mini-pill" data-bgt-finetune-drift="coloringSpeakers" hidden>改过</span><label class="bgt-switch"><input type="checkbox" data-bgt-field="coloringSpeakers" aria-label="说话人着色"><span></span></label></div>
+   <div class="bgt-summary-row bgt-summary-row-sub" data-bgt-dependent="coloringEffects"><div class="bgt-summary-copy"><h3>特效字</h3><p><button type="button" class="bgt-text-button" data-bgt-action="goto-advanced" data-bgt-goto-page="processing" data-bgt-open-fold="processing-moves">招式表 →</button></p><p class="bgt-muted bgt-dependent-reason">先打开上面的「说话人着色」，这一项才会生效。</p></div><span class="bgt-mini-pill" data-bgt-finetune-drift="coloringEffects" hidden>改过</span><label class="bgt-switch"><input type="checkbox" data-bgt-field="coloringEffects" aria-label="特效字"><span></span></label></div>
+   <div class="bgt-summary-row"><div class="bgt-summary-copy"><h3>情绪排版</h3></div><span class="bgt-mini-pill" data-bgt-finetune-drift="coloringEmotions" hidden>改过</span><label class="bgt-switch"><input type="checkbox" data-bgt-field="coloringEmotions" aria-label="情绪排版"><span></span></label></div>
+   <label class="bgt-summary-row bgt-summary-select"><span class="bgt-label">内置美化</span><select data-bgt-finetune-reading-style aria-label="内置美化"><option value="">（当前方案不是内置美化）</option><option value="cute">可爱风</option><option value="minimal">极简风</option><option value="fold">原文折叠</option></select></label>
+   <div class="bgt-summary-row"><div class="bgt-summary-copy"><h3>点正文跳到悬浮窗</h3></div><label class="bgt-switch"><input type="checkbox" data-bgt-field="segmentJump" aria-label="点正文跳到悬浮窗"><span></span></label></div>
   </section>
-  <section class="jy-brief jy-desk-card">
-   <h2 class="jy-card-title">朗读</h2>
-   <div class="jy-summary-row"><div class="jy-summary-copy"><h3>朗读功能</h3></div><span class="jy-mini-pill" data-jy-finetune-drift="ttsEnabled" hidden>改过</span><label class="jy-switch"><input type="checkbox" data-jy-tts-field="enabled" aria-label="朗读功能"><span></span></label></div>
-   <div data-jy-finetune-tts-sub>
-    <div class="jy-summary-row jy-summary-row-sub"><div class="jy-summary-copy"><h3>分析模式</h3></div><span class="jy-mini-pill" data-jy-finetune-drift="ttsMode" hidden>改过</span><label class="jy-switch"><input type="checkbox" data-jy-tts-field="mode" aria-label="分析模式"><span></span></label></div>
-    <label class="jy-summary-row jy-summary-select jy-summary-row-sub" data-jy-finetune-deep-channel hidden><span class="jy-label">分析模式用的连接</span><select data-jy-tts-field="deepChannelId"></select></label>
-    <label class="jy-summary-row jy-summary-select jy-summary-row-sub" data-jy-finetune-intimate hidden><span class="jy-label">亲密场景</span><select data-jy-tts-field="intimate"><option value="off">关</option><option value="auto">自动</option><option value="on">开</option></select></label>
-    <label class="jy-summary-row jy-summary-select jy-summary-row-sub"><span class="jy-label">朗读语言</span><select data-jy-tts-field="side"><option value="translation">译文</option><option value="source">原文</option><option value="both">译文 + 原文（各自生成，点哪个读哪个）</option><option value="dialogue_source">对白读原文</option></select></label>
-    <div class="jy-summary-row jy-summary-row-sub"><div class="jy-summary-copy"><h3>新回复自动朗读</h3></div><span class="jy-mini-pill" data-jy-finetune-drift="ttsAutoRead" hidden>改过</span><label class="jy-switch"><input type="checkbox" data-jy-tts-field="autoRead" aria-label="新回复自动朗读"><span></span></label></div>
+  <section class="bgt-brief bgt-desk-card">
+   <h2 class="bgt-card-title">朗读</h2>
+   <div class="bgt-summary-row"><div class="bgt-summary-copy"><h3>朗读功能</h3></div><span class="bgt-mini-pill" data-bgt-finetune-drift="ttsEnabled" hidden>改过</span><label class="bgt-switch"><input type="checkbox" data-bgt-tts-field="enabled" aria-label="朗读功能"><span></span></label></div>
+   <div data-bgt-finetune-tts-sub>
+    <div class="bgt-summary-row bgt-summary-row-sub"><div class="bgt-summary-copy"><h3>分析模式</h3></div><span class="bgt-mini-pill" data-bgt-finetune-drift="ttsMode" hidden>改过</span><label class="bgt-switch"><input type="checkbox" data-bgt-tts-field="mode" aria-label="分析模式"><span></span></label></div>
+    <label class="bgt-summary-row bgt-summary-select bgt-summary-row-sub" data-bgt-finetune-deep-channel hidden><span class="bgt-label">分析模式用的连接</span><select data-bgt-tts-field="deepChannelId"></select></label>
+    <label class="bgt-summary-row bgt-summary-select bgt-summary-row-sub" data-bgt-finetune-intimate hidden><span class="bgt-label">亲密场景</span><select data-bgt-tts-field="intimate"><option value="off">关</option><option value="auto">自动</option><option value="on">开</option></select></label>
+    <label class="bgt-summary-row bgt-summary-select bgt-summary-row-sub"><span class="bgt-label">朗读语言</span><select data-bgt-tts-field="side"><option value="translation">译文</option><option value="source">原文</option><option value="both">译文 + 原文（各自生成，点哪个读哪个）</option><option value="dialogue_source">对白读原文</option></select></label>
+    <div class="bgt-summary-row bgt-summary-row-sub"><div class="bgt-summary-copy"><h3>新回复自动朗读</h3></div><span class="bgt-mini-pill" data-bgt-finetune-drift="ttsAutoRead" hidden>改过</span><label class="bgt-switch"><input type="checkbox" data-bgt-tts-field="autoRead" aria-label="新回复自动朗读"><span></span></label></div>
    </div>
   </section>
  </div>
 </div>
-<footer class="jy-footer"><button type="button" class="jy-text-button" data-jy-action="preset-restore">恢复原样</button><span class="jy-muted" style="margin-left:auto; display:flex; align-items:center; gap:6px">其余设置<button type="button" class="jy-text-button" data-jy-action="goto-advanced" data-jy-goto-page="main">切到高级模式 →</button></span></footer>
+<footer class="bgt-footer"><button type="button" class="bgt-text-button" data-bgt-action="preset-restore">恢复原样</button><span class="bgt-muted" style="margin-left:auto; display:flex; align-items:center; gap:6px">其余设置<button type="button" class="bgt-text-button" data-bgt-action="goto-advanced" data-bgt-goto-page="main">切到高级模式 →</button></span></footer>
 </section>
 
-<section class="jy-page" data-jy-page="prompt" role="tabpanel" hidden>
-<header class="jy-page-heading"><div><h1>翻译规则</h1><span class="jy-page-context" data-jy-prompt-context></span></div><span class="jy-autosave-indicator" data-jy-autosave-indicator>改了就存 ✓</span></header>
-<div class="jy-profile-bar">
-<label><span class="jy-label">当前方案</span><select data-jy-prompt-profile-select></select></label>
-<label><span class="jy-label">方案名称</span><input type="text" data-jy-prompt-profile-name maxlength="60"></label>
-<label><span class="jy-label">目标语言</span><input type="text" list="jy-target-language-list" data-jy-profile-field="targetLanguage" maxlength="80" placeholder="简体中文"></label>
-<datalist id="jy-target-language-list"><option value="简体中文"></option><option value="繁體中文"></option><option value="English"></option><option value="한국어"></option></datalist>
+<section class="bgt-page" data-bgt-page="prompt" role="tabpanel" hidden>
+<header class="bgt-page-heading"><div><h1>翻译规则</h1><span class="bgt-page-context" data-bgt-prompt-context></span></div><span class="bgt-autosave-indicator" data-bgt-autosave-indicator>改了就存 ✓</span></header>
+<div class="bgt-profile-bar">
+<label><span class="bgt-label">当前方案</span><select data-bgt-prompt-profile-select></select></label>
+<label><span class="bgt-label">方案名称</span><input type="text" data-bgt-prompt-profile-name maxlength="60"></label>
+<label><span class="bgt-label">目标语言</span><input type="text" list="bgt-target-language-list" data-bgt-profile-field="targetLanguage" maxlength="80" placeholder="简体中文"></label>
+<datalist id="bgt-target-language-list"><option value="简体中文"></option><option value="繁體中文"></option><option value="English"></option><option value="한국어"></option></datalist>
 </div>
-<p class="jy-muted" data-jy-language-support></p>
-<div class="jy-card-grid">
- <section class="jy-card">
-  <h2>常用</h2><p class="jy-muted">选一下就行</p>
-  <div data-jy-standard-prompt-list="common"></div>
+<p class="bgt-muted" data-bgt-language-support></p>
+<div class="bgt-card-grid">
+ <section class="bgt-card">
+  <h2>常用</h2><p class="bgt-muted">选一下就行</p>
+  <div data-bgt-standard-prompt-list="common"></div>
  </section>
- <section class="jy-card">
-  <h2>进阶</h2><p class="jy-muted">要自己写几句</p>
-  <div data-jy-standard-prompt-list="advanced"></div>
-  <div class="jy-card-row"><div class="jy-card-row-text"><h3>自定义条目</h3><p class="jy-muted jy-empty-small" data-jy-custom-empty>按 ＋ 添加你的规则</p></div><button type="button" class="jy-icon-button" data-jy-action="add-prompt-section" aria-label="添加自定义条目">＋</button></div>
-  <div data-jy-custom-prompt-list></div>
+ <section class="bgt-card">
+  <h2>进阶</h2><p class="bgt-muted">要自己写几句</p>
+  <div data-bgt-standard-prompt-list="advanced"></div>
+  <div class="bgt-card-row"><div class="bgt-card-row-text"><h3>自定义条目</h3><p class="bgt-muted bgt-empty-small" data-bgt-custom-empty>按 ＋ 添加你的规则</p></div><button type="button" class="bgt-icon-button" data-bgt-action="add-prompt-section" aria-label="添加自定义条目">＋</button></div>
+  <div data-bgt-custom-prompt-list></div>
  </section>
- <section class="jy-card">
-  <h2>专家</h2><p class="jy-muted">直接改发给模型的话 · 共 <span data-jy-prompt-size>0 字</span></p>
-  <div data-jy-standard-prompt-list="expert"></div>
+ <section class="bgt-card">
+  <h2>专家</h2><p class="bgt-muted">直接改发给模型的话 · 共 <span data-bgt-prompt-size>0 字</span></p>
+  <div data-bgt-standard-prompt-list="expert"></div>
  </section>
 </div>
-<div class="jy-editor-stage" data-jy-editor-stage><div class="jy-editor-placeholder" data-jy-editor-placeholder><span aria-hidden="true">Aa</span><h2>点开一项规则来改</h2><p>文风、译名与措辞，都由你决定。</p></div></div>
-<section class="jy-card"><details class="jy-fold" data-jy-prompt-reference-fold><summary><h2>参考资料与上下文</h2><span class="jy-fold-summary" data-jy-prompt-reference-summary></span></summary><div class="jy-reference-body jy-form-body"><label class="jy-check"><input type="checkbox" data-jy-field="includeWorldbook">世界书</label><label class="jy-check"><input type="checkbox" data-jy-field="includeCharacterCard">角色卡设定</label><label class="jy-check"><input type="checkbox" data-jy-field="includeRecentContext">近期对话</label><label><span class="jy-label">近期对话条数</span><input type="number" data-jy-field="contextMessages" min="1" max="20" step="1"></label></div></details></section>
-<section class="jy-card">
+<div class="bgt-editor-stage" data-bgt-editor-stage><div class="bgt-editor-placeholder" data-bgt-editor-placeholder><span aria-hidden="true">Aa</span><h2>点开一项规则来改</h2><p>文风、译名与措辞，都由你决定。</p></div></div>
+<section class="bgt-card"><details class="bgt-fold" data-bgt-prompt-reference-fold><summary><h2>参考资料与上下文</h2><span class="bgt-fold-summary" data-bgt-prompt-reference-summary></span></summary><div class="bgt-reference-body bgt-form-body"><label class="bgt-check"><input type="checkbox" data-bgt-field="includeWorldbook">世界书</label><label class="bgt-check"><input type="checkbox" data-bgt-field="includeCharacterCard">角色卡设定</label><label class="bgt-check"><input type="checkbox" data-bgt-field="includeRecentContext">近期对话</label><label><span class="bgt-label">近期对话条数</span><input type="number" data-bgt-field="contextMessages" min="1" max="20" step="1"></label></div></details></section>
+<section class="bgt-card">
  <h2>方案管理</h2>
- <div class="jy-actions">
-  <button type="button" class="jy-button" data-jy-action="export-profile">导出当前方案 JSON</button>
-  <button type="button" class="jy-button" data-jy-action="import-profile">导入方案 JSON</button>
-  <input type="file" data-jy-profile-import accept=".json,application/json" hidden>
-  <button type="button" class="jy-button" data-jy-action="duplicate-prompt-profile">复制新方案</button>
-  <button type="button" class="jy-button" data-jy-action="refresh-base-prompts">采用新版规范与清单</button>
-  <span class="jy-actions-spacer"></span>
-  <button type="button" class="jy-text-button jy-text-button-danger" data-jy-action="reset-prompt-profile">恢复当前方案</button>
-  <button type="button" class="jy-text-button jy-text-button-danger" data-jy-action="delete-prompt-profile">删除当前方案</button>
+ <div class="bgt-actions">
+  <button type="button" class="bgt-button" data-bgt-action="export-profile">导出当前方案 JSON</button>
+  <button type="button" class="bgt-button" data-bgt-action="import-profile">导入方案 JSON</button>
+  <input type="file" data-bgt-profile-import accept=".json,application/json" hidden>
+  <button type="button" class="bgt-button" data-bgt-action="duplicate-prompt-profile">复制新方案</button>
+  <button type="button" class="bgt-button" data-bgt-action="refresh-base-prompts">采用新版规范与清单</button>
+  <span class="bgt-actions-spacer"></span>
+  <button type="button" class="bgt-text-button bgt-text-button-danger" data-bgt-action="reset-prompt-profile">恢复当前方案</button>
+  <button type="button" class="bgt-text-button bgt-text-button-danger" data-bgt-action="delete-prompt-profile">删除当前方案</button>
  </div>
 </section>
 </section>
 
-<section class="jy-page" data-jy-page="settings" role="tabpanel" hidden>
-<header class="jy-page-heading"><div><h1>模型连接</h1><span class="jy-page-context">最上面选各功能用哪条，下面每条连接一张卡</span></div><span class="jy-autosave-indicator" data-jy-autosave-indicator>改了就存 ✓</span><button type="button" class="jy-button" data-jy-action="add-channel">＋ 新建连接</button></header>
-<section class="jy-card jy-connection-uses-card"><div class="jy-connection-uses" data-jy-connection-uses><h2>各功能用哪条连接</h2></div></section>
-<section class="jy-card jy-channel-card">
- <div class="jy-channel-card-head">
-  <span class="jy-card-row-text"><h2>跟随酒馆</h2><p class="jy-muted">用酒馆当前的 API 和模型，不用填。</p></span>
-  <span class="jy-badge">内置</span>
+<section class="bgt-page" data-bgt-page="settings" role="tabpanel" hidden>
+<header class="bgt-page-heading"><div><h1>模型连接</h1><span class="bgt-page-context">最上面选各功能用哪条，下面每条连接一张卡</span></div><span class="bgt-autosave-indicator" data-bgt-autosave-indicator>改了就存 ✓</span><button type="button" class="bgt-button" data-bgt-action="add-channel">＋ 新建连接</button></header>
+<section class="bgt-card bgt-connection-uses-card"><div class="bgt-connection-uses" data-bgt-connection-uses><h2>各功能用哪条连接</h2></div></section>
+<section class="bgt-card bgt-channel-card">
+ <div class="bgt-channel-card-head">
+  <span class="bgt-card-row-text"><h2>跟随酒馆</h2><p class="bgt-muted">用酒馆当前的 API 和模型，不用填。</p></span>
+  <span class="bgt-badge">内置</span>
  </div>
 </section>
-<div data-jy-channel-cards></div>
-<div data-jy-channel-detail-holder hidden></div>
-<div class="jy-connection-form" data-jy-channel-detail hidden>
- <label><span class="jy-label">连接名称</span><input type="text" data-jy-channel-field="name" placeholder="给这个连接起个名字"></label>
- <div class="jy-form-grid jy-form-grid-tight">
- <label><span class="jy-label">API 基础地址</span><input type="url" data-jy-channel-field="url" placeholder="https://example.com/v1" autocomplete="off"></label>
- <label><span class="jy-label">API 密钥</span><input type="password" data-jy-channel-field="key" placeholder="无密钥接口可留空" autocomplete="new-password"></label>
+<div data-bgt-channel-cards></div>
+<div data-bgt-channel-detail-holder hidden></div>
+<div class="bgt-connection-form" data-bgt-channel-detail hidden>
+ <label><span class="bgt-label">连接名称</span><input type="text" data-bgt-channel-field="name" placeholder="给这个连接起个名字"></label>
+ <div class="bgt-form-grid bgt-form-grid-tight">
+ <label><span class="bgt-label">API 基础地址</span><input type="url" data-bgt-channel-field="url" placeholder="https://example.com/v1" autocomplete="off"></label>
+ <label><span class="bgt-label">API 密钥</span><input type="password" data-bgt-channel-field="key" placeholder="无密钥接口可留空" autocomplete="new-password"></label>
  </div>
- <div class="jy-model-heading"><label class="jy-label" for="jy-api-model-select">选择模型</label><div class="jy-inline-actions"><button type="button" class="jy-button" data-jy-action="fetch-models">拉取模型 ↻</button><button type="button" class="jy-button" data-jy-action="test-api">测试这条连接</button></div></div>
- <div class="jy-model-picker"><input type="search" data-jy-model-search aria-label="搜索模型" placeholder="搜索模型名称"><select id="jy-api-model-select" data-jy-model-select aria-describedby="jy-api-model-help"><option value="">先拉取模型列表</option></select></div>
- <label><span class="jy-label">当前模型（也可手动填写）</span><input type="text" data-jy-channel-field="model" placeholder="模型名称" autocomplete="off"></label>
- <p id="jy-api-model-help" class="jy-muted" data-jy-model-help></p>
- <details class="jy-fold" data-jy-fold="channel-request"><summary><h2>请求参数</h2><span class="jy-fold-summary" data-jy-fold-summary></span></summary><div class="jy-form-grid">
- <label><span class="jy-label">超时 / 秒</span><input type="number" data-jy-channel-field="timeoutSec" min="10" max="600" step="1"></label><label><span class="jy-label">最大输出 tokens</span><input type="number" data-jy-channel-field="maxTokens" min="256" max="1000000" step="1"></label><label><span class="jy-label">温度</span><input type="number" data-jy-channel-field="temperature" min="0" max="2" step="0.05"></label><label><span class="jy-label">排除参数</span><input type="text" data-jy-channel-field="excludeParams" placeholder="temperature, presence_penalty"></label><label><span class="jy-label">推理强度</span><select data-jy-channel-field="reasoningEffort"><option value="">不发送</option><option value="minimal">minimal</option><option value="low">low</option><option value="medium">medium</option><option value="high">high</option></select></label><label title="长楼层拆成几批同时发送。越大越快，也越费 token；批次之间看不到彼此的上下文，名字靠术语表保持一致。"><span class="jy-label">并发批次</span><input type="number" data-jy-channel-field="concurrency" min="1" max="4" step="1"></label><label class="jy-check"><input type="checkbox" data-jy-channel-field="tokenSaving">节约 token 模式（世界书只注入白名单，近期对话最多 2 楼）</label>
- </div></details><details class="jy-fold" data-jy-fold="channel-postscript"><summary><h2>这条连接的后置提示词（附在每次请求的最末尾）</h2><span class="jy-fold-summary" data-jy-fold-summary></span></summary><div class="jy-reference-body"><p class="jy-muted">翻译、分析模式、小助手——只要走这条连接，这段话都会加在请求的最后。用来关掉思维链、压住模型的废话最管用。每条连接各写各的，留空就不发。</p><div class="jy-form-grid jy-form-grid-tight"><label><span class="jy-label">身份</span><select data-jy-channel-field="postscriptRole"><option value="user">user</option><option value="system">system</option><option value="assistant">assistant</option></select></label></div><textarea data-jy-channel-field="postscript" rows="3" spellcheck="false" placeholder="比如：直接输出结果，不要输出任何思考过程。"></textarea></div></details><details class="jy-advanced"><summary>节约模式世界书白名单</summary><div class="jy-processing-toolbar"><button type="button" class="jy-button" data-jy-action="refresh-wi-entries">刷新可读条目</button></div><div class="jy-wi-list" data-jy-wi-list></div><p class="jy-muted">按世界书分组，列出全局、角色卡、聊天和用户角色挂着的世界书。先打开一本书的「世界书开关」，它的条目才出现、才能勾选；第一次打开时条目全选，再把不要的去掉。节约 token 模式下只带开着的书里勾选的条目；关掉的书一条都不带，勾选会留着。跟随当前角色卡保存；一本都不开则节约模式下完全不带世界书。</p></details>
- <div class="jy-actions"><span class="jy-actions-spacer"></span><button type="button" class="jy-text-button jy-text-button-danger" data-jy-action="delete-channel">删除这条连接</button></div>
+ <div class="bgt-model-heading"><label class="bgt-label" for="bgt-api-model-select">选择模型</label><div class="bgt-inline-actions"><button type="button" class="bgt-button" data-bgt-action="fetch-models">拉取模型 ↻</button><button type="button" class="bgt-button" data-bgt-action="test-api">测试这条连接</button></div></div>
+ <div class="bgt-model-picker"><input type="search" data-bgt-model-search aria-label="搜索模型" placeholder="搜索模型名称"><select id="bgt-api-model-select" data-bgt-model-select aria-describedby="bgt-api-model-help"><option value="">先拉取模型列表</option></select></div>
+ <label><span class="bgt-label">当前模型（也可手动填写）</span><input type="text" data-bgt-channel-field="model" placeholder="模型名称" autocomplete="off"></label>
+ <p id="bgt-api-model-help" class="bgt-muted" data-bgt-model-help></p>
+ <details class="bgt-fold" data-bgt-fold="channel-request"><summary><h2>请求参数</h2><span class="bgt-fold-summary" data-bgt-fold-summary></span></summary><div class="bgt-form-grid">
+ <label><span class="bgt-label">超时 / 秒</span><input type="number" data-bgt-channel-field="timeoutSec" min="10" max="600" step="1"></label><label><span class="bgt-label">最大输出 tokens</span><input type="number" data-bgt-channel-field="maxTokens" min="256" max="1000000" step="1"></label><label><span class="bgt-label">温度</span><input type="number" data-bgt-channel-field="temperature" min="0" max="2" step="0.05"></label><label><span class="bgt-label">排除参数</span><input type="text" data-bgt-channel-field="excludeParams" placeholder="temperature, presence_penalty"></label><label><span class="bgt-label">推理强度</span><select data-bgt-channel-field="reasoningEffort"><option value="">不发送</option><option value="minimal">minimal</option><option value="low">low</option><option value="medium">medium</option><option value="high">high</option></select></label><label title="长楼层拆成几批同时发送。越大越快，也越费 token；批次之间看不到彼此的上下文，名字靠术语表保持一致。"><span class="bgt-label">并发批次</span><input type="number" data-bgt-channel-field="concurrency" min="1" max="4" step="1"></label><label class="bgt-check"><input type="checkbox" data-bgt-channel-field="tokenSaving">节约 token 模式（世界书只注入白名单，近期对话最多 2 楼）</label>
+ </div></details><details class="bgt-fold" data-bgt-fold="channel-postscript"><summary><h2>这条连接的后置提示词（附在每次请求的最末尾）</h2><span class="bgt-fold-summary" data-bgt-fold-summary></span></summary><div class="bgt-reference-body"><p class="bgt-muted">翻译、分析模式、小助手——只要走这条连接，这段话都会加在请求的最后。用来关掉思维链、压住模型的废话最管用。每条连接各写各的，留空就不发。</p><div class="bgt-form-grid bgt-form-grid-tight"><label><span class="bgt-label">身份</span><select data-bgt-channel-field="postscriptRole"><option value="user">user</option><option value="system">system</option><option value="assistant">assistant</option></select></label></div><textarea data-bgt-channel-field="postscript" rows="3" spellcheck="false" placeholder="比如：直接输出结果，不要输出任何思考过程。"></textarea></div></details><details class="bgt-advanced"><summary>节约模式世界书白名单</summary><div class="bgt-processing-toolbar"><button type="button" class="bgt-button" data-bgt-action="refresh-wi-entries">刷新可读条目</button></div><div class="bgt-wi-list" data-bgt-wi-list></div><p class="bgt-muted">按世界书分组，列出全局、角色卡、聊天和用户角色挂着的世界书。先打开一本书的「世界书开关」，它的条目才出现、才能勾选；第一次打开时条目全选，再把不要的去掉。节约 token 模式下只带开着的书里勾选的条目；关掉的书一条都不带，勾选会留着。跟随当前角色卡保存；一本都不开则节约模式下完全不带世界书。</p></details>
+ <div class="bgt-actions"><span class="bgt-actions-spacer"></span><button type="button" class="bgt-text-button bgt-text-button-danger" data-bgt-action="delete-channel">删除这条连接</button></div>
 </div>
-<section class="jy-card"><details class="jy-fold" data-jy-fold="helper-prompt"><summary><h2>小助手的提示词</h2><span class="jy-fold-summary" data-jy-fold-summary></span></summary><div class="jy-reference-body"><p class="jy-muted">小助手回答时用的提示词。留空就用镜译内置的（下面占位的文字就是它），资料本身——设置、当前楼层、运行记录——不受这里影响，一直都会给到小助手。</p><textarea data-jy-helper-prompt rows="6" spellcheck="false"></textarea><div class="jy-processing-toolbar"><button type="button" class="jy-text-button" data-jy-action="helper-reset-prompt">恢复默认</button></div></div></details></section>
+<section class="bgt-card"><details class="bgt-fold" data-bgt-fold="helper-prompt"><summary><h2>小助手的提示词</h2><span class="bgt-fold-summary" data-bgt-fold-summary></span></summary><div class="bgt-reference-body"><p class="bgt-muted">小助手回答时用的提示词。留空就用测试翻译内置的（下面占位的文字就是它），资料本身——设置、当前楼层、运行记录——不受这里影响，一直都会给到小助手。</p><textarea data-bgt-helper-prompt rows="6" spellcheck="false"></textarea><div class="bgt-processing-toolbar"><button type="button" class="bgt-text-button" data-bgt-action="helper-reset-prompt">恢复默认</button></div></div></details></section>
 </section>
 
-<section class="jy-page" data-jy-page="processing" role="tabpanel" hidden>
-<header class="jy-page-heading"><div><h1>正文处理</h1><span class="jy-page-context">决定哪些内容会被送去翻译</span></div><span class="jy-autosave-indicator" data-jy-autosave-indicator>改了就存 ✓</span></header>
-<div class="jy-processing-bar">
-<label class="jy-processing-choice"><span>方案</span><select aria-label="正文方案" data-jy-processing-select></select></label>
-<button type="button" class="jy-button" data-jy-action="import-processing">导入方案</button><button type="button" class="jy-button" data-jy-action="export-processing">导出方案</button>
-<details class="jy-profile-menu"><summary>管理</summary><div class="jy-profile-menu-body"><label><span class="jy-label">方案名称</span><input type="text" maxlength="80" data-jy-processing-name></label><div class="jy-processing-toolbar"><button type="button" class="jy-button" data-jy-action="save-processing">保存</button><button type="button" class="jy-text-button jy-text-button-danger" data-jy-action="delete-processing">删除方案</button></div></div></details>
-<input type="file" accept=".json,application/json" data-jy-processing-import hidden>
+<section class="bgt-page" data-bgt-page="processing" role="tabpanel" hidden>
+<header class="bgt-page-heading"><div><h1>正文处理</h1><span class="bgt-page-context">决定哪些内容会被送去翻译</span></div><span class="bgt-autosave-indicator" data-bgt-autosave-indicator>改了就存 ✓</span></header>
+<div class="bgt-processing-bar">
+<label class="bgt-processing-choice"><span>方案</span><select aria-label="正文方案" data-bgt-processing-select></select></label>
+<button type="button" class="bgt-button" data-bgt-action="import-processing">导入方案</button><button type="button" class="bgt-button" data-bgt-action="export-processing">导出方案</button>
+<details class="bgt-profile-menu"><summary>管理</summary><div class="bgt-profile-menu-body"><label><span class="bgt-label">方案名称</span><input type="text" maxlength="80" data-bgt-processing-name></label><div class="bgt-processing-toolbar"><button type="button" class="bgt-button" data-bgt-action="save-processing">保存</button><button type="button" class="bgt-text-button bgt-text-button-danger" data-bgt-action="delete-processing">删除方案</button></div></div></details>
+<input type="file" accept=".json,application/json" data-bgt-processing-import hidden>
 </div>
-<div class="jy-processing-columns">
-<div class="jy-text-scope"><h2>提取范围</h2><label><span class="jy-label">提取标签</span><textarea rows="3" data-jy-field="bodyTags" placeholder="story_scene" spellcheck="false"></textarea></label><div class="jy-actions"><button type="button" class="jy-button" data-jy-action="inspect-tags">检查当前楼层</button></div><pre class="jy-inspection" data-jy-tag-inspection hidden></pre><p class="jy-muted">每行一个标签名。同一种标签出现好几组时，每组都翻译；写在排除标签里面的那组不翻译。一个标签写在另一个里面时，按外层整块翻译。</p><label><span class="jy-label">正文起点（找不到提取标签时用）</span><textarea rows="2" data-jy-field="bodyStartMarkers" placeholder="&lt;/thinking&gt;" spellcheck="false"></textarea></label><p class="jy-muted">回复里一个提取标签都没有时，从这里写的文字后面开始算正文，一直到楼层末尾；只写了结束标签的，算到结束标签为止。每行一个，比如思维链的结束标记 <code>&lt;/konatan_planning~&gt;</code>，写了几个就从最后出现的那个后面算。正文后面的摘要、建议之类，记得加进排除标签。</p><label><span class="jy-label">替换标签（译文直接替换原文）</span><textarea rows="2" data-jy-field="replaceTags" placeholder="replace_scene" spellcheck="false"></textarea></label><p class="jy-muted">该标签内的内容照常翻译，但写回时译文直接顶替原文：显示与主模型都只看到译文，原文隐藏保留在楼层里，点小铅笔可见，重新翻译时自动还原。</p><label><span class="jy-label">排除标签</span><textarea rows="2" data-jy-field="excludedTags" placeholder="thinking&#10;status" spellcheck="false"></textarea></label><p class="jy-muted">标签及内部内容保留在原位，不翻译，也不朗读（比如生图插件的 &lt;image&gt;）。镜译自己的 <code>&lt;say&gt;</code> 说话人标记不用加在这里：翻译时自动去掉，显示时自动隐藏，朗读时自动读取。</p></div>
-<div class="jy-text-scope" data-jy-coloring><h2>说话人着色</h2>
-<div class="jy-behaviors"><label class="jy-check"><input type="checkbox" data-jy-field="coloringSpeakers">说话人着色（按发色 / 瞳色）</label></div>
-<div class="jy-dependent" data-jy-dependent="coloringEffects"><label class="jy-check"><input type="checkbox" data-jy-field="coloringEffects">特效字（招式上色、搬运原文排版）</label><p class="jy-muted jy-dependent-reason">先打开上面的「说话人着色」，这一项才会生效。</p>
-<details class="jy-fold jy-move-fold" data-jy-fold="processing-moves"><summary><h2>招式表</h2><span class="jy-fold-summary" data-jy-fold-summary></span></summary><div class="jy-form-body"><div class="jy-move-list" data-jy-move-list></div><p class="jy-muted">改了就存，已写好的楼层马上重画。跟着角色卡存，这张卡的其他聊天里同名招式一样生效。自选的颜色太浅或太暗时会被拉到能看清。</p></div></details></div>
-<div class="jy-behaviors"><label class="jy-check"><input type="checkbox" data-jy-field="coloringEmotions">情绪排版（字重 / 斜体 / 字号）</label></div>
-<label><span class="jy-label">内置美化</span><div class="jy-actions"><select aria-label="内置美化" data-jy-reading-style><option value="cute">可爱风</option><option value="minimal">极简风</option><option value="fold">原文折叠</option></select><button type="button" class="jy-button" data-jy-action="builtin-processing">使用</button></div></label>
-<p class="jy-muted">副模型只回答「这段谁在说、什么情绪」，颜色与排版全部由镜译按当前主题算出。先点一次「读取当前主题」，再登记角色。「特效字」只有说话人着色也开着时才会生效，也才会向翻译多问招式名和原文自带的排版：原文里整行、整句、半句的加粗变色会尽量搬到译文，招式、技能、法宝的名字会按属性单独上色（同招同色，随主题重新计算），『』标出的名号既不套说话人色也不当台词念。</p>
-<details class="jy-fold" data-jy-fold="processing-color"><summary><h2>颜色细节</h2><span class="jy-fold-summary" data-jy-fold-summary></span></summary><div class="jy-form-body">
-<div class="jy-behaviors"><label class="jy-check"><input type="checkbox" data-jy-field="coloringRhythm">情绪起伏（句内轻重变化）</label><label class="jy-check"><input type="checkbox" data-jy-field="coloringAutoSpeakers">名单外的说话人按名字自动取色</label></div>
-<div class="jy-form-grid"><label><span class="jy-label">对比度目标</span><input type="number" data-jy-field="coloringContrast" min="1.5" max="12" step="0.1"></label><label><span class="jy-label">彩度 <span data-jy-vividness-value></span></span><input type="range" data-jy-field="coloringVividness" min="0" max="100" step="5"></label></div>
-<div class="jy-processing-toolbar"><button type="button" class="jy-button jy-button-primary" data-jy-action="probe-theme">读取当前主题与壁纸</button><button type="button" class="jy-button" data-jy-action="add-speaker">添加角色</button></div>
-<div class="jy-band-report" data-jy-band-report></div>
-<div class="jy-speaker-report" data-jy-speaker-report hidden></div>
-<div class="jy-speaker-list" data-jy-speaker-list></div>
-<p class="jy-muted">名单外的说话人默认按名字哈希自动取色，同一个名字在任何设备任何聊天里都是同一个颜色；关掉这项，没登记的人就只有情绪排版、没有颜色。<br>黑、白、银不参与着色：这三种是主题自己的文字颜色，认不出说话人。发色是黑白银的角色会按名字分到一个固定色相，同一个名字永远是同一个颜色。改主题或换壁纸后重新点一次「读取当前主题」即可，已翻译楼层重翻或补译后会用新颜色。</p>
+<div class="bgt-processing-columns">
+<div class="bgt-text-scope"><h2>提取范围</h2><label><span class="bgt-label">提取标签</span><textarea rows="3" data-bgt-field="bodyTags" placeholder="story_scene" spellcheck="false"></textarea></label><div class="bgt-actions"><button type="button" class="bgt-button" data-bgt-action="inspect-tags">检查当前楼层</button></div><pre class="bgt-inspection" data-bgt-tag-inspection hidden></pre><p class="bgt-muted">每行一个标签名。同一种标签出现好几组时，每组都翻译；写在排除标签里面的那组不翻译。一个标签写在另一个里面时，按外层整块翻译。</p><label><span class="bgt-label">正文起点（找不到提取标签时用）</span><textarea rows="2" data-bgt-field="bodyStartMarkers" placeholder="&lt;/thinking&gt;" spellcheck="false"></textarea></label><p class="bgt-muted">回复里一个提取标签都没有时，从这里写的文字后面开始算正文，一直到楼层末尾；只写了结束标签的，算到结束标签为止。每行一个，比如思维链的结束标记 <code>&lt;/konatan_planning~&gt;</code>，写了几个就从最后出现的那个后面算。正文后面的摘要、建议之类，记得加进排除标签。</p><label><span class="bgt-label">替换标签（译文直接替换原文）</span><textarea rows="2" data-bgt-field="replaceTags" placeholder="replace_scene" spellcheck="false"></textarea></label><p class="bgt-muted">该标签内的内容照常翻译，但写回时译文直接顶替原文：显示与主模型都只看到译文，原文隐藏保留在楼层里，点小铅笔可见，重新翻译时自动还原。</p><label><span class="bgt-label">排除标签</span><textarea rows="2" data-bgt-field="excludedTags" placeholder="thinking&#10;status" spellcheck="false"></textarea></label><p class="bgt-muted">标签及内部内容保留在原位，不翻译，也不朗读（比如生图插件的 &lt;image&gt;）。测试翻译自己的 <code>&lt;say&gt;</code> 说话人标记不用加在这里：翻译时自动去掉，显示时自动隐藏，朗读时自动读取。</p></div>
+<div class="bgt-text-scope" data-bgt-coloring><h2>说话人着色</h2>
+<div class="bgt-behaviors"><label class="bgt-check"><input type="checkbox" data-bgt-field="coloringSpeakers">说话人着色（按发色 / 瞳色）</label></div>
+<div class="bgt-dependent" data-bgt-dependent="coloringEffects"><label class="bgt-check"><input type="checkbox" data-bgt-field="coloringEffects">特效字（招式上色、搬运原文排版）</label><p class="bgt-muted bgt-dependent-reason">先打开上面的「说话人着色」，这一项才会生效。</p>
+<details class="bgt-fold bgt-move-fold" data-bgt-fold="processing-moves"><summary><h2>招式表</h2><span class="bgt-fold-summary" data-bgt-fold-summary></span></summary><div class="bgt-form-body"><div class="bgt-move-list" data-bgt-move-list></div><p class="bgt-muted">改了就存，已写好的楼层马上重画。跟着角色卡存，这张卡的其他聊天里同名招式一样生效。自选的颜色太浅或太暗时会被拉到能看清。</p></div></details></div>
+<div class="bgt-behaviors"><label class="bgt-check"><input type="checkbox" data-bgt-field="coloringEmotions">情绪排版（字重 / 斜体 / 字号）</label></div>
+<label><span class="bgt-label">内置美化</span><div class="bgt-actions"><select aria-label="内置美化" data-bgt-reading-style><option value="cute">可爱风</option><option value="minimal">极简风</option><option value="fold">原文折叠</option></select><button type="button" class="bgt-button" data-bgt-action="builtin-processing">使用</button></div></label>
+<p class="bgt-muted">副模型只回答「这段谁在说、什么情绪」，颜色与排版全部由测试翻译按当前主题算出。先点一次「读取当前主题」，再登记角色。「特效字」只有说话人着色也开着时才会生效，也才会向翻译多问招式名和原文自带的排版：原文里整行、整句、半句的加粗变色会尽量搬到译文，招式、技能、法宝的名字会按属性单独上色（同招同色，随主题重新计算），『』标出的名号既不套说话人色也不当台词念。</p>
+<details class="bgt-fold" data-bgt-fold="processing-color"><summary><h2>颜色细节</h2><span class="bgt-fold-summary" data-bgt-fold-summary></span></summary><div class="bgt-form-body">
+<div class="bgt-behaviors"><label class="bgt-check"><input type="checkbox" data-bgt-field="coloringRhythm">情绪起伏（句内轻重变化）</label><label class="bgt-check"><input type="checkbox" data-bgt-field="coloringAutoSpeakers">名单外的说话人按名字自动取色</label></div>
+<div class="bgt-form-grid"><label><span class="bgt-label">对比度目标</span><input type="number" data-bgt-field="coloringContrast" min="1.5" max="12" step="0.1"></label><label><span class="bgt-label">彩度 <span data-bgt-vividness-value></span></span><input type="range" data-bgt-field="coloringVividness" min="0" max="100" step="5"></label></div>
+<div class="bgt-processing-toolbar"><button type="button" class="bgt-button bgt-button-primary" data-bgt-action="probe-theme">读取当前主题与壁纸</button><button type="button" class="bgt-button" data-bgt-action="add-speaker">添加角色</button></div>
+<div class="bgt-band-report" data-bgt-band-report></div>
+<div class="bgt-speaker-report" data-bgt-speaker-report hidden></div>
+<div class="bgt-speaker-list" data-bgt-speaker-list></div>
+<p class="bgt-muted">名单外的说话人默认按名字哈希自动取色，同一个名字在任何设备任何聊天里都是同一个颜色；关掉这项，没登记的人就只有情绪排版、没有颜色。<br>黑、白、银不参与着色：这三种是主题自己的文字颜色，认不出说话人。发色是黑白银的角色会按名字分到一个固定色相，同一个名字永远是同一个颜色。改主题或换壁纸后重新点一次「读取当前主题」即可，已翻译楼层重翻或补译后会用新颜色。</p>
 </div></details>
 </div>
-<div class="jy-text-scope"><h2>保留与歌词</h2>
-<details class="jy-fold" data-jy-fold="processing-preserve"><summary><h2>原样保留白名单</h2><span class="jy-fold-summary" data-jy-fold-summary></span></summary><div class="jy-form-body"><label><span class="jy-label">每行一条规则</span><textarea rows="5" data-jy-field="preserveLineRules" spellcheck="false" placeholder="此时彼刻&#10;prefix:【系统记录】"></textarea></label><p class="jy-muted">文字匹配整行，prefix: 匹配行首，/正则/ 只要这一行里有匹配就算（要整行匹配请写 ^…$）。纯边框、纯符号、标签行和只有图片的行自动保留。</p></div></details>
-<details class="jy-fold" data-jy-fold="processing-lyrics"><summary><h2>歌词行</h2><span class="jy-fold-summary" data-jy-fold-summary></span></summary><div class="jy-form-body"><label><span class="jy-label">每行一条规则</span><textarea rows="5" data-jy-field="lyricLineRules" spellcheck="false" placeholder="星が降る夜に&#10;/^もう一度/"></textarea></label><p class="jy-muted">写法和上面的保留白名单一样（文字、prefix:、/正则/），写的是歌词本身的文字或规律，不是「作词」「作曲」这类署名行。命中的行按歌词单独翻译：一行进一行出，不跟前后的正文并成一段；双语、只留译文和替换模式下都原位排成「原文 (译文)」；已经是中文的歌词行不翻译。</p><div class="jy-behaviors"><label class="jy-check"><input type="checkbox" data-jy-field="lyricSing">朗读时唱出来</label></div><p class="jy-muted">勾上时（默认），朗读读到歌词行就唱出来：唱原文，读译文时也唱原文；默认用旁白的音色，悬浮窗改句面板里可以改成某个角色唱。楼层里一段歌词的末尾有「唱」「重新生成」，唱完这一段就停。只有 Fish 的 S2 系列模型能唱；用 GPT-SoVITS 或 s1 时歌词不读，「唱」按钮变淡，点一下会说原因。不勾，歌词行不朗读。</p></div></details>
-<label class="jy-check"><input type="checkbox" data-jy-field="musicCardRules">音乐卡片</label>
-<p class="jy-muted">手动开启，默认关闭。开启后，正文里以 <code>&lt;br&gt;</code> 分隔的一组行，只要其中出现 NOW PLAYING 这类固定文案、已经写成「原文 (中文)」的行、或命中上面的歌词规则，才会被当成卡片：这一组里已经是这三种样子的行自动保留，其余 <code>&lt;br&gt;</code> 行按歌词处理；没有出现这三种迹象的 <code>&lt;br&gt;</code> 分隔文字，仍按普通正文整体翻译。只按这一种卡片的样子写的，遇到别的卡片格式效果不对时，把歌名、歌手这类行加进「原样保留白名单」。</p>
+<div class="bgt-text-scope"><h2>保留与歌词</h2>
+<details class="bgt-fold" data-bgt-fold="processing-preserve"><summary><h2>原样保留白名单</h2><span class="bgt-fold-summary" data-bgt-fold-summary></span></summary><div class="bgt-form-body"><label><span class="bgt-label">每行一条规则</span><textarea rows="5" data-bgt-field="preserveLineRules" spellcheck="false" placeholder="此时彼刻&#10;prefix:【系统记录】"></textarea></label><p class="bgt-muted">文字匹配整行，prefix: 匹配行首，/正则/ 只要这一行里有匹配就算（要整行匹配请写 ^…$）。纯边框、纯符号、标签行和只有图片的行自动保留。</p></div></details>
+<details class="bgt-fold" data-bgt-fold="processing-lyrics"><summary><h2>歌词行</h2><span class="bgt-fold-summary" data-bgt-fold-summary></span></summary><div class="bgt-form-body"><label><span class="bgt-label">每行一条规则</span><textarea rows="5" data-bgt-field="lyricLineRules" spellcheck="false" placeholder="星が降る夜に&#10;/^もう一度/"></textarea></label><p class="bgt-muted">写法和上面的保留白名单一样（文字、prefix:、/正则/），写的是歌词本身的文字或规律，不是「作词」「作曲」这类署名行。命中的行按歌词单独翻译：一行进一行出，不跟前后的正文并成一段；双语、只留译文和替换模式下都原位排成「原文 (译文)」；已经是中文的歌词行不翻译。</p><div class="bgt-behaviors"><label class="bgt-check"><input type="checkbox" data-bgt-field="lyricSing">朗读时唱出来</label></div><p class="bgt-muted">勾上时（默认），朗读读到歌词行就唱出来：唱原文，读译文时也唱原文；默认用旁白的音色，悬浮窗改句面板里可以改成某个角色唱。楼层里一段歌词的末尾有「唱」「重新生成」，唱完这一段就停。只有 Fish 的 S2 系列模型能唱；用 GPT-SoVITS 或 s1 时歌词不读，「唱」按钮变淡，点一下会说原因。不勾，歌词行不朗读。</p></div></details>
+<label class="bgt-check"><input type="checkbox" data-bgt-field="musicCardRules">音乐卡片</label>
+<p class="bgt-muted">手动开启，默认关闭。开启后，正文里以 <code>&lt;br&gt;</code> 分隔的一组行，只要其中出现 NOW PLAYING 这类固定文案、已经写成「原文 (中文)」的行、或命中上面的歌词规则，才会被当成卡片：这一组里已经是这三种样子的行自动保留，其余 <code>&lt;br&gt;</code> 行按歌词处理；没有出现这三种迹象的 <code>&lt;br&gt;</code> 分隔文字，仍按普通正文整体翻译。只按这一种卡片的样子写的，遇到别的卡片格式效果不对时，把歌名、歌手这类行加进「原样保留白名单」。</p>
 </div>
-<div class="jy-text-scope"><h2>写回</h2>
-<details class="jy-fold" data-jy-fold="processing-affix"><summary><h2>段落前后缀</h2><span class="jy-fold-summary" data-jy-fold-summary></span></summary><div class="jy-form-body"><div class="jy-affix-group"><span class="jy-label">原文</span><div class="jy-form-grid"><label><span class="jy-label">原文之前</span><input type="text" data-jy-field="segmentPrefix" placeholder="留空即可不加前缀"></label><label><span class="jy-label">原文之后</span><input type="text" data-jy-field="segmentSuffix" placeholder="留空即可不加后缀"></label></div></div><div class="jy-affix-group"><span class="jy-label">译文</span><div class="jy-form-grid"><label><span class="jy-label">译文之前</span><input type="text" data-jy-field="translationPrefix" placeholder="留空即可不加前缀"></label><label><span class="jy-label">译文之后</span><input type="text" data-jy-field="translationSuffix" placeholder="留空即可不加后缀"></label></div></div><p class="jy-muted">勾选「跟随原文格式」后，原文某一行整行被 <code>&lt;span&gt;</code>、<code>&lt;font&gt;</code>、<code>&lt;b&gt;</code> 这类标签包着时，译文那一行也会套上同一层（只带 style / color / class / size / face，不复制 id、事件等属性）；预设给对话上的颜色不会只剩原文一半。开了说话人着色时以说话人颜色为准，粗体斜体仍然跟随。改这个开关只影响之后翻译的楼层，已有楼层重翻一次才会跟上。<br>留空即不添加。主模型仅保留原文，过滤镜译添加的装饰与译文。<br>默认按空行分段，整段原文后面跟整段译文。勾选后每一行都独立成段，原文与译文逐行贴在一起，各对之间空一行；用于分隔的空行写在不可见边界内，不会进入主模型。</p></div></details>
-<div class="jy-behaviors"><label class="jy-check"><input type="checkbox" data-jy-field="paragraphPerLine">每行单独成段</label><label class="jy-check"><input type="checkbox" data-jy-field="carryFormatting">译文跟随原文格式</label><label class="jy-check"><input type="checkbox" data-jy-field="autoEdit">编辑回复后自动重译</label></div>
+<div class="bgt-text-scope"><h2>写回</h2>
+<details class="bgt-fold" data-bgt-fold="processing-affix"><summary><h2>段落前后缀</h2><span class="bgt-fold-summary" data-bgt-fold-summary></span></summary><div class="bgt-form-body"><div class="bgt-affix-group"><span class="bgt-label">原文</span><div class="bgt-form-grid"><label><span class="bgt-label">原文之前</span><input type="text" data-bgt-field="segmentPrefix" placeholder="留空即可不加前缀"></label><label><span class="bgt-label">原文之后</span><input type="text" data-bgt-field="segmentSuffix" placeholder="留空即可不加后缀"></label></div></div><div class="bgt-affix-group"><span class="bgt-label">译文</span><div class="bgt-form-grid"><label><span class="bgt-label">译文之前</span><input type="text" data-bgt-field="translationPrefix" placeholder="留空即可不加前缀"></label><label><span class="bgt-label">译文之后</span><input type="text" data-bgt-field="translationSuffix" placeholder="留空即可不加后缀"></label></div></div><p class="bgt-muted">勾选「跟随原文格式」后，原文某一行整行被 <code>&lt;span&gt;</code>、<code>&lt;font&gt;</code>、<code>&lt;b&gt;</code> 这类标签包着时，译文那一行也会套上同一层（只带 style / color / class / size / face，不复制 id、事件等属性）；预设给对话上的颜色不会只剩原文一半。开了说话人着色时以说话人颜色为准，粗体斜体仍然跟随。改这个开关只影响之后翻译的楼层，已有楼层重翻一次才会跟上。<br>留空即不添加。主模型仅保留原文，过滤测试翻译添加的装饰与译文。<br>默认按空行分段，整段原文后面跟整段译文。勾选后每一行都独立成段，原文与译文逐行贴在一起，各对之间空一行；用于分隔的空行写在不可见边界内，不会进入主模型。</p></div></details>
+<div class="bgt-behaviors"><label class="bgt-check"><input type="checkbox" data-bgt-field="paragraphPerLine">每行单独成段</label><label class="bgt-check"><input type="checkbox" data-bgt-field="carryFormatting">译文跟随原文格式</label><label class="bgt-check"><input type="checkbox" data-bgt-field="autoEdit">编辑回复后自动重译</label></div>
 </div>
 </div>
-<details class="jy-fold" data-jy-fold="processing-interface"><summary><h2>界面与正则</h2><span class="jy-fold-summary" data-jy-fold-summary></span></summary><div class="jy-form-body">
-<div class="jy-behaviors"><label class="jy-check"><input type="checkbox" data-jy-field="showFloatingButton">显示悬浮入口</label><label class="jy-inline-field"><span class="jy-label">悬浮入口形态</span><select data-jy-field="floatingStyle"><option value="auto">自动（空闲圆环，翻译中胶囊，手机贴边）</option><option value="ring">始终圆环</option><option value="pill">始终胶囊</option><option value="edge">始终贴边</option></select></label><label class="jy-inline-field"><span class="jy-label">楼层里的朗读按钮</span><select data-jy-field="floorButtons"><option value="line">每段一个（默认，手机也有）</option><option value="sentence">每段一个，再加每句一个</option><option value="off">不显示，只在悬浮窗里点</option></select></label><label class="jy-check"><input type="checkbox" data-jy-field="segmentJump">点正文跳到悬浮窗</label><label class="jy-check"><input type="checkbox" data-jy-field="leftHanded">左手模式（悬浮窗的主按钮靠左）</label></div>
-<div class="jy-form-section"><span class="jy-label">绑定正则 <span data-jy-processing-regex-count></span></span><div><div class="jy-processing-toolbar"><button type="button" class="jy-button" data-jy-action="import-processing-regex">导入正则</button></div><input type="file" accept=".json,application/json" multiple data-jy-processing-regex-import hidden><div class="jy-processing-regex-list" data-jy-processing-regex-list></div><p class="jy-muted" data-jy-native-regex-status hidden></p><div class="jy-processing-toolbar"><button type="button" class="jy-text-button jy-text-button-danger" data-jy-action="dedupe-processing-regex">删除多余正则</button></div></div></div>
+<details class="bgt-fold" data-bgt-fold="processing-interface"><summary><h2>界面与正则</h2><span class="bgt-fold-summary" data-bgt-fold-summary></span></summary><div class="bgt-form-body">
+<div class="bgt-behaviors"><label class="bgt-check"><input type="checkbox" data-bgt-field="showFloatingButton">显示悬浮入口</label><label class="bgt-inline-field"><span class="bgt-label">悬浮入口形态</span><select data-bgt-field="floatingStyle"><option value="auto">自动（空闲圆环，翻译中胶囊，手机贴边）</option><option value="ring">始终圆环</option><option value="pill">始终胶囊</option><option value="edge">始终贴边</option></select></label><label class="bgt-inline-field"><span class="bgt-label">楼层里的朗读按钮</span><select data-bgt-field="floorButtons"><option value="line">每段一个（默认，手机也有）</option><option value="sentence">每段一个，再加每句一个</option><option value="off">不显示，只在悬浮窗里点</option></select></label><label class="bgt-check"><input type="checkbox" data-bgt-field="segmentJump">点正文跳到悬浮窗</label><label class="bgt-check"><input type="checkbox" data-bgt-field="leftHanded">左手模式（悬浮窗的主按钮靠左）</label></div>
+<div class="bgt-form-section"><span class="bgt-label">绑定正则 <span data-bgt-processing-regex-count></span></span><div><div class="bgt-processing-toolbar"><button type="button" class="bgt-button" data-bgt-action="import-processing-regex">导入正则</button></div><input type="file" accept=".json,application/json" multiple data-bgt-processing-regex-import hidden><div class="bgt-processing-regex-list" data-bgt-processing-regex-list></div><p class="bgt-muted" data-bgt-native-regex-status hidden></p><div class="bgt-processing-toolbar"><button type="button" class="bgt-text-button bgt-text-button-danger" data-bgt-action="dedupe-processing-regex">删除多余正则</button></div></div></div>
 </div></details>
 </section>
 
-<section class="jy-page" data-jy-page="tts" role="tabpanel" hidden>
-<header class="jy-page-heading"><div><h1>朗读</h1><span class="jy-page-context">旁白和每个角色各用各的声音，多国语言各配各的音色，点哪句读哪句</span></div><span class="jy-autosave-indicator" data-jy-autosave-indicator>改了就存 ✓</span></header>
-<div class="jy-automation" data-jy-tts-master><div><h3>朗读功能</h3><p class="jy-muted">打开后，楼层里每个自然段后面会出现「播放」和「重新生成」两个按钮，楼层开头有一个小的「朗读」；按钮只加在页面上，不写进楼层。关掉就是一般模式：只翻译，这一页收起，后台不做任何事。</p></div><label class="jy-switch"><input type="checkbox" data-jy-tts-field="enabled" aria-label="朗读功能"><span></span></label></div>
+<section class="bgt-page" data-bgt-page="tts" role="tabpanel" hidden>
+<header class="bgt-page-heading"><div><h1>朗读</h1><span class="bgt-page-context">旁白和每个角色各用各的声音，多国语言各配各的音色，点哪句读哪句</span></div><span class="bgt-autosave-indicator" data-bgt-autosave-indicator>改了就存 ✓</span></header>
+<div class="bgt-automation" data-bgt-tts-master><div><h3>朗读功能</h3><p class="bgt-muted">打开后，楼层里每个自然段后面会出现「播放」和「重新生成」两个按钮，楼层开头有一个小的「朗读」；按钮只加在页面上，不写进楼层。关掉就是一般模式：只翻译，这一页收起，后台不做任何事。</p></div><label class="bgt-switch"><input type="checkbox" data-bgt-tts-field="enabled" aria-label="朗读功能"><span></span></label></div>
 
-<div class="jy-processing-columns">
-<div class="jy-text-scope" data-jy-tts-provider-card="fish"><h2>Fish Audio</h2>
-<div class="jy-form-grid jy-form-grid-tight"><label><span class="jy-label">声音来源</span><select data-jy-tts-field="provider"><option value="fish">Fish Audio</option><option value="gsv">GPT-SoVITS（本地）</option></select></label></div>
-<div class="jy-form-grid jy-form-grid-tight"><label><span class="jy-label">API Key</span><input type="password" data-jy-tts-fish="key" placeholder="sk-…" autocomplete="new-password" spellcheck="false"></label><label><span class="jy-label">模型</span><select data-jy-tts-fish="model"><option value="s2-pro">s2-pro</option><option value="s2.1-pro">s2.1-pro</option><option value="s2.1-pro-free">s2.1-pro-free（免费开发者档）</option><option value="drama-3-preview">drama-3-preview（预览版）</option><option value="s1">s1（旧版，不能一次用多个音色）</option></select></label></div>
-<div class="jy-actions"><button type="button" class="jy-button" data-jy-action="tts-test">测试连接</button><span class="jy-muted" data-jy-tts-save-note></span></div>
-<label class="jy-check"><input type="checkbox" data-jy-tts-fish="viaProxy">经酒馆 CORS 代理发送</label>
-<p class="jy-muted" data-jy-tts-proxy-help></p>
+<div class="bgt-processing-columns">
+<div class="bgt-text-scope" data-bgt-tts-provider-card="fish"><h2>Fish Audio</h2>
+<div class="bgt-form-grid bgt-form-grid-tight"><label><span class="bgt-label">声音来源</span><select data-bgt-tts-field="provider"><option value="fish">Fish Audio</option><option value="gsv">GPT-SoVITS（本地）</option></select></label></div>
+<div class="bgt-form-grid bgt-form-grid-tight"><label><span class="bgt-label">API Key</span><input type="password" data-bgt-tts-fish="key" placeholder="sk-…" autocomplete="new-password" spellcheck="false"></label><label><span class="bgt-label">模型</span><select data-bgt-tts-fish="model"><option value="s2-pro">s2-pro</option><option value="s2.1-pro">s2.1-pro</option><option value="s2.1-pro-free">s2.1-pro-free（免费开发者档）</option><option value="drama-3-preview">drama-3-preview（预览版）</option><option value="s1">s1（旧版，不能一次用多个音色）</option></select></label></div>
+<div class="bgt-actions"><button type="button" class="bgt-button" data-bgt-action="tts-test">测试连接</button><span class="bgt-muted" data-bgt-tts-save-note></span></div>
+<label class="bgt-check"><input type="checkbox" data-bgt-tts-fish="viaProxy">经酒馆 CORS 代理发送</label>
+<p class="bgt-muted" data-bgt-tts-proxy-help></p>
 </div>
-<div class="jy-text-scope" data-jy-tts-provider-card="gsv" hidden><h2>GPT-SoVITS</h2>
-<div class="jy-form-grid jy-form-grid-tight"><label><span class="jy-label">声音来源</span><select data-jy-tts-field="provider"><option value="fish">Fish Audio</option><option value="gsv">GPT-SoVITS（本地）</option></select></label><label><span class="jy-label">接口地址</span><input type="url" data-jy-tts-gsv="baseUrl" placeholder="http://127.0.0.1:9880" spellcheck="false"></label></div>
-<div class="jy-actions"><button type="button" class="jy-button" data-jy-action="tts-test-gsv">测试连接</button><span class="jy-muted" data-jy-tts-gsv-note></span></div>
-<label class="jy-check"><input type="checkbox" data-jy-tts-gsv="viaProxy">经酒馆 CORS 代理发送</label>
-<p class="jy-muted" data-jy-tts-gsv-proxy-help></p>
-<div class="jy-tts-lang-block"><h3>默认音色</h3><p class="jy-muted">音色库里没配 GPT-SoVITS 的音色、没绑音色的角色，都用这个读。</p>
-<div class="jy-form-grid jy-form-grid-tight"><label><span class="jy-label">参考音频</span><input type="text" data-jy-tts-gsv="refAudioPath" placeholder="D:\\GPT-SoVITS\\参考音频\\旁白.wav" spellcheck="false"></label><label><span class="jy-label">参考音频的文字</span><input type="text" data-jy-tts-gsv="promptText" placeholder="参考音频里说的话，一字不差" spellcheck="false"></label><label><span class="jy-label">参考音频语言</span><select data-jy-tts-gsv="promptLang"><option value="zh">中文</option><option value="ja">日语</option><option value="en">英语</option><option value="ko">韩语</option><option value="yue">粤语</option><option value="auto">自动</option></select></label><label><span class="jy-label">GPT 模型（.ckpt，可不填）</span><input type="text" data-jy-tts-gsv="gptWeights" placeholder="不填用 GPT-SoVITS 当前加载的" spellcheck="false"></label><label><span class="jy-label">SoVITS 模型（.pth，可不填）</span><input type="text" data-jy-tts-gsv="sovitsWeights" placeholder="不填用 GPT-SoVITS 当前加载的" spellcheck="false"></label></div>
+<div class="bgt-text-scope" data-bgt-tts-provider-card="gsv" hidden><h2>GPT-SoVITS</h2>
+<div class="bgt-form-grid bgt-form-grid-tight"><label><span class="bgt-label">声音来源</span><select data-bgt-tts-field="provider"><option value="fish">Fish Audio</option><option value="gsv">GPT-SoVITS（本地）</option></select></label><label><span class="bgt-label">接口地址</span><input type="url" data-bgt-tts-gsv="baseUrl" placeholder="http://127.0.0.1:9880" spellcheck="false"></label></div>
+<div class="bgt-actions"><button type="button" class="bgt-button" data-bgt-action="tts-test-gsv">测试连接</button><span class="bgt-muted" data-bgt-tts-gsv-note></span></div>
+<label class="bgt-check"><input type="checkbox" data-bgt-tts-gsv="viaProxy">经酒馆 CORS 代理发送</label>
+<p class="bgt-muted" data-bgt-tts-gsv-proxy-help></p>
+<div class="bgt-tts-lang-block"><h3>默认音色</h3><p class="bgt-muted">音色库里没配 GPT-SoVITS 的音色、没绑音色的角色，都用这个读。</p>
+<div class="bgt-form-grid bgt-form-grid-tight"><label><span class="bgt-label">参考音频</span><input type="text" data-bgt-tts-gsv="refAudioPath" placeholder="D:\\GPT-SoVITS\\参考音频\\旁白.wav" spellcheck="false"></label><label><span class="bgt-label">参考音频的文字</span><input type="text" data-bgt-tts-gsv="promptText" placeholder="参考音频里说的话，一字不差" spellcheck="false"></label><label><span class="bgt-label">参考音频语言</span><select data-bgt-tts-gsv="promptLang"><option value="zh">中文</option><option value="ja">日语</option><option value="en">英语</option><option value="ko">韩语</option><option value="yue">粤语</option><option value="auto">自动</option></select></label><label><span class="bgt-label">GPT 模型（.ckpt，可不填）</span><input type="text" data-bgt-tts-gsv="gptWeights" placeholder="不填用 GPT-SoVITS 当前加载的" spellcheck="false"></label><label><span class="bgt-label">SoVITS 模型（.pth，可不填）</span><input type="text" data-bgt-tts-gsv="sovitsWeights" placeholder="不填用 GPT-SoVITS 当前加载的" spellcheck="false"></label></div>
 </div>
-<p class="jy-muted">GPT-SoVITS 在你自己的电脑上生成声音，不花钱、不限字数，需要 N 卡。先启动它的 api_v2.py（整合包目录里运行 <code>runtime\\python.exe api_v2.py</code>），窗口里出现 Uvicorn running on http://127.0.0.1:9880 之后点「测试连接」；默认音色填好了，测试时会用它读一句。路径都填 GPT-SoVITS 那台电脑上的完整路径：在文件上按住 Shift 点右键，「复制文件地址」，直接粘贴。参考音频要 3~10 秒，「参考音频的文字」要和音频里说的一字不差。给角色单独配，在「音色」卡的「音色库」里每个音色填自己的参考音频和模型。</p>
+<p class="bgt-muted">GPT-SoVITS 在你自己的电脑上生成声音，不花钱、不限字数，需要 N 卡。先启动它的 api_v2.py（整合包目录里运行 <code>runtime\\python.exe api_v2.py</code>），窗口里出现 Uvicorn running on http://127.0.0.1:9880 之后点「测试连接」；默认音色填好了，测试时会用它读一句。路径都填 GPT-SoVITS 那台电脑上的完整路径：在文件上按住 Shift 点右键，「复制文件地址」，直接粘贴。参考音频要 3~10 秒，「参考音频的文字」要和音频里说的一字不差。给角色单独配，在「音色」卡的「音色库」里每个音色填自己的参考音频和模型。</p>
 </div>
-<div class="jy-text-scope"><h2>音色</h2>
-<div class="jy-actions"><button type="button" class="jy-button jy-button-primary" data-jy-action="tts-import-worldbook">从角色卡和世界书识别角色</button></div>
-<div class="jy-form-grid jy-form-grid-tight"><label><span class="jy-label">旁白音色 <span class="jy-tts-title" data-jy-tts-title="narrator"></span></span><span class="jy-tts-pick" data-jy-tts-pick-scope data-jy-tts-page-pick><input type="text" data-jy-tts-field="narratorVoice" placeholder="Fish Voice ID，留空用 Fish 默认音色" spellcheck="false"></span></label><label><span class="jy-label">对白默认音色 <span class="jy-tts-title" data-jy-tts-title="dialogue"></span></span><span class="jy-tts-pick" data-jy-tts-pick-scope data-jy-tts-page-pick><input type="text" data-jy-tts-field="dialogueVoice" placeholder="没有专属音色的角色都用这个" spellcheck="false"></span></label><label title="没有在角色表里绑定专属音色的人，是用上面这个默认音色读，还是干脆不读。"><span class="jy-label">没有专属音色的角色</span><select data-jy-tts-field="dialogueFallback"><option value="default">用对白默认音色读</option><option value="skip">跳过，不朗读</option></select></label></div>
-<p class="jy-muted">角色表里每一行都可以单独勾「不朗读这个角色的对白」，勾上的人一句都不读、也不生成音频。旁白不受这两项影响，旁白音色单独设。</p>
-<div class="jy-tts-lang-block" data-jy-tts-multilang><div class="jy-row-between"><div><h3>多国语言</h3><p class="jy-muted">同一个人读中文、英语、日语可以各用一个音色，英语还分美式和英式（伦敦腔）。这里给旁白加；每个角色行里各有一个「＋ 多国语言音色」按钮。句子的语言由副模型判断，没判断按文字本身。</p></div><button type="button" class="jy-button" data-jy-action="tts-add-narrator-lang">＋ 旁白加一门语言</button></div><div class="jy-tts-lang-list" data-jy-tts-narrator-langs></div></div>
-<div class="jy-form-grid jy-form-grid-tight"><label><span class="jy-label">角色表保存范围</span><select data-jy-tts-field="voiceScope"><option value="character">跟着角色卡（这张卡的所有聊天共用一张表）</option><option value="chat">每个聊天单独一份（不同周目各配各的）</option></select></label></div>
-<p class="jy-muted" data-jy-tts-scope-note></p>
-<div class="jy-processing-toolbar"><button type="button" class="jy-button" data-jy-action="tts-add-voice">添加角色</button><button type="button" class="jy-button" data-jy-action="tts-import-speakers">导入已知说话人</button><button type="button" class="jy-button" data-jy-action="tts-lookup-voices">查询音色名</button><button type="button" class="jy-text-button" data-jy-action="tts-prune-voices">删掉没绑音色的行</button></div>
-<div class="jy-tts-voice-list" data-jy-tts-voice-list></div>
+<div class="bgt-text-scope"><h2>音色</h2>
+<div class="bgt-actions"><button type="button" class="bgt-button bgt-button-primary" data-bgt-action="tts-import-worldbook">从角色卡和世界书识别角色</button></div>
+<div class="bgt-form-grid bgt-form-grid-tight"><label><span class="bgt-label">旁白音色 <span class="bgt-tts-title" data-bgt-tts-title="narrator"></span></span><span class="bgt-tts-pick" data-bgt-tts-pick-scope data-bgt-tts-page-pick><input type="text" data-bgt-tts-field="narratorVoice" placeholder="Fish Voice ID，留空用 Fish 默认音色" spellcheck="false"></span></label><label><span class="bgt-label">对白默认音色 <span class="bgt-tts-title" data-bgt-tts-title="dialogue"></span></span><span class="bgt-tts-pick" data-bgt-tts-pick-scope data-bgt-tts-page-pick><input type="text" data-bgt-tts-field="dialogueVoice" placeholder="没有专属音色的角色都用这个" spellcheck="false"></span></label><label title="没有在角色表里绑定专属音色的人，是用上面这个默认音色读，还是干脆不读。"><span class="bgt-label">没有专属音色的角色</span><select data-bgt-tts-field="dialogueFallback"><option value="default">用对白默认音色读</option><option value="skip">跳过，不朗读</option></select></label></div>
+<p class="bgt-muted">角色表里每一行都可以单独勾「不朗读这个角色的对白」，勾上的人一句都不读、也不生成音频。旁白不受这两项影响，旁白音色单独设。</p>
+<div class="bgt-tts-lang-block" data-bgt-tts-multilang><div class="bgt-row-between"><div><h3>多国语言</h3><p class="bgt-muted">同一个人读中文、英语、日语可以各用一个音色，英语还分美式和英式（伦敦腔）。这里给旁白加；每个角色行里各有一个「＋ 多国语言音色」按钮。句子的语言由副模型判断，没判断按文字本身。</p></div><button type="button" class="bgt-button" data-bgt-action="tts-add-narrator-lang">＋ 旁白加一门语言</button></div><div class="bgt-tts-lang-list" data-bgt-tts-narrator-langs></div></div>
+<div class="bgt-form-grid bgt-form-grid-tight"><label><span class="bgt-label">角色表保存范围</span><select data-bgt-tts-field="voiceScope"><option value="character">跟着角色卡（这张卡的所有聊天共用一张表）</option><option value="chat">每个聊天单独一份（不同周目各配各的）</option></select></label></div>
+<p class="bgt-muted" data-bgt-tts-scope-note></p>
+<div class="bgt-processing-toolbar"><button type="button" class="bgt-button" data-bgt-action="tts-add-voice">添加角色</button><button type="button" class="bgt-button" data-bgt-action="tts-import-speakers">导入已知说话人</button><button type="button" class="bgt-button" data-bgt-action="tts-lookup-voices">查询音色名</button><button type="button" class="bgt-text-button" data-bgt-action="tts-prune-voices">删掉没绑音色的行</button></div>
+<div class="bgt-tts-voice-list" data-bgt-tts-voice-list></div>
 <!-- DESIGN §15.4 危险操作: 红字文字按钮放每组末尾 — 清空角色表 used to sit in the toolbar above the
      list it empties, ahead of every other button in its group (review finding index.js:11542). -->
-<div class="jy-processing-toolbar jy-processing-toolbar-end"><button type="button" class="jy-text-button jy-text-button-danger" data-jy-action="tts-clear-voices">清空角色表</button></div>
-<div class="jy-behaviors"><label class="jy-check"><input type="checkbox" data-jy-tts-field="speechMarks">让主模型给台词标上说话人和情绪</label></div>
-<p class="jy-muted">打开后，主模型每写一次回复，请求的最末尾（深度 0，系统消息）都会带上一段格式要求，让它把每句台词写成 <code>&lt;say who="名字" mood="情绪"&gt;「……」&lt;/say&gt;</code>。不分析模式靠这个分角色、带情绪读，不请求任何副模型。标记在楼层里自动隐藏，翻译时自动去掉；台词的引号没配对（比如「……"）时，显示和朗读都会补成一对。名单用下面角色表里的名字，引号用这个故事最近在用的那种，每次生成时现取。只在朗读功能打开时发送，总结、代写这类旁路生成不带；关掉就不再发送。以前点按钮写进世界书的「镜译 · 说话人与情绪标记」条目请自己删掉或关掉——它还在的话，关掉这里主模型也会照样写标记。</p>
-<p class="jy-muted">角色表跟着当前角色卡保存。「从角色卡和世界书识别角色」让副模型读一遍角色卡和世界书条目（连同最近几楼正文，好按故事里的写法给名字），把人物名单列出来，你勾选后再导进来（需要副模型能连上，模型没回应就什么都不加）；世界书里没有、只是模型编的名字，群体和身份称呼，还有你自己扮演的角色，都会被程序挡掉，关掉的世界书条目也不读；导进来的角色先跟随对白默认音色，改默认音色它们一起变；给某个角色填了专属 Voice ID（或从音色库选）就锁定，之后改默认音色不影响它，「解除绑定」才会解锁。「＋ 多国语言音色」给同一个角色按语言绑不同音色：读中文译文用一个，读日语原文用另一个，句子的语言由副模型判断，没判断时按文字本身。没登记的角色不会不读，用对白默认音色；连默认音色都没填就用 Fish 的默认音色（声音来源是 GPT-SoVITS 时，用它那张卡里的默认音色）。</p>
-<details class="jy-fold" data-jy-fold="tts-library"><summary><h2>音色库</h2><span class="jy-fold-summary" data-jy-fold-summary></span></summary><div class="jy-form-body">
-<div class="jy-processing-toolbar"><button type="button" class="jy-button" data-jy-action="tts-add-library">添加音色</button></div>
-<div class="jy-tts-library" data-jy-tts-library></div>
-<p class="jy-muted">给常用的 Fish 音色起个自己的名字存起来，全部角色卡共用。之后旁白、对白默认音色、每个角色、每门语言的音色都可以直接从库里选，不用再去翻 32 位的 ID。Voice ID 在 fish.audio 音色页面的地址栏里。GPT-SoVITS 的音色也存在这里：展开一个音色，在「GPT-SoVITS」那几格填它的参考音频、参考音频的文字和模型，点「试听」听一句；只用 GPT-SoVITS 的音色不用填 Voice ID。同一个音色可以两边都填，换声音来源时角色绑的还是这个音色。</p>
+<div class="bgt-processing-toolbar bgt-processing-toolbar-end"><button type="button" class="bgt-text-button bgt-text-button-danger" data-bgt-action="tts-clear-voices">清空角色表</button></div>
+<div class="bgt-behaviors"><label class="bgt-check"><input type="checkbox" data-bgt-tts-field="speechMarks">让主模型给台词标上说话人和情绪</label></div>
+<p class="bgt-muted">打开后，主模型每写一次回复，请求的最末尾（深度 0，系统消息）都会带上一段格式要求，让它把每句台词写成 <code>&lt;say who="名字" mood="情绪"&gt;「……」&lt;/say&gt;</code>。不分析模式靠这个分角色、带情绪读，不请求任何副模型。标记在楼层里自动隐藏，翻译时自动去掉；台词的引号没配对（比如「……"）时，显示和朗读都会补成一对。名单用下面角色表里的名字，引号用这个故事最近在用的那种，每次生成时现取。只在朗读功能打开时发送，总结、代写这类旁路生成不带；关掉就不再发送。以前点按钮写进世界书的「测试翻译 · 说话人与情绪标记」条目请自己删掉或关掉——它还在的话，关掉这里主模型也会照样写标记。</p>
+<p class="bgt-muted">角色表跟着当前角色卡保存。「从角色卡和世界书识别角色」让副模型读一遍角色卡和世界书条目（连同最近几楼正文，好按故事里的写法给名字），把人物名单列出来，你勾选后再导进来（需要副模型能连上，模型没回应就什么都不加）；世界书里没有、只是模型编的名字，群体和身份称呼，还有你自己扮演的角色，都会被程序挡掉，关掉的世界书条目也不读；导进来的角色先跟随对白默认音色，改默认音色它们一起变；给某个角色填了专属 Voice ID（或从音色库选）就锁定，之后改默认音色不影响它，「解除绑定」才会解锁。「＋ 多国语言音色」给同一个角色按语言绑不同音色：读中文译文用一个，读日语原文用另一个，句子的语言由副模型判断，没判断时按文字本身。没登记的角色不会不读，用对白默认音色；连默认音色都没填就用 Fish 的默认音色（声音来源是 GPT-SoVITS 时，用它那张卡里的默认音色）。</p>
+<details class="bgt-fold" data-bgt-fold="tts-library"><summary><h2>音色库</h2><span class="bgt-fold-summary" data-bgt-fold-summary></span></summary><div class="bgt-form-body">
+<div class="bgt-processing-toolbar"><button type="button" class="bgt-button" data-bgt-action="tts-add-library">添加音色</button></div>
+<div class="bgt-tts-library" data-bgt-tts-library></div>
+<p class="bgt-muted">给常用的 Fish 音色起个自己的名字存起来，全部角色卡共用。之后旁白、对白默认音色、每个角色、每门语言的音色都可以直接从库里选，不用再去翻 32 位的 ID。Voice ID 在 fish.audio 音色页面的地址栏里。GPT-SoVITS 的音色也存在这里：展开一个音色，在「GPT-SoVITS」那几格填它的参考音频、参考音频的文字和模型，点「试听」听一句；只用 GPT-SoVITS 的音色不用填 Voice ID。同一个音色可以两边都填，换声音来源时角色绑的还是这个音色。</p>
 </div></details>
 </div>
-<div class="jy-text-scope"><h2>读法</h2>
-<div class="jy-card-row"><div class="jy-card-row-text"><h3>分析模式</h3><p class="jy-muted" data-jy-tts-mode-help></p></div><label class="jy-switch"><input type="checkbox" data-jy-tts-field="mode" aria-label="分析模式"><span></span></label></div>
-<div class="jy-card-row jy-card-row-dependent" data-jy-dependent="ttsIntimate"><label class="jy-card-row-field"><span>亲密场景</span><select data-jy-tts-field="intimate"><option value="off">关</option><option value="auto">自动</option><option value="on">开</option></select></label><p class="jy-muted">关：一律不发低吟。自动：分析模式自己判断这一楼是不是亲密戏（叙述里写出了实质的亲密接触才算），是才逐段放开喘息和低吟。开：你允许了，分析模式按场景逐段放开；日常段落、只有话的调情照样克制。</p><p class="jy-muted jy-dependent-reason">先打开上面的「分析模式」，这一项才会生效。</p></div>
-<div class="jy-form-grid jy-form-grid-tight"><label data-jy-tts-ask-field><span class="jy-label">没翻译、没分析过的楼，按播放时</span><select data-jy-tts-field="askAnalysis"><option value="ask">问我一下</option><option value="analyze">先让副模型分析一次再读</option><option value="plain">直接读，程序认人</option></select></label></div>
-<p class="jy-muted">翻译和朗读各挑各的连接，谁也不跟着谁：翻译、分析模式、小助手各用哪条，在「模型连接」页最上面的「各功能用哪条连接」里选，分析模式用的连接在这一页「更多 → 分析模式」里也能改。换翻译的连接不会动这里。连接本身（地址、密钥、模型、后置提示词）也存在「模型连接」页。</p>
-<div class="jy-form-grid jy-form-grid-tight"><label><span class="jy-label">朗读语言</span><select data-jy-tts-field="side"><option value="translation">译文</option><option value="source">原文</option><option value="both">译文 + 原文（各自生成，点哪个读哪个）</option><option value="dialogue_source">对白读原文（旁白读译文，台词按角色写的语言读原文）</option></select></label><label><span class="jy-label">朗读范围</span><select data-jy-tts-field="range"><option value="all">旁白 + 对白</option><option value="dialogue">只读对白</option><option value="narration">只读旁白</option></select></label></div>
-<div class="jy-behaviors"><label class="jy-check"><input type="checkbox" data-jy-tts-field="autoRead">新回复自动朗读（只读最新一楼，写完才读；正在读别的楼时只提醒、不打断）</label><label class="jy-check"><input type="checkbox" data-jy-tts-field="autoGenerate">最新一楼分析完自动生成音频，不播放</label><label class="jy-check"><input type="checkbox" data-jy-tts-field="playAfterGenerate">点播放后，做完直接播（关掉就只生成，再点一次才播）</label></div>
-<p class="jy-muted">开着翻译的楼，翻译时就顺手标好了谁在说、什么情绪，不分析时直接用这些标注，不再请求副模型；打开分析模式，正文一闭合就把这一楼发给副模型分析一次，走分析模式用的连接；勾了「自动生成音频」才会翻完就做；勾了「新回复自动朗读」，新回复写完（开着翻译就等译文写回）就自己从头读。每个自然段后面的「播放」只读这一段，读完就停；「重新生成」丢掉这一段的音频再向 Fish 要一次（同一段文字 Fish 每次读得不一样）；电脑手机都有。想要每句一个按钮，「正文处理」页的「楼层里的朗读按钮」选「每段一个，再加每句一个」。改一句发给 Fish 的内容，仍然在悬浮窗的朗读页。想让一句唱出来，在朗读页点这一句，再点「唱」（S2 系列模型才能唱）；歌词行默认就唱，楼层里一段歌词的末尾有「唱」按钮，开关在「正文处理 → 歌词行」。</p>
-<div class="jy-form-grid jy-form-grid-tight"><label><span class="jy-label">「保存到本地」保存什么</span><select data-jy-tts-field="downloadScope"><option value="auto">整楼音频（默认）</option><option value="floor">整楼音频</option><option value="current">正在读的那一段</option><option value="sentence">正在读的那一句</option></select></label><label><span class="jy-label">读译文时，楼层没有镜译译文就从这些标签里取文字</span><input type="text" data-jy-tts-field="sourceTags" placeholder="jy-translation" spellcheck="false"></label></div>
-<p class="jy-muted">读原文：按「正文处理」里的提取标签取原文，没翻译过的楼层也能读，思维链、状态栏这些不在提取标签里的内容不会被读。副模型分析时会附上每行的译文帮它认人，说话人按译名写；原文里的写法（比如桜井）可以加进角色的别名。<br>对白读原文：旁白读译文，每一句台词按正文里写的语言读原文——同一楼里日本人的台词读日语、英国人的台词读英语，说话人和情绪仍然取自译文的标注，句内的停顿重读带不过去。不用另外选语言配的音色：Fish 的 S2 系列按每句自己的语言发音，「音色」给角色配的「多国语言」音色也是按这句话自己的语言选的，没配就还是这个角色的默认音色。<br>不开分析模式时，以上几种读法都给每句写一句中文配音指令：谁在说、基础情绪、情绪怎么变、语气、语速、停顿重读、要不要笑声叹气喘息。S2 系列模型直接读方括号里的中文指令，句内还会插 [重读]、[停顿]、[长停顿] 和声音词，语速音量走 Fish 的参数；S1 读不懂自由文本，退回它认得的英文固定标签。台词本身不经过模型，一个字不改。<br>开着分析模式时按声学标注规则来：不写情绪词，只在字上插十个声音标签；台词可以加叠字、！！、~、……和呜、嗯、唔这类语气词，原文的字程序逐字核对，对不上的句子按原文念。语速分五档；张力 1~5 调 Fish 的 temperature，张力不同的句子分开请求；很短的语气句会加强防重复，免得卡在一个音上。分析按楼层文本缓存，一楼只请求一次；点句子旁的情绪按钮或悬浮窗的改句面板能看到分析结果和最终发给 Fish 的内容，可以改。</p>
+<div class="bgt-text-scope"><h2>读法</h2>
+<div class="bgt-card-row"><div class="bgt-card-row-text"><h3>分析模式</h3><p class="bgt-muted" data-bgt-tts-mode-help></p></div><label class="bgt-switch"><input type="checkbox" data-bgt-tts-field="mode" aria-label="分析模式"><span></span></label></div>
+<div class="bgt-card-row bgt-card-row-dependent" data-bgt-dependent="ttsIntimate"><label class="bgt-card-row-field"><span>亲密场景</span><select data-bgt-tts-field="intimate"><option value="off">关</option><option value="auto">自动</option><option value="on">开</option></select></label><p class="bgt-muted">关：一律不发低吟。自动：分析模式自己判断这一楼是不是亲密戏（叙述里写出了实质的亲密接触才算），是才逐段放开喘息和低吟。开：你允许了，分析模式按场景逐段放开；日常段落、只有话的调情照样克制。</p><p class="bgt-muted bgt-dependent-reason">先打开上面的「分析模式」，这一项才会生效。</p></div>
+<div class="bgt-form-grid bgt-form-grid-tight"><label data-bgt-tts-ask-field><span class="bgt-label">没翻译、没分析过的楼，按播放时</span><select data-bgt-tts-field="askAnalysis"><option value="ask">问我一下</option><option value="analyze">先让副模型分析一次再读</option><option value="plain">直接读，程序认人</option></select></label></div>
+<p class="bgt-muted">翻译和朗读各挑各的连接，谁也不跟着谁：翻译、分析模式、小助手各用哪条，在「模型连接」页最上面的「各功能用哪条连接」里选，分析模式用的连接在这一页「更多 → 分析模式」里也能改。换翻译的连接不会动这里。连接本身（地址、密钥、模型、后置提示词）也存在「模型连接」页。</p>
+<div class="bgt-form-grid bgt-form-grid-tight"><label><span class="bgt-label">朗读语言</span><select data-bgt-tts-field="side"><option value="translation">译文</option><option value="source">原文</option><option value="both">译文 + 原文（各自生成，点哪个读哪个）</option><option value="dialogue_source">对白读原文（旁白读译文，台词按角色写的语言读原文）</option></select></label><label><span class="bgt-label">朗读范围</span><select data-bgt-tts-field="range"><option value="all">旁白 + 对白</option><option value="dialogue">只读对白</option><option value="narration">只读旁白</option></select></label></div>
+<div class="bgt-behaviors"><label class="bgt-check"><input type="checkbox" data-bgt-tts-field="autoRead">新回复自动朗读（只读最新一楼，写完才读；正在读别的楼时只提醒、不打断）</label><label class="bgt-check"><input type="checkbox" data-bgt-tts-field="autoGenerate">最新一楼分析完自动生成音频，不播放</label><label class="bgt-check"><input type="checkbox" data-bgt-tts-field="playAfterGenerate">点播放后，做完直接播（关掉就只生成，再点一次才播）</label></div>
+<p class="bgt-muted">开着翻译的楼，翻译时就顺手标好了谁在说、什么情绪，不分析时直接用这些标注，不再请求副模型；打开分析模式，正文一闭合就把这一楼发给副模型分析一次，走分析模式用的连接；勾了「自动生成音频」才会翻完就做；勾了「新回复自动朗读」，新回复写完（开着翻译就等译文写回）就自己从头读。每个自然段后面的「播放」只读这一段，读完就停；「重新生成」丢掉这一段的音频再向 Fish 要一次（同一段文字 Fish 每次读得不一样）；电脑手机都有。想要每句一个按钮，「正文处理」页的「楼层里的朗读按钮」选「每段一个，再加每句一个」。改一句发给 Fish 的内容，仍然在悬浮窗的朗读页。想让一句唱出来，在朗读页点这一句，再点「唱」（S2 系列模型才能唱）；歌词行默认就唱，楼层里一段歌词的末尾有「唱」按钮，开关在「正文处理 → 歌词行」。</p>
+<div class="bgt-form-grid bgt-form-grid-tight"><label><span class="bgt-label">「保存到本地」保存什么</span><select data-bgt-tts-field="downloadScope"><option value="auto">整楼音频（默认）</option><option value="floor">整楼音频</option><option value="current">正在读的那一段</option><option value="sentence">正在读的那一句</option></select></label><label><span class="bgt-label">读译文时，楼层没有测试翻译译文就从这些标签里取文字</span><input type="text" data-bgt-tts-field="sourceTags" placeholder="bgt-translation" spellcheck="false"></label></div>
+<p class="bgt-muted">读原文：按「正文处理」里的提取标签取原文，没翻译过的楼层也能读，思维链、状态栏这些不在提取标签里的内容不会被读。副模型分析时会附上每行的译文帮它认人，说话人按译名写；原文里的写法（比如桜井）可以加进角色的别名。<br>对白读原文：旁白读译文，每一句台词按正文里写的语言读原文——同一楼里日本人的台词读日语、英国人的台词读英语，说话人和情绪仍然取自译文的标注，句内的停顿重读带不过去。不用另外选语言配的音色：Fish 的 S2 系列按每句自己的语言发音，「音色」给角色配的「多国语言」音色也是按这句话自己的语言选的，没配就还是这个角色的默认音色。<br>不开分析模式时，以上几种读法都给每句写一句中文配音指令：谁在说、基础情绪、情绪怎么变、语气、语速、停顿重读、要不要笑声叹气喘息。S2 系列模型直接读方括号里的中文指令，句内还会插 [重读]、[停顿]、[长停顿] 和声音词，语速音量走 Fish 的参数；S1 读不懂自由文本，退回它认得的英文固定标签。台词本身不经过模型，一个字不改。<br>开着分析模式时按声学标注规则来：不写情绪词，只在字上插十个声音标签；台词可以加叠字、！！、~、……和呜、嗯、唔这类语气词，原文的字程序逐字核对，对不上的句子按原文念。语速分五档；张力 1~5 调 Fish 的 temperature，张力不同的句子分开请求；很短的语气句会加强防重复，免得卡在一个音上。分析按楼层文本缓存，一楼只请求一次；点句子旁的情绪按钮或悬浮窗的改句面板能看到分析结果和最终发给 Fish 的内容，可以改。</p>
 </div>
-<section class="jy-text-scope jy-more-group">
+<section class="bgt-text-scope bgt-more-group">
 <h2>更多</h2>
-<div class="jy-fold-list">
-<details class="jy-fold" data-jy-fold="tts-quotes"><summary><h2>对白符号 · 跳过符号</h2><span class="jy-fold-summary" data-jy-fold-summary></span></summary><div class="jy-form-body">
-<div class="jy-form-grid jy-form-grid-tight"><label><span class="jy-label">对白符号（这些符号里的是台词）</span><input type="text" data-jy-tts-field="quotePairs" placeholder="「」, 『』, “”, &quot;&quot;" spellcheck="false"></label><label><span class="jy-label">跳过符号（这些符号里的不读）</span><input type="text" data-jy-tts-field="skipPairs" placeholder="* *, ** **, （）" spellcheck="false"></label></div>
-<p class="jy-muted">符号成对写，逗号分隔；开合各一个字符时写在一起（「」），多字符或相同字符之间空一格（** **）。比如预设把动作写在星号里、台词写在引号里：对白符号填 “”，跳过符号填 * *，那么 <code>樱井说：“明天也来吗？” *低头摆弄着衣角*</code> 只读引号里的话，星号里的一句不读也不挂按钮。不同预设的写法不一样，按自己用的预设改。</p>
+<div class="bgt-fold-list">
+<details class="bgt-fold" data-bgt-fold="tts-quotes"><summary><h2>对白符号 · 跳过符号</h2><span class="bgt-fold-summary" data-bgt-fold-summary></span></summary><div class="bgt-form-body">
+<div class="bgt-form-grid bgt-form-grid-tight"><label><span class="bgt-label">对白符号（这些符号里的是台词）</span><input type="text" data-bgt-tts-field="quotePairs" placeholder="「」, 『』, “”, &quot;&quot;" spellcheck="false"></label><label><span class="bgt-label">跳过符号（这些符号里的不读）</span><input type="text" data-bgt-tts-field="skipPairs" placeholder="* *, ** **, （）" spellcheck="false"></label></div>
+<p class="bgt-muted">符号成对写，逗号分隔；开合各一个字符时写在一起（「」），多字符或相同字符之间空一格（** **）。比如预设把动作写在星号里、台词写在引号里：对白符号填 “”，跳过符号填 * *，那么 <code>樱井说：“明天也来吗？” *低头摆弄着衣角*</code> 只读引号里的话，星号里的一句不读也不挂按钮。不同预设的写法不一样，按自己用的预设改。</p>
 </div></details>
-<details class="jy-fold" data-jy-fold="tts-gsv" data-jy-tts-provider-card="gsv" hidden><summary><h2>GPT-SoVITS 参数</h2><span class="jy-fold-summary" data-jy-fold-summary></span></summary><div class="jy-form-body">
-<div class="jy-form-grid jy-form-grid-tight"><label><span class="jy-label">超时 / 秒</span><input type="number" data-jy-tts-gsv="timeoutSec" min="10" max="600" step="10"></label><label><span class="jy-label">失败后自动重试次数</span><input type="number" data-jy-tts-gsv="retries" min="0" max="5" step="1"></label></div>
-<p class="jy-muted">每句发一次请求，GPT-SoVITS 一句做完再做下一句；音色用的模型不一样时，先把同一套模型的句子做完再换模型（换一次要几秒）。超时和重试只管请求怎么发，改了不会重做音频；第一次读、刚换模型时要先把模型装进显卡，超时别调得太短。</p>
-<div class="jy-form-grid">
-<label><span class="jy-label">语速（0.6–1.65）</span><input type="number" data-jy-tts-gsv="speed" min="0.6" max="1.65" step="0.05"></label><label><span class="jy-label">音量调整 / dB</span><input type="number" data-jy-tts-gsv="volume" min="-20" max="20" step="1"></label>
-<label><span class="jy-label">temperature</span><input type="number" data-jy-tts-gsv="temperature" min="0.05" max="1" step="0.05"></label><label><span class="jy-label">top_p</span><input type="number" data-jy-tts-gsv="topP" min="0.05" max="1" step="0.05"></label>
-<label><span class="jy-label">top_k</span><input type="number" data-jy-tts-gsv="topK" min="1" max="100" step="1"></label><label><span class="jy-label">重复惩罚</span><input type="number" data-jy-tts-gsv="repetitionPenalty" min="1" max="2" step="0.05"></label>
-<label><span class="jy-label">切句方式</span><select data-jy-tts-gsv="splitMethod"><option value="cut5">按标点切（默认）</option><option value="cut0">不切</option><option value="cut1">凑四句一切</option><option value="cut2">凑 50 字一切</option><option value="cut3">按中文句号切</option><option value="cut4">按英文句号切</option></select></label>
+<details class="bgt-fold" data-bgt-fold="tts-gsv" data-bgt-tts-provider-card="gsv" hidden><summary><h2>GPT-SoVITS 参数</h2><span class="bgt-fold-summary" data-bgt-fold-summary></span></summary><div class="bgt-form-body">
+<div class="bgt-form-grid bgt-form-grid-tight"><label><span class="bgt-label">超时 / 秒</span><input type="number" data-bgt-tts-gsv="timeoutSec" min="10" max="600" step="10"></label><label><span class="bgt-label">失败后自动重试次数</span><input type="number" data-bgt-tts-gsv="retries" min="0" max="5" step="1"></label></div>
+<p class="bgt-muted">每句发一次请求，GPT-SoVITS 一句做完再做下一句；音色用的模型不一样时，先把同一套模型的句子做完再换模型（换一次要几秒）。超时和重试只管请求怎么发，改了不会重做音频；第一次读、刚换模型时要先把模型装进显卡，超时别调得太短。</p>
+<div class="bgt-form-grid">
+<label><span class="bgt-label">语速（0.6–1.65）</span><input type="number" data-bgt-tts-gsv="speed" min="0.6" max="1.65" step="0.05"></label><label><span class="bgt-label">音量调整 / dB</span><input type="number" data-bgt-tts-gsv="volume" min="-20" max="20" step="1"></label>
+<label><span class="bgt-label">temperature</span><input type="number" data-bgt-tts-gsv="temperature" min="0.05" max="1" step="0.05"></label><label><span class="bgt-label">top_p</span><input type="number" data-bgt-tts-gsv="topP" min="0.05" max="1" step="0.05"></label>
+<label><span class="bgt-label">top_k</span><input type="number" data-bgt-tts-gsv="topK" min="1" max="100" step="1"></label><label><span class="bgt-label">重复惩罚</span><input type="number" data-bgt-tts-gsv="repetitionPenalty" min="1" max="2" step="0.05"></label>
+<label><span class="bgt-label">切句方式</span><select data-bgt-tts-gsv="splitMethod"><option value="cut5">按标点切（默认）</option><option value="cut0">不切</option><option value="cut1">凑四句一切</option><option value="cut2">凑 50 字一切</option><option value="cut3">按中文句号切</option><option value="cut4">按英文句号切</option></select></label>
 </div>
-<div class="jy-behaviors"><label class="jy-check"><input type="checkbox" data-jy-tts-field="sanitizeHtml">发给 GPT-SoVITS 前去掉正文里的 HTML（颜色、字号这类美化只留在页面上）</label><label class="jy-check"><input type="checkbox" data-jy-tts-field="prosodySplit">按分析出的语速、音量读（每句各自生效）</label></div>
-<p class="jy-muted">GPT-SoVITS 听不懂情绪、停顿、笑声这些标签，发出去的只有字：分析模式加的叠字、语气词照样读，标签不读。情绪靠参考音频——同一个角色录一段开心的、一段低落的，存成两个音色，在角色的「情绪音色」里按条件换。temperature、top_k、top_p 越低越稳、越高起伏越大；重复惩罚防止卡在一个音上；切句方式是 GPT-SoVITS 在一句里面再按标点切开，中间停一下。改了语速、音量和这几项，已经做好的音频会按新参数重做。</p>
+<div class="bgt-behaviors"><label class="bgt-check"><input type="checkbox" data-bgt-tts-field="sanitizeHtml">发给 GPT-SoVITS 前去掉正文里的 HTML（颜色、字号这类美化只留在页面上）</label><label class="bgt-check"><input type="checkbox" data-bgt-tts-field="prosodySplit">按分析出的语速、音量读（每句各自生效）</label></div>
+<p class="bgt-muted">GPT-SoVITS 听不懂情绪、停顿、笑声这些标签，发出去的只有字：分析模式加的叠字、语气词照样读，标签不读。情绪靠参考音频——同一个角色录一段开心的、一段低落的，存成两个音色，在角色的「情绪音色」里按条件换。temperature、top_k、top_p 越低越稳、越高起伏越大；重复惩罚防止卡在一个音上；切句方式是 GPT-SoVITS 在一句里面再按标点切开，中间停一下。改了语速、音量和这几项，已经做好的音频会按新参数重做。</p>
 </div></details>
-<details class="jy-fold" data-jy-fold="tts-fish" data-jy-tts-provider-card="fish"><summary><h2>Fish 参数</h2><span class="jy-fold-summary" data-jy-fold-summary></span></summary><div class="jy-form-body">
-<label><span class="jy-label">接口地址</span><input type="url" data-jy-tts-fish="baseUrl" placeholder="https://api.fish.audio" spellcheck="false"></label>
-<div class="jy-form-grid jy-form-grid-tight"><label><span class="jy-label">超时 / 秒</span><input type="number" data-jy-tts-fish="timeoutSec" min="10" max="600" step="10"></label><label><span class="jy-label">失败后自动重试次数</span><input type="number" data-jy-tts-fish="retries" min="0" max="5" step="1"></label><label title="整楼拆成几段请求时，几段同时发。越大等得越短，Fish 提示限流（429）就调回 1。"><span class="jy-label">同时生成几段</span><select data-jy-tts-fish="concurrency"><option value="1">1（一段一段来，最稳）</option><option value="2">2</option><option value="3">3</option><option value="4">4</option></select></label></div>
-<p class="jy-muted">超时、重试和并发是这条连接怎么发请求，不影响声音。重试只在超时、断线和 Fish 自己出错（5xx）时发生；Key 不对、余额不足、限流（429）这些一次就停，重试也没用。</p>
-<div class="jy-form-grid jy-form-grid-tight"><label title="一次请求交给 Fish 多少内容。整楼一次：这一楼所有人的对白和旁白合成一个请求，各用各的音色，Fish 按一场对话连着读。"><span class="jy-label">一次请求发多少</span><select data-jy-tts-field="requestUnit"><option value="line">每段一次（默认，第一段做好就开始播）</option><option value="floor">整楼一次（所有角色合成一个请求）</option><option value="sentence">每句一次（每句单独请求）</option></select></label></div>
-<p class="jy-muted" data-jy-tts-unit-help></p>
-<div class="jy-form-grid">
-<label><span class="jy-label">音频格式</span><select data-jy-tts-fish="format"><option value="mp3">mp3（兼容最好）</option><option value="opus">opus（体积小，旧版 Safari 可能播不了）</option><option value="wav">wav（无损，体积大）</option></select></label><label><span class="jy-label">延迟与质量</span><select data-jy-tts-fish="latency"><option value="normal">normal（质量最好）</option><option value="balanced">balanced</option><option value="low">low（最快）</option></select></label>
-<label><span class="jy-label">语速（0.5–2）</span><input type="number" data-jy-tts-fish="speed" min="0.5" max="2" step="0.05"></label><label><span class="jy-label">音量调整 / dB</span><input type="number" data-jy-tts-fish="volume" min="-20" max="20" step="1"></label>
-<label><span class="jy-label">temperature</span><input type="number" data-jy-tts-fish="temperature" min="0" max="1" step="0.05"></label><label><span class="jy-label">top_p</span><input type="number" data-jy-tts-fish="topP" min="0" max="1" step="0.05"></label>
-<label><span class="jy-label">一次请求最多字数（标签一起算，超过就拆）</span><input type="number" data-jy-tts-fish="maxChars" min="200" max="10000" step="100"></label>
+<details class="bgt-fold" data-bgt-fold="tts-fish" data-bgt-tts-provider-card="fish"><summary><h2>Fish 参数</h2><span class="bgt-fold-summary" data-bgt-fold-summary></span></summary><div class="bgt-form-body">
+<label><span class="bgt-label">接口地址</span><input type="url" data-bgt-tts-fish="baseUrl" placeholder="https://api.fish.audio" spellcheck="false"></label>
+<div class="bgt-form-grid bgt-form-grid-tight"><label><span class="bgt-label">超时 / 秒</span><input type="number" data-bgt-tts-fish="timeoutSec" min="10" max="600" step="10"></label><label><span class="bgt-label">失败后自动重试次数</span><input type="number" data-bgt-tts-fish="retries" min="0" max="5" step="1"></label><label title="整楼拆成几段请求时，几段同时发。越大等得越短，Fish 提示限流（429）就调回 1。"><span class="bgt-label">同时生成几段</span><select data-bgt-tts-fish="concurrency"><option value="1">1（一段一段来，最稳）</option><option value="2">2</option><option value="3">3</option><option value="4">4</option></select></label></div>
+<p class="bgt-muted">超时、重试和并发是这条连接怎么发请求，不影响声音。重试只在超时、断线和 Fish 自己出错（5xx）时发生；Key 不对、余额不足、限流（429）这些一次就停，重试也没用。</p>
+<div class="bgt-form-grid bgt-form-grid-tight"><label title="一次请求交给 Fish 多少内容。整楼一次：这一楼所有人的对白和旁白合成一个请求，各用各的音色，Fish 按一场对话连着读。"><span class="bgt-label">一次请求发多少</span><select data-bgt-tts-field="requestUnit"><option value="line">每段一次（默认，第一段做好就开始播）</option><option value="floor">整楼一次（所有角色合成一个请求）</option><option value="sentence">每句一次（每句单独请求）</option></select></label></div>
+<p class="bgt-muted" data-bgt-tts-unit-help></p>
+<div class="bgt-form-grid">
+<label><span class="bgt-label">音频格式</span><select data-bgt-tts-fish="format"><option value="mp3">mp3（兼容最好）</option><option value="opus">opus（体积小，旧版 Safari 可能播不了）</option><option value="wav">wav（无损，体积大）</option></select></label><label><span class="bgt-label">延迟与质量</span><select data-bgt-tts-fish="latency"><option value="normal">normal（质量最好）</option><option value="balanced">balanced</option><option value="low">low（最快）</option></select></label>
+<label><span class="bgt-label">语速（0.5–2）</span><input type="number" data-bgt-tts-fish="speed" min="0.5" max="2" step="0.05"></label><label><span class="bgt-label">音量调整 / dB</span><input type="number" data-bgt-tts-fish="volume" min="-20" max="20" step="1"></label>
+<label><span class="bgt-label">temperature</span><input type="number" data-bgt-tts-fish="temperature" min="0" max="1" step="0.05"></label><label><span class="bgt-label">top_p</span><input type="number" data-bgt-tts-fish="topP" min="0" max="1" step="0.05"></label>
+<label><span class="bgt-label">一次请求最多字数（标签一起算，超过就拆）</span><input type="number" data-bgt-tts-fish="maxChars" min="200" max="10000" step="100"></label>
 </div>
-<div class="jy-behaviors"><label class="jy-check"><input type="checkbox" data-jy-tts-fish="normalize">数字与符号规范化（中英文读数更稳）</label><label class="jy-check"><input type="checkbox" data-jy-tts-field="emotionCues">把配音指令一起发给 Fish（关掉只读字）</label><label class="jy-check"><input type="checkbox" data-jy-tts-field="sanitizeHtml">发给 Fish 前去掉正文里的 HTML（颜色、字号这类美化只留在页面上）</label><label class="jy-check"><input type="checkbox" data-jy-tts-field="prosodySplit">按分析出的语速、音量拆分请求（Fish 的语速音量按请求生效）</label><label class="jy-check"><input type="checkbox" data-jy-tts-field="tamePunctuation">连续的！！！压成一个，强度交给情绪标签</label></div>
-<p class="jy-muted">改任何一项声音参数，已经缓存的音频都会按新参数重新生成。超时、重试和并发不算声音参数，改了不会让音频重做，它们在这一栏最上面。</p>
+<div class="bgt-behaviors"><label class="bgt-check"><input type="checkbox" data-bgt-tts-fish="normalize">数字与符号规范化（中英文读数更稳）</label><label class="bgt-check"><input type="checkbox" data-bgt-tts-field="emotionCues">把配音指令一起发给 Fish（关掉只读字）</label><label class="bgt-check"><input type="checkbox" data-bgt-tts-field="sanitizeHtml">发给 Fish 前去掉正文里的 HTML（颜色、字号这类美化只留在页面上）</label><label class="bgt-check"><input type="checkbox" data-bgt-tts-field="prosodySplit">按分析出的语速、音量拆分请求（Fish 的语速音量按请求生效）</label><label class="bgt-check"><input type="checkbox" data-bgt-tts-field="tamePunctuation">连续的！！！压成一个，强度交给情绪标签</label></div>
+<p class="bgt-muted">改任何一项声音参数，已经缓存的音频都会按新参数重新生成。超时、重试和并发不算声音参数，改了不会让音频重做，它们在这一栏最上面。</p>
 </div></details>
-<details class="jy-fold" data-jy-fold="tts-deep"><summary><h2>分析模式</h2><span class="jy-fold-summary" data-jy-fold-summary></span></summary><div class="jy-form-body">
-<p class="jy-muted">带着角色卡、世界书、前几楼把这一楼看一遍，判断每句情绪的因果和浓度，定下情绪、语气、语速、停顿、重读、句内转折和非语言声音，全是 Fish 官方认得的标签；调音台上你推到头的滑杆是它必须守的规则，留在中间的交给它判断。开着翻译时一楼两次调用（翻译一次、分析一次），不开翻译一次做完。这一栏里的东西只属于分析模式，改它不碰别的。</p>
-<div class="jy-form-grid jy-form-grid-tight"><label><span class="jy-label">分析模式用的连接</span><select data-jy-tts-field="deepChannelId"></select></label><label title="从请求发出去算起，不管模型还在不在写。连接自己的「超时」只管「多久没动静」，思考型模型边想边写就永远不会超时。"><span class="jy-label">单次分析最长等待 / 秒</span><input type="number" data-jy-tts-field="analysisLimitSec" min="20" max="900" step="10"></label></div>
-<p class="jy-muted">「单次分析最长等待」是硬上限：到点就停，这一楼先按现有标注读，不会一直等下去。思考型模型嫌慢的话，把那条连接的「推理强度」调低比调大这个数更有用。</p>
-<div class="jy-behaviors"><span class="jy-label">分析时附带</span><label class="jy-check"><input type="checkbox" data-jy-tts-context="character">角色卡设定</label><label class="jy-check"><input type="checkbox" data-jy-tts-context="worldbook">世界书</label><label class="jy-check"><input type="checkbox" data-jy-tts-context="recent">前几楼剧情</label><label class="jy-inline-field"><span class="jy-label">楼数</span><input type="number" data-jy-tts-context="floors" min="0" max="10" step="1"></label></div>
+<details class="bgt-fold" data-bgt-fold="tts-deep"><summary><h2>分析模式</h2><span class="bgt-fold-summary" data-bgt-fold-summary></span></summary><div class="bgt-form-body">
+<p class="bgt-muted">带着角色卡、世界书、前几楼把这一楼看一遍，判断每句情绪的因果和浓度，定下情绪、语气、语速、停顿、重读、句内转折和非语言声音，全是 Fish 官方认得的标签；调音台上你推到头的滑杆是它必须守的规则，留在中间的交给它判断。开着翻译时一楼两次调用（翻译一次、分析一次），不开翻译一次做完。这一栏里的东西只属于分析模式，改它不碰别的。</p>
+<div class="bgt-form-grid bgt-form-grid-tight"><label><span class="bgt-label">分析模式用的连接</span><select data-bgt-tts-field="deepChannelId"></select></label><label title="从请求发出去算起，不管模型还在不在写。连接自己的「超时」只管「多久没动静」，思考型模型边想边写就永远不会超时。"><span class="bgt-label">单次分析最长等待 / 秒</span><input type="number" data-bgt-tts-field="analysisLimitSec" min="20" max="900" step="10"></label></div>
+<p class="bgt-muted">「单次分析最长等待」是硬上限：到点就停，这一楼先按现有标注读，不会一直等下去。思考型模型嫌慢的话，把那条连接的「推理强度」调低比调大这个数更有用。</p>
+<div class="bgt-behaviors"><span class="bgt-label">分析时附带</span><label class="bgt-check"><input type="checkbox" data-bgt-tts-context="character">角色卡设定</label><label class="bgt-check"><input type="checkbox" data-bgt-tts-context="worldbook">世界书</label><label class="bgt-check"><input type="checkbox" data-bgt-tts-context="recent">前几楼剧情</label><label class="bgt-inline-field"><span class="bgt-label">楼数</span><input type="number" data-bgt-tts-context="floors" min="0" max="10" step="1"></label></div>
 </div></details>
-<details class="jy-fold" data-jy-fold="tts-console"><summary><h2>默认调音台</h2><span class="jy-fold-summary" data-jy-fold-summary></span></summary><div class="jy-form-body">
-<p class="jy-muted">每一项五档，停在哪一档就把哪一句话交给副模型。中间那档是「AI 判断」——这一项不写任何规则，由分析模型按剧情自己定，也是默认值。往两边走才会变成硬性要求，比如「呼吸感明显」「声音克制」。数字本身不发给任何模型。每个角色还能在音色那栏单独调；最下面的自定义规则永远原样交给副模型，那才是最细的一层。</p>
-<p class="jy-muted">非语言声音（叹气、笑、抽泣这些）由「声音表现倾向」一项决定用多少；「气息感」只说用哪一种，不会自己加量。两项都停在「AI 判断」时，加不加、加多少由分析模型看着办。</p>
-<div class="jy-tts-console" data-jy-tts-console="default"><div class="jy-tts-console-presets" data-jy-console-preset-host></div><label class="jy-tts-console-field"><span>停顿感</span><input type="range" min="0" max="100" step="25" value="50" data-jy-console-key="pause"><output>AI 判断</output></label><label class="jy-tts-console-field"><span>气息感</span><input type="range" min="0" max="100" step="25" value="50" data-jy-console-key="breath"><output>AI 判断</output></label><label class="jy-tts-console-field"><span>口语颗粒度</span><input type="range" min="0" max="100" step="25" value="50" data-jy-console-key="grain"><output>AI 判断</output></label><label class="jy-tts-console-field"><span>情感强度</span><input type="range" min="0" max="100" step="25" value="50" data-jy-console-key="intensity"><output>AI 判断</output></label><label class="jy-tts-console-field"><span>情绪表现幅度</span><input type="range" min="0" max="100" step="25" value="50" data-jy-console-key="range"><output>AI 判断</output></label><label class="jy-tts-console-field"><span>语速倾向</span><input type="range" min="0" max="100" step="25" value="50" data-jy-console-key="speed"><output>AI 判断</output></label><label class="jy-tts-console-field"><span>声音表现倾向</span><input type="range" min="0" max="100" step="25" value="50" data-jy-console-key="expression"><output>AI 判断</output></label><label class="jy-tts-console-rules"><span class="jy-label">自定义配音规则（一行一条，直接交给副模型）</span><textarea rows="3" data-jy-console-rules spellcheck="false" placeholder="比如：害羞时不要过度娇柔；生气时保持克制；不要每句话都加呼吸"></textarea></label></div>
+<details class="bgt-fold" data-bgt-fold="tts-console"><summary><h2>默认调音台</h2><span class="bgt-fold-summary" data-bgt-fold-summary></span></summary><div class="bgt-form-body">
+<p class="bgt-muted">每一项五档，停在哪一档就把哪一句话交给副模型。中间那档是「AI 判断」——这一项不写任何规则，由分析模型按剧情自己定，也是默认值。往两边走才会变成硬性要求，比如「呼吸感明显」「声音克制」。数字本身不发给任何模型。每个角色还能在音色那栏单独调；最下面的自定义规则永远原样交给副模型，那才是最细的一层。</p>
+<p class="bgt-muted">非语言声音（叹气、笑、抽泣这些）由「声音表现倾向」一项决定用多少；「气息感」只说用哪一种，不会自己加量。两项都停在「AI 判断」时，加不加、加多少由分析模型看着办。</p>
+<div class="bgt-tts-console" data-bgt-tts-console="default"><div class="bgt-tts-console-presets" data-bgt-console-preset-host></div><label class="bgt-tts-console-field"><span>停顿感</span><input type="range" min="0" max="100" step="25" value="50" data-bgt-console-key="pause"><output>AI 判断</output></label><label class="bgt-tts-console-field"><span>气息感</span><input type="range" min="0" max="100" step="25" value="50" data-bgt-console-key="breath"><output>AI 判断</output></label><label class="bgt-tts-console-field"><span>口语颗粒度</span><input type="range" min="0" max="100" step="25" value="50" data-bgt-console-key="grain"><output>AI 判断</output></label><label class="bgt-tts-console-field"><span>情感强度</span><input type="range" min="0" max="100" step="25" value="50" data-bgt-console-key="intensity"><output>AI 判断</output></label><label class="bgt-tts-console-field"><span>情绪表现幅度</span><input type="range" min="0" max="100" step="25" value="50" data-bgt-console-key="range"><output>AI 判断</output></label><label class="bgt-tts-console-field"><span>语速倾向</span><input type="range" min="0" max="100" step="25" value="50" data-bgt-console-key="speed"><output>AI 判断</output></label><label class="bgt-tts-console-field"><span>声音表现倾向</span><input type="range" min="0" max="100" step="25" value="50" data-bgt-console-key="expression"><output>AI 判断</output></label><label class="bgt-tts-console-rules"><span class="bgt-label">自定义配音规则（一行一条，直接交给副模型）</span><textarea rows="3" data-bgt-console-rules spellcheck="false" placeholder="比如：害羞时不要过度娇柔；生气时保持克制；不要每句话都加呼吸"></textarea></label></div>
 </div></details>
-<details class="jy-fold" data-jy-fold="tts-prompts"><summary><h2>副模型提示词（高级）</h2><span class="jy-fold-summary" data-jy-fold-summary></span></summary><div class="jy-form-body">
-<label><span class="jy-label">破限词</span><textarea data-jy-tts-prompt="jailbreak" rows="4" spellcheck="false" placeholder="留空即不发送"></textarea></label><div class="jy-processing-toolbar"><button type="button" class="jy-text-button" data-jy-action="tts-fill-jailbreak">破限词</button></div>
-<p class="jy-muted">点「破限词」按钮会把翻译规则里的破限词填进来。填了就作为第一条 system 消息，放在发给副模型的每个请求最前面：分析这一楼、按意见改标注、从世界书识别角色都带上，翻译和小助手不带。<code>{{char}}</code>、<code>{{user}}</code> 会换成角色名。</p>
-<p class="jy-muted">留空用内置的。可用占位符：<code>{{user}}</code> 用户扮演的角色，<code>{{sounds}}</code> 声音词表，<code>{{references_rule}}</code> 读原文时关于译文的那条规则。JSON 的输出格式和字段名要照旧，不然解析不出来。</p>
-<label><span class="jy-label">分析模式</span><textarea data-jy-tts-prompt="deep" rows="10" spellcheck="false"></textarea></label><div class="jy-processing-toolbar"><button type="button" class="jy-text-button" data-jy-action="tts-fill-prompt" data-prompt="deep">填入内置的再改</button><button type="button" class="jy-text-button" data-jy-action="tts-copy-prompt" data-prompt="deep">复制内置提示词</button><button type="button" class="jy-text-button" data-jy-action="tts-reset-prompt" data-prompt="deep">恢复默认</button></div>
+<details class="bgt-fold" data-bgt-fold="tts-prompts"><summary><h2>副模型提示词（高级）</h2><span class="bgt-fold-summary" data-bgt-fold-summary></span></summary><div class="bgt-form-body">
+<label><span class="bgt-label">破限词</span><textarea data-bgt-tts-prompt="jailbreak" rows="4" spellcheck="false" placeholder="留空即不发送"></textarea></label><div class="bgt-processing-toolbar"><button type="button" class="bgt-text-button" data-bgt-action="tts-fill-jailbreak">破限词</button></div>
+<p class="bgt-muted">点「破限词」按钮会把翻译规则里的破限词填进来。填了就作为第一条 system 消息，放在发给副模型的每个请求最前面：分析这一楼、按意见改标注、从世界书识别角色都带上，翻译和小助手不带。<code>{{char}}</code>、<code>{{user}}</code> 会换成角色名。</p>
+<p class="bgt-muted">留空用内置的。可用占位符：<code>{{user}}</code> 用户扮演的角色，<code>{{sounds}}</code> 声音词表，<code>{{references_rule}}</code> 读原文时关于译文的那条规则。JSON 的输出格式和字段名要照旧，不然解析不出来。</p>
+<label><span class="bgt-label">分析模式</span><textarea data-bgt-tts-prompt="deep" rows="10" spellcheck="false"></textarea></label><div class="bgt-processing-toolbar"><button type="button" class="bgt-text-button" data-bgt-action="tts-fill-prompt" data-prompt="deep">填入内置的再改</button><button type="button" class="bgt-text-button" data-bgt-action="tts-copy-prompt" data-prompt="deep">复制内置提示词</button><button type="button" class="bgt-text-button" data-bgt-action="tts-reset-prompt" data-prompt="deep">恢复默认</button></div>
 </div></details>
-<details class="jy-fold" data-jy-fold="tts-cache"><summary><h2>缓存</h2><span class="jy-fold-summary" data-jy-fold-summary></span></summary><div class="jy-form-body">
-<div class="jy-row-between"><p class="jy-muted" data-jy-tts-usage>正在读取…</p><div class="jy-processing-toolbar"><button type="button" class="jy-text-button jy-text-button-danger" data-jy-action="tts-clear-chat">清空本聊天的朗读缓存</button><button type="button" class="jy-text-button jy-text-button-danger" data-jy-action="tts-clear-all">清空全部</button></div></div>
+<details class="bgt-fold" data-bgt-fold="tts-cache"><summary><h2>缓存</h2><span class="bgt-fold-summary" data-bgt-fold-summary></span></summary><div class="bgt-form-body">
+<div class="bgt-row-between"><p class="bgt-muted" data-bgt-tts-usage>正在读取…</p><div class="bgt-processing-toolbar"><button type="button" class="bgt-text-button bgt-text-button-danger" data-bgt-action="tts-clear-chat">清空本聊天的朗读缓存</button><button type="button" class="bgt-text-button bgt-text-button-danger" data-bgt-action="tts-clear-all">清空全部</button></div></div>
 </div></details>
-<details class="jy-fold" data-jy-fold="tts-call"><summary><h2>实时通话</h2><span class="jy-fold-summary" data-jy-fold-summary></span></summary><div class="jy-form-body">
-<div data-jy-call-apps hidden></div>
-<div class="jy-behaviors"><label class="jy-check"><input type="checkbox" data-jy-tts-field="readWhileWriting">边写边读（主模型一边写，一边一句一句读出来；读模型写出的原文，不等翻译）</label><label class="jy-check"><input type="checkbox" data-jy-tts-field="liveAudio">边收边放（边写边读和实时通话时，生成一点就播一点，不等一整句做完；Fish 的延迟模式是 normal 时会换成 balanced）</label></div>
-<p class="jy-muted">勾了「边写边读」，主模型一边写，镜译一边按句请求下面选的声音、按顺序读出来：读的是模型写出的原文，不等翻译，需要酒馆开着流式输出；运行记录里每一楼会记下首字、首句、出声各用了多久。再勾「边收边放」，生成出一小块就开始播，不等一整句做完，出声更早（Fish 延迟模式选的是 normal 时，这里会换成 balanced，否则没东西可以提前播；GPT-SoVITS 用它出声最快的流式档，先攒半秒再播；楼层朗读不受影响）。</p>
-<p class="jy-muted">给小手机这类插件打电话用的接口：边写边读（tts.stream）、语音输入（stt）、流式请求模型（llm.stream），都挂在 <code>window.__JINGYI__</code> 上，插件接上这三个就能边说边听。悬浮窗的「通话测试」页用的也是这三个，可以直接打给当前角色试效果。</p>
-<div class="jy-form-grid jy-form-grid-tight"><label><span class="jy-label">边写边读和通话用的声音</span><select data-jy-tts-field="streamVoice"><option value="fish">Fish Audio（和楼层朗读同一套）</option><option value="gsv">GPT-SoVITS（和楼层朗读同一套）</option><option value="doubao">豆包语音（火山引擎）</option><option value="minimax">MiniMax</option></select></label></div>
-<p class="jy-muted" data-jy-stream-voice="gsv" hidden>用「GPT-SoVITS」卡里的接口地址和默认音色，角色按角色表绑的音色读（音色库里填了 GPT-SoVITS 参考音频的那些）；那张卡在「声音来源」选 GPT-SoVITS 时才显示。一句一句生成；每个角色单独训练的模型，换人时要等模型换好，第一句会慢一些。</p>
-<div data-jy-stream-voice="doubao" hidden>
-<div class="jy-form-grid jy-form-grid-tight"><label><span class="jy-label">豆包 API Key</span><input type="password" data-jy-tts-doubao="key" autocomplete="new-password" spellcheck="false"></label><label title="新版控制台只要 API Key，这格留空；旧版控制台在这里填 App ID，上一格填 Access Token。"><span class="jy-label">App ID（旧版控制台才填）</span><input type="text" data-jy-tts-doubao="appId" spellcheck="false"></label><label><span class="jy-label">资源</span><select data-jy-tts-doubao="resourceId"><option value="seed-tts-2.0">seed-tts-2.0（合成 2.0）</option><option value="seed-icl-2.0">seed-icl-2.0（复刻 2.0）</option><option value="seed-tts-1.0">seed-tts-1.0（合成 1.0）</option></select></label><label><span class="jy-label">默认音色</span><input type="text" data-jy-tts-doubao="voice" placeholder="zh_female_vv_uranus_bigtts" spellcheck="false"></label></div>
-<label><span class="jy-label">角色音色（一行一个：名字=音色ID；「旁白=…」给叙述）</span><textarea rows="3" data-jy-tts-doubao="voiceMap" spellcheck="false" placeholder="樱井=zh_female_linjianvhai_uranus_bigtts&#10;旁白=zh_male_m191_uranus_bigtts"></textarea></label>
-<label class="jy-check"><input type="checkbox" data-jy-tts-doubao="viaProxy">经酒馆 CORS 代理发送</label>
-<label><span class="jy-label">接口地址</span><input type="url" data-jy-tts-doubao="baseUrl" placeholder="https://openspeech.bytedance.com" spellcheck="false"></label>
-<p class="jy-muted">豆包的 Key 过不了浏览器的跨域检查，只能经酒馆的 CORS 代理发（和 Fish 一样，要在 config.yaml 里开 enableCorsProxy）；TauriTavern 没有这条代理，「接口地址」要填自己的转发地址。音色 ID 在火山引擎控制台的音色列表里查，要和上面选的资源对得上：2.0 的音色名以 _uranus_bigtts 结尾。</p>
+<details class="bgt-fold" data-bgt-fold="tts-call"><summary><h2>实时通话</h2><span class="bgt-fold-summary" data-bgt-fold-summary></span></summary><div class="bgt-form-body">
+<div data-bgt-call-apps hidden></div>
+<div class="bgt-behaviors"><label class="bgt-check"><input type="checkbox" data-bgt-tts-field="readWhileWriting">边写边读（主模型一边写，一边一句一句读出来；读模型写出的原文，不等翻译）</label><label class="bgt-check"><input type="checkbox" data-bgt-tts-field="liveAudio">边收边放（边写边读和实时通话时，生成一点就播一点，不等一整句做完；Fish 的延迟模式是 normal 时会换成 balanced）</label></div>
+<p class="bgt-muted">勾了「边写边读」，主模型一边写，测试翻译一边按句请求下面选的声音、按顺序读出来：读的是模型写出的原文，不等翻译，需要酒馆开着流式输出；运行记录里每一楼会记下首字、首句、出声各用了多久。再勾「边收边放」，生成出一小块就开始播，不等一整句做完，出声更早（Fish 延迟模式选的是 normal 时，这里会换成 balanced，否则没东西可以提前播；GPT-SoVITS 用它出声最快的流式档，先攒半秒再播；楼层朗读不受影响）。</p>
+<p class="bgt-muted">给小手机这类插件打电话用的接口：边写边读（tts.stream）、语音输入（stt）、流式请求模型（llm.stream），都挂在 <code>window.__BE_EAGLE_TEST_TRANSLATOR__</code> 上，插件接上这三个就能边说边听。悬浮窗的「通话测试」页用的也是这三个，可以直接打给当前角色试效果。</p>
+<div class="bgt-form-grid bgt-form-grid-tight"><label><span class="bgt-label">边写边读和通话用的声音</span><select data-bgt-tts-field="streamVoice"><option value="fish">Fish Audio（和楼层朗读同一套）</option><option value="gsv">GPT-SoVITS（和楼层朗读同一套）</option><option value="doubao">豆包语音（火山引擎）</option><option value="minimax">MiniMax</option></select></label></div>
+<p class="bgt-muted" data-bgt-stream-voice="gsv" hidden>用「GPT-SoVITS」卡里的接口地址和默认音色，角色按角色表绑的音色读（音色库里填了 GPT-SoVITS 参考音频的那些）；那张卡在「声音来源」选 GPT-SoVITS 时才显示。一句一句生成；每个角色单独训练的模型，换人时要等模型换好，第一句会慢一些。</p>
+<div data-bgt-stream-voice="doubao" hidden>
+<div class="bgt-form-grid bgt-form-grid-tight"><label><span class="bgt-label">豆包 API Key</span><input type="password" data-bgt-tts-doubao="key" autocomplete="new-password" spellcheck="false"></label><label title="新版控制台只要 API Key，这格留空；旧版控制台在这里填 App ID，上一格填 Access Token。"><span class="bgt-label">App ID（旧版控制台才填）</span><input type="text" data-bgt-tts-doubao="appId" spellcheck="false"></label><label><span class="bgt-label">资源</span><select data-bgt-tts-doubao="resourceId"><option value="seed-tts-2.0">seed-tts-2.0（合成 2.0）</option><option value="seed-icl-2.0">seed-icl-2.0（复刻 2.0）</option><option value="seed-tts-1.0">seed-tts-1.0（合成 1.0）</option></select></label><label><span class="bgt-label">默认音色</span><input type="text" data-bgt-tts-doubao="voice" placeholder="zh_female_vv_uranus_bigtts" spellcheck="false"></label></div>
+<label><span class="bgt-label">角色音色（一行一个：名字=音色ID；「旁白=…」给叙述）</span><textarea rows="3" data-bgt-tts-doubao="voiceMap" spellcheck="false" placeholder="樱井=zh_female_linjianvhai_uranus_bigtts&#10;旁白=zh_male_m191_uranus_bigtts"></textarea></label>
+<label class="bgt-check"><input type="checkbox" data-bgt-tts-doubao="viaProxy">经酒馆 CORS 代理发送</label>
+<label><span class="bgt-label">接口地址</span><input type="url" data-bgt-tts-doubao="baseUrl" placeholder="https://openspeech.bytedance.com" spellcheck="false"></label>
+<p class="bgt-muted">豆包的 Key 过不了浏览器的跨域检查，只能经酒馆的 CORS 代理发（和 Fish 一样，要在 config.yaml 里开 enableCorsProxy）；TauriTavern 没有这条代理，「接口地址」要填自己的转发地址。音色 ID 在火山引擎控制台的音色列表里查，要和上面选的资源对得上：2.0 的音色名以 _uranus_bigtts 结尾。</p>
 </div>
-<div data-jy-stream-voice="minimax" hidden>
-<div class="jy-form-grid jy-form-grid-tight"><label><span class="jy-label">MiniMax API Key</span><input type="password" data-jy-tts-minimax="key" autocomplete="new-password" spellcheck="false"></label><label><span class="jy-label">站点</span><select data-jy-tts-minimax="baseUrl"><option value="https://api.minimax.cn">国内站（api.minimax.cn）</option><option value="https://api.minimax.io">海外站（api.minimax.io）</option></select></label><label><span class="jy-label">模型</span><select data-jy-tts-minimax="model"><option value="speech-2.8-turbo">speech-2.8-turbo（快）</option><option value="speech-2.6-turbo">speech-2.6-turbo（快）</option><option value="speech-2.8-hd">speech-2.8-hd</option><option value="speech-2.6-hd">speech-2.6-hd</option></select></label><label><span class="jy-label">默认音色</span><input type="text" data-jy-tts-minimax="voice" placeholder="female-shaonv" spellcheck="false"></label></div>
-<label><span class="jy-label">角色音色（一行一个：名字=音色ID；「旁白=…」给叙述）</span><textarea rows="3" data-jy-tts-minimax="voiceMap" spellcheck="false" placeholder="樱井=female-shaonv&#10;旁白=Chinese (Mandarin)_Gentleman"></textarea></label>
-<p class="jy-muted">MiniMax 浏览器能直接连，不用代理。国内站免费账号每分钟只能请求 10 次（充值后 20 次），边写边读一楼会切成好几句、每句一次请求，容易撞上限；撞上了会等几秒自动再试一次。</p>
+<div data-bgt-stream-voice="minimax" hidden>
+<div class="bgt-form-grid bgt-form-grid-tight"><label><span class="bgt-label">MiniMax API Key</span><input type="password" data-bgt-tts-minimax="key" autocomplete="new-password" spellcheck="false"></label><label><span class="bgt-label">站点</span><select data-bgt-tts-minimax="baseUrl"><option value="https://api.minimax.cn">国内站（api.minimax.cn）</option><option value="https://api.minimax.io">海外站（api.minimax.io）</option></select></label><label><span class="bgt-label">模型</span><select data-bgt-tts-minimax="model"><option value="speech-2.8-turbo">speech-2.8-turbo（快）</option><option value="speech-2.6-turbo">speech-2.6-turbo（快）</option><option value="speech-2.8-hd">speech-2.8-hd</option><option value="speech-2.6-hd">speech-2.6-hd</option></select></label><label><span class="bgt-label">默认音色</span><input type="text" data-bgt-tts-minimax="voice" placeholder="female-shaonv" spellcheck="false"></label></div>
+<label><span class="bgt-label">角色音色（一行一个：名字=音色ID；「旁白=…」给叙述）</span><textarea rows="3" data-bgt-tts-minimax="voiceMap" spellcheck="false" placeholder="樱井=female-shaonv&#10;旁白=Chinese (Mandarin)_Gentleman"></textarea></label>
+<p class="bgt-muted">MiniMax 浏览器能直接连，不用代理。国内站免费账号每分钟只能请求 10 次（充值后 20 次），边写边读一楼会切成好几句、每句一次请求，容易撞上限；撞上了会等几秒自动再试一次。</p>
 </div>
-<div class="jy-processing-toolbar"><button type="button" class="jy-button" data-jy-action="stream-voice-test">试听这个声音</button><span class="jy-muted" data-jy-stream-voice-note></span></div>
-<div class="jy-form-grid jy-form-grid-tight"><label title="插件用 llm.stream 请求模型时走这条。选「模型连接」页里存的连接才能一边写一边读；跟随酒馆时要等整段回复写完。"><span class="jy-label">通话用的连接</span><select data-jy-tts-field="callChannelId"><option value="">和分析模式用同一条</option></select></label><label><span class="jy-label">语音输入</span><select data-jy-tts-field="sttProvider"><option value="cloud">按住说话，云端转写</option><option value="browser">浏览器自带识别</option></select></label></div>
-<div class="jy-form-grid jy-form-grid-tight" data-jy-stt-cloud><label><span class="jy-label">转写服务</span><select data-jy-tts-field="sttPreset"><option value="siliconflow">SiliconFlow · SenseVoiceSmall（免费）</option><option value="groq">Groq · whisper-large-v3-turbo</option><option value="openai">OpenAI · gpt-4o-mini-transcribe</option><option value="custom">自定义（OpenAI 兼容）</option></select></label><label><span class="jy-label">转写地址</span><input type="text" data-jy-tts-field="sttUrl" spellcheck="false"></label><label><span class="jy-label">转写 Key</span><input type="password" data-jy-tts-field="sttApiKey" spellcheck="false" autocomplete="off"></label><label><span class="jy-label">转写模型</span><input type="text" data-jy-tts-field="sttModel" spellcheck="false"></label></div>
-<div class="jy-form-grid jy-form-grid-tight"><label><span class="jy-label">识别语言</span><input type="text" data-jy-tts-field="sttLang" placeholder="zh / ja / en" spellcheck="false"></label></div>
-<div class="jy-processing-toolbar"><button type="button" class="jy-button" data-jy-action="stt-test">试一下语音输入</button><span class="jy-muted" data-jy-stt-test-note></span></div>
-<p class="jy-muted">麦克风只能在 https 或本机地址（localhost、127.0.0.1）下打开：手机用 Termux 在本机开酒馆没问题，用局域网地址 http://192.168… 打开时浏览器不给麦克风。浏览器自带识别不用 Key，但只在电脑版 Chrome / Edge 上稳定，声音会交给浏览器厂商的服务转写。</p>
+<div class="bgt-processing-toolbar"><button type="button" class="bgt-button" data-bgt-action="stream-voice-test">试听这个声音</button><span class="bgt-muted" data-bgt-stream-voice-note></span></div>
+<div class="bgt-form-grid bgt-form-grid-tight"><label title="插件用 llm.stream 请求模型时走这条。选「模型连接」页里存的连接才能一边写一边读；跟随酒馆时要等整段回复写完。"><span class="bgt-label">通话用的连接</span><select data-bgt-tts-field="callChannelId"><option value="">和分析模式用同一条</option></select></label><label><span class="bgt-label">语音输入</span><select data-bgt-tts-field="sttProvider"><option value="cloud">按住说话，云端转写</option><option value="browser">浏览器自带识别</option></select></label></div>
+<div class="bgt-form-grid bgt-form-grid-tight" data-bgt-stt-cloud><label><span class="bgt-label">转写服务</span><select data-bgt-tts-field="sttPreset"><option value="siliconflow">SiliconFlow · SenseVoiceSmall（免费）</option><option value="groq">Groq · whisper-large-v3-turbo</option><option value="openai">OpenAI · gpt-4o-mini-transcribe</option><option value="custom">自定义（OpenAI 兼容）</option></select></label><label><span class="bgt-label">转写地址</span><input type="text" data-bgt-tts-field="sttUrl" spellcheck="false"></label><label><span class="bgt-label">转写 Key</span><input type="password" data-bgt-tts-field="sttApiKey" spellcheck="false" autocomplete="off"></label><label><span class="bgt-label">转写模型</span><input type="text" data-bgt-tts-field="sttModel" spellcheck="false"></label></div>
+<div class="bgt-form-grid bgt-form-grid-tight"><label><span class="bgt-label">识别语言</span><input type="text" data-bgt-tts-field="sttLang" placeholder="zh / ja / en" spellcheck="false"></label></div>
+<div class="bgt-processing-toolbar"><button type="button" class="bgt-button" data-bgt-action="stt-test">试一下语音输入</button><span class="bgt-muted" data-bgt-stt-test-note></span></div>
+<p class="bgt-muted">麦克风只能在 https 或本机地址（localhost、127.0.0.1）下打开：手机用 Termux 在本机开酒馆没问题，用局域网地址 http://192.168… 打开时浏览器不给麦克风。浏览器自带识别不用 Key，但只在电脑版 Chrome / Edge 上稳定，声音会交给浏览器厂商的服务转写。</p>
 </div></details>
-<details class="jy-fold" data-jy-fold="tts-tools" data-jy-tts-preview-panel><summary><h2>当前楼层的朗读结构</h2><span class="jy-fold-summary" data-jy-fold-summary></span></summary><div class="jy-form-body">
-<div class="jy-processing-toolbar"><button type="button" class="jy-button" data-jy-action="tts-preview">分析最新一楼</button><button type="button" class="jy-button" data-jy-action="tts-pregenerate">生成最新一楼的音频（不播放）</button><button type="button" class="jy-button" data-jy-action="tts-copy-structure" hidden>复制朗读结构 JSON</button></div><div class="jy-tts-preview" data-jy-tts-preview></div>
+<details class="bgt-fold" data-bgt-fold="tts-tools" data-bgt-tts-preview-panel><summary><h2>当前楼层的朗读结构</h2><span class="bgt-fold-summary" data-bgt-fold-summary></span></summary><div class="bgt-form-body">
+<div class="bgt-processing-toolbar"><button type="button" class="bgt-button" data-bgt-action="tts-preview">分析最新一楼</button><button type="button" class="bgt-button" data-bgt-action="tts-pregenerate">生成最新一楼的音频（不播放）</button><button type="button" class="bgt-button" data-bgt-action="tts-copy-structure" hidden>复制朗读结构 JSON</button></div><div class="bgt-tts-preview" data-bgt-tts-preview></div>
 </div></details>
 </div>
 </section>
 </div>
 </section>
 
-<section class="jy-page" data-jy-page="helper" role="tabpanel" hidden>
-<header class="jy-page-heading"><div><h1>小助手</h1><span class="jy-page-context">只读：会看你的设置、这一楼的状态和运行记录；给出的改动要点「照这样改」才会真的生效</span></div></header>
-<div class="jy-ask-chips" data-jy-helper-quick></div>
-<div class="jy-helper-conversation" data-jy-helper-conversation aria-live="polite"></div>
-<footer class="jy-footer jy-helper-footer">
- <textarea rows="3" data-jy-helper-input placeholder="问小助手…" aria-label="向小助手提问"></textarea>
- <div class="jy-helper-input-actions"><button type="button" class="jy-button jy-button-primary" data-jy-action="helper-ask">发送</button><button type="button" class="jy-text-button" data-jy-action="helper-clear">清空</button></div>
- <p class="jy-muted jy-helper-note" data-jy-helper-note></p>
+<section class="bgt-page" data-bgt-page="helper" role="tabpanel" hidden>
+<header class="bgt-page-heading"><div><h1>小助手</h1><span class="bgt-page-context">只读：会看你的设置、这一楼的状态和运行记录；给出的改动要点「照这样改」才会真的生效</span></div></header>
+<div class="bgt-ask-chips" data-bgt-helper-quick></div>
+<div class="bgt-helper-conversation" data-bgt-helper-conversation aria-live="polite"></div>
+<footer class="bgt-footer bgt-helper-footer">
+ <textarea rows="3" data-bgt-helper-input placeholder="问小助手…" aria-label="向小助手提问"></textarea>
+ <div class="bgt-helper-input-actions"><button type="button" class="bgt-button bgt-button-primary" data-bgt-action="helper-ask">发送</button><button type="button" class="bgt-text-button" data-bgt-action="helper-clear">清空</button></div>
+ <p class="bgt-muted bgt-helper-note" data-bgt-helper-note></p>
 </footer>
 </section>
 
-<section class="jy-page" data-jy-page="logs" role="tabpanel" hidden>
-<header class="jy-page-heading"><div><h1>运行记录</h1><span class="jy-page-context" data-jy-log-count>0 条</span></div></header>
-<div class="jy-log-toolbar"><button type="button" class="jy-button jy-button-primary" data-jy-action="toggle-export-drawer">导出日志</button><div class="jy-log-tools"><button type="button" class="jy-button" data-jy-action="refresh-logs">刷新</button><button type="button" class="jy-text-button jy-text-button-danger" data-jy-action="clear-logs">清空</button></div></div>
-<div class="jy-export-drawer" data-jy-export-drawer>
-  <div class="jy-export-body">
-    <p class="jy-muted">导出完整日志（含副 API 请求与返回正文，凭据特征已隐藏）。文件为 TXT，分享前请检查隐私内容。</p>
-    <div class="jy-export-controls">
-      <label class="jy-export-scope"><span class="jy-label">最近楼数</span><input type="number" data-jy-export-floors min="1" max="999" step="1" value="1"></label>
-      <button type="button" class="jy-button jy-button-primary" data-jy-action="export-recent">导出最近楼层</button>
-      <button type="button" class="jy-button" data-jy-action="export-all">导出全部日志</button>
+<section class="bgt-page" data-bgt-page="logs" role="tabpanel" hidden>
+<header class="bgt-page-heading"><div><h1>运行记录</h1><span class="bgt-page-context" data-bgt-log-count>0 条</span></div></header>
+<div class="bgt-log-toolbar"><button type="button" class="bgt-button bgt-button-primary" data-bgt-action="toggle-export-drawer">导出日志</button><div class="bgt-log-tools"><button type="button" class="bgt-button" data-bgt-action="refresh-logs">刷新</button><button type="button" class="bgt-text-button bgt-text-button-danger" data-bgt-action="clear-logs">清空</button></div></div>
+<div class="bgt-export-drawer" data-bgt-export-drawer>
+  <div class="bgt-export-body">
+    <p class="bgt-muted">导出完整日志（含副 API 请求与返回正文，凭据特征已隐藏）。文件为 TXT，分享前请检查隐私内容。</p>
+    <div class="bgt-export-controls">
+      <label class="bgt-export-scope"><span class="bgt-label">最近楼数</span><input type="number" data-bgt-export-floors min="1" max="999" step="1" value="1"></label>
+      <button type="button" class="bgt-button bgt-button-primary" data-bgt-action="export-recent">导出最近楼层</button>
+      <button type="button" class="bgt-button" data-bgt-action="export-all">导出全部日志</button>
     </div>
   </div>
 </div>
-<p class="jy-muted">展开记录可查看模型完整回复。完整日志含正文，分享前请检查。</p><div class="jy-log-list" data-jy-log-list></div>
+<p class="bgt-muted">展开记录可查看模型完整回复。完整日志含正文，分享前请检查。</p><div class="bgt-log-list" data-bgt-log-list></div>
 </section>
-<p class="jy-sr-only" aria-live="polite" data-jy-live></p>
+<p class="bgt-sr-only" aria-live="polite" data-bgt-live></p>
 </main>
 </div>`;
 
 const FALLBACK_PANEL_CSS = `
   :host{all:initial;font:14px/1.6 system-ui;color:#253a35}
   [hidden]{display:none!important}
-  .jy-overlay{position:fixed;inset:0;background:#071b18b3;display:grid;place-items:center;pointer-events:auto;padding:16px}
-  .jy-dialog{position:relative;width:min(1100px,100%);height:90dvh;background:#f7f5ef;overflow:auto}
-  .jy-close{position:absolute;right:8px;top:8px;z-index:30}
-  .jy-studio{display:grid;grid-template-columns:150px 1fr}.jy-rail{background:#173b31;color:white;padding:20px}
-  .jy-navigation{display:grid;gap:10px}.jy-workspace{padding:20px;min-width:0}
+  .bgt-overlay{position:fixed;inset:0;background:#071b18b3;display:grid;place-items:center;pointer-events:auto;padding:16px}
+  .bgt-dialog{position:relative;width:min(1100px,100%);height:90dvh;background:#f7f5ef;overflow:auto}
+  .bgt-close{position:absolute;right:8px;top:8px;z-index:30}
+  .bgt-studio{display:grid;grid-template-columns:150px 1fr}.bgt-rail{background:#173b31;color:white;padding:20px}
+  .bgt-navigation{display:grid;gap:10px}.bgt-workspace{padding:20px;min-width:0}
   input,select,textarea{box-sizing:border-box;width:100%;padding:8px}button{padding:8px}
-  .jy-page-heading,.jy-actions,.jy-footer{margin:16px 0}.jy-prompt-item-editor{padding:16px}
-  @media(max-width:640px){.jy-studio{display:block}.jy-navigation{display:flex;flex-wrap:wrap}}
+  .bgt-page-heading,.bgt-actions,.bgt-footer{margin:16px 0}.bgt-prompt-item-editor{padding:16px}
+  @media(max-width:640px){.bgt-studio{display:block}.bgt-navigation{display:flex;flex-wrap:wrap}}
 `;
 
 function getContext() {
@@ -954,13 +954,13 @@ function floorNow(snapshot) {
 // The floor shows another alternative (or the chat is another) than the one the run translated.
 function swipeChangedError() {
   const error = new Error('翻译期间聊天或滑动页已经变化，旧结果没有写回。');
-  error.code = 'JY_SWIPE_CHANGED';
+  error.code = 'BGT_SWIPE_CHANGED';
   return error;
 }
 
 function sourceChangedError() {
   const error = new Error('翻译期间正文内容发生变化，旧结果没有写回。');
-  error.code = 'JY_SOURCE_CHANGED';
+  error.code = 'BGT_SOURCE_CHANGED';
   return error;
 }
 
@@ -1032,7 +1032,7 @@ function extensionFolderName() {
   } catch {
     // Local preview falls back to the public repository folder name.
   }
-  return 'jingyi';
+  return 'beagleTest';
 }
 
 function requestHeaders() {
@@ -1051,7 +1051,7 @@ async function discoverInstallType(folder) {
     ? extensions.find(item => item?.name === `third-party/${folder}`)
     : null;
   if (!found || !['local', 'global'].includes(found.type)) {
-    throw new Error('酒馆没有识别到镜译的 Git 安装目录，请在扩展管理中检查安装状态。');
+    throw new Error('酒馆没有识别到测试翻译的 Git 安装目录，请在扩展管理中检查安装状态。');
   }
   return found.type;
 }
@@ -1075,9 +1075,9 @@ function updateButtonState(button) {
   if (!button) return;
   const status = runtime.update.status;
   button.hidden = !['available', 'updating'].includes(status);
-  setText(button, '[data-jy-update-label]', status === 'updating' ? '更新中…' : '有更新 · 安装');
+  setText(button, '[data-bgt-update-label]', status === 'updating' ? '更新中…' : '有更新 · 安装');
   button.disabled = status === 'updating';
-  button.dataset.jyUpdateState = status;
+  button.dataset.bgtUpdateState = status;
 }
 
 async function checkUpdatesSilently(button) {
@@ -1105,10 +1105,10 @@ async function handleUpdateAction(button) {
     const data = await extensionRequest('update', extensionFolderName(), runtime.update.installType);
     runtime.update.details = data;
     runtime.update.status = 'updated';
-    const notice = button.getRootNode().querySelector('[data-jy-update-notice]');
+    const notice = button.getRootNode().querySelector('[data-bgt-update-notice]');
     if (notice) { notice.hidden = false; notice.textContent = '更新完成，请手动刷新酒馆。'; }
     recordDiagnostic('info', 'update', '更新完成，等待用户手动刷新。', { commit: data.shortCommitHash || '' });
-    toast('success', '镜译更新完成，请手动刷新酒馆。');
+    toast('success', '测试翻译更新完成，请手动刷新酒馆。');
   } catch (error) {
     runtime.update.status = 'available';
     recordDiagnostic('error', 'update', safeError(error));
@@ -1145,10 +1145,10 @@ function initializeSettings() {
   const context = getContext();
   runtime.settings = normalizeProcessingSettings(context.extensionSettings[MODULE_ID]);
   const profile = getActiveProcessingProfile(runtime.settings);
-  // Only overwrite what is already stored once native edits are actually found: before 镜译's rules
+  // Only overwrite what is already stored once native edits are actually found: before 测试翻译's rules
   // have ever been synced into 酒馆's list (first run, or the extension was off), nothing matches and
   // the profile's own regexScripts must stay untouched rather than being wiped to nothing. Recognising
-  // a match is readNativeRegexEdits' own job -- see processing.js' isJingyiRegex for why the marker
+  // a match is readNativeRegexEdits' own job -- see processing.js' isTestTranslatorRegex for why the marker
   // alone is not enough.
   const nativeEdits = readNativeRegexEdits(context.extensionSettings.regex, profile);
   if (nativeEdits.length) profile.regexScripts = dedupeManagedRegexScripts(nativeEdits);
@@ -1238,7 +1238,7 @@ function saveSettings(next) {
   if (runtime.panel?.host) runtime.panel.host.dataset.theme = runtime.settings.theme || 'day';
   // The desk's picker is the translation's choice. One made in the floating window must show there
   // too, or the next save from the open control centre would put the old choice back.
-  const deskPicker = runtime.panel?.shadow?.querySelector?.('[data-jy-translation-channel]');
+  const deskPicker = runtime.panel?.shadow?.querySelector?.('[data-bgt-translation-channel]');
   if (deskPicker) fillChannelPicker(deskPicker, runtime.settings, translationChannelChoice(runtime.settings));
   if (runtime.mini?.host) {
     runtime.mini.host.dataset.theme = runtime.settings.theme || 'day';
@@ -1576,7 +1576,7 @@ async function readMessageSnapshot(messageId = null, settings = runtime.settings
 /**
  * One alternative of a floor before anything is extracted from it: the floor as read (readFloor), its
  * record, its text with legacy bilingual lines brought up to date, and its original — that text with
- * every line 镜译 wrote taken out.
+ * every line 测试翻译 wrote taken out.
  */
 function readAlternative(message, swipeId = Number(message.swipe_id ?? 0)) {
   // An alternative other than the one shown (only ever asked for by reading.get) is read from its own
@@ -2351,7 +2351,7 @@ function buildSegmentStyler(settings, reportedAnnotations, chatMoveIndex = new M
     const classes = [SPEAKER_CLASS];
     if (sole) classes.push(`${SPEAKER_CLASS}-${speakerSlug(sole.name)}`);
     if (style.emotion && style.emotion !== 'neutral' && style.intensity) {
-      classes.push(`jy-emo-${style.emotion}`, `jy-emo-l${style.intensity}`);
+      classes.push(`bgt-emo-${style.emotion}`, `bgt-emo-l${style.intensity}`);
     }
     const label = [who.join('、'), style.emotion && EMOTION_STYLES[style.emotion]?.label].filter(Boolean).join(' · ');
     const inline = toInline(declarations);
@@ -2569,7 +2569,7 @@ async function probeThemeBand(settings = runtime.settings) {
 }
 
 function renderWorldInfoList(root) {
-  const list = root.querySelector('[data-jy-wi-list]');
+  const list = root.querySelector('[data-bgt-wi-list]');
   if (!list) return;
   const entries = readableWorldInfoEntries();
   const picks = new Set((runtime.settings.worldInfoWhitelist?.[worldInfoCharacterKey()] ?? [])
@@ -2578,7 +2578,7 @@ function renderWorldInfoList(root) {
   list.replaceChildren();
   if (!entries.length) {
     const note = document.createElement('p');
-    note.className = 'jy-muted';
+    note.className = 'bgt-muted';
     note.textContent = '还没有读到世界书条目。点「刷新可读条目」试一次；仍为空就先让酒馆加载完当前聊天再回来。';
     list.appendChild(note);
     return;
@@ -2592,36 +2592,36 @@ function renderWorldInfoList(root) {
   }
   for (const [name, members] of books) {
     const group = document.createElement('div');
-    group.className = 'jy-wi-book';
-    group.dataset.jyWiBook = name;
+    group.className = 'bgt-wi-book';
+    group.dataset.bgtWiBook = name;
     const head = document.createElement('div');
-    head.className = 'jy-wi-book-head';
+    head.className = 'bgt-wi-book-head';
     const title = document.createElement('span');
-    title.className = 'jy-wi-book-name';
+    title.className = 'bgt-wi-book-name';
     title.textContent = name || '（未命名世界书）';
     const count = document.createElement('span');
-    count.className = 'jy-muted jy-wi-book-count';
+    count.className = 'bgt-muted bgt-wi-book-count';
     const toggle = document.createElement('label');
-    toggle.className = 'jy-switch';
+    toggle.className = 'bgt-switch';
     const box = document.createElement('input');
     box.type = 'checkbox';
-    box.dataset.jyWiBookSwitch = '';
-    box.dataset.jyWorld = name;
+    box.dataset.bgtWiBookSwitch = '';
+    box.dataset.bgtWorld = name;
     box.checked = booksOn.has(name);
     box.setAttribute('aria-label', `世界书开关：${name}`);
     toggle.append(box, document.createElement('span'));
     head.append(title, count, toggle);
     const body = document.createElement('div');
-    body.className = 'jy-wi-book-entries';
+    body.className = 'bgt-wi-book-entries';
     body.hidden = !box.checked;
     for (const entry of members) {
       const label = document.createElement('label');
-      label.className = 'jy-check jy-wi-entry';
+      label.className = 'bgt-check bgt-wi-entry';
       const pick = document.createElement('input');
       pick.type = 'checkbox';
-      pick.dataset.jyWiPick = '';
-      pick.dataset.jyWorld = name;
-      pick.dataset.jyUid = String(entry.uid ?? '');
+      pick.dataset.bgtWiPick = '';
+      pick.dataset.bgtWorld = name;
+      pick.dataset.bgtUid = String(entry.uid ?? '');
       pick.checked = picks.has(`${entry.world}.${entry.uid}`);
       const text = document.createElement('span');
       text.textContent = String(entry.comment || `条目 ${entry.uid}`).trim();
@@ -2636,10 +2636,10 @@ function renderWorldInfoList(root) {
 
 /** A book's head says how many entries it has and how many go in. */
 function updateWorldInfoBookCount(group) {
-  const count = group.querySelector('.jy-wi-book-count');
+  const count = group.querySelector('.bgt-wi-book-count');
   if (!count) return;
-  const boxes = [...group.querySelectorAll('[data-jy-wi-pick]')];
-  const on = group.querySelector('[data-jy-wi-book-switch]')?.checked;
+  const boxes = [...group.querySelectorAll('[data-bgt-wi-pick]')];
+  const on = group.querySelector('[data-bgt-wi-book-switch]')?.checked;
   count.textContent = on ? `${boxes.length} 条 · 带 ${boxes.filter(box => box.checked).length} 条` : `${boxes.length} 条 · 关着`;
 }
 
@@ -2648,10 +2648,10 @@ function updateWorldInfoBookCount(group) {
  * wanted are unticked. Switched off it is hidden and brings none, and its ticks are kept for next time.
  */
 function toggleWorldInfoBook(box) {
-  const group = box.closest('.jy-wi-book');
+  const group = box.closest('.bgt-wi-book');
   if (!group) return;
-  const entries = group.querySelector('.jy-wi-book-entries');
-  const picks = [...group.querySelectorAll('[data-jy-wi-pick]')];
+  const entries = group.querySelector('.bgt-wi-book-entries');
+  const picks = [...group.querySelectorAll('[data-bgt-wi-pick]')];
   if (box.checked && !picks.some(pick => pick.checked)) for (const pick of picks) pick.checked = true;
   if (entries) entries.hidden = !box.checked;
   updateWorldInfoBookCount(group);
@@ -3267,8 +3267,8 @@ async function writeTranslation(snapshot, translationMap, epoch, settings, annot
 }
 
 function divergedFloorError(messageId) {
-  const error = new Error(`第 ${messageId} 楼只留了译文，后来又被改过，镜译不再翻译它（会把译文当成原文）。要重新翻译，先在总控页点「恢复本聊天的原文」，这一楼的改动会丢。`);
-  error.code = 'JY_FLOOR_DIVERGED';
+  const error = new Error(`第 ${messageId} 楼只留了译文，后来又被改过，测试翻译不再翻译它（会把译文当成原文）。要重新翻译，先在总控页点「恢复本聊天的原文」，这一楼的改动会丢。`);
+  error.code = 'BGT_FLOOR_DIVERGED';
   return error;
 }
 
@@ -3357,7 +3357,7 @@ async function translateMessage(messageId = null, { force = false, quiet = false
         written = await writeTranslation(snapshot, result.translations, epoch, settings, result.annotations, result.scene);
         break;
       } catch (error) {
-        if (error?.code === 'JY_SOURCE_CHANGED') {
+        if (error?.code === 'BGT_SOURCE_CHANGED') {
           if (!consumeRetry(retryBudget, 'source-changed', { messageId: snapshot.messageId })) throw error;
           const at = floorNow(snapshot);
           const there = getContext().chat?.[at];
@@ -3368,7 +3368,7 @@ async function translateMessage(messageId = null, { force = false, quiet = false
           updateTask({ status: 'running', message: '正文内容已更新，正在按最新正文重新翻译…', progress: 10 });
           continue;
         }
-        if (error?.code === 'JY_SWIPE_CHANGED' || !consumeRetry(retryBudget, 'write-error', { messageId: snapshot.messageId, error: safeError(error) })) throw error;
+        if (error?.code === 'BGT_SWIPE_CHANGED' || !consumeRetry(retryBudget, 'write-error', { messageId: snapshot.messageId, error: safeError(error) })) throw error;
         updateTask({ status: 'running', message: '写回失败，正在重试保存…', progress: 95 });
         written = await writeTranslation(snapshot, result.translations, epoch, settings, result.annotations, result.scene);
         break;
@@ -3404,7 +3404,7 @@ async function translateMessage(messageId = null, { force = false, quiet = false
     return { skipped: false, messageId: snapshot.messageId, segments: snapshot.segments.length };
   })().catch(error => {
     // Called off, or the reader turned to another alternative while it ran: not a failure.
-    if (isAbortError(error) || error?.code === 'JY_SWIPE_CHANGED') {
+    if (isAbortError(error) || error?.code === 'BGT_SWIPE_CHANGED') {
       const current = runtime.inflight.get(lockKey);
       if (!current || current.promise === work) updateTask({ status: 'idle', title: '翻译已取消', message: isAbortError(error) ? '聊天已切换或任务已停止。' : safeError(error), progress: 0 });
       return { skipped: true, reason: 'cancelled' };
@@ -3820,7 +3820,7 @@ async function translateMessageStreaming(messageId = null, { quiet = false, forc
     return { skipped: false, messageId: snapshot.messageId, segments: translations.size };
   })().catch(error => {
     // Called off, or the reader turned to another alternative while it ran: not a failure.
-    if (isAbortError(error) || error?.code === 'JY_SWIPE_CHANGED') {
+    if (isAbortError(error) || error?.code === 'BGT_SWIPE_CHANGED') {
       const current = runtime.inflight.get(lockKey);
       if (!current || current.promise === work) updateTask({ status: 'idle', title: '翻译已取消', message: isAbortError(error) ? '聊天已切换或任务已停止。' : safeError(error), progress: 0 });
       return { skipped: true, reason: 'cancelled' };
@@ -4010,7 +4010,7 @@ async function clearFloorTranslation(messageId = null, { ask = () => true } = {}
   const lockKey = `${chatId}|${id}|${swipeId}`;
   if (runtime.inflight.has(lockKey)) throw new Error('这一楼正在翻译，等它写完再清除译文。');
   if (snapshot.diverged) {
-    throw new Error(`第 ${id} 楼只留了译文，后来又被改过，镜译认不出它的翻译记录，没法清除；要清除请先在总控页点「恢复本聊天的原文」。`);
+    throw new Error(`第 ${id} 楼只留了译文，后来又被改过，测试翻译认不出它的翻译记录，没法清除；要清除请先在总控页点「恢复本聊天的原文」。`);
   }
   const floor = readFloor(message);
   const metadata = floor.metadata ?? message.extra?.[MESSAGE_META_KEY];
@@ -4020,7 +4020,7 @@ async function clearFloorTranslation(messageId = null, { ask = () => true } = {}
     return { cleared: false, messageId: id };
   }
   const mesBeforeAsk = message.mes;
-  if (!(await ask(`清除第 ${id} 楼的译文？正文会恢复成原文，这一楼镜译记下的翻译状态和标注都会丢，要再看到译文得重新翻译。`))) {
+  if (!(await ask(`清除第 ${id} 楼的译文？正文会恢复成原文，这一楼测试翻译记下的翻译状态和标注都会丢，要再看到译文得重新翻译。`))) {
     return { cleared: false, cancelled: true, messageId: id };
   }
   // The confirm dialog can sit open long enough for the floor under it to move on: a swipe (its own
@@ -4417,7 +4417,7 @@ function ttsTagReading(floor, utterances, tts) {
  *
  * A floor this extension translated is read through its own boundaries, which do not care what the
  * visible affixes are. One it never translated falls back to literal source tags such as
- * <jy-translation>, for presets that type them themselves.
+ * <bgt-translation>, for presets that type them themselves.
  */
 // The languages a floor is read in under the current setting, the one the floor bar plays first.
 function ttsSides(settings = runtime.settings) {
@@ -6495,7 +6495,7 @@ function installLiveUnlock() {
     // A tap on one of this extension's buttons is that button's to act on: 继续 lets the sound out itself,
     // and unlocking first would make the same tap read the reading as playing and pause it.
     const path = typeof event?.composedPath === 'function' ? event.composedPath() : [];
-    if (path.some(node => node?.dataset && (node.dataset.jyAction || node.dataset.jyTtsAction))) return;
+    if (path.some(node => node?.dataset && (node.dataset.bgtAction || node.dataset.bgtTtsAction))) return;
     if (liveAudioWanted()) livePlayer()?.unlock();
   };
   for (const type of ['pointerdown', 'touchend', 'keydown']) document.addEventListener(type, unlock, { capture: true, passive: true });
@@ -6599,11 +6599,11 @@ function playTtsAudio(url, { start = 0, end = null, onTime = null } = {}) {
 
 function highlightTtsUtterance(messageId, utteranceId, side = null) {
   if (typeof document === 'undefined') return;
-  for (const button of document.querySelectorAll('#chat .jy-tts-play[data-state="playing"]')) delete button.dataset.state;
+  for (const button of document.querySelectorAll('#chat .bgt-tts-play[data-state="playing"]')) delete button.dataset.state;
   const registry = globalThis.CSS?.highlights;
   if (utteranceId === null || utteranceId === undefined) {
     runtime.tts.highlighted = null;
-    registry?.delete('jy-tts-current');
+    registry?.delete('bgt-tts-current');
     return;
   }
   const which = side ?? primaryTtsSide();
@@ -6615,26 +6615,26 @@ function highlightTtsUtterance(messageId, utteranceId, side = null) {
   if (lineButton && !lineButton.dataset.state) lineButton.dataset.state = 'playing';
   const range = runtime.tts.ranges.get(messageId)?.get(`${which}:${utteranceId}`);
   // The Custom Highlight API paints a range without wrapping it, so the floor's DOM stays untouched.
-  if (registry && typeof globalThis.Highlight === 'function' && range) registry.set('jy-tts-current', new globalThis.Highlight(range));
-  else registry?.delete('jy-tts-current');
+  if (registry && typeof globalThis.Highlight === 'function' && range) registry.set('bgt-tts-current', new globalThis.Highlight(range));
+  else registry?.delete('bgt-tts-current');
 }
 
 function ttsButton(messageId, utteranceId, side = null) {
   if (typeof document === 'undefined') return null;
   const which = side ?? primaryTtsSide();
-  return document.querySelector(`#chat .mes[mesid="${messageId}"] .jy-tts-play[data-jy-tts-utt="${utteranceId}"][data-jy-tts-side="${which}"]`);
+  return document.querySelector(`#chat .mes[mesid="${messageId}"] .bgt-tts-play[data-bgt-tts-utt="${utteranceId}"][data-bgt-tts-side="${which}"]`);
 }
 
 function ttsLineButton(messageId, lineId, side = null) {
   if (typeof document === 'undefined' || lineId === null || lineId === undefined) return null;
   const which = side ?? primaryTtsSide();
-  return document.querySelector(`#chat .mes[mesid="${messageId}"] .jy-tts-line-play:is([data-jy-tts-line="${lineId}"], [data-jy-tts-lines~="${lineId}"])[data-jy-tts-side="${which}"]`);
+  return document.querySelector(`#chat .mes[mesid="${messageId}"] .bgt-tts-line-play:is([data-bgt-tts-line="${lineId}"], [data-bgt-tts-lines~="${lineId}"])[data-bgt-tts-side="${which}"]`);
 }
 
 /** The paragraphs one paragraph button stands for: its own, or every one of a folded original's. */
 function ttsButtonLines(button) {
-  const lines = String(button?.dataset.jyTtsLines ?? '').split(' ').filter(Boolean).map(Number);
-  return lines.length ? lines : [Number(button?.dataset.jyTtsLine)];
+  const lines = String(button?.dataset.bgtTtsLines ?? '').split(' ').filter(Boolean).map(Number);
+  return lines.length ? lines : [Number(button?.dataset.bgtTtsLine)];
 }
 
 /** Which paragraph a sentence of the floor being read belongs to; null when that floor is not the one open. */
@@ -6667,17 +6667,17 @@ function setTtsLineState(messageId, lineId, state, side = null) {
 function setTtsStatus(messageId, text = '', state = 'idle') {
   if (text || state !== 'idle') runtime.tts.status.set(messageId, { text, state });
   else runtime.tts.status.delete(messageId);
-  const bar = typeof document === 'undefined' ? null : document.querySelector(`#chat .mes[mesid="${messageId}"] .jy-tts-bar`);
+  const bar = typeof document === 'undefined' ? null : document.querySelector(`#chat .mes[mesid="${messageId}"] .bgt-tts-bar`);
   if (bar) {
     bar.dataset.state = state;
     bar.title = text;
-    const plays = [...bar.querySelectorAll('[data-jy-tts-action="play-floor"]')];
+    const plays = [...bar.querySelectorAll('[data-bgt-tts-action="play-floor"]')];
     const reading = runtime.tts.transport?.messageId === Number(messageId) ? runtime.tts.transport.side : null;
     // Nothing being read on this floor (an analysis, a correction, audio being remade): its first side is the one busy.
     const busySide = reading ?? (state === 'busy' ? primaryTtsSide() : null);
     for (const button of plays) {
-      const mine = plays.length === 1 || button.dataset.jyTtsSide === busySide;
-      const html = ttsBarLabel(mine ? state : 'idle', plays.length > 1 ? button.dataset.jyTtsSide : null);
+      const mine = plays.length === 1 || button.dataset.bgtTtsSide === busySide;
+      const html = ttsBarLabel(mine ? state : 'idle', plays.length > 1 ? button.dataset.bgtTtsSide : null);
       if (button.innerHTML !== html) button.innerHTML = html;
       button.dataset.state = mine ? state : 'idle';
     }
@@ -6821,7 +6821,7 @@ async function askTtsAnalysis(floor, settings = runtime.settings) {
 function ttsDialogShell(shadow, card, onDismiss) {
   const modal = typeof HTMLDialogElement === 'function' && typeof HTMLDialogElement.prototype.showModal === 'function';
   const shell = document.createElement(modal ? 'dialog' : 'div');
-  shell.className = modal ? 'jy-ask-shell' : 'jy-ask-backdrop';
+  shell.className = modal ? 'bgt-ask-shell' : 'bgt-ask-backdrop';
   shell.appendChild(card);
   shadow.appendChild(shell);
   if (modal) {
@@ -6843,7 +6843,7 @@ function ttsDialogShell(shadow, card, onDismiss) {
 }
 
 /**
- * A yes/no `.jy-ask` confirm (§9.6) for a destructive control-center action, saying what will be
+ * A yes/no `.bgt-ask` confirm (§9.6) for a destructive control-center action, saying what will be
  * lost before it goes: 恢复原样、删除、清空. Built the same way askTtsChoice/askTtsRefine already build
  * their own — a fresh shadow host on top of everything — so no new dialog machinery, just a new
  * question asked through the one this extension already has. `title` and `message` are set with
@@ -6870,13 +6870,13 @@ async function confirmDestructive({ title, message, confirmLabel = '确定' }) {
     const style = document.createElement('style');
     style.textContent = css;
     const card = document.createElement('div');
-    card.innerHTML = '<div class="jy-ask" role="dialog" aria-modal="true"><h3></h3><p></p><div class="jy-ask-actions">'
-      + '<button type="button" class="is-primary" data-jy-confirm="yes"></button>'
-      + '<button type="button" data-jy-confirm="no">取消</button></div></div>';
+    card.innerHTML = '<div class="bgt-ask" role="dialog" aria-modal="true"><h3></h3><p></p><div class="bgt-ask-actions">'
+      + '<button type="button" class="is-primary" data-bgt-confirm="yes"></button>'
+      + '<button type="button" data-bgt-confirm="no">取消</button></div></div>';
     card.querySelector('[role="dialog"]').setAttribute('aria-label', title);
     card.querySelector('h3').textContent = title;
     card.querySelector('p').textContent = message;
-    card.querySelector('[data-jy-confirm="yes"]').textContent = confirmLabel;
+    card.querySelector('[data-bgt-confirm="yes"]').textContent = confirmLabel;
     shadow.append(style);
     let done = false;
     const finish = value => {
@@ -6894,10 +6894,10 @@ async function confirmDestructive({ title, message, confirmLabel = '确定' }) {
     document.body.appendChild(host);
     const { shell } = ttsDialogShell(shadow, card, () => finish(false));
     shell.addEventListener('click', event => {
-      const button = event.target.closest('[data-jy-confirm]');
-      if (button) finish(button.dataset.jyConfirm === 'yes');
+      const button = event.target.closest('[data-bgt-confirm]');
+      if (button) finish(button.dataset.bgtConfirm === 'yes');
     });
-    shadow.querySelector('[data-jy-confirm="no"]')?.focus();
+    shadow.querySelector('[data-bgt-confirm="no"]')?.focus();
   });
 }
 
@@ -6914,18 +6914,18 @@ async function askTtsChoice(floor) {
     const style = document.createElement('style');
     style.textContent = css;
     const card = document.createElement('div');
-    card.innerHTML = `<div class="jy-ask" role="dialog" aria-modal="true" aria-label="要不要先分析">
+    card.innerHTML = `<div class="bgt-ask" role="dialog" aria-modal="true" aria-label="要不要先分析">
   <h3>第 ${floor.messageId} 楼没有翻译标注，也没分析过</h3>
   <p>让副模型按分析模式看一遍这一楼（谁在说、什么情绪、怎么念）再读，只做这一楼，模式不变，之后这一楼都用它；或者直接读，谁在说由程序按上下文认，只加你配的标点标签。</p>
-  <label><input type="checkbox" data-jy-ask-remember>以后都这样，不再问（朗读页里能改回来）</label>
-  <div class="jy-ask-actions"><button type="button" class="is-primary" data-jy-ask="analyze">分析一次再读</button><button type="button" data-jy-ask="plain">直接读</button><button type="button" data-jy-ask="cancel">取消</button></div>
+  <label><input type="checkbox" data-bgt-ask-remember>以后都这样，不再问（朗读页里能改回来）</label>
+  <div class="bgt-ask-actions"><button type="button" class="is-primary" data-bgt-ask="analyze">分析一次再读</button><button type="button" data-bgt-ask="plain">直接读</button><button type="button" data-bgt-ask="cancel">取消</button></div>
 </div>`;
     shadow.append(style);
     let done = false;
     const finish = choice => {
       if (done) return;
       done = true;
-      const remember = shadow.querySelector('[data-jy-ask-remember]')?.checked === true;
+      const remember = shadow.querySelector('[data-bgt-ask-remember]')?.checked === true;
       host.remove();
       document.removeEventListener('keydown', onKey, true);
       resolve({ choice, remember: choice !== 'cancel' && remember });
@@ -6937,10 +6937,10 @@ async function askTtsChoice(floor) {
     document.body.appendChild(host);
     const { shell } = ttsDialogShell(shadow, card, () => finish('cancel'));
     shell.addEventListener('click', event => {
-      const button = event.target.closest('[data-jy-ask]');
-      if (button) finish(button.dataset.jyAsk);
+      const button = event.target.closest('[data-bgt-ask]');
+      if (button) finish(button.dataset.bgtAsk);
     });
-    shadow.querySelector('[data-jy-ask="analyze"]')?.focus();
+    shadow.querySelector('[data-bgt-ask="analyze"]')?.focus();
   });
 }
 
@@ -6965,18 +6965,18 @@ async function ttsAskBox(body, { label = '选择' } = {}) {
     const style = document.createElement('style');
     style.textContent = css;
     const box = document.createElement('div');
-    box.className = 'jy-ask';
+    box.className = 'bgt-ask';
     box.setAttribute('role', 'dialog');
     box.setAttribute('aria-modal', 'true');
     box.setAttribute('aria-label', label);
     const head = document.createElement('div');
-    head.className = 'jy-ask-head';
+    head.className = 'bgt-ask-head';
     const title = document.createElement('h3');
     title.textContent = body.title;
     const close = document.createElement('button');
     close.type = 'button';
-    close.className = 'jy-mini-inspect-close';
-    close.dataset.jySave = 'cancel';
+    close.className = 'bgt-mini-inspect-close';
+    close.dataset.bgtSave = 'cancel';
     close.title = '关闭';
     close.setAttribute('aria-label', '关闭');
     close.textContent = '×';
@@ -6984,7 +6984,7 @@ async function ttsAskBox(body, { label = '选择' } = {}) {
     const text = document.createElement('p');
     text.textContent = body.text;
     const actions = document.createElement('div');
-    actions.className = 'jy-ask-actions';
+    actions.className = 'bgt-ask-actions';
     for (const action of body.actions) {
       const control = document.createElement(action.href ? 'a' : 'button');
       if (action.href) {
@@ -7000,21 +7000,21 @@ async function ttsAskBox(body, { label = '选择' } = {}) {
       }
       if (action.primary) control.className = 'is-primary';
       if (action.run) control.addEventListener('click', event => { event.preventDefault(); action.run(); });
-      else if (!action.href) control.dataset.jySave = action.value;
+      else if (!action.href) control.dataset.bgtSave = action.value;
       control.textContent = action.label;
       actions.appendChild(control);
     }
     const parts = [head, text];
     if (Array.isArray(body.picks)) {
       const list = document.createElement('div');
-      list.className = 'jy-ask-picks';
+      list.className = 'bgt-ask-picks';
       for (const pick of body.picks) {
         const row = document.createElement('label');
         const tick = document.createElement('input');
         tick.type = 'checkbox';
         tick.value = String(pick.value);
         tick.checked = pick.checked !== false;
-        tick.dataset.jyPick = '';
+        tick.dataset.bgtPick = '';
         const words = document.createElement('span');
         words.textContent = pick.label;
         if (pick.note) {
@@ -7033,7 +7033,7 @@ async function ttsAskBox(body, { label = '选择' } = {}) {
     const finish = choice => {
       if (done) return;
       done = true;
-      const picked = [...shadow.querySelectorAll('[data-jy-pick]')].filter(tick => tick.checked).map(tick => tick.value);
+      const picked = [...shadow.querySelectorAll('[data-bgt-pick]')].filter(tick => tick.checked).map(tick => tick.value);
       host.remove();
       document.removeEventListener('keydown', onKey, true);
       resolve(Array.isArray(body.picks) ? { choice, picked } : choice);
@@ -7045,10 +7045,10 @@ async function ttsAskBox(body, { label = '选择' } = {}) {
     document.body.appendChild(host);
     const { shell } = ttsDialogShell(shadow, box, () => finish('cancel'));
     shell.addEventListener('click', event => {
-      const button = event.target.closest('[data-jy-save]');
-      if (button && !button.disabled) finish(button.dataset.jySave);
+      const button = event.target.closest('[data-bgt-save]');
+      if (button && !button.disabled) finish(button.dataset.bgtSave);
     });
-    shadow.querySelector('.jy-ask-actions button:not([disabled])')?.focus();
+    shadow.querySelector('.bgt-ask-actions button:not([disabled])')?.focus();
   });
 }
 
@@ -7430,10 +7430,10 @@ function stopTtsPlayback() {
 function setTtsPicking(messageId, side) {
   const root = ttsMessageText(messageId);
   if (!root) return;
-  if (side) root.dataset.jyTtsPick = side;
+  if (side) root.dataset.bgtTtsPick = side;
   else {
-    delete root.dataset.jyTtsPick;
-    for (const box of root.querySelectorAll('[data-jy-tts-pick-line]')) box.checked = false;
+    delete root.dataset.bgtTtsPick;
+    for (const box of root.querySelectorAll('[data-bgt-tts-pick-line]')) box.checked = false;
   }
   syncTtsPicking(messageId);
 }
@@ -7441,20 +7441,20 @@ function setTtsPicking(messageId, side) {
 /** What the bar shows while choosing: how many paragraphs are ticked, and the controls for them. */
 function syncTtsPicking(messageId) {
   const root = ttsMessageText(messageId);
-  const bar = root?.querySelector(':scope > .jy-tts-bar');
+  const bar = root?.querySelector(':scope > .bgt-tts-bar');
   if (!root || !bar) return;
-  const side = root.dataset.jyTtsPick ?? '';
+  const side = root.dataset.bgtTtsPick ?? '';
   const chosen = ttsPickedLines(messageId, side);
-  const count = bar.querySelector('[data-jy-tts-pick-count]');
+  const count = bar.querySelector('[data-bgt-tts-pick-count]');
   if (count) {
     count.hidden = !side;
     count.textContent = chosen.length ? `已选 ${chosen.length} 段` : '勾选要缓存的段落';
   }
-  for (const [selector, shown] of [['.jy-tts-bar-pick', !side], ['.jy-tts-bar-pick-save', Boolean(side)], ['.jy-tts-bar-pick-all', Boolean(side)], ['.jy-tts-bar-pick-exit', Boolean(side)]]) {
+  for (const [selector, shown] of [['.bgt-tts-bar-pick', !side], ['.bgt-tts-bar-pick-save', Boolean(side)], ['.bgt-tts-bar-pick-all', Boolean(side)], ['.bgt-tts-bar-pick-exit', Boolean(side)]]) {
     const button = bar.querySelector(selector);
     if (button) button.hidden = !shown;
   }
-  const save = bar.querySelector('.jy-tts-bar-pick-save');
+  const save = bar.querySelector('.bgt-tts-bar-pick-save');
   if (save) save.disabled = !chosen.length;
 }
 
@@ -7462,9 +7462,9 @@ function syncTtsPicking(messageId) {
 function ttsPickedLines(messageId, side) {
   const root = ttsMessageText(messageId);
   if (!root) return [];
-  return [...root.querySelectorAll('[data-jy-tts-pick-line]')]
-    .filter(box => box.checked && (!side || box.dataset.jyTtsSide === side))
-    .flatMap(box => (box.dataset.jyTtsPickLines ? box.dataset.jyTtsPickLines.split(' ').map(Number) : [Number(box.dataset.jyTtsPickLine)]));
+  return [...root.querySelectorAll('[data-bgt-tts-pick-line]')]
+    .filter(box => box.checked && (!side || box.dataset.bgtTtsSide === side))
+    .flatMap(box => (box.dataset.bgtTtsPickLines ? box.dataset.bgtTtsPickLines.split(' ').map(Number) : [Number(box.dataset.bgtTtsPickLine)]));
 }
 
 /** Makes the ticked paragraphs and hands the file over, the same way every other save does. */
@@ -8100,7 +8100,7 @@ async function downloadTtsSentence(messageId, utteranceId, side = null) {
   const blob = alone ? part.blob : await sliceAudioToWav(part.blob, line.start, line.end);
   const format = ttsAudioFormat(tts) === 'opus' ? 'ogg' : ttsAudioFormat(tts);
   const who = item.segment.type === 'narration' ? '旁白' : (item.segment.speaker || '对白');
-  const name = `镜译-第${messageId}楼-${who}-第${item.segment.id}句.${alone ? format : 'wav'}`;
+  const name = `测试翻译-第${messageId}楼-${who}-第${item.segment.id}句.${alone ? format : 'wav'}`;
   return { blob, name, bytes: blob.size, cut: !alone };
 }
 
@@ -8174,7 +8174,7 @@ async function downloadTtsAudio(options = null) {
   const blob = spliced ? await ttsSplicedWav(entries) : await ttsDownloadBlob(records, ttsAudioFormat(tts));
   const extension = spliced ? 'wav' : (ttsAudioFormat(tts) === 'opus' ? 'ogg' : ttsAudioFormat(tts));
   const part = picked ? `-选中${picked.size}段` : wanted === 'current' ? `-第${(lineIndex >= 0 ? lineIndex : 0) + 1}段` : '';
-  const name = `镜译-第${source.messageId}楼${part}.${extension}`;
+  const name = `测试翻译-第${source.messageId}楼${part}.${extension}`;
   return { blob, name, bytes: blob.size, records: records.length, spliced };
 }
 
@@ -8823,31 +8823,31 @@ async function askTtsRefine({ messageId, sentence = null }) {
     style.textContent = css;
     const card = document.createElement('div');
     const short = sentence ? miniShort(sentence.text, 18) : '';
-    card.innerHTML = `<div class="jy-ask" role="dialog" aria-modal="true" aria-label="重新分析">
+    card.innerHTML = `<div class="bgt-ask" role="dialog" aria-modal="true" aria-label="重新分析">
   <h3>重新分析第 ${messageId} 楼</h3>
   <p>${sentence ? '下面先选改哪里：你打开的那一句，还是整楼。' : '这次改的是<strong>整楼</strong>。想只改一句，先在句子列表里点那一句的「详细」，再回来点重新分析。'}按你的意见改已有的分析：副模型不用再通读一遍正文，只看上次的结果和你的意见，快得多。也可以丢掉重来。说话人也可以不问副模型，在详细页的下拉框里直接改。</p>
-  <div class="jy-ask-scope" data-jy-refine-scope${sentence ? '' : ' hidden'}>
-    <label><input type="radio" name="jy-refine-scope" value="sentence" checked>只改这一句${short ? `：${short}` : ''}</label>
-    <label><input type="radio" name="jy-refine-scope" value="floor"${sentence ? '' : ' checked'}>整楼都改</label>
+  <div class="bgt-ask-scope" data-bgt-refine-scope${sentence ? '' : ' hidden'}>
+    <label><input type="radio" name="bgt-refine-scope" value="sentence" checked>只改这一句${short ? `：${short}` : ''}</label>
+    <label><input type="radio" name="bgt-refine-scope" value="floor"${sentence ? '' : ' checked'}>整楼都改</label>
   </div>
-  <label class="jy-ask-field"><span>哪里不对（可以不写）</span><textarea data-jy-refine-feedback rows="2" placeholder="比如：说话人不对，这句是樱井说的；情绪不够饱满；语气太平"></textarea></label>
-  <div class="jy-ask-chips" data-jy-refine-chips>
+  <label class="bgt-ask-field"><span>哪里不对（可以不写）</span><textarea data-bgt-refine-feedback rows="2" placeholder="比如：说话人不对，这句是樱井说的；情绪不够饱满；语气太平"></textarea></label>
+  <div class="bgt-ask-chips" data-bgt-refine-chips>
     <button type="button" data-chip="说话人不对">说话人不对</button>
     <button type="button" data-chip="情绪不够饱满">情绪不够</button>
     <button type="button" data-chip="情绪太夸张了">情绪太过</button>
     <button type="button" data-chip="语气太平，没起伏">语气太平</button>
     <button type="button" data-chip="非语言声音太多了">声音太多</button>
   </div>
-  <div class="jy-ask-actions"><button type="button" class="is-primary" data-jy-refine="refine">按意见改</button><button type="button" data-jy-refine="fresh">丢掉重来（整楼）</button><button type="button" data-jy-refine="cancel">取消</button></div>
+  <div class="bgt-ask-actions"><button type="button" class="is-primary" data-bgt-refine="refine">按意见改</button><button type="button" data-bgt-refine="fresh">丢掉重来（整楼）</button><button type="button" data-bgt-refine="cancel">取消</button></div>
 </div>`;
-    if (!sentence) card.querySelector('[data-jy-refine-scope] label')?.remove();
+    if (!sentence) card.querySelector('[data-bgt-refine-scope] label')?.remove();
     shadow.append(style);
     let done = false;
     const finish = choice => {
       if (done) return;
       done = true;
-      const scope = shadow.querySelector('[name="jy-refine-scope"]:checked')?.value ?? 'floor';
-      const feedback = shadow.querySelector('[data-jy-refine-feedback]')?.value.trim() ?? '';
+      const scope = shadow.querySelector('[name="bgt-refine-scope"]:checked')?.value ?? 'floor';
+      const feedback = shadow.querySelector('[data-bgt-refine-feedback]')?.value.trim() ?? '';
       host.remove();
       document.removeEventListener('keydown', onKey, true);
       resolve({ choice, scope: sentence ? scope : 'floor', feedback });
@@ -8861,15 +8861,15 @@ async function askTtsRefine({ messageId, sentence = null }) {
     shell.addEventListener('click', event => {
       const chip = event.target.closest('[data-chip]');
       if (chip) {
-        const box = shadow.querySelector('[data-jy-refine-feedback]');
+        const box = shadow.querySelector('[data-bgt-refine-feedback]');
         box.value = box.value.trim() ? `${box.value.trim()}；${chip.dataset.chip}` : chip.dataset.chip;
         box.focus();
         return;
       }
-      const button = event.target.closest('[data-jy-refine]');
-      if (button) finish(button.dataset.jyRefine);
+      const button = event.target.closest('[data-bgt-refine]');
+      if (button) finish(button.dataset.bgtRefine);
     });
-    shadow.querySelector('[data-jy-refine-feedback]')?.focus();
+    shadow.querySelector('[data-bgt-refine-feedback]')?.focus();
   });
 }
 
@@ -8993,10 +8993,10 @@ function ttsMessageText(messageId) {
 
 function clearTtsDecoration(root) {
   if (!root) return;
-  for (const node of root.querySelectorAll('.jy-tts-line, .jy-tts-play, .jy-tts-edit, .jy-tts-bar')) node.remove();
+  for (const node of root.querySelectorAll('.bgt-tts-line, .bgt-tts-play, .bgt-tts-edit, .bgt-tts-bar')) node.remove();
   // Inserting the buttons split text nodes; putting them back keeps the floor exactly as the host drew it.
   root.normalize();
-  delete root.dataset.jyTts;
+  delete root.dataset.bgtTts;
 }
 
 function isLastMeaningfulChild(node) {
@@ -9028,19 +9028,19 @@ function insertAfterRange(range, element, root) {
 function foldedOriginalOf(range, root) {
   const end = range.endContainer;
   const element = end.nodeType === Node.TEXT_NODE ? end.parentElement : end;
-  const details = element?.closest?.('details.jy-reading-original, details.custom-jy-reading-original');
+  const details = element?.closest?.('details.bgt-reading-original, details.custom-bgt-reading-original');
   return details && root.contains(details) ? details : null;
 }
 
 function makeTtsPlayButton(messageId, segment, side) {
   const button = document.createElement('button');
   button.type = 'button';
-  button.className = 'jy-tts-play';
-  button.dataset.jyTtsAction = 'play';
-  button.dataset.jyTtsMes = String(messageId);
-  button.dataset.jyTtsUtt = String(segment.id);
-  button.dataset.jyTtsSide = side;
-  button.dataset.jyTtsType = segment.type;
+  button.className = 'bgt-tts-play';
+  button.dataset.bgtTtsAction = 'play';
+  button.dataset.bgtTtsMes = String(messageId);
+  button.dataset.bgtTtsUtt = String(segment.id);
+  button.dataset.bgtTtsSide = side;
+  button.dataset.bgtTtsType = segment.type;
   button.setAttribute('contenteditable', 'false');
   const label = `${segment.type === 'narration' ? '朗读这句旁白' : `朗读这句对白${segment.speaker ? `（${segment.speaker}）` : ''}`}${side === 'source' ? '（原文）' : ''}`;
   button.setAttribute('aria-label', label);
@@ -9054,11 +9054,11 @@ function makeTtsPlayButton(messageId, segment, side) {
 function makeTtsEditButton(messageId, segment, side) {
   const button = document.createElement('button');
   button.type = 'button';
-  button.className = 'jy-tts-edit';
-  button.dataset.jyTtsAction = 'inspect';
-  button.dataset.jyTtsMes = String(messageId);
-  button.dataset.jyTtsUtt = String(segment.id);
-  button.dataset.jyTtsSide = side;
+  button.className = 'bgt-tts-edit';
+  button.dataset.bgtTtsAction = 'inspect';
+  button.dataset.bgtTtsMes = String(messageId);
+  button.dataset.bgtTtsUtt = String(segment.id);
+  button.dataset.bgtTtsSide = side;
   button.setAttribute('contenteditable', 'false');
   const label = `查看这句的情绪分析，可修改发给 ${ttsProviderName(ttsSettings())} 的内容`;
   button.setAttribute('aria-label', label);
@@ -9076,31 +9076,31 @@ function makeTtsEditButton(messageId, segment, side) {
  */
 function makeTtsLineTools(messageId, line, side) {
   const box = document.createElement('span');
-  box.className = 'jy-tts-line';
-  box.dataset.jyTtsLine = String(line.lineId);
-  box.dataset.jyTtsSide = side;
+  box.className = 'bgt-tts-line';
+  box.dataset.bgtTtsLine = String(line.lineId);
+  box.dataset.bgtTtsSide = side;
   box.setAttribute('contenteditable', 'false');
   const suffix = side === 'source' ? '（原文）' : '';
   // One pair for several paragraphs: a folded original, whose chip stands for all of them.
   const block = Array.isArray(line.lines) && line.lines.length > 1;
   const which = block ? `这 ${line.lines.length} 段` : '这一段';
   const pick = document.createElement('label');
-  pick.className = 'jy-tts-pick-box';
+  pick.className = 'bgt-tts-pick-box';
   pick.title = `选中${which}，一起缓存到本地`;
   pick.setAttribute('contenteditable', 'false');
   const tick = document.createElement('input');
   tick.type = 'checkbox';
-  tick.dataset.jyTtsPickLine = String(line.lineId);
-  if (block) tick.dataset.jyTtsPickLines = line.lines.join(' ');
-  tick.dataset.jyTtsSide = side;
+  tick.dataset.bgtTtsPickLine = String(line.lineId);
+  if (block) tick.dataset.bgtTtsPickLines = line.lines.join(' ');
+  tick.dataset.bgtTtsSide = side;
   pick.appendChild(tick);
   // A run of 歌词行 (design §17.15): 「唱」 sings the run and stops, 「重新生成」 makes it again. With a voice
   // that cannot sing, 「唱」 stands alone, faded, and says why when pressed.
   if (line.lyric) {
-    box.dataset.jyTtsLyric = '';
+    box.dataset.bgtTtsLyric = '';
     const blocked = singingBlockedReason(ttsSettings());
     const sing = makeTtsLineButton(messageId, line, side, {
-      action: 'play-line', className: 'jy-tts-line-play', icon: TTS_ICON_SING, text: '唱',
+      action: 'play-line', className: 'bgt-tts-line-play', icon: TTS_ICON_SING, text: '唱',
       label: blocked || `唱这段歌词（${line.ids.length} 句）`,
     });
     if (blocked) {
@@ -9109,7 +9109,7 @@ function makeTtsLineTools(messageId, line, side) {
       return box;
     }
     box.append(pick, sing, makeTtsLineButton(messageId, line, side, {
-      action: 'regen-line', className: 'jy-tts-line-regen', icon: TTS_ICON_REDO, text: '重新生成',
+      action: 'regen-line', className: 'bgt-tts-line-regen', icon: TTS_ICON_REDO, text: '重新生成',
       label: `丢掉这段歌词的音频，再向 ${ttsProviderName(ttsSettings())} 要一次`,
     }));
     return box;
@@ -9117,11 +9117,11 @@ function makeTtsLineTools(messageId, line, side) {
   box.append(
     pick,
     makeTtsLineButton(messageId, line, side, {
-      action: 'play-line', className: 'jy-tts-line-play', icon: TTS_ICON_PLAY, text: '播放',
+      action: 'play-line', className: 'bgt-tts-line-play', icon: TTS_ICON_PLAY, text: '播放',
       label: `${block ? `读${which}` : '从这一段读起'}（${line.ids.length} 句）${suffix}`,
     }),
     makeTtsLineButton(messageId, line, side, {
-      action: 'regen-line', className: 'jy-tts-line-regen', icon: TTS_ICON_REDO, text: '重新生成',
+      action: 'regen-line', className: 'bgt-tts-line-regen', icon: TTS_ICON_REDO, text: '重新生成',
       label: `丢掉${which}的音频，再向 ${ttsProviderName(ttsSettings())} 要一次${suffix}`,
     }),
   );
@@ -9132,12 +9132,12 @@ function makeTtsLineButton(messageId, line, side, { action, className, icon, tex
   const button = document.createElement('button');
   button.type = 'button';
   // The shared class keeps the busy, playing and beautify styles the sentence buttons already have.
-  button.className = `jy-tts-play ${className}`;
-  button.dataset.jyTtsAction = action;
-  button.dataset.jyTtsMes = String(messageId);
-  button.dataset.jyTtsLine = String(line.lineId);
-  if (Array.isArray(line.lines) && line.lines.length > 1) button.dataset.jyTtsLines = line.lines.join(' ');
-  button.dataset.jyTtsSide = side;
+  button.className = `bgt-tts-play ${className}`;
+  button.dataset.bgtTtsAction = action;
+  button.dataset.bgtTtsMes = String(messageId);
+  button.dataset.bgtTtsLine = String(line.lineId);
+  if (Array.isArray(line.lines) && line.lines.length > 1) button.dataset.bgtTtsLines = line.lines.join(' ');
+  button.dataset.bgtTtsSide = side;
   button.setAttribute('contenteditable', 'false');
   button.setAttribute('aria-label', label);
   button.title = label;
@@ -9209,24 +9209,24 @@ function dialogueSourceLineAnchorIds(line, utterances) {
 // so it is told the style instead of inheriting it.
 function readingStyleOf(root) {
   for (const style of ['cute', 'minimal', 'fold']) {
-    if (root.querySelector(`.jy-reading-${style}, .custom-jy-reading-${style}`)) return style;
+    if (root.querySelector(`.bgt-reading-${style}, .custom-bgt-reading-${style}`)) return style;
   }
   return '';
 }
 
 function makeTtsBar(messageId, tts, count, readingStyle = '', sides = [tts.side]) {
   const bar = document.createElement('div');
-  bar.className = 'jy-tts-bar';
-  bar.dataset.jyTtsMes = String(messageId);
-  if (readingStyle) bar.dataset.jyReading = readingStyle;
+  bar.className = 'bgt-tts-bar';
+  bar.dataset.bgtTtsMes = String(messageId);
+  if (readingStyle) bar.dataset.bgtReading = readingStyle;
   bar.setAttribute('contenteditable', 'false');
   const control = (action, className, html, hidden = false, side = null) => {
     const button = document.createElement('button');
     button.type = 'button';
     button.className = className;
-    button.dataset.jyTtsAction = action;
-    button.dataset.jyTtsMes = String(messageId);
-    if (side) button.dataset.jyTtsSide = side;
+    button.dataset.bgtTtsAction = action;
+    button.dataset.bgtTtsMes = String(messageId);
+    if (side) button.dataset.bgtTtsSide = side;
     button.hidden = hidden;
     button.innerHTML = html;
     return button;
@@ -9235,21 +9235,21 @@ function makeTtsBar(messageId, tts, count, readingStyle = '', sides = [tts.side]
   // One small button per side read; its label follows the reading (see ttsBarLabel). Progress, the
   // other paragraph, stop and saving live in the floating window.
   const plays = sides.map(side => {
-    const button = control('play-floor', 'jy-tts-bar-play', ttsBarLabel('idle', both ? side : null), false, side);
+    const button = control('play-floor', 'bgt-tts-bar-play', ttsBarLabel('idle', both ? side : null), false, side);
     button.title = `${side === 'source' ? '读原文' : side === 'dialogue_source' ? '对白读原文' : '读译文'} · ${TTS_MODE_LABELS[tts.mode]} · ${TTS_RANGE_LABELS[tts.range]} · ${count} 句`;
     return button;
   });
   // Choosing happens here rather than in the floating window: reading the original, the window's list
   // is in the original's language, and the translation the reader can actually read is in the chat.
-  const pick = control('pick', 'jy-tts-bar-pick', '<span>缓存</span>', false, sides[0]);
+  const pick = control('pick', 'bgt-tts-bar-pick', '<span>缓存</span>', false, sides[0]);
   pick.title = '勾选几段对白，一起缓存到本地';
   const picked = document.createElement('span');
-  picked.className = 'jy-tts-bar-pick-count';
-  picked.dataset.jyTtsPickCount = '';
+  picked.className = 'bgt-tts-bar-pick-count';
+  picked.dataset.bgtTtsPickCount = '';
   picked.hidden = true;
-  const save = control('pick-save', 'jy-tts-bar-pick-save', '<span>缓存所选</span>', true, sides[0]);
-  const all = control('pick-all', 'jy-tts-bar-pick-all', '<span>全选</span>', true, sides[0]);
-  const exit = control('pick-exit', 'jy-tts-bar-pick-exit', '<span>退出选择</span>', true);
+  const save = control('pick-save', 'bgt-tts-bar-pick-save', '<span>缓存所选</span>', true, sides[0]);
+  const all = control('pick-all', 'bgt-tts-bar-pick-all', '<span>全选</span>', true, sides[0]);
+  const exit = control('pick-exit', 'bgt-tts-bar-pick-exit', '<span>退出选择</span>', true);
   bar.append(...plays, pick, picked, save, all, exit);
   return bar;
 }
@@ -9289,11 +9289,11 @@ function locateDialogueSourceAnchors(nodeTexts, floor, utterances) {
 }
 
 // The built-in beautify (processing.js builtinReadingReplaceString) keeps every paragraph's original in
-// .jy-reading-source — inside .jy-reading-original when it folds — and its translation in
-// .jy-reading-translation; the host adds its "custom-" prefix to both when it draws the floor.
+// .bgt-reading-source — inside .bgt-reading-original when it folds — and its translation in
+// .bgt-reading-translation; the host adds its "custom-" prefix to both when it draws the floor.
 const READING_SIDE_SELECTORS = Object.freeze({
-  translation: '.jy-reading-translation, .custom-jy-reading-translation',
-  source: '.jy-reading-source, .custom-jy-reading-source, .jy-reading-original, .custom-jy-reading-original',
+  translation: '.bgt-reading-translation, .custom-bgt-reading-translation',
+  source: '.bgt-reading-source, .custom-bgt-reading-source, .bgt-reading-original, .custom-bgt-reading-original',
 });
 
 /** Which beautify block a rendered text node sits in: 'source', 'translation', or '' outside both. */
@@ -9359,7 +9359,7 @@ async function decorateTtsMessage(messageId, { force = false } = {}) {
   const settings = runtime.settings;
   const tts = ttsSettings(settings);
   if (!runtime.initialized || !tts.enabled) {
-    if (root.dataset.jyTts) clearTtsDecoration(root);
+    if (root.dataset.bgtTts) clearTtsDecoration(root);
     return;
   }
   const context = getContext();
@@ -9376,7 +9376,7 @@ async function decorateTtsMessage(messageId, { force = false } = {}) {
   const singable = !singingBlockedReason(tts);
   const cheapKey = `${Number(message?.swipe_id ?? 0)}|${ttsSides(settings).join('+')}|${tts.mode}|${tts.range}|${tts.quotePairs.join('')}|${tts.skipPairs.join('')}|${floorButtonMode(settings)}|${muteKey}|${settings.lyricSing !== false ? 'lyrics' : ''}${singable ? '' : '-mute'}`;
   const seen = runtime.tts.mesSeen.get(messageId);
-  if (!force && seen && seen.mes === message?.mes && seen.key === cheapKey && root.dataset.jyTts && root.querySelector(':scope > .jy-tts-bar')) return;
+  if (!force && seen && seen.mes === message?.mes && seen.key === cheapKey && root.dataset.bgtTts && root.querySelector(':scope > .bgt-tts-bar')) return;
   const floors = [];
   for (const side of ttsSides(settings)) {
     const floor = await collectTtsFloor(messageId, settings, side);
@@ -9384,7 +9384,7 @@ async function decorateTtsMessage(messageId, { force = false } = {}) {
   }
   if (ttsMessageText(messageId) !== root) return;
   if (!floors.length) {
-    if (root.dataset.jyTts) clearTtsDecoration(root);
+    if (root.dataset.bgtTts) clearTtsDecoration(root);
     runtime.tts.mesSeen.set(messageId, { mes: message?.mes ?? '', key: cheapKey });
     return;
   }
@@ -9410,14 +9410,14 @@ async function decorateTtsMessage(messageId, { force = false } = {}) {
   if (ttsMessageText(messageId) !== root) return;
   const audible = readings.map(reading => audibleSegments(reading.segments, tts.range, ttsVoiceConfig(settings)));
   const signature = `${floors.map((floor, index) => `${floor.side}|${floor.version}|${readings[index].depth}|${audible[index].map(segment => `${segment.id}:${segment.type}:${segment.speaker ?? ''}`).join(',')}`).join('#')}|${cheapKey}`;
-  if (!force && root.dataset.jyTts === signature && root.querySelector(':scope > .jy-tts-bar')) {
+  if (!force && root.dataset.bgtTts === signature && root.querySelector(':scope > .bgt-tts-bar')) {
     runtime.tts.mesSeen.set(messageId, { mes: message?.mes ?? '', key: cheapKey });
     return;
   }
 
   clearTtsDecoration(root);
   const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, {
-    acceptNode: node => (node.parentElement?.closest('.jy-tts-line, .jy-tts-play, .jy-tts-edit, .jy-tts-bar, script, style') ? NodeFilter.FILTER_REJECT : NodeFilter.FILTER_ACCEPT),
+    acceptNode: node => (node.parentElement?.closest('.bgt-tts-line, .bgt-tts-play, .bgt-tts-edit, .bgt-tts-bar, script, style') ? NodeFilter.FILTER_REJECT : NodeFilter.FILTER_ACCEPT),
   });
   const nodes = [];
   while (walker.nextNode()) nodes.push(walker.currentNode);
@@ -9533,7 +9533,7 @@ async function decorateTtsMessage(messageId, { force = false } = {}) {
     if (placement.line) {
       const tools = makeTtsLineTools(messageId, placement.line, placement.side);
       if (placement.fold) {
-        tools.dataset.jyTtsFold = '';
+        tools.dataset.bgtTtsFold = '';
         placement.fold.after(tools);
       } else {
         insertAfterRange(placement.range, tools, root);
@@ -9548,7 +9548,7 @@ async function decorateTtsMessage(messageId, { force = false } = {}) {
   // No buttons in the floor: the row is still there, hidden, so a redraw of this floor is still noticed.
   if (floorButtonMode(settings) === 'off') bar.hidden = true;
   root.insertBefore(bar, root.firstChild);
-  root.dataset.jyTts = signature;
+  root.dataset.bgtTts = signature;
   runtime.tts.mesSeen.set(messageId, { mes: message?.mes ?? '', key: cheapKey });
   runtime.tts.ranges.set(messageId, ranges);
   const status = runtime.tts.status.get(messageId);
@@ -9618,7 +9618,7 @@ function routeTtsDecorate(element, options = {}, last = false) {
     return;
   }
   // Out of view: the observer calls when it comes in; a forced pass must still reach it then.
-  if (element.dataset.jyTtsPending !== 'force') element.dataset.jyTtsPending = options.force ? 'force' : 'plain';
+  if (element.dataset.bgtTtsPending !== 'force') element.dataset.bgtTtsPending = options.force ? 'force' : 'plain';
   viewer.observe(element);
 }
 
@@ -9630,8 +9630,8 @@ function ttsViewer() {
       if (!entry.isIntersecting) continue;
       const element = entry.target;
       runtime.tts.viewer.unobserve(element);
-      const force = element.dataset.jyTtsPending === 'force';
-      delete element.dataset.jyTtsPending;
+      const force = element.dataset.bgtTtsPending === 'force';
+      delete element.dataset.bgtTtsPending;
       if (ttsSettings().enabled) scheduleTtsDecorate(Number(element.getAttribute('mesid')), { force });
     }
   }, { rootMargin: '600px 0px' });
@@ -9640,8 +9640,8 @@ function ttsViewer() {
 
 function clearAllTtsDecorations() {
   if (typeof document === 'undefined') return;
-  const roots = new Set(document.querySelectorAll('#chat .mes_text[data-jy-tts]'));
-  for (const element of document.querySelectorAll('#chat .jy-tts-bar, #chat .jy-tts-line, #chat .jy-tts-play, #chat .jy-tts-edit')) {
+  const roots = new Set(document.querySelectorAll('#chat .mes_text[data-bgt-tts]'));
+  for (const element of document.querySelectorAll('#chat .bgt-tts-bar, #chat .bgt-tts-line, #chat .bgt-tts-play, #chat .bgt-tts-edit')) {
     const root = element.closest('.mes_text');
     if (root) roots.add(root);
   }
@@ -9660,20 +9660,20 @@ function bindTtsDom() {
   if (typeof document === 'undefined' || !runtime.initialized || !ttsSettings().enabled) return;
   if (!runtime.tts.clickCleanup) {
     const onClick = event => {
-      const ticked = event.target instanceof Element ? event.target.closest('[data-jy-tts-pick-line]') : null;
+      const ticked = event.target instanceof Element ? event.target.closest('[data-bgt-tts-pick-line]') : null;
       if (ticked?.closest('#chat')) {
         // A tick is its own business: it must not start reading the paragraph it sits beside.
         event.stopPropagation();
         syncTtsPicking(Number(ticked.closest('.mes[mesid]')?.getAttribute('mesid')));
         return;
       }
-      const target = event.target instanceof Element ? event.target.closest('[data-jy-tts-action]') : null;
+      const target = event.target instanceof Element ? event.target.closest('[data-bgt-tts-action]') : null;
       if (!target || !target.closest('#chat')) return;
       event.preventDefault();
       event.stopPropagation();
-      const messageId = Number(target.dataset.jyTtsMes);
-      const action = target.dataset.jyTtsAction;
-      const side = target.dataset.jyTtsSide || null;
+      const messageId = Number(target.dataset.bgtTtsMes);
+      const action = target.dataset.bgtTtsAction;
+      const side = target.dataset.bgtTtsSide || null;
       if (action === 'stop') stopTts(messageId);
       else if (action === 'pause') toggleTtsPause();
       else if (action === 'play-floor' && runtime.tts.stream && !runtime.tts.stream.done && runtime.tts.stream.messageId === messageId) {
@@ -9695,7 +9695,7 @@ function bindTtsDom() {
       else if (action === 'pick' || action === 'pick-exit') setTtsPicking(messageId, action === 'pick' ? (side ?? primaryTtsSide()) : null);
       else if (action === 'pick-all') {
         const root = ttsMessageText(messageId);
-        const boxes = [...(root?.querySelectorAll('[data-jy-tts-pick-line]') ?? [])].filter(box => box.dataset.jyTtsSide === (side ?? primaryTtsSide()));
+        const boxes = [...(root?.querySelectorAll('[data-bgt-tts-pick-line]') ?? [])].filter(box => box.dataset.bgtTtsSide === (side ?? primaryTtsSide()));
         const wanted = boxes.some(box => !box.checked);
         for (const box of boxes) box.checked = wanted;
         syncTtsPicking(messageId);
@@ -9704,9 +9704,9 @@ function bindTtsDom() {
           if (!isAbortError(error)) toast('error', safeError(error));
         });
       }
-      else if (action === 'inspect') void openTtsPanel(messageId, Number(target.dataset.jyTtsUtt), side);
+      else if (action === 'inspect') void openTtsPanel(messageId, Number(target.dataset.bgtTtsUtt), side);
       else if (action === 'play') {
-        const utteranceId = Number(target.dataset.jyTtsUtt);
+        const utteranceId = Number(target.dataset.bgtTtsUtt);
         const transport = runtime.tts.transport;
         if (target.dataset.state === 'playing' && transport?.messageId === messageId && transport.state === 'playing') pauseTts();
         else void playTtsUtterance(messageId, utteranceId, side);
@@ -9716,7 +9716,7 @@ function bindTtsDom() {
           toast('info', singingBlockedReason(ttsSettings()) || '现在不能唱。');
           return;
         }
-        const lineId = Number(target.dataset.jyTtsLine);
+        const lineId = Number(target.dataset.bgtTtsLine);
         const lines = ttsButtonLines(target);
         const transport = runtime.tts.transport;
         const onThisParagraph = transport?.messageId === messageId && transport.side === (side ?? primaryTtsSide())
@@ -9726,7 +9726,7 @@ function bindTtsDom() {
         else if (transport?.state === 'paused' && onThisParagraph) resumeTts();
         else void playTtsParagraph(messageId, lineId, side, lines);
       } else if (action === 'regen-line') {
-        void regenerateTtsParagraph(messageId, Number(target.dataset.jyTtsLine), side, ttsButtonLines(target)).catch(error => {
+        void regenerateTtsParagraph(messageId, Number(target.dataset.bgtTtsLine), side, ttsButtonLines(target)).catch(error => {
           if (!isAbortError(error)) toast('error', safeError(error));
         });
       }
@@ -9757,7 +9757,7 @@ function bindTtsDom() {
         const text = ttsMessageText(id);
         const element = text?.closest('.mes[mesid]');
         // A chat opening inserts every floor at once: only the ones near the screen are done now.
-        if (element && !text.querySelector(':scope > .jy-tts-bar')) routeTtsDecorate(element, { delay: 400 }, Number(id) >= count - 3);
+        if (element && !text.querySelector(':scope > .bgt-tts-bar')) routeTtsDecorate(element, { delay: 400 }, Number(id) >= count - 3);
       }
     });
     observer.observe(chat, { childList: true, subtree: true });
@@ -9818,9 +9818,9 @@ async function testFishConnection(settings = runtime.settings) {
 
 // What 「试听」 and 「测试连接」 have a voice say, in the language it is for.
 const GSV_SAMPLE_LINES = Object.freeze({
-  zh: '你好，这是镜译的试听。今天也请多多关照。',
+  zh: '你好，这是测试翻译的试听。今天也请多多关照。',
   ja: 'こんにちは、鏡訳の試し読みです。今日もよろしくお願いします。',
-  en: 'Hello, this is a voice preview from Jingyi. Nice to meet you.',
+  en: 'Hello, this is a voice preview from the test translator. Nice to meet you.',
   ko: '안녕하세요, 경역의 미리 듣기입니다. 잘 부탁드립니다.',
   yue: '你好，呢個係鏡譯嘅試聽，請多多指教。',
 });
@@ -9902,7 +9902,7 @@ const SHADOW_HOST_BOX = 'position:fixed;left:0;top:0;width:100vw;height:100vh;he
  * reply) and Ctrl+Enter (send, regenerate), and tells a field from the page by document.activeElement
  * — which is our host element whenever the field sits in a shadow root. Escape still goes through.
  *
- * `allKeys` widens this to every key, focus anywhere in the host — for a small `.jy-ask` confirm
+ * `allKeys` widens this to every key, focus anywhere in the host — for a small `.bgt-ask` confirm
  * (confirmDestructive and the like), whose own buttons are not text fields and so would otherwise let a
  * key meant for one of them (←/→ to swipe, Alt+Enter to continue) bubble out to the host's own document
  * listener and act on the floor underneath while the dialog is still open. Escape is unaffected either
@@ -9940,7 +9940,7 @@ function setDeskStateMark(root, selector, done) {
 }
 
 function fieldElements(root, name) {
-  return [...root.querySelectorAll(`[data-jy-field="${name}"]`)];
+  return [...root.querySelectorAll(`[data-bgt-field="${name}"]`)];
 }
 
 function setField(root, name, value) {
@@ -9952,7 +9952,7 @@ function setField(root, name, value) {
   }
 }
 
-// A CSS selector built from an element's own data-jy-* attributes, specific enough to find the same
+// A CSS selector built from an element's own data-bgt-* attributes, specific enough to find the same
 // logical control again after a resync has thrown the old node away and built a fresh one in its
 // place (a rebuilt preset card, connection row or channel card — the id/field pair on a control is
 // what makes it "the same control", not object identity). Returns null for a control with no such
@@ -9961,7 +9961,7 @@ function focusIdentity(element) {
   if (!element || !element.attributes || !element.tagName) return null;
   const parts = [];
   for (const attr of element.attributes) {
-    if (!attr.name.startsWith('data-jy-')) continue;
+    if (!attr.name.startsWith('data-bgt-')) continue;
     parts.push(attr.value ? `[${attr.name}="${String(attr.value).replace(/["\\]/g, '\\$&')}"]` : `[${attr.name}]`);
   }
   return parts.length ? `${element.tagName.toLowerCase()}${parts.join('')}` : null;
@@ -9969,7 +9969,7 @@ function focusIdentity(element) {
 
 /**
  * Runs `render` (a resync that may replace the DOM under `root`, including whatever currently has
- * keyboard focus) and, if the focused element carried a data-jy-* identity, focuses its replacement
+ * keyboard focus) and, if the focused element carried a data-bgt-* identity, focuses its replacement
  * afterward — and restores a text field's caret/selection too. Without this a rebuilt control drops
  * focus to <body> and Tab/Enter/Space stop doing anything useful until the reader clicks back in
  * (review finding, index.js:11759): DESIGN §9.6's Tab loop only holds while something inside the
@@ -10056,7 +10056,7 @@ function scheduleFieldResync(root, run, { fallbackMs = 500 } = {}) {
 
 function makePromptTextarea(doc, field, value, rows = 10, placeholder = '') {
   const textarea = doc.createElement('textarea');
-  textarea.dataset.jyProfileField = field;
+  textarea.dataset.bgtProfileField = field;
   textarea.value = value ?? '';
   textarea.rows = rows;
   textarea.spellcheck = false;
@@ -10067,7 +10067,7 @@ function makePromptTextarea(doc, field, value, rows = 10, placeholder = '') {
 function appendLabeledControl(doc, parent, labelText, control) {
   const label = doc.createElement('label');
   const title = doc.createElement('span');
-  title.className = 'jy-label';
+  title.className = 'bgt-label';
   title.textContent = labelText;
   label.append(title, control);
   parent.appendChild(label);
@@ -10076,7 +10076,7 @@ function appendLabeledControl(doc, parent, labelText, control) {
 
 function makePromptSelect(doc, field, value, presets, label) {
   const select = doc.createElement('select');
-  select.dataset.jyProfileField = field;
+  select.dataset.bgtProfileField = field;
   // The row's own <h3> names it visually, but nothing associates that text with the select for a
   // screen reader — every other page's selects get a name from a sibling label or an aria-label of
   // their own (review finding index.js:8116).
@@ -10097,43 +10097,43 @@ function makePromptSelect(doc, field, value, presets, label) {
 
 function makePromptItem(doc, { id, title, badge, promptKey, buildEditor, modified = false }) {
   const item = doc.createElement('article');
-  item.className = 'jy-prompt-item';
-  item.dataset.jyPromptItem = id;
-  if (modified) item.dataset.jyModified = 'true';
+  item.className = 'bgt-prompt-item';
+  item.dataset.bgtPromptItem = id;
+  if (modified) item.dataset.bgtModified = 'true';
   const header = doc.createElement('div');
-  header.className = 'jy-prompt-item-head';
+  header.className = 'bgt-prompt-item-head';
   const copy = doc.createElement('div');
-  copy.className = 'jy-prompt-item-copy';
+  copy.className = 'bgt-prompt-item-copy';
   const heading = doc.createElement('h3');
   heading.textContent = title;
   const state = doc.createElement('span');
-  state.className = 'jy-badge';
+  state.className = 'bgt-badge';
   state.textContent = badge;
   copy.append(heading, state);
   const edit = doc.createElement('button');
   edit.type = 'button';
-  edit.className = 'jy-pencil-button';
-  edit.dataset.jyAction = 'toggle-prompt-editor';
-  edit.dataset.jyPromptEditor = id;
+  edit.className = 'bgt-pencil-button';
+  edit.dataset.bgtAction = 'toggle-prompt-editor';
+  edit.dataset.bgtPromptEditor = id;
   edit.setAttribute('aria-label', `编辑${title}`);
   edit.setAttribute('aria-expanded', 'false');
   edit.textContent = '✎';
   header.append(copy, edit);
-  copy.dataset.jyAction = 'toggle-prompt-editor';
-  copy.dataset.jyPromptEditor = id;
+  copy.dataset.bgtAction = 'toggle-prompt-editor';
+  copy.dataset.bgtPromptEditor = id;
   const editor = doc.createElement('div');
-  editor.className = 'jy-prompt-item-editor';
-  editor.dataset.jyPromptEditorPanel = id;
+  editor.className = 'bgt-prompt-item-editor';
+  editor.dataset.bgtPromptEditorPanel = id;
   editor.hidden = true;
   buildEditor(editor);
   if (promptKey) {
     const actions = doc.createElement('div');
-    actions.className = 'jy-actions jy-actions-compact';
+    actions.className = 'bgt-actions bgt-actions-compact';
     const reset = doc.createElement('button');
     reset.type = 'button';
-    reset.className = 'jy-text-button';
-    reset.dataset.jyAction = 'reset-prompt-item';
-    reset.dataset.jyPromptKey = promptKey;
+    reset.className = 'bgt-text-button';
+    reset.dataset.bgtAction = 'reset-prompt-item';
+    reset.dataset.bgtPromptKey = promptKey;
     reset.textContent = '恢复此项默认';
     actions.appendChild(reset);
     editor.appendChild(actions);
@@ -10151,20 +10151,20 @@ function countNonEmptyLines(value) {
  * the row — DESIGN §15.4 常用（选择题）, no pencil to open first — and only the 自定义 preview/textarea
  * pair beneath it folds by preset, exactly as `updatePromptConditionalFields` already toggles for the
  * old stage-based editor. A row carries its own 「改过」 badge (§9.2 徽章 token) instead of the shared
- * `data-jy-modified` left bar a pencil item uses, since there is no pencil head here to carry it.
+ * `data-bgt-modified` left bar a pencil item uses, since there is no pencil head here to carry it.
  */
 function makePromptSelectRow(doc, { title, promptKey, modeField, customField, presets, profile, modified }) {
   const nodes = [];
   const row = doc.createElement('div');
-  row.className = 'jy-card-row';
+  row.className = 'bgt-card-row';
   const text = doc.createElement('div');
-  text.className = 'jy-card-row-text';
+  text.className = 'bgt-card-row-text';
   const heading = doc.createElement('h3');
   heading.textContent = title;
   text.appendChild(heading);
   if (modified) {
     const badge = doc.createElement('span');
-    badge.className = 'jy-badge jy-badge-changed';
+    badge.className = 'bgt-badge bgt-badge-changed';
     badge.textContent = '改过';
     text.appendChild(badge);
   }
@@ -10174,17 +10174,17 @@ function makePromptSelectRow(doc, { title, promptKey, modeField, customField, pr
   // What the chosen preset actually tells the model. Picking between 韩系 · 网文韩漫 and 欧美 · 小说
   // 奇幻 by label alone is exactly the guessing readers asked to be spared.
   const preview = doc.createElement('p');
-  preview.className = 'jy-muted jy-preset-preview jy-prompt-select-detail';
-  preview.dataset.jyPresetPreviewFor = modeField;
+  preview.className = 'bgt-muted bgt-preset-preview bgt-prompt-select-detail';
+  preview.dataset.bgtPresetPreviewFor = modeField;
   preview.textContent = presets[profile[modeField]]?.prompt ?? '';
   preview.hidden = profile[modeField] === 'custom' || !preview.textContent;
   nodes.push(preview);
   const custom = makePromptTextarea(doc, customField, profile[customField], 5, '写下这项自定义规则。');
-  custom.dataset.jyCustomFor = modeField;
+  custom.dataset.bgtCustomFor = modeField;
   const customLabel = doc.createElement('label');
-  customLabel.className = 'jy-prompt-select-detail';
+  customLabel.className = 'bgt-prompt-select-detail';
   const customTitle = doc.createElement('span');
-  customTitle.className = 'jy-label';
+  customTitle.className = 'bgt-label';
   customTitle.textContent = '自定义规则';
   customLabel.append(customTitle, custom);
   customLabel.hidden = profile[modeField] !== 'custom';
@@ -10194,12 +10194,12 @@ function makePromptSelectRow(doc, { title, promptKey, modeField, customField, pr
   // this select row (review finding index.js:8191).
   if (promptKey) {
     const actions = doc.createElement('div');
-    actions.className = 'jy-actions jy-actions-compact';
+    actions.className = 'bgt-actions bgt-actions-compact';
     const reset = doc.createElement('button');
     reset.type = 'button';
-    reset.className = 'jy-text-button';
-    reset.dataset.jyAction = 'reset-prompt-item';
-    reset.dataset.jyPromptKey = promptKey;
+    reset.className = 'bgt-text-button';
+    reset.dataset.bgtAction = 'reset-prompt-item';
+    reset.dataset.bgtPromptKey = promptKey;
     reset.textContent = '恢复此项默认';
     actions.appendChild(reset);
     nodes.push(actions);
@@ -10217,9 +10217,9 @@ const PROMPT_ITEM_GROUPS = Object.freeze({
 function renderStandardPromptItems(root, profile) {
   const doc = root.ownerDocument;
   const lists = {
-    common: root.querySelector('[data-jy-standard-prompt-list="common"]'),
-    advanced: root.querySelector('[data-jy-standard-prompt-list="advanced"]'),
-    expert: root.querySelector('[data-jy-standard-prompt-list="expert"]'),
+    common: root.querySelector('[data-bgt-standard-prompt-list="common"]'),
+    advanced: root.querySelector('[data-bgt-standard-prompt-list="advanced"]'),
+    expert: root.querySelector('[data-bgt-standard-prompt-list="expert"]'),
   };
   if (!lists.common) return 0;
   for (const list of Object.values(lists)) list?.replaceChildren();
@@ -10294,7 +10294,7 @@ function renderStandardPromptItems(root, profile) {
     modified: Boolean(profile.postscript.trim()),
     buildEditor: editor => {
       const roleSelect = doc.createElement('select');
-      roleSelect.dataset.jyProfileField = 'postscriptRole';
+      roleSelect.dataset.bgtProfileField = 'postscriptRole';
       for (const [value, label] of [['user', 'user'], ['system', 'system'], ['assistant', 'assistant']]) {
         const option = doc.createElement('option');
         option.value = value;
@@ -10304,7 +10304,7 @@ function renderStandardPromptItems(root, profile) {
       roleSelect.value = profile.postscriptRole || 'user';
       appendLabeledControl(doc, editor, '身份', roleSelect);
       const note = doc.createElement('p');
-      note.className = 'jy-muted';
+      note.className = 'bgt-muted';
       note.textContent = '留空时不发送；填写后作为最后一条消息附在全部条目之后，身份可选，附在请求最末尾。';
       editor.appendChild(note);
       appendLabeledControl(doc, editor, '内容', makePromptTextarea(doc, 'postscript', profile.postscript, 4, '留空即不发送'));
@@ -10316,8 +10316,8 @@ function renderStandardPromptItems(root, profile) {
 
 function renderCustomPromptItems(root, profile) {
   const doc = root.ownerDocument;
-  const list = root.querySelector('[data-jy-custom-prompt-list]');
-  const empty = root.querySelector('[data-jy-custom-empty]');
+  const list = root.querySelector('[data-bgt-custom-prompt-list]');
+  const empty = root.querySelector('[data-bgt-custom-empty]');
   if (!list) return;
   list.replaceChildren();
   if (empty) empty.hidden = profile.customSections.length > 0;
@@ -10331,25 +10331,25 @@ function renderCustomPromptItems(root, profile) {
         name.type = 'text';
         name.value = section.title;
         name.maxLength = 80;
-        name.dataset.jyCustomField = 'title';
-        name.dataset.jySectionId = section.id;
+        name.dataset.bgtCustomField = 'title';
+        name.dataset.bgtSectionId = section.id;
         appendLabeledControl(doc, editor, '条目名称', name);
         const content = makePromptTextarea(doc, '', section.content, 10, '写下追加到统一翻译规范中的内容。');
-        delete content.dataset.jyProfileField;
-        content.dataset.jyCustomField = 'content';
-        content.dataset.jySectionId = section.id;
+        delete content.dataset.bgtProfileField;
+        content.dataset.bgtCustomField = 'content';
+        content.dataset.bgtSectionId = section.id;
         appendLabeledControl(doc, editor, '提示词内容', content);
         const enabledLabel = doc.createElement('label');
-        enabledLabel.className = 'jy-check';
+        enabledLabel.className = 'bgt-check';
         const enabled = doc.createElement('input');
         enabled.type = 'checkbox';
         enabled.checked = section.enabled;
-        enabled.dataset.jyCustomField = 'enabled';
-        enabled.dataset.jySectionId = section.id;
+        enabled.dataset.bgtCustomField = 'enabled';
+        enabled.dataset.bgtSectionId = section.id;
         enabledLabel.append(enabled, doc.createTextNode(' 启用这个条目'));
         editor.appendChild(enabledLabel);
         const actions = doc.createElement('div');
-        actions.className = 'jy-actions jy-actions-compact';
+        actions.className = 'bgt-actions bgt-actions-compact';
         for (const [action, label, disabled] of [
           ['move-prompt-section-up', '上移', index === 0],
           ['move-prompt-section-down', '下移', index === profile.customSections.length - 1],
@@ -10358,9 +10358,9 @@ function renderCustomPromptItems(root, profile) {
         ]) {
           const button = doc.createElement('button');
           button.type = 'button';
-          button.className = 'jy-text-button';
-          button.dataset.jyAction = action;
-          button.dataset.jySectionId = section.id;
+          button.className = 'bgt-text-button';
+          button.dataset.bgtAction = action;
+          button.dataset.bgtSectionId = section.id;
           button.textContent = label;
           button.disabled = disabled;
           actions.appendChild(button);
@@ -10381,21 +10381,21 @@ const PROMPT_OPTION_PRESETS = Object.freeze({
 });
 
 function updatePromptConditionalFields(root) {
-  for (const custom of root.querySelectorAll('[data-jy-custom-for]')) {
-    const mode = root.querySelector(`[data-jy-profile-field="${custom.dataset.jyCustomFor}"]`)?.value;
+  for (const custom of root.querySelectorAll('[data-bgt-custom-for]')) {
+    const mode = root.querySelector(`[data-bgt-profile-field="${custom.dataset.bgtCustomFor}"]`)?.value;
     const label = custom.closest('label');
     if (label) label.hidden = mode !== 'custom';
   }
-  for (const preview of root.querySelectorAll('[data-jy-preset-preview-for]')) {
-    const field = preview.dataset.jyPresetPreviewFor;
-    const mode = root.querySelector(`[data-jy-profile-field="${field}"]`)?.value;
+  for (const preview of root.querySelectorAll('[data-bgt-preset-preview-for]')) {
+    const field = preview.dataset.bgtPresetPreviewFor;
+    const mode = root.querySelector(`[data-bgt-profile-field="${field}"]`)?.value;
     preview.textContent = PROMPT_OPTION_PRESETS[field]?.[mode]?.prompt ?? '';
     preview.hidden = mode === 'custom' || !preview.textContent;
   }
 }
 
 function syncPromptFields(root, settings) {
-  const select = root.querySelector('[data-jy-prompt-profile-select]');
+  const select = root.querySelector('[data-bgt-prompt-profile-select]');
   if (select) {
     select.replaceChildren(...settings.promptProfiles.map(profile => {
       const option = root.ownerDocument.createElement('option');
@@ -10406,54 +10406,54 @@ function syncPromptFields(root, settings) {
     select.value = settings.selectedPromptProfileId;
   }
   const profile = getActivePromptProfile(settings);
-  const previouslyOpen = root.dataset.jyOpenEditor;
-  root.querySelectorAll('[data-jy-editor-stage] > [data-jy-prompt-editor-panel]').forEach(panel => panel.remove());
-  root.dataset.jyEditingPromptProfileId = profile.id;
-  const name = root.querySelector('[data-jy-prompt-profile-name]');
+  const previouslyOpen = root.dataset.bgtOpenEditor;
+  root.querySelectorAll('[data-bgt-editor-stage] > [data-bgt-prompt-editor-panel]').forEach(panel => panel.remove());
+  root.dataset.bgtEditingPromptProfileId = profile.id;
+  const name = root.querySelector('[data-bgt-prompt-profile-name]');
   if (name) name.value = profile.name;
-  const targetLanguage = root.querySelector('[data-jy-profile-field="targetLanguage"]');
+  const targetLanguage = root.querySelector('[data-bgt-profile-field="targetLanguage"]');
   if (targetLanguage) targetLanguage.value = profile.targetLanguage;
   // postscript/postscriptRole live inside the 专家 card's own prompt item now (built fresh below with
   // profile.postscript already as its value), not as static fields to fill in ahead of that render.
   const modifiedCount = renderStandardPromptItems(root, profile);
   renderCustomPromptItems(root, profile);
-  const stage = root.querySelector('[data-jy-editor-stage]');
-  for (const panel of root.querySelectorAll('[data-jy-prompt-editor-panel]')) stage.appendChild(panel);
-  const restored = previouslyOpen && root.querySelector(`[data-jy-prompt-editor-panel="${previouslyOpen}"]`);
-  root.querySelector('[data-jy-editor-placeholder]').hidden = Boolean(restored);
+  const stage = root.querySelector('[data-bgt-editor-stage]');
+  for (const panel of root.querySelectorAll('[data-bgt-prompt-editor-panel]')) stage.appendChild(panel);
+  const restored = previouslyOpen && root.querySelector(`[data-bgt-prompt-editor-panel="${previouslyOpen}"]`);
+  root.querySelector('[data-bgt-editor-placeholder]').hidden = Boolean(restored);
   if (restored) {
     restored.hidden = false;
-    root.querySelector(`button[data-jy-prompt-editor="${previouslyOpen}"]`)?.setAttribute('aria-expanded', 'true');
-  } else delete root.dataset.jyOpenEditor;
+    root.querySelector(`button[data-bgt-prompt-editor="${previouslyOpen}"]`)?.setAttribute('aria-expanded', 'true');
+  } else delete root.dataset.bgtOpenEditor;
   updatePromptConditionalFields(root);
   setText(
     root,
-    '[data-jy-language-support]',
+    '[data-bgt-language-support]',
     isSimplifiedChineseTarget(profile.targetLanguage)
       ? '简体中文会启用完整内置文风、称谓、专名、标点与杀八股规则。'
       : `${normalizeTargetLanguage(profile.targetLanguage)} 使用通用翻译规范；自定义规则照常生效。`,
   );
-  setText(root, '[data-jy-prompt-size]', `${countPromptCharacters(profile).toLocaleString()} 字`);
+  setText(root, '[data-bgt-prompt-size]', `${countPromptCharacters(profile).toLocaleString()} 字`);
   setText(
     root,
-    '[data-jy-prompt-context]',
+    '[data-bgt-prompt-context]',
     `目标语言 ${normalizeTargetLanguage(profile.targetLanguage)}${modifiedCount ? ` · 改过 ${modifiedCount} 项` : ''}`,
   );
 }
 
 function collectPromptFields(root, settings) {
-  const editingId = root.dataset.jyEditingPromptProfileId || settings.selectedPromptProfileId;
+  const editingId = root.dataset.bgtEditingPromptProfileId || settings.selectedPromptProfileId;
   const profile = settings.promptProfiles.find(item => item.id === editingId);
   if (!profile) return settings;
-  const name = root.querySelector('[data-jy-prompt-profile-name]')?.value.trim();
+  const name = root.querySelector('[data-bgt-prompt-profile-name]')?.value.trim();
   if (name) profile.name = name;
-  for (const element of root.querySelectorAll('[data-jy-profile-field]')) {
-    profile[element.dataset.jyProfileField] = element.type === 'checkbox' ? element.checked : element.value;
+  for (const element of root.querySelectorAll('[data-bgt-profile-field]')) {
+    profile[element.dataset.bgtProfileField] = element.type === 'checkbox' ? element.checked : element.value;
   }
-  for (const element of root.querySelectorAll('[data-jy-custom-field][data-jy-section-id]')) {
-    const section = profile.customSections.find(item => item.id === element.dataset.jySectionId);
+  for (const element of root.querySelectorAll('[data-bgt-custom-field][data-bgt-section-id]')) {
+    const section = profile.customSections.find(item => item.id === element.dataset.bgtSectionId);
     if (!section) continue;
-    section[element.dataset.jyCustomField] = element.type === 'checkbox' ? element.checked : element.value;
+    section[element.dataset.bgtCustomField] = element.type === 'checkbox' ? element.checked : element.value;
   }
   return settings;
 }
@@ -10527,34 +10527,34 @@ function channelUsers(settings = runtime.settings) {
  * place, so a picker the reader is on is never swapped out from under them by a resync.
  */
 function renderConnectionUses(root, settings) {
-  for (const box of root.querySelectorAll('[data-jy-connection-uses]')) {
+  for (const box of root.querySelectorAll('[data-bgt-connection-uses]')) {
     const doc = box.ownerDocument;
     for (const use of CONNECTION_USES) {
-      let row = box.querySelector(`[data-jy-use-row="${use}"]`);
+      let row = box.querySelector(`[data-bgt-use-row="${use}"]`);
       if (!row) {
         row = doc.createElement('div');
-        row.className = 'jy-summary-row jy-summary-select jy-connection-use';
-        row.dataset.jyUseRow = use;
+        row.className = 'bgt-summary-row bgt-summary-select bgt-connection-use';
+        row.dataset.bgtUseRow = use;
         const copy = doc.createElement('div');
-        copy.className = 'jy-summary-copy';
+        copy.className = 'bgt-summary-copy';
         const name = doc.createElement('h3');
         name.textContent = CONNECTION_USE_LABELS[use];
         const note = doc.createElement('p');
-        note.dataset.jyUseNote = '';
+        note.dataset.bgtUseNote = '';
         copy.append(name, note);
         const select = doc.createElement('select');
-        select.dataset.jyUsePicker = use;
+        select.dataset.bgtUsePicker = use;
         select.setAttribute('aria-label', `${CONNECTION_USE_LABELS[use]}用哪条连接`);
         row.append(copy, select);
         box.appendChild(row);
       }
-      const note = row.querySelector('[data-jy-use-note]');
+      const note = row.querySelector('[data-bgt-use-note]');
       const text = connectionUseNote(settings, use);
       if (note) {
         note.textContent = text;
         note.hidden = !text;
       }
-      const select = row.querySelector('[data-jy-use-picker]');
+      const select = row.querySelector('[data-bgt-use-picker]');
       if (select) fillChannelPicker(select, settings, connectionUseChoice(settings, use));
     }
   }
@@ -10565,7 +10565,7 @@ function renderConnectionUses(root, settings) {
  * made is fine; only this one picker is put back then, leaving whatever the reader is still editing on
  * that other page exactly as it was. */
 function applyConnectionUseChange(root, select) {
-  const use = select.dataset.jyUsePicker;
+  const use = select.dataset.bgtUsePicker;
   try {
     saveSettings(setConnectionUse(collectSettings(root), use, select.value));
   } catch (error) {
@@ -10596,33 +10596,33 @@ function editingChannelId(settings = runtime.settings) {
  * item is open.
  */
 function renderChannelCards(root, settings, editing) {
-  const host = root.querySelector('[data-jy-channel-cards]');
-  const detail = root.querySelector('[data-jy-channel-detail]');
-  const detailHolder = root.querySelector('[data-jy-channel-detail-holder]');
+  const host = root.querySelector('[data-bgt-channel-cards]');
+  const detail = root.querySelector('[data-bgt-channel-detail]');
+  const detailHolder = root.querySelector('[data-bgt-channel-detail-holder]');
   if (!host) return;
   const doc = host.ownerDocument;
   let editingCard = null;
   host.replaceChildren(...settings.channels.map(channel => {
     const isEditing = channel.id === editing;
     const card = doc.createElement('section');
-    card.className = 'jy-card jy-channel-card';
-    card.dataset.jyChannelCard = channel.id;
+    card.className = 'bgt-card bgt-channel-card';
+    card.dataset.bgtChannelCard = channel.id;
     const head = doc.createElement('div');
-    head.className = 'jy-channel-card-head';
+    head.className = 'bgt-channel-card-head';
     const toggle = doc.createElement('button');
     toggle.type = 'button';
-    toggle.className = 'jy-channel-card-toggle';
-    toggle.dataset.jyAction = 'edit-channel';
-    toggle.dataset.jyChannelId = channel.id;
+    toggle.className = 'bgt-channel-card-toggle';
+    toggle.dataset.bgtAction = 'edit-channel';
+    toggle.dataset.bgtChannelId = channel.id;
     toggle.setAttribute('aria-expanded', String(isEditing));
     const text = doc.createElement('span');
-    text.className = 'jy-card-row-text';
+    text.className = 'bgt-card-row-text';
     const heading = doc.createElement('h2');
     heading.textContent = channel.name || DEFAULT_CHANNEL.name;
     text.appendChild(heading);
     if (!isEditing) {
       const summary = doc.createElement('p');
-      summary.className = 'jy-muted';
+      summary.className = 'bgt-muted';
       summary.textContent = channel.url && channel.model
         ? `${channel.url} · ${channel.model}`
         : (channel.url || channel.model || '还没有填地址和模型');
@@ -10632,14 +10632,14 @@ function renderChannelCards(root, settings, editing) {
     head.appendChild(toggle);
     const chevron = doc.createElement('button');
     chevron.type = 'button';
-    chevron.className = 'jy-channel-card-chevron';
-    chevron.dataset.jyAction = 'edit-channel';
-    chevron.dataset.jyChannelId = channel.id;
+    chevron.className = 'bgt-channel-card-chevron';
+    chevron.dataset.bgtAction = 'edit-channel';
+    chevron.dataset.bgtChannelId = channel.id;
     // The toggle above shares the same action/id pair — without something else to tell them apart,
     // focusIdentity() built the same selector for both, so withFocusPreserved always refocused
     // whichever one is first in the head (the toggle) even when the chevron is what keyboard-activated
     // the resync (review finding index.js:8246).
-    chevron.dataset.jyChannelChevron = 'true';
+    chevron.dataset.bgtChannelChevron = 'true';
     // Clicking this on an open card now really collapses it — every card can collapse to its
     // one-line summary, not just switch to a different one (DESIGN §15.2/§15.4) — so the label says
     // the real action instead of the placeholder wording from when collapsing wasn't wired up yet
@@ -10679,25 +10679,25 @@ const PRESET_DESCRIPTIONS = Object.freeze({
   everything: '再加：分析模式、特效字。',
 });
 
-// The one-line note under 翻译台的「分析模式」 switch — shorter than 朗读页 data-jy-tts-mode-help's own
+// The one-line note under 翻译台的「分析模式」 switch — shorter than 朗读页 data-bgt-tts-mode-help's own
 // paragraph (updateTtsModeHelp).
 const DESK_TTS_MODE_HELP = Object.freeze({
   off: '关着：不额外请求副模型，翻译过的楼用翻译时标好的说话人和情绪，其余由程序认人。',
   deep: '开着：每楼写完让副模型分析一遍，定情绪起伏和表演。',
 });
 
-/** DESIGN §15.2 套餐：2×2 的 .jy-connection-choice 可点卡片，一个套餐一张。 */
+/** DESIGN §15.2 套餐：2×2 的 .bgt-connection-choice 可点卡片，一个套餐一张。 */
 function renderPresetCards(root, settings) {
-  const grid = root.querySelector('[data-jy-preset-grid]');
+  const grid = root.querySelector('[data-bgt-preset-grid]');
   if (!grid) return;
   const doc = grid.ownerDocument;
   grid.replaceChildren(...CONSOLE_PRESET_IDS.map(id => {
     const label = doc.createElement('label');
     const input = doc.createElement('input');
     input.type = 'radio';
-    input.name = 'jy-preset-choice';
+    input.name = 'bgt-preset-choice';
     input.value = id;
-    input.dataset.jyPresetChoice = id;
+    input.dataset.bgtPresetChoice = id;
     input.checked = settings.preset === id;
     const span = doc.createElement('span');
     const h3 = doc.createElement('h3');
@@ -10705,7 +10705,7 @@ function renderPresetCards(root, settings) {
     const tier = PRESET_TIER_LABELS[id];
     if (tier) {
       const pill = doc.createElement('span');
-      pill.className = 'jy-mini-pill';
+      pill.className = 'bgt-mini-pill';
       // 「最费」borrows the pill's amber done/active tone rather than adding a new gold token.
       if (id === 'everything') pill.dataset.state = 'active';
       pill.textContent = tier;
@@ -10722,15 +10722,15 @@ function renderPresetCards(root, settings) {
 /** DESIGN §15.2 API Key 卡的一行：「跟随酒馆」或一条保存的连接，展开态带编辑表单；用哪条在卡顶上选（§17.1）。 */
 function buildDeskConnectionForm(doc, channel) {
   const form = doc.createElement('div');
-  form.className = 'jy-desk-connection-form';
+  form.className = 'bgt-desk-connection-form';
   const field = (labelText, key, type, placeholder) => {
     const fieldLabel = doc.createElement('label');
     const span = doc.createElement('span');
-    span.className = 'jy-label';
+    span.className = 'bgt-label';
     span.textContent = labelText;
     const input = doc.createElement('input');
     input.type = type;
-    input.dataset.jyDeskChannelField = key;
+    input.dataset.bgtDeskChannelField = key;
     input.value = channel[key] ?? '';
     if (placeholder) input.placeholder = placeholder;
     if (type === 'password') input.autocomplete = 'new-password';
@@ -10743,18 +10743,18 @@ function buildDeskConnectionForm(doc, channel) {
     field('当前模型', 'model', 'text', '模型名称，也可在「模型连接」页拉取列表'),
   );
   const actions = doc.createElement('div');
-  actions.className = 'jy-actions';
+  actions.className = 'bgt-actions';
   const test = doc.createElement('button');
   test.type = 'button';
-  test.className = 'jy-button';
-  test.dataset.jyAction = 'desk-test-channel';
-  test.dataset.jyChannelId = channel.id;
+  test.className = 'bgt-button';
+  test.dataset.bgtAction = 'desk-test-channel';
+  test.dataset.bgtChannelId = channel.id;
   test.textContent = '测试这条连接';
   const remove = doc.createElement('button');
   remove.type = 'button';
-  remove.className = 'jy-text-button jy-text-button-danger';
-  remove.dataset.jyAction = 'desk-delete-channel';
-  remove.dataset.jyChannelId = channel.id;
+  remove.className = 'bgt-text-button bgt-text-button-danger';
+  remove.dataset.bgtAction = 'desk-delete-channel';
+  remove.dataset.bgtChannelId = channel.id;
   remove.textContent = '删除';
   actions.append(test, remove);
   form.appendChild(actions);
@@ -10763,17 +10763,17 @@ function buildDeskConnectionForm(doc, channel) {
 
 function buildDeskConnectionRow(doc, settings, id, name, channel, expandedId) {
   const row = doc.createElement('div');
-  row.className = 'jy-desk-connection';
+  row.className = 'bgt-desk-connection';
   const expanded = Boolean(channel) && id === expandedId;
   row.dataset.expanded = String(expanded);
   const summary = doc.createElement('div');
-  summary.className = 'jy-desk-connection-summary';
+  summary.className = 'bgt-desk-connection-summary';
   const open = doc.createElement(channel ? 'button' : 'div');
-  open.className = 'jy-desk-connection-open';
+  open.className = 'bgt-desk-connection-open';
   if (channel) {
     open.type = 'button';
-    open.dataset.jyAction = 'desk-toggle-channel';
-    open.dataset.jyChannelId = id;
+    open.dataset.bgtAction = 'desk-toggle-channel';
+    open.dataset.bgtChannelId = id;
     open.setAttribute('aria-expanded', String(expanded));
   }
   const strong = doc.createElement('strong');
@@ -10788,7 +10788,7 @@ function buildDeskConnectionRow(doc, settings, id, name, channel, expandedId) {
 }
 
 function renderDeskConnections(root, settings) {
-  const list = root.querySelector('[data-jy-desk-connection-list]');
+  const list = root.querySelector('[data-bgt-desk-connection-list]');
   if (!list) return;
   const doc = list.ownerDocument;
   const expandedId = runtime.deskExpandedChannelId;
@@ -10807,12 +10807,12 @@ function syncDeskConnectionSummary(root, settings) {
   if (!expandedId) return;
   const channel = settings.channels.find(item => item.id === expandedId);
   if (!channel) return;
-  const open = root.querySelector(`[data-jy-action="desk-toggle-channel"][data-jy-channel-id="${expandedId}"]`);
+  const open = root.querySelector(`[data-bgt-action="desk-toggle-channel"][data-bgt-channel-id="${expandedId}"]`);
   const small = open?.querySelector('small');
   if (small) small.textContent = channel.model || '未设置模型';
 }
 
-/** DESIGN §15.2 正常模式 · 翻译台: everything the page shows besides the fields data-jy-field already syncs.
+/** DESIGN §15.2 正常模式 · 翻译台: everything the page shows besides the fields data-bgt-field already syncs.
  * `rebuildList: false` skips renderDeskConnections for a field settling inside the open row's own form —
  * not one of the list's real structural changes (add, delete, or (de)expand a row) — and updates just that
  * row's own summary instead. It also skips the 套餐 grid and its drift list for the same reason: a desk
@@ -10820,16 +10820,16 @@ function syncDeskConnectionSummary(root, settings) {
  * drift, and renderPresetCards replaces every radio — including whichever one a pointer is mid-click on
  * (review finding index.js:9217, the same swallowed-click shape as the connection list above). */
 function syncDeskFields(root, settings, { rebuildList = true } = {}) {
-  if (!root.querySelector('[data-jy-preset-grid]')) return;
+  if (!root.querySelector('[data-bgt-preset-grid]')) return;
   if (rebuildList) {
     renderPresetCards(root, settings);
     const drift = presetDrift(settings);
     const showDrift = Boolean(settings.preset && drift.length);
-    const driftBox = root.querySelector('[data-jy-preset-drift]');
+    const driftBox = root.querySelector('[data-bgt-preset-drift]');
     if (driftBox) driftBox.hidden = !showDrift;
-    setText(root, '[data-jy-preset-drift-text]', showDrift ? `改过 ${drift.length} 项，已不是「${PRESET_LABELS[settings.preset]}」原样。` : '');
-    const driftToggle = root.querySelector('[data-jy-action="preset-drift-toggle"]');
-    const driftList = root.querySelector('[data-jy-preset-drift-list]');
+    setText(root, '[data-bgt-preset-drift-text]', showDrift ? `改过 ${drift.length} 项，已不是「${PRESET_LABELS[settings.preset]}」原样。` : '');
+    const driftToggle = root.querySelector('[data-bgt-action="preset-drift-toggle"]');
+    const driftList = root.querySelector('[data-bgt-preset-drift-list]');
     if (driftList) driftList.replaceChildren(...drift.map(item => { const li = driftList.ownerDocument.createElement('li'); li.textContent = item.label; return li; }));
     if (!showDrift) {
       if (driftList) driftList.hidden = true;
@@ -10839,22 +10839,22 @@ function syncDeskFields(root, settings, { rebuildList = true } = {}) {
 
   // Both marks used to be hard-coded (✓ 提取标签, · 姓名与术语表) regardless of what was actually
   // saved (review finding index.js:404); now they follow the same summary each row already computes.
-  setDeskStateMark(root, '[data-jy-desk-tags-state]', settings.bodyTags.length > 0);
-  setText(root, '[data-jy-desk-tags-summary]', `${settings.bodyTags.length ? settings.bodyTags.join('、') : '未设置'}${settings.bodyStartMarkers?.length ? ` · 正文起点 ${settings.bodyStartMarkers.join('、')}` : ''}`);
+  setDeskStateMark(root, '[data-bgt-desk-tags-state]', settings.bodyTags.length > 0);
+  setText(root, '[data-bgt-desk-tags-summary]', `${settings.bodyTags.length ? settings.bodyTags.join('、') : '未设置'}${settings.bodyStartMarkers?.length ? ` · 正文起点 ${settings.bodyStartMarkers.join('、')}` : ''}`);
   const glossaryCount = countNonEmptyLines(getActivePromptProfile(settings).glossary);
-  setDeskStateMark(root, '[data-jy-desk-glossary-state]', glossaryCount > 0);
-  setText(root, '[data-jy-desk-glossary-summary]', glossaryCount ? `已登记 ${glossaryCount} 条` : '空');
+  setDeskStateMark(root, '[data-bgt-desk-glossary-state]', glossaryCount > 0);
+  setText(root, '[data-bgt-desk-glossary-summary]', glossaryCount ? `已登记 ${glossaryCount} 条` : '空');
 
   const tts = ttsSettings(settings);
   // A reader on GPT-SoVITS needs no Fish key, so nothing is missing from this card for them.
   const fishMissing = tts.enabled && tts.provider !== 'gsv' && !tts.fish.key.trim();
-  const missingPill = root.querySelector('[data-jy-desk-fish-missing]');
+  const missingPill = root.querySelector('[data-bgt-desk-fish-missing]');
   if (missingPill) missingPill.hidden = !fishMissing;
-  const needNote = root.querySelector('[data-jy-desk-fish-need]');
+  const needNote = root.querySelector('[data-bgt-desk-fish-need]');
   if (needNote) needNote.hidden = !fishMissing;
-  const fishCard = root.querySelector('[data-jy-desk-fish-card]');
+  const fishCard = root.querySelector('[data-bgt-desk-fish-card]');
   if (fishCard) fishCard.dataset.missing = String(fishMissing);
-  setText(root, '[data-jy-desk-mode-help]', DESK_TTS_MODE_HELP[tts.mode] || '');
+  setText(root, '[data-bgt-desk-mode-help]', DESK_TTS_MODE_HELP[tts.mode] || '');
 
   if (rebuildList) renderDeskConnections(root, settings);
   else syncDeskConnectionSummary(root, settings);
@@ -10880,38 +10880,38 @@ function fillFinetuneProfileSelect(select, presets, value) {
 
 /** DESIGN §15.3 正常模式 · 微调: profile-mode selects, 「改过」pills and the 朗读 sub-list's visibility. */
 function syncFinetuneFields(root, settings) {
-  if (!root.querySelector('[data-jy-page="finetune"]')) return;
-  setText(root, '[data-jy-finetune-context]', settings.preset ? `在「${PRESET_LABELS[settings.preset]}」上改，改过的会标出来` : '手动调整这些设置');
+  if (!root.querySelector('[data-bgt-page="finetune"]')) return;
+  setText(root, '[data-bgt-finetune-context]', settings.preset ? `在「${PRESET_LABELS[settings.preset]}」上改，改过的会标出来` : '手动调整这些设置');
   const profile = getActivePromptProfile(settings);
-  fillFinetuneProfileSelect(root.querySelector('[data-jy-finetune-profile-field="styleMode"]'), STYLE_PRESETS, profile.styleMode);
-  fillFinetuneProfileSelect(root.querySelector('[data-jy-finetune-profile-field="honorificMode"]'), HONORIFIC_PRESETS, profile.honorificMode);
-  fillFinetuneProfileSelect(root.querySelector('[data-jy-finetune-profile-field="punctuationMode"]'), PUNCTUATION_PRESETS, profile.punctuationMode);
+  fillFinetuneProfileSelect(root.querySelector('[data-bgt-finetune-profile-field="styleMode"]'), STYLE_PRESETS, profile.styleMode);
+  fillFinetuneProfileSelect(root.querySelector('[data-bgt-finetune-profile-field="honorificMode"]'), HONORIFIC_PRESETS, profile.honorificMode);
+  fillFinetuneProfileSelect(root.querySelector('[data-bgt-finetune-profile-field="punctuationMode"]'), PUNCTUATION_PRESETS, profile.punctuationMode);
   // These three carry their own "改过" (DESIGN §15.3's mockup shows it on 称谓与角色口吻): 'custom' means
   // the actual prompt text was hand-edited on 翻译规则 past any of the named presets fillFinetuneProfileSelect
   // just listed, unrelated to CONSOLE_PRESET_IDS/PRESET_MANAGED_FIELDS below.
-  for (const pill of root.querySelectorAll('[data-jy-finetune-profile-drift]')) {
-    pill.hidden = profile[pill.dataset.jyFinetuneProfileDrift] !== 'custom';
+  for (const pill of root.querySelectorAll('[data-bgt-finetune-profile-drift]')) {
+    pill.hidden = profile[pill.dataset.bgtFinetuneProfileDrift] !== 'custom';
   }
 
   const driftKeys = new Set(presetDrift(settings).map(item => item.key));
-  for (const pill of root.querySelectorAll('[data-jy-finetune-drift]')) pill.hidden = !driftKeys.has(pill.dataset.jyFinetuneDrift);
+  for (const pill of root.querySelectorAll('[data-bgt-finetune-drift]')) pill.hidden = !driftKeys.has(pill.dataset.bgtFinetuneDrift);
 
-  const ttsSub = root.querySelector('[data-jy-finetune-tts-sub]');
+  const ttsSub = root.querySelector('[data-bgt-finetune-tts-sub]');
   const tts = ttsSettings(settings);
   if (ttsSub) ttsSub.hidden = !tts.enabled;
-  const deepRow = root.querySelector('[data-jy-finetune-deep-channel]');
+  const deepRow = root.querySelector('[data-bgt-finetune-deep-channel]');
   if (deepRow) deepRow.hidden = tts.mode !== 'deep';
-  const intimateRow = root.querySelector('[data-jy-finetune-intimate]');
+  const intimateRow = root.querySelector('[data-bgt-finetune-intimate]');
   if (intimateRow) intimateRow.hidden = tts.mode !== 'deep';
 
   // The active processing profile's own style, not a hard-coded default — otherwise the picker always
   // showed 可爱风 regardless of what was actually active, and picking 可爱风 again did nothing because
   // it already read as selected (review finding index.js:11796/491).
-  const styleSelect = root.querySelector('[data-jy-finetune-reading-style]');
+  const styleSelect = root.querySelector('[data-bgt-finetune-reading-style]');
   if (styleSelect) styleSelect.value = detectBuiltinReadingStyle(getActiveProcessingProfile(settings)) ?? '';
 }
 
-/** DESIGN §15.2 API Key 卡的桌面版地址/密钥/当前模型字段结算 ([data-jy-desk-channel-field], index.js:9246).
+/** DESIGN §15.2 API Key 卡的桌面版地址/密钥/当前模型字段结算 ([data-bgt-desk-channel-field], index.js:9246).
  * syncFields() would run renderDeskConnections and replace every row — its toggle, its 用在 checkboxes,
  * and 「测试这条连接」/「删除」 — so a blur-time change mid-mousedown/mid-Tab swallows whatever the pointer
  * or Tab was headed for next (review finding index.js:12396, the same swallowed-click bug renderChannelCards
@@ -10919,7 +10919,7 @@ function syncFinetuneFields(root, settings) {
  * settling here; nothing else needs rebuilding until something really does add, delete or (de)expand a row,
  * and leaving the form's own nodes alone is exactly what keeps Tab moving from 地址 to 密钥 instead of
  * landing on <body>.
- * collectSettings(root) always reads [data-jy-channel-field] too — 模型连接页's own copy of this same
+ * collectSettings(root) always reads [data-bgt-channel-field] too — 模型连接页's own copy of this same
  * connection — regardless of whether that page is on screen right now; leaving that copy stale here let the
  * next save made while 模型连接 sits hidden (switching to 高级模式 and touching any field there at all) write
  * it straight back over whatever was just typed on this card (review finding index.js:12561). rebuildCards:
@@ -10942,14 +10942,14 @@ function applyDeskChannelFieldChange(root) {
   return true;
 }
 
-/** DESIGN §15.4 模型连接页每张卡自己的地址/密钥/模型等字段结算 ([data-jy-channel-field]). syncFields() would
+/** DESIGN §15.4 模型连接页每张卡自己的地址/密钥/模型等字段结算 ([data-bgt-channel-field]). syncFields() would
  * run renderChannelCards and rebuild every card's head — including whichever chevron, toggle or 用在
  * checkbox the pointer is mid-click on when this field's blur fires — and that click is then dispatched to
  * nothing (review finding index.js:12376). Only the open card's heading, its fold summaries and the desk/
  * 微调 views need to catch up on this field; the cards themselves are left alone until something that
  * actually adds, deletes, switches or collapses one runs. This also left several other things showing a
  * renamed/re-modeled connection's old name (review finding index.js:12626): the advanced 翻译台's own
- * summary line ([data-jy-channel-summary], only ever set by updateSummary) and the 朗读/微调 connection
+ * summary line ([data-bgt-channel-summary], only ever set by updateSummary) and the 朗读/微调 connection
  * pickers plus 分析模式's fold summary (only ever set by syncTtsFields, which is not called on this fast
  * path since most of it belongs to the 朗读 page and would touch fields the reader might be mid-editing
  * there — this pulls out just the two pickers and the fold, both on pages that are hidden right now). */
@@ -10972,7 +10972,7 @@ function applyChannelFieldChange(root) {
   return true;
 }
 
-/** Collects the desk API Key card's own expanded-channel form, kept apart from [data-jy-channel-field]
+/** Collects the desk API Key card's own expanded-channel form, kept apart from [data-bgt-channel-field]
  * (the 模型连接 page's form) so the two cards can have different connections open without either one's
  * edits leaking into the other's channel. */
 function collectDeskChannelFields(root, current) {
@@ -10980,16 +10980,16 @@ function collectDeskChannelFields(root, current) {
   if (!expandedId) return;
   const channel = current.channels.find(item => item.id === expandedId);
   if (!channel) return;
-  const fields = [...root.querySelectorAll('[data-jy-desk-channel-field]')];
+  const fields = [...root.querySelectorAll('[data-bgt-desk-channel-field]')];
   if (!fields.length) return;
-  // This card only exists inside 正常模式's own content block (DESIGN §15.1 `[data-jy-mode-content]`).
+  // This card only exists inside 正常模式's own content block (DESIGN §15.1 `[data-bgt-mode-content]`).
   // In 高级模式 the block is `hidden`, but the card's inputs are still sitting in the DOM with
   // whatever they last held — never re-synced while nobody is looking at them. Collecting them here
   // regardless of visibility is exactly the bug review found: any settings write anywhere (including
   // one made on 「模型连接」页 for this very connection) clobbered the connection with those stale,
   // unrelated values. Only the visible card's edits are real edits.
-  if (fields[0].closest('[data-jy-mode-content]')?.hidden) return;
-  for (const element of fields) channel[element.dataset.jyDeskChannelField] = element.value;
+  if (fields[0].closest('[data-bgt-mode-content]')?.hidden) return;
+  for (const element of fields) channel[element.dataset.bgtDeskChannelField] = element.value;
 }
 
 /** Shared by 「模型连接」页's delete-channel and the API Key 卡's own per-row delete: same confirm, same
@@ -11030,8 +11030,8 @@ async function deleteChannel(root, id, { confirm = confirmDestructive } = {}) {
 // only ever holds one channel at a time, so this reflects whichever one that currently is (the pure
 // formatting lives in core.js, same split as syncProcessingFoldSummaries/syncTtsFoldSummaries).
 function syncChannelFoldSummaries(root, channel) {
-  setText(root, '[data-jy-fold="channel-request"] [data-jy-fold-summary]', channelRequestFoldSummary(channel));
-  setText(root, '[data-jy-fold="channel-postscript"] [data-jy-fold-summary]', channelPostscriptFoldSummary(channel));
+  setText(root, '[data-bgt-fold="channel-request"] [data-bgt-fold-summary]', channelRequestFoldSummary(channel));
+  setText(root, '[data-bgt-fold="channel-postscript"] [data-bgt-fold-summary]', channelPostscriptFoldSummary(channel));
 }
 
 // `rebuildCards: false` skips renderChannelCards: a field settling inside the open card (name,
@@ -11044,26 +11044,26 @@ function syncChannelFoldSummaries(root, channel) {
 function syncChannelFields(root, settings, { rebuildCards = true } = {}) {
   const editing = editingChannelId(settings);
   runtime.editingChannelId = editing;
-  const translation = root.querySelector('[data-jy-translation-channel]');
+  const translation = root.querySelector('[data-bgt-translation-channel]');
   if (translation) fillChannelPicker(translation, settings, translationChannelChoice(settings));
   const channel = settings.channels.find(item => item.id === editing) ?? getActiveChannel(settings);
   if (rebuildCards) {
     renderChannelCards(root, settings, editing);
   } else {
-    const openCard = [...root.querySelectorAll('[data-jy-channel-card]')].find(card => card.dataset.jyChannelCard === editing);
+    const openCard = [...root.querySelectorAll('[data-bgt-channel-card]')].find(card => card.dataset.bgtChannelCard === editing);
     const heading = openCard?.querySelector('h2');
     if (heading) heading.textContent = channel.name || DEFAULT_CHANNEL.name;
   }
   // A rename shows in 「各功能用哪条连接」's pickers at once (review finding index.js:12626).
   renderConnectionUses(root, settings);
-  root.dataset.jyEditingChannelId = channel.id;
+  root.dataset.bgtEditingChannelId = channel.id;
   syncChannelFoldSummaries(root, channel);
-  for (const element of root.querySelectorAll('[data-jy-channel-field]')) {
-    const key = element.dataset.jyChannelField;
+  for (const element of root.querySelectorAll('[data-bgt-channel-field]')) {
+    const key = element.dataset.bgtChannelField;
     if (element.type === 'checkbox') element.checked = channel[key] === true;
     else element.value = key === 'excludeParams' ? channel.excludeParams.join(', ') : channel[key] ?? '';
   }
-  const modelSelect = root.querySelector('[data-jy-model-select]');
+  const modelSelect = root.querySelector('[data-bgt-model-select]');
   if (modelSelect) {
     const placeholder = document.createElement('option');
     placeholder.value = '';
@@ -11080,7 +11080,7 @@ function syncChannelFields(root, settings, { rebuildCards = true } = {}) {
   }
   setText(
     root,
-    '[data-jy-model-help]',
+    '[data-bgt-model-help]',
     channel.models.length
       ? `共 ${channel.models.length} 个模型。选择后会同步到下方输入框；也可以直接手动填写。`
       : '拉取后会显示完整列表，不会自动替你选择。',
@@ -11090,12 +11090,12 @@ function syncChannelFields(root, settings, { rebuildCards = true } = {}) {
 function updateSummary(root, settings) {
   const channel = getActiveChannel(settings);
   const promptProfile = getActivePromptProfile(settings);
-  const provider = settings.translationProvider === BING_TRANSLATION_PROVIDER ? BING_TRANSLATION_LABEL : '镜译模型翻译';
+  const provider = settings.translationProvider === BING_TRANSLATION_PROVIDER ? BING_TRANSLATION_LABEL : '测试翻译模型翻译';
   const independent = settings.apiMode === 'independent';
-  setText(root, '[data-jy-translation-provider-summary]', provider);
+  setText(root, '[data-bgt-translation-provider-summary]', provider);
   setText(
     root,
-    '[data-jy-channel-summary]',
+    '[data-bgt-channel-summary]',
     independent
       ? (settings.translationProvider === BING_TRANSLATION_PROVIDER
         ? `Bing 网页翻译不需要 API Key · 目标：${normalizeTargetLanguage(promptProfile.targetLanguage)}`
@@ -11111,12 +11111,12 @@ function updateSummary(root, settings) {
     settings.includeRecentContext && `近期 ${settings.contextMessages} 条对话`,
     promptProfile.glossary.trim() && '姓名与术语',
   ].filter(Boolean);
-  setText(root, '[data-jy-context-summary]', sources.length ? `当前启用：${sources.join('、')}。` : '当前没有启用额外参考资料。');
+  setText(root, '[data-bgt-context-summary]', sources.length ? `当前启用：${sources.join('、')}。` : '当前没有启用额外参考资料。');
   // DESIGN §15.4 折叠组: the fold header's own one-line summary, covering only the three checkboxes
   // this fold actually holds — 当前角色 and 姓名与术语 above are not toggles inside it.
   setText(
     root,
-    '[data-jy-prompt-reference-summary]',
+    '[data-bgt-prompt-reference-summary]',
     [
       settings.includeWorldbook && '世界书',
       settings.includeCharacterCard && '角色卡设定',
@@ -11125,21 +11125,21 @@ function updateSummary(root, settings) {
   );
   // DESIGN §15.4 依赖缩进变灰: 流式写回 only takes effect on an independent connection; on 跟随酒馆 it
   // silently falls back to a whole-floor write, so the row says so and its switch is greyed out.
-  const streamRow = root.querySelector('[data-jy-stream-row]');
+  const streamRow = root.querySelector('[data-bgt-stream-row]');
   if (streamRow) {
-    streamRow.dataset.jyBlocked = String(!independent);
-    const streamField = streamRow.querySelector('[data-jy-field="streamingWriteback"]');
+    streamRow.dataset.bgtBlocked = String(!independent);
+    const streamField = streamRow.querySelector('[data-bgt-field="streamingWriteback"]');
     if (streamField) streamField.disabled = !independent;
   }
 }
 
 function syncFields(root, settings) {
-  for (const choice of root.querySelectorAll('[data-jy-theme]')) choice.setAttribute('aria-pressed', String(choice.dataset.jyTheme === (settings.theme || 'day')));
+  for (const choice of root.querySelectorAll('[data-bgt-theme]')) choice.setAttribute('aria-pressed', String(choice.dataset.bgtTheme === (settings.theme || 'day')));
   // DESIGN §15.4 依赖: 切换滑动页时补译 only works while 自动接续翻译 is on (scheduleAuto).
-  for (const row of root.querySelectorAll('[data-jy-dependent="autoSwipe"]')) row.dataset.jyDependentOff = String(settings.autoGeneration !== true);
+  for (const row of root.querySelectorAll('[data-bgt-dependent="autoSwipe"]')) row.dataset.bgtDependentOff = String(settings.autoGeneration !== true);
   const selectedProfile = getActivePromptProfile(settings);
-  setText(root, '[data-jy-active-profile]', `${selectedProfile.name} · ${normalizeTargetLanguage(selectedProfile.targetLanguage)}`);
-  const modelSearch = root.querySelector('[data-jy-model-search]');
+  setText(root, '[data-bgt-active-profile]', `${selectedProfile.name} · ${normalizeTargetLanguage(selectedProfile.targetLanguage)}`);
+  const modelSearch = root.querySelector('[data-bgt-model-search]');
   if (modelSearch) modelSearch.value = '';
 
   for (const [name, value] of Object.entries(settings)) setField(root, name, value);
@@ -11160,15 +11160,15 @@ function collectSettings(root) {
   const current = normalizeProcessingSettings(runtime.settings);
   const processing = getActiveProcessingProfile(current);
   if (runtime.nativeRegexInstalled) processing.regexScripts = readNativeRegexEdits(getContext().extensionSettings.regex, processing);
-  const processingName = root.querySelector('[data-jy-processing-name]')?.value.trim();
+  const processingName = root.querySelector('[data-bgt-processing-name]')?.value.trim();
   if (processingName) processing.name = processingName;
-  for (const control of root.querySelectorAll('[data-jy-processing-rule]')) {
-    const rule = processing.regexScripts.find(item => item.id === control.dataset.jyProcessingRule);
+  for (const control of root.querySelectorAll('[data-bgt-processing-rule]')) {
+    const rule = processing.regexScripts.find(item => item.id === control.dataset.bgtProcessingRule);
     if (rule) rule.disabled = !control.checked;
   }
   collectPromptFields(root, current);
   // The translation's own choice, from the desk; the connection page only ever edits.
-  const translationChoice = root.querySelector('[data-jy-translation-channel]')?.value;
+  const translationChoice = root.querySelector('[data-bgt-translation-channel]')?.value;
   if (translationChoice) applyTranslationChoice(current, translationChoice);
   for (const name of [
     'autoGeneration',
@@ -11187,18 +11187,18 @@ function collectSettings(root) {
     'musicCardRules',
     'lyricSing',
   ]) {
-    const element = root.querySelector(`[data-jy-field="${name}"]`);
+    const element = root.querySelector(`[data-bgt-field="${name}"]`);
     if (element) current[name] = element.checked;
   }
-  const providerField = root.querySelector('[data-jy-field="translationProvider"]');
+  const providerField = root.querySelector('[data-bgt-field="translationProvider"]');
   if (providerField) current.translationProvider = providerField.value;
   for (const name of ['segmentPrefix', 'segmentSuffix', 'translationPrefix', 'translationSuffix', 'preserveLineRules', 'lyricLineRules', 'floatingStyle', 'floorButtons']) {
-    const element = root.querySelector(`[data-jy-field="${name}"]`);
+    const element = root.querySelector(`[data-bgt-field="${name}"]`);
     if (element) current[name] = element.value;
   }
-  const bodyTags = root.querySelector('[data-jy-field="bodyTags"]');
-  const excludedTags = root.querySelector('[data-jy-field="excludedTags"]');
-  const replaceTags = root.querySelector('[data-jy-field="replaceTags"]');
+  const bodyTags = root.querySelector('[data-bgt-field="bodyTags"]');
+  const excludedTags = root.querySelector('[data-bgt-field="excludedTags"]');
+  const replaceTags = root.querySelector('[data-bgt-field="replaceTags"]');
   if (replaceTags) {
     const parsed = parseTagNamesWithErrors(replaceTags.value);
     if (parsed.invalid.length) throw new Error(`无法识别替换标签：${parsed.invalid.join('、')}。请填写标签名称或完整尖括号标签。`);
@@ -11210,7 +11210,7 @@ function collectSettings(root) {
     current.bodyTags = parsed.tags;
     if (!current.bodyTags.length) throw new Error('至少填写一个有效的正文提取标签名称。');
   }
-  const bodyStartMarkers = root.querySelector('[data-jy-field="bodyStartMarkers"]');
+  const bodyStartMarkers = root.querySelector('[data-bgt-field="bodyStartMarkers"]');
   if (bodyStartMarkers) current.bodyStartMarkers = parseStartMarkers(bodyStartMarkers.value);
   if (excludedTags) {
     const parsed = parseTagNamesWithErrors(excludedTags.value);
@@ -11222,14 +11222,14 @@ function collectSettings(root) {
   const lyricRules = parseLyricLineRulesWithErrors(current.lyricLineRules);
   if (lyricRules.errors.length) throw new Error(lyricRules.errors.join(' '));
   for (const name of ['contextMessages', 'retries']) {
-    const element = root.querySelector(`[data-jy-field="${name}"]`);
+    const element = root.querySelector(`[data-bgt-field="${name}"]`);
     if (element) current[name] = Number(element.value);
   }
-  const editingId = root.dataset.jyEditingChannelId || current.selectedChannelId;
+  const editingId = root.dataset.bgtEditingChannelId || current.selectedChannelId;
   const editing = current.channels.find(channel => channel.id === editingId);
   if (editing) {
-    for (const element of root.querySelectorAll('[data-jy-channel-field]')) {
-      const key = element.dataset.jyChannelField;
+    for (const element of root.querySelectorAll('[data-bgt-channel-field]')) {
+      const key = element.dataset.bgtChannelField;
       if (element.type === 'checkbox') editing[key] = element.checked;
       else if (['timeoutSec', 'maxTokens', 'temperature', 'concurrency'].includes(key)) editing[key] = Number(element.value);
       else if (key === 'excludeParams') editing[key] = element.value;
@@ -11237,20 +11237,20 @@ function collectSettings(root) {
     }
   }
   collectDeskChannelFields(root, current);
-  const wiPicks = [...root.querySelectorAll('[data-jy-wi-pick]:checked')]
-    .map(element => ({ world: String(element.dataset.jyWorld || ''), uid: Number(element.dataset.jyUid) }))
+  const wiPicks = [...root.querySelectorAll('[data-bgt-wi-pick]:checked')]
+    .map(element => ({ world: String(element.dataset.bgtWorld || ''), uid: Number(element.dataset.bgtUid) }))
     .filter(pick => pick.world && Number.isInteger(pick.uid));
-  if (root.querySelector('[data-jy-wi-list]')) {
+  if (root.querySelector('[data-bgt-wi-list]')) {
     current.worldInfoWhitelist = { ...(current.worldInfoWhitelist || {}) };
     const characterKey = worldInfoCharacterKey();
     if (wiPicks.length) current.worldInfoWhitelist[characterKey] = wiPicks;
     else delete current.worldInfoWhitelist[characterKey];
     // Books switched on here, and the ones not listed now (another chat's own book) as they were.
-    const switches = [...root.querySelectorAll('[data-jy-wi-book-switch]')];
+    const switches = [...root.querySelectorAll('[data-bgt-wi-book-switch]')];
     if (switches.length) {
-      const listed = new Set(switches.map(element => String(element.dataset.jyWorld || '')));
+      const listed = new Set(switches.map(element => String(element.dataset.bgtWorld || '')));
       const kept = [...worldInfoBooksOn(current, characterKey)].filter(name => !listed.has(name));
-      const on = switches.filter(element => element.checked).map(element => String(element.dataset.jyWorld || ''));
+      const on = switches.filter(element => element.checked).map(element => String(element.dataset.bgtWorld || ''));
       current.worldInfoBooks = { ...(current.worldInfoBooks || {}), [characterKey]: [...new Set([...kept, ...on])] };
     }
   }
@@ -11263,15 +11263,15 @@ function collectSettings(root) {
 // The colouring page. The band itself is never typed by hand: it is whatever 取色 measured, and it
 // is carried through every save so a settings change does not silently discard the measurement.
 function collectColoringFields(root, current) {
-  if (!root.querySelector('[data-jy-coloring]')) return;
+  if (!root.querySelector('[data-bgt-coloring]')) return;
   const coloring = { ...normalizeColoring(current.coloring), band: normalizeColoring(current.coloring).band };
-  const speakers = root.querySelector('[data-jy-field="coloringSpeakers"]');
-  const emotions = root.querySelector('[data-jy-field="coloringEmotions"]');
-  const contrast = root.querySelector('[data-jy-field="coloringContrast"]');
-  const vividness = root.querySelector('[data-jy-field="coloringVividness"]');
-  const rhythm = root.querySelector('[data-jy-field="coloringRhythm"]');
-  const autoSpeakers = root.querySelector('[data-jy-field="coloringAutoSpeakers"]');
-  const effects = root.querySelector('[data-jy-field="coloringEffects"]');
+  const speakers = root.querySelector('[data-bgt-field="coloringSpeakers"]');
+  const emotions = root.querySelector('[data-bgt-field="coloringEmotions"]');
+  const contrast = root.querySelector('[data-bgt-field="coloringContrast"]');
+  const vividness = root.querySelector('[data-bgt-field="coloringVividness"]');
+  const rhythm = root.querySelector('[data-bgt-field="coloringRhythm"]');
+  const autoSpeakers = root.querySelector('[data-bgt-field="coloringAutoSpeakers"]');
+  const effects = root.querySelector('[data-bgt-field="coloringEffects"]');
   if (speakers) coloring.speakers = speakers.checked;
   if (emotions) coloring.emotions = emotions.checked;
   if (rhythm) coloring.rhythm = rhythm.checked;
@@ -11287,11 +11287,11 @@ function collectColoringFields(root, current) {
   }
   current.coloring = coloring;
 
-  const rows = [...root.querySelectorAll('[data-jy-speaker-row]')].map(row => ({
-    name: row.querySelector('[data-jy-speaker-name]')?.value ?? '',
-    aliases: row.querySelector('[data-jy-speaker-aliases]')?.value ?? '',
-    source: row.querySelector('[data-jy-speaker-color]')?.value ?? '',
-    from: row.querySelector('[data-jy-speaker-from]')?.value ?? 'hair',
+  const rows = [...root.querySelectorAll('[data-bgt-speaker-row]')].map(row => ({
+    name: row.querySelector('[data-bgt-speaker-name]')?.value ?? '',
+    aliases: row.querySelector('[data-bgt-speaker-aliases]')?.value ?? '',
+    source: row.querySelector('[data-bgt-speaker-color]')?.value ?? '',
+    from: row.querySelector('[data-bgt-speaker-from]')?.value ?? 'hair',
   }));
   const palette = normalizeSpeakerList(rows);
   current.speakerPalette = { ...(current.speakerPalette || {}) };
@@ -11302,21 +11302,21 @@ function collectColoringFields(root, current) {
 
 function speakerRowElement(doc, speaker) {
   const row = doc.createElement('div');
-  row.className = 'jy-speaker-row';
-  row.dataset.jySpeakerRow = '';
+  row.className = 'bgt-speaker-row';
+  row.dataset.bgtSpeakerRow = '';
   const name = doc.createElement('input');
   name.type = 'text';
   name.maxLength = 60;
   name.placeholder = '角色名（与译文中的写法一致）';
-  name.dataset.jySpeakerName = '';
+  name.dataset.bgtSpeakerName = '';
   name.value = speaker.name ?? '';
   const aliases = doc.createElement('input');
   aliases.type = 'text';
   aliases.placeholder = '别名，逗号分隔（可留空）';
-  aliases.dataset.jySpeakerAliases = '';
+  aliases.dataset.bgtSpeakerAliases = '';
   aliases.value = (speaker.aliases ?? []).join('、');
   const from = doc.createElement('select');
-  from.dataset.jySpeakerFrom = '';
+  from.dataset.bgtSpeakerFrom = '';
   for (const [value, label] of [['hair', '发色'], ['eye', '瞳色'], ['manual', '指定']]) {
     const option = doc.createElement('option');
     option.value = value;
@@ -11326,29 +11326,29 @@ function speakerRowElement(doc, speaker) {
   from.value = speaker.from ?? 'hair';
   const color = doc.createElement('input');
   color.type = 'color';
-  color.dataset.jySpeakerColor = '';
+  color.dataset.bgtSpeakerColor = '';
   color.value = /^#[0-9a-f]{6}$/i.test(speaker.source ?? '') ? speaker.source : '#808080';
   const preview = doc.createElement('span');
-  preview.className = 'jy-speaker-preview';
-  preview.dataset.jySpeakerPreview = '';
+  preview.className = 'bgt-speaker-preview';
+  preview.dataset.bgtSpeakerPreview = '';
   const remove = doc.createElement('button');
   remove.type = 'button';
-  remove.className = 'jy-text-button';
-  remove.dataset.jyAction = 'remove-speaker';
+  remove.className = 'bgt-text-button';
+  remove.dataset.bgtAction = 'remove-speaker';
   remove.textContent = '移除';
   row.append(name, aliases, from, color, preview, remove);
   return row;
 }
 
 function renderSpeakerList(root, settings = runtime.settings) {
-  const list = root.querySelector('[data-jy-speaker-list]');
+  const list = root.querySelector('[data-bgt-speaker-list]');
   if (!list) return;
   const doc = list.ownerDocument;
   const palette = normalizeSpeakerList(settings.speakerPalette?.[worldInfoCharacterKey()]);
   list.replaceChildren();
   if (!palette.length) {
     const note = doc.createElement('p');
-    note.className = 'jy-muted';
+    note.className = 'bgt-muted';
     note.textContent = '还没有登记角色。点「添加角色」，填上译文里用的名字和发色即可。';
     list.appendChild(note);
     return;
@@ -11362,7 +11362,7 @@ function renderSpeakerList(root, settings = runtime.settings) {
 function refreshSpeakerPreviews(root, settings = runtime.settings) {
   const coloring = activeColoring(settings);
   const band = runtime.probedBand ?? coloring.band;
-  const rows = [...root.querySelectorAll('[data-jy-speaker-row]')];
+  const rows = [...root.querySelectorAll('[data-bgt-speaker-row]')];
   if (!rows.length) return;
   const draft = {
     ...settings,
@@ -11370,19 +11370,19 @@ function refreshSpeakerPreviews(root, settings = runtime.settings) {
     speakerPalette: {
       ...(settings.speakerPalette || {}),
       [worldInfoCharacterKey()]: normalizeSpeakerList(rows.map(row => ({
-        name: row.querySelector('[data-jy-speaker-name]')?.value ?? '',
-        aliases: row.querySelector('[data-jy-speaker-aliases]')?.value ?? '',
-        source: row.querySelector('[data-jy-speaker-color]')?.value ?? '',
-        from: row.querySelector('[data-jy-speaker-from]')?.value ?? 'hair',
+        name: row.querySelector('[data-bgt-speaker-name]')?.value ?? '',
+        aliases: row.querySelector('[data-bgt-speaker-aliases]')?.value ?? '',
+        source: row.querySelector('[data-bgt-speaker-color]')?.value ?? '',
+        from: row.querySelector('[data-bgt-speaker-from]')?.value ?? 'hair',
       }))),
     },
   };
   const resolved = band ? resolvedSpeakerColors(draft) : new Map();
   const backdrop = band?.backgrounds?.[Math.floor((band.backgrounds.length - 1) / 2)];
   for (const row of rows) {
-    const preview = row.querySelector('[data-jy-speaker-preview]');
+    const preview = row.querySelector('[data-bgt-speaker-preview]');
     if (!preview) continue;
-    const name = row.querySelector('[data-jy-speaker-name]')?.value.trim() ?? '';
+    const name = row.querySelector('[data-bgt-speaker-name]')?.value.trim() ?? '';
     const entry = resolved.get(name);
     if (!band) {
       preview.textContent = '先读取主题';
@@ -11401,7 +11401,7 @@ function refreshSpeakerPreviews(root, settings = runtime.settings) {
 }
 
 function renderBandReport(root, settings = runtime.settings) {
-  const target = root.querySelector('[data-jy-band-report]');
+  const target = root.querySelector('[data-bgt-band-report]');
   if (!target) return;
   const doc = target.ownerDocument;
   const coloring = activeColoring(settings);
@@ -11409,13 +11409,13 @@ function renderBandReport(root, settings = runtime.settings) {
   target.replaceChildren();
   if (!band) {
     const note = doc.createElement('p');
-    note.className = 'jy-muted';
+    note.className = 'bgt-muted';
     note.textContent = '还没有读取过主题。着色需要知道文字后面到底是什么颜色，否则在深色主题上算出来的颜色到浅色主题就看不清了。';
     target.appendChild(note);
     return;
   }
   const line = doc.createElement('p');
-  line.className = 'jy-muted';
+  line.className = 'bgt-muted';
   const report = runtime.probeReport;
   line.textContent = [
     band.direction === 'light' ? '当前背景偏暗，文字取亮色。' : '当前背景偏亮，文字取暗色。',
@@ -11425,10 +11425,10 @@ function renderBandReport(root, settings = runtime.settings) {
   ].filter(Boolean).join(' ');
   target.appendChild(line);
   const strip = doc.createElement('div');
-  strip.className = 'jy-band-swatches';
+  strip.className = 'bgt-band-swatches';
   for (const background of band.backgrounds) {
     const chip = doc.createElement('span');
-    chip.className = 'jy-band-swatch';
+    chip.className = 'bgt-band-swatch';
     chip.style.background = toHex(background);
     chip.textContent = toHex(background);
     strip.appendChild(chip);
@@ -11436,7 +11436,7 @@ function renderBandReport(root, settings = runtime.settings) {
   target.appendChild(strip);
   for (const warning of runtime.probeReport?.warnings ?? []) {
     const note = doc.createElement('p');
-    note.className = 'jy-muted';
+    note.className = 'bgt-muted';
     note.textContent = warning;
     target.appendChild(note);
   }
@@ -11448,7 +11448,7 @@ function renderBandReport(root, settings = runtime.settings) {
 // (review finding, index.js:12033/12022: the speaker-color/from branch already avoided this render
 // on purpose, but every other field on 正文处理/朗读 fell through to a catch-all that did not).
 function syncColoringFields(root, settings = runtime.settings, { renderList = true } = {}) {
-  if (!root.querySelector('[data-jy-coloring]')) return;
+  if (!root.querySelector('[data-bgt-coloring]')) return;
   const coloring = activeColoring(settings);
   setField(root, 'coloringSpeakers', coloring.speakers);
   setField(root, 'coloringEmotions', coloring.emotions);
@@ -11457,13 +11457,13 @@ function syncColoringFields(root, settings = runtime.settings, { renderList = tr
   setField(root, 'coloringEffects', coloring.effects);
   setField(root, 'coloringContrast', coloring.minContrast);
   setField(root, 'coloringVividness', Math.round(coloring.vividness * 100));
-  const value = root.querySelector('[data-jy-vividness-value]');
+  const value = root.querySelector('[data-bgt-vividness-value]');
   if (value) value.textContent = `${Math.round(coloring.vividness * 100)}%`;
   // DESIGN §15.4 依赖: 特效字 only takes effect while 说话人着色 is also on (§14) — grayed with a reason
   // line here, same as `normalizeColoring` (core.js) already enforces on save regardless of this input.
   // Both the advanced 正文处理 card and 微调's own 特效字 row carry this marker (review finding
   // index.js:404: 微调 used to leave 特效字 looking fully active and explained nothing).
-  for (const effectsField of root.querySelectorAll('[data-jy-dependent="coloringEffects"]')) effectsField.dataset.jyDependentOff = String(!coloring.speakers);
+  for (const effectsField of root.querySelectorAll('[data-bgt-dependent="coloringEffects"]')) effectsField.dataset.bgtDependentOff = String(!coloring.speakers);
   renderBandReport(root, settings);
   renderSpeakerReport(root, settings, true);
   if (renderList) {
@@ -11478,7 +11478,7 @@ function syncColoringFields(root, settings = runtime.settings, { renderList = tr
 // DESIGN §17.5 招式表: every move this chat has named, the most recently seen first, each row showing what
 // the reader set by hand over what the chat fixed on its own.
 function renderMoveTable(root, settings = runtime.settings) {
-  const list = root.querySelector('[data-jy-move-list]');
+  const list = root.querySelector('[data-bgt-move-list]');
   if (!list) return;
   const doc = list.ownerDocument;
   const moves = chatMoveTable();
@@ -11486,13 +11486,13 @@ function renderMoveTable(root, settings = runtime.settings) {
   list.replaceChildren();
   if (!moves.length) {
     const note = doc.createElement('p');
-    note.className = 'jy-muted';
+    note.className = 'bgt-muted';
     note.textContent = '这个聊天还没有招式。开着特效字翻译过的楼层里出现招式后，这里会列出来。';
     list.appendChild(note);
   }
   for (const move of moves) list.appendChild(moveRowElement(doc, move, overrides.get(move.name)));
   refreshMoveSwatches(root, settings);
-  setText(root, '[data-jy-fold="processing-moves"] [data-jy-fold-summary]', moveTableSummary(moves.length));
+  setText(root, '[data-bgt-fold="processing-moves"] [data-bgt-fold-summary]', moveTableSummary(moves.length));
 }
 
 function moveTableSummary(count) {
@@ -11501,39 +11501,39 @@ function moveTableSummary(count) {
 
 function moveRowElement(doc, move, override = null) {
   const row = doc.createElement('div');
-  row.className = 'jy-move-row';
-  row.dataset.jyMoveRow = move.name;
-  row.dataset.jyMoveElement = move.element || '';
+  row.className = 'bgt-move-row';
+  row.dataset.bgtMoveRow = move.name;
+  row.dataset.bgtMoveElement = move.element || '';
   const head = doc.createElement('div');
-  head.className = 'jy-move-head';
+  head.className = 'bgt-move-head';
   const swatch = doc.createElement('span');
-  swatch.className = 'jy-move-swatch';
-  swatch.dataset.jyMoveSwatch = '';
+  swatch.className = 'bgt-move-swatch';
+  swatch.dataset.bgtMoveSwatch = '';
   swatch.setAttribute('aria-hidden', 'true');
   const name = doc.createElement('span');
-  name.className = 'jy-move-name';
+  name.className = 'bgt-move-name';
   name.textContent = move.name;
   name.title = move.name;
   const reset = doc.createElement('button');
   reset.type = 'button';
-  reset.className = 'jy-text-button';
-  reset.dataset.jyAction = 'move-reset';
+  reset.className = 'bgt-text-button';
+  reset.dataset.bgtAction = 'move-reset';
   reset.textContent = '恢复自动';
   reset.hidden = !override;
   head.append(swatch, name, reset);
 
   const field = (label, control) => {
     const wrapper = doc.createElement('label');
-    wrapper.className = 'jy-move-field';
+    wrapper.className = 'bgt-move-field';
     const text = doc.createElement('span');
-    text.className = 'jy-label';
+    text.className = 'bgt-label';
     text.textContent = label;
     wrapper.append(text, ...[control].flat());
     return wrapper;
   };
   const select = (key, options, value) => {
     const element = doc.createElement('select');
-    element.dataset.jyMoveField = key;
+    element.dataset.bgtMoveField = key;
     element.setAttribute('aria-label', `${move.name} ${{ element: '属性', tier: '等级', colorMode: '颜色' }[key]}`);
     for (const [optionValue, optionLabel] of options) {
       const option = doc.createElement('option');
@@ -11555,19 +11555,19 @@ function moveRowElement(doc, move, override = null) {
   const colorMode = select('colorMode', [['', '自动'], ['custom', '自选']], override?.color ? 'custom' : '');
   const color = doc.createElement('input');
   color.type = 'color';
-  color.dataset.jyMoveField = 'color';
+  color.dataset.bgtMoveField = 'color';
   color.setAttribute('aria-label', `${move.name} 自选颜色`);
   color.value = override?.color || '#808080';
   color.hidden = !override?.color;
   const off = doc.createElement('label');
-  off.className = 'jy-check';
+  off.className = 'bgt-check';
   const offBox = doc.createElement('input');
   offBox.type = 'checkbox';
-  offBox.dataset.jyMoveField = 'off';
+  offBox.dataset.bgtMoveField = 'off';
   offBox.checked = override?.off === true;
   off.append(offBox, '不上色');
   const fields = doc.createElement('div');
-  fields.className = 'jy-move-fields';
+  fields.className = 'bgt-move-fields';
   fields.append(field('属性', elementSelect), field('等级', tierSelect), field('颜色', [colorMode, color]), off);
   row.append(head, fields);
   return row;
@@ -11575,9 +11575,9 @@ function moveRowElement(doc, move, override = null) {
 
 // What one 招式表 row says, as a saved override (null when every field is automatic again).
 function moveRowOverride(row) {
-  const field = key => row.querySelector(`[data-jy-move-field="${key}"]`);
+  const field = key => row.querySelector(`[data-bgt-move-field="${key}"]`);
   return normalizeMoveOverride({
-    name: row.dataset.jyMoveRow,
+    name: row.dataset.bgtMoveRow,
     element: field('element')?.value ?? '',
     tier: field('tier')?.value ?? '',
     color: field('colorMode')?.value === 'custom' ? field('color')?.value ?? '' : '',
@@ -11590,14 +11590,14 @@ function moveRowOverride(row) {
 function refreshMoveSwatches(root, settings = runtime.settings) {
   const coloring = activeColoring(settings);
   const band = runtime.probedBand ?? coloring.band;
-  for (const row of root.querySelectorAll('[data-jy-move-row]')) {
-    const swatch = row.querySelector('[data-jy-move-swatch]');
+  for (const row of root.querySelectorAll('[data-bgt-move-row]')) {
+    const swatch = row.querySelector('[data-bgt-move-swatch]');
     if (!swatch) continue;
     const override = moveRowOverride(row);
     const resolved = band && !override?.off ? resolveMoveStyle({
-      element: override?.element || row.dataset.jyMoveElement || '', name: row.dataset.jyMoveRow, band, vividness: coloring.vividness, color: override?.color || '',
+      element: override?.element || row.dataset.bgtMoveElement || '', name: row.dataset.bgtMoveRow, band, vividness: coloring.vividness, color: override?.color || '',
     }) : null;
-    row.dataset.jyMoveHex = resolved?.hex ?? '';
+    row.dataset.bgtMoveHex = resolved?.hex ?? '';
     swatch.style.background = resolved?.hex ?? '';
     swatch.dataset.state = override?.off ? 'off' : resolved ? 'on' : 'none';
     swatch.title = override?.off ? '不上色' : resolved?.hex ?? '先读取主题';
@@ -11616,22 +11616,22 @@ function saveMoveOverride(name, override) {
 }
 
 function applyMoveFieldChange(root, field) {
-  const row = field.closest('[data-jy-move-row]');
+  const row = field.closest('[data-bgt-move-row]');
   if (!row) return;
-  const color = row.querySelector('[data-jy-move-field="color"]');
-  if (field.dataset.jyMoveField === 'colorMode' && color) {
+  const color = row.querySelector('[data-bgt-move-field="color"]');
+  if (field.dataset.bgtMoveField === 'colorMode' && color) {
     color.hidden = field.value !== 'custom';
     // 自选 starts from the colour the move wears now.
-    if (field.value === 'custom' && row.dataset.jyMoveHex) color.value = row.dataset.jyMoveHex;
+    if (field.value === 'custom' && row.dataset.bgtMoveHex) color.value = row.dataset.bgtMoveHex;
   }
   const override = moveRowOverride(row);
   try {
-    saveMoveOverride(row.dataset.jyMoveRow, override);
+    saveMoveOverride(row.dataset.bgtMoveRow, override);
   } catch (error) {
     toast('error', safeError(error));
     return;
   }
-  const reset = row.querySelector('[data-jy-action="move-reset"]');
+  const reset = row.querySelector('[data-bgt-action="move-reset"]');
   if (reset) reset.hidden = !override;
   refreshMoveSwatches(root, runtime.settings);
 }
@@ -11639,12 +11639,12 @@ function applyMoveFieldChange(root, field) {
 function resetMoveRow(root, row) {
   if (!row) return;
   try {
-    saveMoveOverride(row.dataset.jyMoveRow, null);
+    saveMoveOverride(row.dataset.bgtMoveRow, null);
   } catch (error) {
     toast('error', safeError(error));
     return;
   }
-  const fresh = moveRowElement(row.ownerDocument, { name: row.dataset.jyMoveRow, element: row.dataset.jyMoveElement || '' }, null);
+  const fresh = moveRowElement(row.ownerDocument, { name: row.dataset.bgtMoveRow, element: row.dataset.bgtMoveElement || '' }, null);
   row.replaceWith(fresh);
   refreshMoveSwatches(root, runtime.settings);
 }
@@ -11655,7 +11655,7 @@ const FLOOR_BUTTONS_SHORT_LABELS = Object.freeze({ line: '每段一个', sentenc
 // DESIGN §15.4 折叠组: the one-line summary each collapsed fold on the 正文处理 page shows. The pure
 // formatting lives in core.js; this just reads settings and writes the DOM.
 function syncProcessingFoldSummaries(root, settings = runtime.settings) {
-  if (!root.querySelector('[data-jy-page="processing"]')) return;
+  if (!root.querySelector('[data-bgt-page="processing"]')) return;
   const active = getActiveProcessingProfile(settings);
   const summaries = {
     'processing-preserve': preserveLineRuleCountLabel(settings.preserveLineRules),
@@ -11674,7 +11674,7 @@ function syncProcessingFoldSummaries(root, settings = runtime.settings) {
       `绑定正则 ${active.regexScripts.length} 条`,
     ].filter(Boolean).join(' · '),
   };
-  for (const [id, text] of Object.entries(summaries)) setText(root, `[data-jy-fold="${id}"] [data-jy-fold-summary]`, text);
+  for (const [id, text] of Object.entries(summaries)) setText(root, `[data-bgt-fold="${id}"] [data-bgt-fold-summary]`, text);
 }
 
 /**
@@ -11689,7 +11689,7 @@ function syncProcessingFoldSummaries(root, settings = runtime.settings) {
 let renderedCoverage = null;
 
 function renderSpeakerReport(root, settings = runtime.settings, force = false) {
-  const target = root.querySelector('[data-jy-speaker-report]');
+  const target = root.querySelector('[data-bgt-speaker-report]');
   if (!target) return;
   const coverage = runtime.speakerCoverage;
   if (!force && coverage === renderedCoverage) return;
@@ -11702,15 +11702,15 @@ function renderSpeakerReport(root, settings = runtime.settings, force = false) {
   const resolved = band ? resolvedSpeakerColors(settings, coverage.reported.map(item => item.name)) : new Map();
 
   const head = doc.createElement('p');
-  head.className = 'jy-muted';
+  head.className = 'bgt-muted';
   head.textContent = '上一楼副模型报出的说话人：';
   target.appendChild(head);
 
   const list = doc.createElement('div');
-  list.className = 'jy-speaker-chips';
+  list.className = 'bgt-speaker-chips';
   for (const item of coverage.reported) {
     const chip = doc.createElement('span');
-    chip.className = 'jy-speaker-chip';
+    chip.className = 'bgt-speaker-chip';
     chip.dataset.painted = item.painted ? 'yes' : 'no';
     const entry = resolved.get(item.name);
     if (item.painted && entry) chip.style.color = entry.base;
@@ -11724,7 +11724,7 @@ function renderSpeakerReport(root, settings = runtime.settings, force = false) {
   const unregistered = coverage.reported.filter(item => !item.registered);
   if (unpainted.length) {
     const why = doc.createElement('p');
-    why.className = 'jy-muted';
+    why.className = 'bgt-muted';
     why.textContent = coverage.speakersOff
       ? '这些段只套了情绪排版，没有颜色：「说话人着色」没有勾选。'
       : coverage.autoOff
@@ -11734,16 +11734,16 @@ function renderSpeakerReport(root, settings = runtime.settings, force = false) {
   }
   if (unregistered.length) {
     const tools = doc.createElement('div');
-    tools.className = 'jy-processing-toolbar';
+    tools.className = 'bgt-processing-toolbar';
     const add = doc.createElement('button');
     add.type = 'button';
-    add.className = 'jy-button';
-    add.dataset.jyAction = 'adopt-speakers';
+    add.className = 'bgt-button';
+    add.dataset.bgtAction = 'adopt-speakers';
     add.textContent = `把这 ${unregistered.length} 个名字加进名单`;
     tools.appendChild(add);
     target.appendChild(tools);
     const hint = doc.createElement('p');
-    hint.className = 'jy-muted';
+    hint.className = 'bgt-muted';
     hint.textContent = '加进名单后可以填上真实发色或瞳色，颜色会从自动取色换成按发色取色；不填就沿用现在这个。';
     target.appendChild(hint);
   }
@@ -11791,7 +11791,7 @@ const TTS_NUMERIC_GSV_FIELDS = new Set(['speed', 'volume', 'temperature', 'topK'
 // A picker of the saved voices, placed after a voice id field; choosing one fills the field.
 function ttsLibraryPicker(doc, settings = runtime.settings) {
   const select = doc.createElement('select');
-  select.dataset.jyTtsPick = '';
+  select.dataset.bgtTtsPick = '';
   select.setAttribute('aria-label', '从音色库选择');
   const library = normalizeVoiceLibrary(settings?.voiceLibrary);
   const blank = doc.createElement('option');
@@ -11810,7 +11810,7 @@ function ttsLibraryPicker(doc, settings = runtime.settings) {
 
 function ttsLanguageSelect(doc, value = '') {
   const select = doc.createElement('select');
-  select.dataset.jyTtsLangCode = '';
+  select.dataset.bgtTtsLangCode = '';
   select.setAttribute('aria-label', '语言');
   for (const [code, label] of TTS_LANGUAGES) {
     const option = doc.createElement('option');
@@ -11831,22 +11831,22 @@ function ttsLanguageSelect(doc, value = '') {
 // One language → voice binding, for a character row or the narrator.
 function ttsLanguageRowElement(doc, lang, voiceId, settings = runtime.settings) {
   const row = doc.createElement('div');
-  row.className = 'jy-tts-lang-row';
-  row.dataset.jyTtsLangRow = '';
+  row.className = 'bgt-tts-lang-row';
+  row.dataset.bgtTtsLangRow = '';
   const scope = doc.createElement('span');
-  scope.className = 'jy-tts-pick';
-  scope.dataset.jyTtsPickScope = '';
+  scope.className = 'bgt-tts-pick';
+  scope.dataset.bgtTtsPickScope = '';
   const id = doc.createElement('input');
   id.type = 'text';
   id.placeholder = '这门语言用的 Voice ID';
   id.spellcheck = false;
-  id.dataset.jyTtsLangId = '';
+  id.dataset.bgtTtsLangId = '';
   id.value = voiceId ?? '';
   scope.append(id, ttsLibraryPicker(doc, settings));
   const remove = doc.createElement('button');
   remove.type = 'button';
-  remove.className = 'jy-text-button';
-  remove.dataset.jyAction = 'tts-remove-lang';
+  remove.className = 'bgt-text-button';
+  remove.dataset.bgtAction = 'tts-remove-lang';
   remove.textContent = '×';
   remove.setAttribute('aria-label', '去掉这门语言的音色');
   row.append(ttsLanguageSelect(doc, lang), scope, remove);
@@ -11865,10 +11865,10 @@ const MOOD_LABELS = Object.freeze({
 /** One 情绪音色 row: when, and the voice; the same shape as a language row. */
 function ttsMoodRowElement(doc, mood, settings = runtime.settings) {
   const row = doc.createElement('div');
-  row.className = 'jy-tts-lang-row jy-tts-mood-row';
-  row.dataset.jyTtsMoodRow = '';
+  row.className = 'bgt-tts-lang-row bgt-tts-mood-row';
+  row.dataset.bgtTtsMoodRow = '';
   const when = doc.createElement('select');
-  when.dataset.jyTtsMoodWhen = '';
+  when.dataset.bgtTtsMoodWhen = '';
   when.setAttribute('aria-label', '什么样的句子用这个音色');
   for (const value of VOICE_MOOD_CONDITIONS) {
     const option = doc.createElement('option');
@@ -11878,19 +11878,19 @@ function ttsMoodRowElement(doc, mood, settings = runtime.settings) {
   }
   when.value = VOICE_MOOD_CONDITIONS.includes(mood?.when) ? mood.when : VOICE_MOOD_CONDITIONS[0];
   const scope = doc.createElement('span');
-  scope.className = 'jy-tts-pick';
-  scope.dataset.jyTtsPickScope = '';
+  scope.className = 'bgt-tts-pick';
+  scope.dataset.bgtTtsPickScope = '';
   const id = doc.createElement('input');
   id.type = 'text';
   id.placeholder = '这种句子用的 Voice ID';
   id.spellcheck = false;
-  id.dataset.jyTtsMoodId = '';
+  id.dataset.bgtTtsMoodId = '';
   id.value = mood?.voiceId ?? '';
   scope.append(id, ttsLibraryPicker(doc, settings));
   const remove = doc.createElement('button');
   remove.type = 'button';
-  remove.className = 'jy-text-button';
-  remove.dataset.jyAction = 'tts-remove-mood';
+  remove.className = 'bgt-text-button';
+  remove.dataset.bgtAction = 'tts-remove-mood';
   remove.textContent = '×';
   remove.setAttribute('aria-label', '去掉这个情绪音色');
   row.append(when, scope, remove);
@@ -11898,17 +11898,17 @@ function ttsMoodRowElement(doc, mood, settings = runtime.settings) {
 }
 
 function readMoodRows(container) {
-  return [...container?.querySelectorAll('[data-jy-tts-mood-row]') ?? []].map(row => ({
-    when: row.querySelector('[data-jy-tts-mood-when]')?.value ?? '',
-    voiceId: row.querySelector('[data-jy-tts-mood-id]')?.value.trim() ?? '',
+  return [...container?.querySelectorAll('[data-bgt-tts-mood-row]') ?? []].map(row => ({
+    when: row.querySelector('[data-bgt-tts-mood-when]')?.value ?? '',
+    voiceId: row.querySelector('[data-bgt-tts-mood-id]')?.value.trim() ?? '',
   }));
 }
 
 function readLanguageRows(container) {
   const result = {};
-  for (const row of container?.querySelectorAll('[data-jy-tts-lang-row]') ?? []) {
-    const lang = normalizeLanguageCode(row.querySelector('[data-jy-tts-lang-code]')?.value);
-    const voiceId = row.querySelector('[data-jy-tts-lang-id]')?.value.trim() ?? '';
+  for (const row of container?.querySelectorAll('[data-bgt-tts-lang-row]') ?? []) {
+    const lang = normalizeLanguageCode(row.querySelector('[data-bgt-tts-lang-code]')?.value);
+    const voiceId = row.querySelector('[data-bgt-tts-lang-id]')?.value.trim() ?? '';
     if (lang && voiceId) result[lang] = voiceId;
   }
   return result;
@@ -11950,9 +11950,9 @@ const CONSOLE_LABELS = Object.freeze({ pause: '停顿感', breath: '气息感', 
 /** The saved consoles, as a dropdown that remembers nothing until the reader picks. */
 function consolePresetRow(doc, settings = runtime.settings) {
   const row = doc.createElement('div');
-  row.className = 'jy-tts-console-presets';
+  row.className = 'bgt-tts-console-presets';
   const pick = doc.createElement('select');
-  pick.dataset.jyConsolePreset = '';
+  pick.dataset.bgtConsolePreset = '';
   pick.title = '保存过的调音台，选一个再点「套用」';
   const first = doc.createElement('option');
   first.value = '';
@@ -11968,9 +11968,9 @@ function consolePresetRow(doc, settings = runtime.settings) {
   name.type = 'text';
   name.maxLength = 40;
   name.placeholder = '起个名字，比如「吵架」「深夜」';
-  name.dataset.jyConsolePresetName = '';
+  name.dataset.bgtConsolePresetName = '';
   const tools = doc.createElement('span');
-  tools.className = 'jy-tts-console-preset-tools';
+  tools.className = 'bgt-tts-console-preset-tools';
   for (const [action, label, title] of [
     ['console-preset-apply', '套用', '把选中的预设填进这一套调音台'],
     ['console-preset-save', '存为预设', '把现在这一套存起来；名字和已有的一样就覆盖它'],
@@ -11978,8 +11978,8 @@ function consolePresetRow(doc, settings = runtime.settings) {
   ]) {
     const button = doc.createElement('button');
     button.type = 'button';
-    button.className = 'jy-text-button';
-    button.dataset.jyAction = action;
+    button.className = 'bgt-text-button';
+    button.dataset.bgtAction = action;
     button.textContent = label;
     button.title = title;
     tools.appendChild(button);
@@ -11990,13 +11990,13 @@ function consolePresetRow(doc, settings = runtime.settings) {
 
 function consoleFieldsElement(doc, console, { scope = 'row' } = {}) {
   const box = doc.createElement('div');
-  box.className = 'jy-tts-console';
-  box.dataset.jyTtsConsole = scope;
+  box.className = 'bgt-tts-console';
+  box.dataset.bgtTtsConsole = scope;
   box.appendChild(consolePresetRow(doc));
   const values = normalizeConsole(console);
   for (const key of CONSOLE_KEYS) {
     const label = doc.createElement('label');
-    label.className = 'jy-tts-console-field';
+    label.className = 'bgt-tts-console-field';
     const name = doc.createElement('span');
     name.textContent = CONSOLE_LABELS[key];
     const input = doc.createElement('input');
@@ -12005,21 +12005,21 @@ function consoleFieldsElement(doc, console, { scope = 'row' } = {}) {
     input.max = '100';
     input.step = '25';
     input.value = String(values[key]);
-    input.dataset.jyConsoleKey = key;
+    input.dataset.bgtConsoleKey = key;
     const output = doc.createElement('output');
     output.textContent = consoleWord(key, values[key]);
     label.append(name, input, output);
     box.appendChild(label);
   }
   const rules = doc.createElement('label');
-  rules.className = 'jy-tts-console-rules';
+  rules.className = 'bgt-tts-console-rules';
   const rulesLabel = doc.createElement('span');
-  rulesLabel.className = 'jy-label';
+  rulesLabel.className = 'bgt-label';
   rulesLabel.textContent = '这个角色的配音规则（一行一条）';
   const textarea = doc.createElement('textarea');
   textarea.rows = 2;
   textarea.spellcheck = false;
-  textarea.dataset.jyConsoleRules = '';
+  textarea.dataset.bgtConsoleRules = '';
   textarea.placeholder = '比如：害羞时不要过度娇柔；紧张时允许轻微呼吸和迟疑';
   textarea.value = values.rules;
   rules.append(rulesLabel, textarea);
@@ -12034,31 +12034,31 @@ const MARK_POSITIONS = Object.freeze([['inline', '原位替换'], ['head', '放�
 // word and where the tag goes, with a button for a blank row and one for the recommended pairs.
 function marksFoldElement(doc, marks) {
   const fold = doc.createElement('details');
-  fold.className = 'jy-tts-marks-fold';
+  fold.className = 'bgt-tts-marks-fold';
   const summary = doc.createElement('summary');
-  summary.dataset.jyMarksSummary = '';
+  summary.dataset.bgtMarksSummary = '';
   summary.textContent = marksSummary(marks);
   fold.appendChild(summary);
   const hint = doc.createElement('p');
-  hint.className = 'jy-muted';
+  hint.className = 'bgt-muted';
   hint.textContent = '正文里出现左边的标点时，发给 Fish 的文本里加上右边的标签。「原位替换」把标点换成标签，适合停顿、叹气这类声音；「放在句首」把标签放到这个标点结尾的那句话前面，适合情绪、音量。发出去的是 Fish 官方认得的英文标签。不开分析模式时生效。';
   fold.appendChild(hint);
   const list = doc.createElement('div');
-  list.className = 'jy-tts-marks';
-  list.dataset.jyMarks = '';
+  list.className = 'bgt-tts-marks';
+  list.dataset.bgtMarks = '';
   for (const mark of marks) list.appendChild(markRowElement(doc, mark));
   fold.appendChild(list);
   const tools = doc.createElement('div');
-  tools.className = 'jy-tts-marks-tools';
+  tools.className = 'bgt-tts-marks-tools';
   const add = doc.createElement('button');
   add.type = 'button';
-  add.className = 'jy-text-button';
-  add.dataset.jyAction = 'tts-add-mark';
+  add.className = 'bgt-text-button';
+  add.dataset.bgtAction = 'tts-add-mark';
   add.textContent = '加一条';
   const recommend = doc.createElement('button');
   recommend.type = 'button';
-  recommend.className = 'jy-text-button';
-  recommend.dataset.jyAction = 'tts-recommend-marks';
+  recommend.className = 'bgt-text-button';
+  recommend.dataset.bgtAction = 'tts-recommend-marks';
   recommend.textContent = '填入推荐搭配';
   tools.append(add, recommend);
   fold.appendChild(tools);
@@ -12073,26 +12073,26 @@ function marksSummary(marks) {
 // The rows currently sitting in one marks list, read straight off the DOM — used to refresh the
 // fold's own summary without going through a full collectSettings/syncTtsFields round trip.
 function marksFromRows(list) {
-  return [...list.querySelectorAll('[data-jy-mark-row]')].map(row => ({
-    punct: row.querySelector('[data-jy-mark-punct]')?.value ?? '',
-    tag: row.querySelector('[data-jy-mark-tag]')?.value ?? '',
-    at: row.querySelector('[data-jy-mark-at]')?.value ?? 'inline',
+  return [...list.querySelectorAll('[data-bgt-mark-row]')].map(row => ({
+    punct: row.querySelector('[data-bgt-mark-punct]')?.value ?? '',
+    tag: row.querySelector('[data-bgt-mark-tag]')?.value ?? '',
+    at: row.querySelector('[data-bgt-mark-at]')?.value ?? 'inline',
   }));
 }
 
 function markRowElement(doc, mark = { punct: '', tag: '停顿', at: 'inline' }) {
   const row = doc.createElement('div');
-  row.className = 'jy-tts-mark-row';
-  row.dataset.jyMarkRow = '';
+  row.className = 'bgt-tts-mark-row';
+  row.dataset.bgtMarkRow = '';
   const punct = doc.createElement('input');
   punct.type = 'text';
   punct.maxLength = 8;
   punct.placeholder = '标点，比如 ……';
   punct.value = mark.punct ?? '';
-  punct.dataset.jyMarkPunct = '';
+  punct.dataset.bgtMarkPunct = '';
   punct.setAttribute('aria-label', '标点');
   const tag = doc.createElement('select');
-  tag.dataset.jyMarkTag = '';
+  tag.dataset.bgtMarkTag = '';
   tag.setAttribute('aria-label', '标签');
   for (const item of MARK_TAGS) {
     const option = doc.createElement('option');
@@ -12102,7 +12102,7 @@ function markRowElement(doc, mark = { punct: '', tag: '停顿', at: 'inline' }) 
   }
   tag.value = mark.tag ?? '停顿';
   const at = doc.createElement('select');
-  at.dataset.jyMarkAt = '';
+  at.dataset.bgtMarkAt = '';
   at.setAttribute('aria-label', '位置');
   for (const [value, label] of MARK_POSITIONS) {
     const option = doc.createElement('option');
@@ -12113,8 +12113,8 @@ function markRowElement(doc, mark = { punct: '', tag: '停顿', at: 'inline' }) 
   at.value = mark.at === 'head' ? 'head' : 'inline';
   const remove = doc.createElement('button');
   remove.type = 'button';
-  remove.className = 'jy-text-button';
-  remove.dataset.jyAction = 'tts-remove-mark';
+  remove.className = 'bgt-text-button';
+  remove.dataset.bgtAction = 'tts-remove-mark';
   remove.textContent = '×';
   remove.setAttribute('aria-label', '去掉这条');
   row.append(punct, tag, at, remove);
@@ -12125,55 +12125,55 @@ function fillConsoleFields(box, console, { renderMarks = true } = {}) {
   if (!box) return;
   const values = normalizeConsole(console);
   // The default console is static markup on the page; its marks rows and its preset row are built
-  // on the first fill only — [data-jy-console-preset-host] is consumed by the replaceWith below, so
+  // on the first fill only — [data-bgt-console-preset-host] is consumed by the replaceWith below, so
   // a later call finds none and leaves whatever the reader is doing in that row alone.
-  if (!box.querySelector('.jy-tts-marks-fold')) box.appendChild(marksFoldElement(box.ownerDocument, values.marks));
-  const host = box.querySelector('[data-jy-console-preset-host]');
+  if (!box.querySelector('.bgt-tts-marks-fold')) box.appendChild(marksFoldElement(box.ownerDocument, values.marks));
+  const host = box.querySelector('[data-bgt-console-preset-host]');
   if (host) host.replaceWith(consolePresetRow(box.ownerDocument));
-  for (const input of box.querySelectorAll('[data-jy-console-key]')) {
-    input.value = String(values[input.dataset.jyConsoleKey] ?? 50);
+  for (const input of box.querySelectorAll('[data-bgt-console-key]')) {
+    input.value = String(values[input.dataset.bgtConsoleKey] ?? 50);
     input.step = '25';
     const output = input.nextElementSibling;
-    if (output) output.textContent = consoleWord(input.dataset.jyConsoleKey, input.value);
+    if (output) output.textContent = consoleWord(input.dataset.bgtConsoleKey, input.value);
   }
-  const rules = box.querySelector('[data-jy-console-rules]');
+  const rules = box.querySelector('[data-bgt-console-rules]');
   if (rules) rules.value = values.rules;
   // renderMarks=false (a plain-field autosave, DESIGN §15.4): the marks list is left as-is instead of
   // rebuilt, the same reason syncTtsFields skips its other row lists there — a punctuation row still
   // being typed into must not vanish because some other field on the page just committed.
   if (renderMarks) {
-    const list = box.querySelector('[data-jy-marks]');
+    const list = box.querySelector('[data-bgt-marks]');
     if (list) {
       list.replaceChildren();
       for (const mark of values.marks) list.appendChild(markRowElement(list.ownerDocument, mark));
     }
   }
-  const summary = box.querySelector('[data-jy-marks-summary]');
+  const summary = box.querySelector('[data-bgt-marks-summary]');
   if (summary) summary.textContent = marksSummary(values.marks);
 }
 
 function readConsoleFields(box) {
   if (!box) return null;
   const console = {};
-  for (const input of box.querySelectorAll('[data-jy-console-key]')) console[input.dataset.jyConsoleKey] = Number(input.value);
-  console.rules = box.querySelector('[data-jy-console-rules]')?.value ?? '';
-  console.marks = [...box.querySelectorAll('[data-jy-mark-row]')].map(row => ({
-    punct: row.querySelector('[data-jy-mark-punct]')?.value ?? '',
-    tag: row.querySelector('[data-jy-mark-tag]')?.value ?? '',
-    at: row.querySelector('[data-jy-mark-at]')?.value ?? 'inline',
+  for (const input of box.querySelectorAll('[data-bgt-console-key]')) console[input.dataset.bgtConsoleKey] = Number(input.value);
+  console.rules = box.querySelector('[data-bgt-console-rules]')?.value ?? '';
+  console.marks = [...box.querySelectorAll('[data-bgt-mark-row]')].map(row => ({
+    punct: row.querySelector('[data-bgt-mark-punct]')?.value ?? '',
+    tag: row.querySelector('[data-bgt-mark-tag]')?.value ?? '',
+    at: row.querySelector('[data-bgt-mark-at]')?.value ?? 'inline',
   }));
   return console;
 }
 
 function ttsVoiceRowElement(doc, voice, settings = runtime.settings, { open = false } = {}) {
   const row = doc.createElement('details');
-  row.className = 'jy-tts-voice-row';
-  row.dataset.jyTtsVoiceRow = '';
+  row.className = 'bgt-tts-voice-row';
+  row.dataset.bgtTtsVoiceRow = '';
   row.open = open;
   // Opening one closes the rest, so a table of a dozen characters never becomes a mile of scrolling.
   row.addEventListener('toggle', () => {
     if (!row.open) return;
-    for (const other of row.parentElement?.querySelectorAll('[data-jy-tts-voice-row][open]') ?? []) {
+    for (const other of row.parentElement?.querySelectorAll('[data-bgt-tts-voice-row][open]') ?? []) {
       if (other !== row) other.open = false;
     }
     row.scrollIntoView?.({ block: 'nearest' });
@@ -12185,30 +12185,30 @@ function ttsVoiceRowElement(doc, voice, settings = runtime.settings, { open = fa
   name.type = 'text';
   name.maxLength = 60;
   name.placeholder = '角色名（译文里的写法）';
-  name.dataset.jyTtsVoiceName = '';
+  name.dataset.bgtTtsVoiceName = '';
   name.value = voice.name ?? '';
   const aliases = doc.createElement('input');
   aliases.type = 'text';
   aliases.placeholder = '别名，逗号分隔';
-  aliases.dataset.jyTtsVoiceAliases = '';
+  aliases.dataset.bgtTtsVoiceAliases = '';
   aliases.value = (voice.aliases ?? []).join('、');
   const scope = doc.createElement('span');
-  scope.className = 'jy-tts-pick';
-  scope.dataset.jyTtsPickScope = '';
+  scope.className = 'bgt-tts-pick';
+  scope.dataset.bgtTtsPickScope = '';
   const voiceId = doc.createElement('input');
   voiceId.type = 'text';
   voiceId.placeholder = '专属 Voice ID（留空则跟随对白默认音色）';
   voiceId.spellcheck = false;
-  voiceId.dataset.jyTtsVoiceId = '';
+  voiceId.dataset.bgtTtsVoiceId = '';
   voiceId.value = voice.voiceId ?? '';
   scope.append(voiceId, ttsLibraryPicker(doc, settings));
   const title = doc.createElement('span');
-  title.className = 'jy-tts-title';
-  title.dataset.jyTtsVoiceTitle = '';
+  title.className = 'bgt-tts-title';
+  title.dataset.bgtTtsVoiceTitle = '';
   title.textContent = voice.title ? voice.title : '';
   const lock = doc.createElement('span');
-  lock.className = 'jy-badge jy-tts-lock';
-  lock.dataset.jyTtsVoiceLock = '';
+  lock.className = 'bgt-badge bgt-tts-lock';
+  lock.dataset.bgtTtsVoiceLock = '';
   const own = Boolean(voice.voiceId || Object.keys(voice.voices ?? {}).length);
   const muted = voice.mute === true;
   lock.dataset.locked = String(own);
@@ -12217,69 +12217,69 @@ function ttsVoiceRowElement(doc, voice, settings = runtime.settings, { open = fa
   lock.title = muted ? '这个角色的对白不会朗读，也不会生成音频。' : own ? '已绑定专属音色，改默认音色不影响这个角色。' : '没有专属音色，读的时候用对白默认音色；填上 Voice ID 就会锁定。';
   // Not a voice setting but a casting one: whether this character is heard at all.
   const silence = doc.createElement('label');
-  silence.className = 'jy-tts-voice-mute';
+  silence.className = 'bgt-tts-voice-mute';
   const silenceBox = doc.createElement('input');
   silenceBox.type = 'checkbox';
-  silenceBox.dataset.jyTtsVoiceMute = '';
+  silenceBox.dataset.bgtTtsVoiceMute = '';
   silenceBox.checked = muted;
   const silenceText = doc.createElement('span');
   silenceText.textContent = '不朗读这个角色的对白';
   silence.title = '勾上以后，这个角色说的每一句都跳过：不请求、不生成音频、正文里也不给按钮。';
   silence.append(silenceBox, silenceText);
   const tools = doc.createElement('span');
-  tools.className = 'jy-tts-voice-tools';
+  tools.className = 'bgt-tts-voice-tools';
   const addLang = doc.createElement('button');
   addLang.type = 'button';
-  addLang.className = 'jy-button jy-tts-lang-button';
-  addLang.dataset.jyAction = 'tts-add-lang';
+  addLang.className = 'bgt-button bgt-tts-lang-button';
+  addLang.dataset.bgtAction = 'tts-add-lang';
   addLang.textContent = '＋ 多国语言音色';
   addLang.title = '同一个角色读别的语言时用别的音色：中文一个、日语一个、美式英语一个……';
   const unbind = doc.createElement('button');
   unbind.type = 'button';
-  unbind.className = 'jy-text-button';
-  unbind.dataset.jyAction = 'tts-unbind-voice';
+  unbind.className = 'bgt-text-button';
+  unbind.dataset.bgtAction = 'tts-unbind-voice';
   unbind.textContent = '解除绑定';
   unbind.hidden = !own;
   const remove = doc.createElement('button');
   remove.type = 'button';
-  remove.className = 'jy-text-button';
-  remove.dataset.jyAction = 'tts-remove-voice';
+  remove.className = 'bgt-text-button';
+  remove.dataset.bgtAction = 'tts-remove-voice';
   remove.textContent = '移除';
   const addMood = doc.createElement('button');
   addMood.type = 'button';
-  addMood.className = 'jy-button jy-tts-lang-button';
-  addMood.dataset.jyAction = 'tts-add-mood';
+  addMood.className = 'bgt-button bgt-tts-lang-button';
+  addMood.dataset.bgtAction = 'tts-add-mood';
   addMood.textContent = '＋ 情绪音色';
   addMood.title = '同一个声优分别克隆的几种声音（耳语、怒吼、唱歌……）：按分析模式的结果，耳语、笑、张力高或某种基调的句子换成另一个 Voice ID，要开分析模式才会换；「唱」是你在悬浮窗里设成唱的句子，不用开分析模式。';
   tools.append(addLang, addMood, unbind, remove);
   const langs = doc.createElement('div');
-  langs.className = 'jy-tts-lang-list';
-  langs.dataset.jyTtsVoiceLangs = '';
+  langs.className = 'bgt-tts-lang-list';
+  langs.dataset.bgtTtsVoiceLangs = '';
   for (const [lang, id] of Object.entries(voice.voices ?? {})) langs.appendChild(ttsLanguageRowElement(doc, lang, id, settings));
   const moods = doc.createElement('div');
-  moods.className = 'jy-tts-mood-list';
-  moods.dataset.jyTtsVoiceMoods = '';
+  moods.className = 'bgt-tts-mood-list';
+  moods.dataset.bgtTtsVoiceMoods = '';
   for (const mood of voice.moods ?? []) moods.appendChild(ttsMoodRowElement(doc, mood, settings));
   // Folded, a row is one line: the name, whether it has a voice of its own, and what is bound.
   const summary = doc.createElement('summary');
-  summary.className = 'jy-tts-voice-summary';
+  summary.className = 'bgt-tts-voice-summary';
   const summaryName = doc.createElement('span');
-  summaryName.className = 'jy-tts-voice-summary-name';
-  summaryName.dataset.jyTtsVoiceSummaryName = '';
+  summaryName.className = 'bgt-tts-voice-summary-name';
+  summaryName.dataset.bgtTtsVoiceSummaryName = '';
   summaryName.textContent = voice.name || '（未命名）';
   const summaryMeta = doc.createElement('span');
-  summaryMeta.className = 'jy-tts-voice-summary-meta';
+  summaryMeta.className = 'bgt-tts-voice-summary-meta';
   summaryMeta.textContent = ttsVoiceRowMeta(voice, settings);
   summary.append(summaryName, lock, summaryMeta);
   // The character's own console, folded under the row; the default one reads for it until set.
   const consoleFold = doc.createElement('details');
-  consoleFold.className = 'jy-tts-console-fold';
+  consoleFold.className = 'bgt-tts-console-fold';
   consoleFold.open = Boolean(voice.console);
   const consoleSummary = doc.createElement('summary');
   consoleSummary.textContent = voice.console ? '调音台（已单独设置）' : '调音台（跟着默认）';
   consoleFold.append(consoleSummary, consoleFieldsElement(doc, voice.console ?? DEFAULT_CONSOLE, { scope: 'row' }));
   const body = doc.createElement('div');
-  body.className = 'jy-tts-voice-body';
+  body.className = 'bgt-tts-voice-body';
   body.append(name, aliases, scope, title, silence, tools, langs, moods, consoleFold);
   row.append(summary, body);
   return row;
@@ -12311,10 +12311,10 @@ function ttsVoiceRowMeta(voice, settings = runtime.settings) {
 function syncKnownVoices(root, settings = runtime.settings) {
   const library = normalizeVoiceLibrary(settings?.voiceLibrary);
   const doc = root.ownerDocument;
-  for (const scope of root.querySelectorAll('[data-jy-tts-pick-scope]')) {
+  for (const scope of root.querySelectorAll('[data-bgt-tts-pick-scope]')) {
     const input = scope.querySelector('input');
     if (!input) continue;
-    scope.querySelector('.jy-tts-known')?.remove();
+    scope.querySelector('.bgt-tts-known')?.remove();
     const known = library.find(entry => entry.voiceId === input.value.trim());
     if (!known) {
       input.hidden = false;
@@ -12322,8 +12322,8 @@ function syncKnownVoices(root, settings = runtime.settings) {
     }
     const chip = doc.createElement('button');
     chip.type = 'button';
-    chip.className = 'jy-tts-known';
-    chip.dataset.jyAction = 'tts-edit-voice';
+    chip.className = 'bgt-tts-known';
+    chip.dataset.bgtAction = 'tts-edit-voice';
     chip.title = `${known.voiceId}\n点一下改成填 ID`;
     chip.textContent = known.lang ? `${known.name} · ${languageLabel(known.lang)}` : known.name;
     input.hidden = true;
@@ -12332,16 +12332,16 @@ function syncKnownVoices(root, settings = runtime.settings) {
 }
 
 function renderTtsVoiceList(root, settings = runtime.settings) {
-  const list = root.querySelector('[data-jy-tts-voice-list]');
+  const list = root.querySelector('[data-bgt-tts-voice-list]');
   if (!list) return;
   const doc = list.ownerDocument;
   const voices = ttsVoicesFor(settings);
   // Rows being edited stay open across a redraw.
-  const open = new Set([...list.querySelectorAll('[data-jy-tts-voice-row][open]')].map(row => row.querySelector('[data-jy-tts-voice-name]')?.value.trim()).filter(Boolean));
+  const open = new Set([...list.querySelectorAll('[data-bgt-tts-voice-row][open]')].map(row => row.querySelector('[data-bgt-tts-voice-name]')?.value.trim()).filter(Boolean));
   list.replaceChildren();
   if (!voices.length) {
     const note = doc.createElement('p');
-    note.className = 'jy-muted';
+    note.className = 'bgt-muted';
     note.textContent = '还没有登记角色。没登记的角色用对白默认音色读，不会不读。可以从角色卡和世界书一键识别角色。';
     list.appendChild(note);
     return;
@@ -12375,16 +12375,16 @@ function syncTtsFolds(root, settings = runtime.settings) {
   const stored = readTtsFolds();
   // DESIGN §15.4 折叠组: every fold on 正文处理 and 朗读 starts collapsed; one the reader has opened
   // before (`stored`, written by the toggle listener below) stays open across a re-sync.
-  for (const details of root.querySelectorAll('details[data-jy-fold]')) {
-    const id = details.dataset.jyFold;
+  for (const details of root.querySelectorAll('details[data-bgt-fold]')) {
+    const id = details.dataset.bgtFold;
     details.open = typeof stored[id] === 'boolean' ? stored[id] : false;
   }
-  if (!root.dataset.jyTtsFolds) {
-    root.dataset.jyTtsFolds = 'bound';
+  if (!root.dataset.bgtTtsFolds) {
+    root.dataset.bgtTtsFolds = 'bound';
     // toggle does not bubble; a capturing listener on the root still hears every fold.
     root.addEventListener('toggle', event => {
       const details = event.target;
-      if (details instanceof Element && details.matches('details[data-jy-fold]')) writeTtsFold(details.dataset.jyFold, details.open);
+      if (details instanceof Element && details.matches('details[data-bgt-fold]')) writeTtsFold(details.dataset.bgtFold, details.open);
     }, true);
   }
 }
@@ -12413,8 +12413,8 @@ function syncTtsFoldSummaries(root, settings = runtime.settings) {
       }),
     ].filter(Boolean).join(' · ') || '关闭',
   };
-  for (const [id, text] of Object.entries(summaries)) setText(root, `[data-jy-fold="${id}"] [data-jy-fold-summary]`, text);
-  setText(root, '[data-jy-tts-scope-note]', tts.voiceScope === 'chat'
+  for (const [id, text] of Object.entries(summaries)) setText(root, `[data-bgt-fold="${id}"] [data-bgt-fold-summary]`, text);
+  setText(root, '[data-bgt-tts-scope-note]', tts.voiceScope === 'chat'
     ? (ttsVoicesOwned(settings)
       ? '这张表只属于当前聊天，别的聊天看不到。'
       : '当前聊天还没有自己的表，显示的是角色卡的表；在这里改动并保存后，会成为本聊天自己的一份，角色卡的表不变。')
@@ -12437,21 +12437,21 @@ const GSV_LANGUAGE_LABELS = Object.freeze({ zh: '中文', ja: '日语', en: '英
 /** One 音色库 entry's GPT-SoVITS voice: its clip, the words in it, their language, its models, 试听. */
 function ttsLibraryGsvElement(doc, gsv = null) {
   const block = doc.createElement('div');
-  block.className = 'jy-tts-library-gsv';
+  block.className = 'bgt-tts-library-gsv';
   const head = doc.createElement('span');
-  head.className = 'jy-label jy-tts-library-gsv-head';
+  head.className = 'bgt-label bgt-tts-library-gsv-head';
   head.textContent = 'GPT-SoVITS';
   const field = (key, placeholder) => {
     const input = doc.createElement('input');
     input.type = 'text';
     input.spellcheck = false;
     input.placeholder = placeholder;
-    input.dataset.jyTtsLibraryGsv = key;
+    input.dataset.bgtTtsLibraryGsv = key;
     input.value = gsv?.[key] ?? '';
     return input;
   };
   const lang = doc.createElement('select');
-  lang.dataset.jyTtsLibraryGsv = 'promptLang';
+  lang.dataset.bgtTtsLibraryGsv = 'promptLang';
   lang.setAttribute('aria-label', '参考音频语言');
   for (const code of GSV_LANGUAGES) {
     const option = doc.createElement('option');
@@ -12462,8 +12462,8 @@ function ttsLibraryGsvElement(doc, gsv = null) {
   lang.value = gsv?.promptLang || 'zh';
   const audition = doc.createElement('button');
   audition.type = 'button';
-  audition.className = 'jy-button';
-  audition.dataset.jyAction = 'tts-gsv-audition';
+  audition.className = 'bgt-button';
+  audition.dataset.bgtAction = 'tts-gsv-audition';
   audition.textContent = '试听';
   block.append(
     head,
@@ -12479,7 +12479,7 @@ function ttsLibraryGsvElement(doc, gsv = null) {
 
 /** What a 音色库 row's GPT-SoVITS fields hold, as the settings keep it. */
 function readLibraryGsv(row) {
-  const value = key => row?.querySelector(`[data-jy-tts-library-gsv="${key}"]`)?.value ?? '';
+  const value = key => row?.querySelector(`[data-bgt-tts-library-gsv="${key}"]`)?.value ?? '';
   return { refAudioPath: value('refAudioPath'), promptText: value('promptText'), promptLang: value('promptLang'), gptWeights: value('gptWeights'), sovitsWeights: value('sovitsWeights') };
 }
 
@@ -12490,71 +12490,71 @@ function readLibraryGsv(row) {
  */
 function ttsLibraryRowElement(doc, voice, { open = false } = {}) {
   const row = doc.createElement('details');
-  row.className = 'jy-tts-library-row';
-  row.dataset.jyTtsLibraryRow = '';
+  row.className = 'bgt-tts-library-row';
+  row.dataset.bgtTtsLibraryRow = '';
   row.dataset.id = voice.id ?? '';
   row.dataset.voiceId = voice.voiceId ?? '';
   row.dataset.title = voice.title ?? '';
   row.open = open;
   row.addEventListener('toggle', () => {
     if (!row.open) return;
-    for (const other of row.parentElement?.querySelectorAll('[data-jy-tts-library-row][open]') ?? []) {
+    for (const other of row.parentElement?.querySelectorAll('[data-bgt-tts-library-row][open]') ?? []) {
       if (other !== row) other.open = false;
     }
     row.scrollIntoView?.({ block: 'nearest' });
   });
   const summary = doc.createElement('summary');
-  summary.className = 'jy-tts-voice-summary';
+  summary.className = 'bgt-tts-voice-summary';
   const summaryName = doc.createElement('span');
-  summaryName.className = 'jy-tts-voice-summary-name';
-  summaryName.dataset.jyTtsLibrarySummaryName = '';
+  summaryName.className = 'bgt-tts-voice-summary-name';
+  summaryName.dataset.bgtTtsLibrarySummaryName = '';
   summaryName.textContent = voice.name || '（未命名）';
   const summaryMeta = doc.createElement('span');
-  summaryMeta.className = 'jy-tts-voice-summary-meta';
+  summaryMeta.className = 'bgt-tts-voice-summary-meta';
   summaryMeta.textContent = ttsLibraryRowMeta(voice);
   summary.append(summaryName, summaryMeta);
   const name = doc.createElement('input');
   name.type = 'text';
   name.maxLength = 60;
   name.placeholder = '自定义名字，比如「少年·清亮」';
-  name.dataset.jyTtsLibraryName = '';
+  name.dataset.bgtTtsLibraryName = '';
   name.value = voice.name ?? '';
   const id = doc.createElement('input');
   id.type = 'text';
   id.placeholder = 'Fish Voice ID（只用 GPT-SoVITS 可以不填）';
   id.spellcheck = false;
-  id.dataset.jyTtsLibraryId = '';
+  id.dataset.bgtTtsLibraryId = '';
   // The id an entry heard only through GPT-SoVITS is bound by is the extension's own, not one to type.
   id.value = isGsvVoiceId(voice.voiceId) ? '' : (voice.voiceId ?? '');
   const lang = ttsLanguageSelect(doc, voice.lang || 'zh');
-  lang.dataset.jyTtsLibraryLang = '';
-  delete lang.dataset.jyTtsLangCode;
+  lang.dataset.bgtTtsLibraryLang = '';
+  delete lang.dataset.bgtTtsLangCode;
   const title = doc.createElement('span');
-  title.className = 'jy-tts-title';
+  title.className = 'bgt-tts-title';
   title.textContent = voice.title ?? '';
   const remove = doc.createElement('button');
   remove.type = 'button';
-  remove.className = 'jy-text-button';
-  remove.dataset.jyAction = 'tts-remove-library';
+  remove.className = 'bgt-text-button';
+  remove.dataset.bgtAction = 'tts-remove-library';
   remove.textContent = '移除';
   const body = doc.createElement('div');
-  body.className = 'jy-tts-library-body';
+  body.className = 'bgt-tts-library-body';
   body.append(name, id, lang, title, remove, ttsLibraryGsvElement(doc, voice.gsv));
   row.append(summary, body);
   return row;
 }
 
 function renderTtsLibrary(root, settings = runtime.settings) {
-  const list = root.querySelector('[data-jy-tts-library]');
+  const list = root.querySelector('[data-bgt-tts-library]');
   if (!list) return;
   const doc = list.ownerDocument;
   const library = normalizeVoiceLibrary(settings?.voiceLibrary);
   // An entry being edited stays open across a redraw.
-  const open = new Set([...list.querySelectorAll('[data-jy-tts-library-row][open]')].map(row => row.dataset.id).filter(Boolean));
+  const open = new Set([...list.querySelectorAll('[data-bgt-tts-library-row][open]')].map(row => row.dataset.id).filter(Boolean));
   list.replaceChildren();
   if (!library.length) {
     const note = doc.createElement('p');
-    note.className = 'jy-muted';
+    note.className = 'bgt-muted';
     note.textContent = '音色库是空的。把常用的 Voice ID 起个名字存进来，之后给角色、旁白选音色就不用再翻 ID。';
     list.appendChild(note);
     return;
@@ -12563,7 +12563,7 @@ function renderTtsLibrary(root, settings = runtime.settings) {
 }
 
 function renderNarratorLanguages(root, settings = runtime.settings) {
-  const list = root.querySelector('[data-jy-tts-narrator-langs]');
+  const list = root.querySelector('[data-bgt-tts-narrator-langs]');
   if (!list) return;
   const doc = list.ownerDocument;
   const tts = ttsSettings(settings);
@@ -12574,16 +12574,16 @@ function renderNarratorLanguages(root, settings = runtime.settings) {
 // Fills the pickers next to the narrator and dialogue fields, which are typed in the markup.
 function syncTtsPickers(root, settings = runtime.settings) {
   const doc = root.ownerDocument;
-  for (const scope of root.querySelectorAll('[data-jy-tts-page-pick]')) {
-    scope.querySelector('[data-jy-tts-pick]')?.remove();
+  for (const scope of root.querySelectorAll('[data-bgt-tts-page-pick]')) {
+    scope.querySelector('[data-bgt-tts-pick]')?.remove();
     scope.appendChild(ttsLibraryPicker(doc, settings));
   }
 }
 
 function updateTtsProxyHelp(root) {
   updateGsvProxyHelp(root);
-  const proxy = root.querySelector('[data-jy-tts-fish="viaProxy"]');
-  const help = root.querySelector('[data-jy-tts-proxy-help]');
+  const proxy = root.querySelector('[data-bgt-tts-fish="viaProxy"]');
+  const help = root.querySelector('[data-bgt-tts-proxy-help]');
   if (!help) return;
   if (detectTtsHost() === 'tauritavern') {
     if (proxy) proxy.disabled = true;
@@ -12598,8 +12598,8 @@ function updateTtsProxyHelp(root) {
 
 // The same line for GPT-SoVITS, which sends no CORS headers either.
 function updateGsvProxyHelp(root) {
-  const proxy = root.querySelector('[data-jy-tts-gsv="viaProxy"]');
-  const help = root.querySelector('[data-jy-tts-gsv-proxy-help]');
+  const proxy = root.querySelector('[data-bgt-tts-gsv="viaProxy"]');
+  const help = root.querySelector('[data-bgt-tts-gsv-proxy-help]');
   if (!help) return;
   if (detectTtsHost() === 'tauritavern') {
     if (proxy) proxy.disabled = true;
@@ -12620,13 +12620,13 @@ function formatBytes(bytes) {
 }
 
 async function renderTtsUsage(root) {
-  const target = root.querySelector('[data-jy-tts-usage]');
+  const target = root.querySelector('[data-bgt-tts-usage]');
   if (!target) return;
   try {
     const store = ttsStore();
     const usage = await store.usage();
     target.textContent = `已缓存 ${usage.entries} 段音频，共 ${formatBytes(usage.bytes)}。${usage.backend === 'memory' ? `${store.note || '当前只保存在本次会话里。'}` : '保存在这个浏览器里，不进聊天记录，换设备不会跟过去。'}`;
-    setText(root, '[data-jy-fold="tts-cache"] [data-jy-fold-summary]', `${usage.entries} 段 · ${formatBytes(usage.bytes)}`);
+    setText(root, '[data-bgt-fold="tts-cache"] [data-bgt-fold-summary]', `${usage.entries} 段 · ${formatBytes(usage.bytes)}`);
   } catch (error) {
     target.textContent = `读取缓存失败：${safeError(error)}`;
   }
@@ -12644,18 +12644,18 @@ async function renderTtsUsage(root) {
 // syncTtsFields against the 朗读 page while the reader is looking at an entirely different one.
 function fillTtsChannelPickers(root, settings) {
   const tts = ttsSettings(settings);
-  for (const deepSelect of root.querySelectorAll('[data-jy-tts-field="deepChannelId"]')) fillChannelPicker(deepSelect, settings, connectionUseChoice(settings, 'deep'));
+  for (const deepSelect of root.querySelectorAll('[data-bgt-tts-field="deepChannelId"]')) fillChannelPicker(deepSelect, settings, connectionUseChoice(settings, 'deep'));
   renderConnectionUses(root, settings);
   // 实时通话的通话连接: left empty, a call is answered on the 分析模式 connection.
-  for (const callSelect of root.querySelectorAll('[data-jy-tts-field="callChannelId"]')) fillChannelPicker(callSelect, settings, tts.callChannelId || '', { lead: { value: '', text: `和分析模式用同一条：${channelLabel(settings, connectionUseChoice(settings, 'deep'), { short: true })}` } });
+  for (const callSelect of root.querySelectorAll('[data-bgt-tts-field="callChannelId"]')) fillChannelPicker(callSelect, settings, tts.callChannelId || '', { lead: { value: '', text: `和分析模式用同一条：${channelLabel(settings, connectionUseChoice(settings, 'deep'), { short: true })}` } });
 }
 
 function syncTtsFields(root, settings = runtime.settings, { renderLists = true } = {}) {
-  if (!root.querySelector('[data-jy-page="tts"]')) return;
+  if (!root.querySelector('[data-bgt-page="tts"]')) return;
   const tts = ttsSettings(settings);
-  for (const row of root.querySelectorAll('[data-jy-dependent="ttsIntimate"]')) row.dataset.jyDependentOff = String(tts.mode !== 'deep');
-  for (const element of root.querySelectorAll('[data-jy-tts-field]')) {
-    const key = element.dataset.jyTtsField;
+  for (const row of root.querySelectorAll('[data-bgt-dependent="ttsIntimate"]')) row.dataset.bgtDependentOff = String(tts.mode !== 'deep');
+  for (const element of root.querySelectorAll('[data-bgt-tts-field]')) {
+    const key = element.dataset.bgtTtsField;
     // 分析模式 is one switch (DESIGN §17.2): on is the analysed reading, off the plain one.
     if (key === 'mode' && element.type === 'checkbox') {
       element.checked = tts.mode === 'deep';
@@ -12668,44 +12668,44 @@ function syncTtsFields(root, settings = runtime.settings, { renderLists = true }
     else if (element.type === 'checkbox') element.checked = value === true;
     else element.value = value ?? '';
   }
-  for (const element of root.querySelectorAll('[data-jy-tts-fish]')) {
-    const value = tts.fish[element.dataset.jyTtsFish];
+  for (const element of root.querySelectorAll('[data-bgt-tts-fish]')) {
+    const value = tts.fish[element.dataset.bgtTtsFish];
     if (element.type === 'checkbox') element.checked = value === true;
     else element.value = value ?? '';
   }
   for (const kind of ['doubao', 'minimax']) {
-    for (const element of root.querySelectorAll(`[data-jy-tts-${kind}]`)) {
-      const value = tts[kind][element.getAttribute(`data-jy-tts-${kind}`)];
+    for (const element of root.querySelectorAll(`[data-bgt-tts-${kind}]`)) {
+      const value = tts[kind][element.getAttribute(`data-bgt-tts-${kind}`)];
       if (element.type === 'checkbox') element.checked = value === true;
       else element.value = value ?? '';
     }
   }
-  for (const block of root.querySelectorAll('[data-jy-stream-voice]')) block.hidden = block.dataset.jyStreamVoice !== tts.streamVoice;
-  for (const element of root.querySelectorAll('[data-jy-tts-gsv]')) {
-    const value = tts.gsv[element.dataset.jyTtsGsv];
+  for (const block of root.querySelectorAll('[data-bgt-stream-voice]')) block.hidden = block.dataset.bgtStreamVoice !== tts.streamVoice;
+  for (const element of root.querySelectorAll('[data-bgt-tts-gsv]')) {
+    const value = tts.gsv[element.dataset.bgtTtsGsv];
     if (element.type === 'checkbox') element.checked = value === true;
     else element.value = value ?? '';
   }
   // 声音来源: only the chosen provider's card and parameters are on the page.
-  for (const card of root.querySelectorAll('[data-jy-tts-provider-card]')) card.hidden = card.dataset.jyTtsProviderCard !== tts.provider;
-  for (const element of root.querySelectorAll('[data-jy-tts-context]')) {
-    const value = tts.context[element.dataset.jyTtsContext];
+  for (const card of root.querySelectorAll('[data-bgt-tts-provider-card]')) card.hidden = card.dataset.bgtTtsProviderCard !== tts.provider;
+  for (const element of root.querySelectorAll('[data-bgt-tts-context]')) {
+    const value = tts.context[element.dataset.bgtTtsContext];
     if (element.type === 'checkbox') element.checked = value === true;
     else element.value = value ?? '';
   }
-  fillConsoleFields(root.querySelector('[data-jy-tts-console="default"]'), tts.console, { renderMarks: renderLists });
+  fillConsoleFields(root.querySelector('[data-bgt-tts-console="default"]'), tts.console, { renderMarks: renderLists });
   // The built-in prompt shows as the placeholder, so an empty box means "the default, whatever it is".
-  for (const element of root.querySelectorAll('[data-jy-tts-prompt]')) {
-    element.value = tts.prompts[element.dataset.jyTtsPrompt] ?? '';
+  for (const element of root.querySelectorAll('[data-bgt-tts-prompt]')) {
+    element.value = tts.prompts[element.dataset.bgtTtsPrompt] ?? '';
     // A box with no built-in text of its own (破限词) keeps the placeholder its markup gives it.
-    if (Object.hasOwn(TTS_PROMPT_DEFAULTS, element.dataset.jyTtsPrompt)) element.placeholder = TTS_PROMPT_DEFAULTS[element.dataset.jyTtsPrompt];
+    if (Object.hasOwn(TTS_PROMPT_DEFAULTS, element.dataset.bgtTtsPrompt)) element.placeholder = TTS_PROMPT_DEFAULTS[element.dataset.bgtTtsPrompt];
   }
   fillTtsChannelPickers(root, settings);
-  const cloud = root.querySelector('[data-jy-stt-cloud]');
+  const cloud = root.querySelector('[data-bgt-stt-cloud]');
   if (cloud) cloud.hidden = tts.sttProvider !== 'cloud';
   renderCallApps(root, settings);
-  setText(root, '[data-jy-tts-title="narrator"]', tts.narratorTitle ? `· ${tts.narratorTitle}` : '');
-  setText(root, '[data-jy-tts-title="dialogue"]', tts.dialogueTitle ? `· ${tts.dialogueTitle}` : '');
+  setText(root, '[data-bgt-tts-title="narrator"]', tts.narratorTitle ? `· ${tts.narratorTitle}` : '');
+  setText(root, '[data-bgt-tts-title="dialogue"]', tts.dialogueTitle ? `· ${tts.dialogueTitle}` : '');
   syncTtsPickers(root, settings);
   if (renderLists) {
     renderNarratorLanguages(root, settings);
@@ -12726,11 +12726,11 @@ function syncTtsFields(root, settings = runtime.settings, { renderLists = true }
 
 // The line under 「一次请求发多少」: what the choice buys and what it costs, for the model chosen.
 function updateTtsUnitHelp(root, settings = runtime.settings) {
-  const help = root.querySelector('[data-jy-tts-unit-help]');
+  const help = root.querySelector('[data-bgt-tts-unit-help]');
   if (!help) return;
   const tts = ttsSettings(settings);
-  const unit = root.querySelector('[data-jy-tts-field="requestUnit"]')?.value ?? tts.requestUnit;
-  const model = root.querySelector('[data-jy-tts-fish="model"]')?.value ?? tts.fish.model;
+  const unit = root.querySelector('[data-bgt-tts-field="requestUnit"]')?.value ?? tts.requestUnit;
+  const model = root.querySelector('[data-bgt-tts-fish="model"]')?.value ?? tts.fish.model;
   if (unit === 'floor') {
     help.textContent = [
       '整楼一次：这一楼要读的句子按顺序排好，所有角色连同旁白放进同一个请求，各用各的音色，Fish 当成一场对话连着读，人和人之间的衔接更自然。',
@@ -12751,13 +12751,13 @@ function updateTtsUnitHelp(root, settings = runtime.settings) {
 
 // The line under the 分析模式 switch says what either position comes to.
 function updateTtsModeHelp(root) {
-  const help = root.querySelector('[data-jy-tts-mode-help]');
+  const help = root.querySelector('[data-bgt-tts-mode-help]');
   if (!help) return;
-  const toggle = root.querySelector('[data-jy-tts-field="mode"]');
+  const toggle = root.querySelector('[data-bgt-tts-field="mode"]');
   const analysed = toggle ? toggle.checked === true : ttsSettings().mode === 'deep';
   // What to do with a floor nobody translated or analysed is the plain reading's question alone:
   // 分析模式 analyses such a floor as a matter of course.
-  const askField = root.querySelector('[data-jy-tts-ask-field]');
+  const askField = root.querySelector('[data-bgt-tts-ask-field]');
   if (askField) askField.hidden = analysed;
   help.textContent = analysed
     ? '开着：正文一闭合就把原文发给副模型，不等翻译、也不用翻译的标注，一次请求，旁白和对白逐句标：对白由谁念、语速、张力，再按声学标注规则在字上插 Fish 认得的声音标签（耳语、气声、窃笑、轻笑、叹气、倒抽气、急喘、低哼、清嗓、停顿），不写情绪词；台词可以加叠字、！！、~、……和语气词，原文的字不改。带角色资料、世界书和前几楼（在「更多 → 分析模式」里勾）。读译文时把结果对到译文上。走分析模式用的连接。'
@@ -12774,23 +12774,23 @@ function updateTtsModeHelp(root) {
  */
 function syncTtsFeatureVisibility(root, settings = runtime.settings) {
   const enabled = ttsSettings(settings).enabled;
-  const tab = root.querySelector('[data-jy-tab="tts"]');
+  const tab = root.querySelector('[data-bgt-tab="tts"]');
   // DESIGN §15.1: 「朗读」has no rail button at all in normal mode (its settings live on 翻译台/微调
   // instead) — enabling TTS there must not resurrect this advanced-only tab. pageExistsInMode keeps
   // this in step with applyUiMode's own rule instead of re-deriving the mode list here.
   if (tab) tab.hidden = !pageExistsInMode('tts', settings.uiMode) || (!enabled && tab.getAttribute('aria-selected') !== 'true');
-  const page = root.querySelector('[data-jy-page="tts"]');
-  if (page) page.dataset.jyTtsOff = String(!enabled);
-  const shortcut = root.querySelector('[data-jy-action="open-tts"]');
+  const page = root.querySelector('[data-bgt-page="tts"]');
+  if (page) page.dataset.bgtTtsOff = String(!enabled);
+  const shortcut = root.querySelector('[data-bgt-action="open-tts"]');
   if (shortcut) shortcut.hidden = !enabled;
 }
 
 function collectTtsFields(root, current) {
-  if (!root.querySelector('[data-jy-page="tts"]')) return;
+  if (!root.querySelector('[data-bgt-page="tts"]')) return;
   const previous = ttsSettings(current);
   const next = { ...previous, fish: { ...previous.fish }, gsv: { ...previous.gsv } };
-  for (const element of root.querySelectorAll('[data-jy-tts-field]')) {
-    const key = element.dataset.jyTtsField;
+  for (const element of root.querySelectorAll('[data-bgt-tts-field]')) {
+    const key = element.dataset.bgtTtsField;
     if (key === 'mode' && element.type === 'checkbox') {
       next.mode = element.checked ? 'deep' : 'off';
     } else if (element.type === 'radio') {
@@ -12805,70 +12805,70 @@ function collectTtsFields(root, current) {
       next[key] = element.value.trim();
     }
   }
-  for (const element of root.querySelectorAll('[data-jy-tts-fish]')) {
-    const key = element.dataset.jyTtsFish;
+  for (const element of root.querySelectorAll('[data-bgt-tts-fish]')) {
+    const key = element.dataset.bgtTtsFish;
     if (element.type === 'checkbox') next.fish[key] = element.checked;
     else if (TTS_NUMERIC_FISH_FIELDS.has(key)) next.fish[key] = Number(element.value);
     else next.fish[key] = element.value.trim();
   }
   for (const kind of ['doubao', 'minimax']) {
     next[kind] = { ...previous[kind] };
-    for (const element of root.querySelectorAll(`[data-jy-tts-${kind}]`)) {
-      const key = element.getAttribute(`data-jy-tts-${kind}`);
+    for (const element of root.querySelectorAll(`[data-bgt-tts-${kind}]`)) {
+      const key = element.getAttribute(`data-bgt-tts-${kind}`);
       next[kind][key] = element.type === 'checkbox' ? element.checked : element.value.trim();
     }
   }
-  for (const element of root.querySelectorAll('[data-jy-tts-gsv]')) {
-    const key = element.dataset.jyTtsGsv;
+  for (const element of root.querySelectorAll('[data-bgt-tts-gsv]')) {
+    const key = element.dataset.bgtTtsGsv;
     if (element.type === 'checkbox') next.gsv[key] = element.checked;
     else if (TTS_NUMERIC_GSV_FIELDS.has(key)) next.gsv[key] = Number(element.value);
     else next.gsv[key] = element.value.trim();
   }
   next.context = { ...previous.context };
-  for (const element of root.querySelectorAll('[data-jy-tts-context]')) {
-    const key = element.dataset.jyTtsContext;
+  for (const element of root.querySelectorAll('[data-bgt-tts-context]')) {
+    const key = element.dataset.bgtTtsContext;
     next.context[key] = element.type === 'checkbox' ? element.checked : Number(element.value);
   }
   next.prompts = { ...previous.prompts };
-  for (const element of root.querySelectorAll('[data-jy-tts-prompt]')) next.prompts[element.dataset.jyTtsPrompt] = element.value;
-  const defaultConsole = root.querySelector('[data-jy-tts-console="default"]');
+  for (const element of root.querySelectorAll('[data-bgt-tts-prompt]')) next.prompts[element.dataset.bgtTtsPrompt] = element.value;
+  const defaultConsole = root.querySelector('[data-bgt-tts-console="default"]');
   if (defaultConsole) next.console = normalizeConsole(readConsoleFields(defaultConsole));
   for (const [field, title] of [['narratorVoice', 'narratorTitle'], ['dialogueVoice', 'dialogueTitle']]) {
     if (next[field] && next[field] !== normalizeTts({ [field]: next[field] })[field]) throw new Error(`「${field === 'narratorVoice' ? '旁白音色' : '对白默认音色'}」不是有效的 Voice ID。`);
     if (next[field] !== previous[field]) next[title] = '';
   }
-  next.narratorVoices = readLanguageRows(root.querySelector('[data-jy-tts-narrator-langs]'));
+  next.narratorVoices = readLanguageRows(root.querySelector('[data-bgt-tts-narrator-langs]'));
   current.tts = normalizeTts(next);
-  const libraryRows = [...root.querySelectorAll('[data-jy-tts-library-row]')].map(row => {
-    const voiceId = row.querySelector('[data-jy-tts-library-id]')?.value.trim() ?? '';
+  const libraryRows = [...root.querySelectorAll('[data-bgt-tts-library-row]')].map(row => {
+    const voiceId = row.querySelector('[data-bgt-tts-library-id]')?.value.trim() ?? '';
     // A new row keeps the handle it is first saved under: an entry heard only through GPT-SoVITS is
     // bound by an id made from it, and a row saved again while still open must not get another.
     if (!row.dataset.id) row.dataset.id = `voice-${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 6)}`;
     return {
       id: row.dataset.id,
-      name: row.querySelector('[data-jy-tts-library-name]')?.value ?? '',
+      name: row.querySelector('[data-bgt-tts-library-name]')?.value ?? '',
       voiceId,
-      lang: row.querySelector('[data-jy-tts-library-lang]')?.value ?? '',
+      lang: row.querySelector('[data-bgt-tts-library-lang]')?.value ?? '',
       title: voiceId === row.dataset.voiceId ? row.dataset.title : '',
       gsv: readLibraryGsv(row),
     };
   });
-  if (root.querySelector('[data-jy-tts-library]')) current.voiceLibrary = normalizeVoiceLibrary(libraryRows);
-  if (!root.querySelector('[data-jy-tts-voice-list]')) return;
-  const rows = [...root.querySelectorAll('[data-jy-tts-voice-row]')].map(row => {
-    const voiceId = row.querySelector('[data-jy-tts-voice-id]')?.value.trim() ?? '';
-    const voices = readLanguageRows(row.querySelector('[data-jy-tts-voice-langs]'));
+  if (root.querySelector('[data-bgt-tts-library]')) current.voiceLibrary = normalizeVoiceLibrary(libraryRows);
+  if (!root.querySelector('[data-bgt-tts-voice-list]')) return;
+  const rows = [...root.querySelectorAll('[data-bgt-tts-voice-row]')].map(row => {
+    const voiceId = row.querySelector('[data-bgt-tts-voice-id]')?.value.trim() ?? '';
+    const voices = readLanguageRows(row.querySelector('[data-bgt-tts-voice-langs]'));
     return {
-      name: row.querySelector('[data-jy-tts-voice-name]')?.value ?? '',
-      aliases: row.querySelector('[data-jy-tts-voice-aliases]')?.value ?? '',
+      name: row.querySelector('[data-bgt-tts-voice-name]')?.value ?? '',
+      aliases: row.querySelector('[data-bgt-tts-voice-aliases]')?.value ?? '',
       voiceId,
       voices,
       // Locked exactly when the row has a voice of its own; clearing the ids unlocks it.
       locked: Boolean(voiceId || Object.keys(voices).length),
-      mute: row.querySelector('[data-jy-tts-voice-mute]')?.checked === true,
+      mute: row.querySelector('[data-bgt-tts-voice-mute]')?.checked === true,
       title: voiceId === row.dataset.voiceId ? row.dataset.title : '',
-      console: readConsoleFields(row.querySelector('[data-jy-tts-console="row"]')),
-      moods: readMoodRows(row.querySelector('[data-jy-tts-voice-moods]')),
+      console: readConsoleFields(row.querySelector('[data-bgt-tts-console="row"]')),
+      moods: readMoodRows(row.querySelector('[data-bgt-tts-voice-moods]')),
     };
   });
   const list = normalizeVoiceList(rows);
@@ -13216,16 +13216,16 @@ async function askCastPicks(people, { already = 0, dropped = [] } = {}) {
 // and the voice each one resolves to. It is the same data the audio is made from, so a wrong voice here
 // is a wrong voice in the chat, and it can be fixed before anything is paid for.
 function renderTtsPreview(root) {
-  const target = root.querySelector('[data-jy-tts-preview]');
+  const target = root.querySelector('[data-bgt-tts-preview]');
   if (!target) return;
   const doc = target.ownerDocument;
   const preview = runtime.tts.preview;
-  const copy = root.querySelector('[data-jy-action="tts-copy-structure"]');
+  const copy = root.querySelector('[data-bgt-action="tts-copy-structure"]');
   if (copy) copy.hidden = !preview;
   target.replaceChildren();
   if (!preview) {
     const note = doc.createElement('p');
-    note.className = 'jy-muted';
+    note.className = 'bgt-muted';
     note.textContent = '还没有分析过。点「分析最新一楼」，看每一句会被谁、用什么情绪、哪个音色读。';
     target.appendChild(note);
     return;
@@ -13235,41 +13235,41 @@ function renderTtsPreview(root) {
   const config = ttsVoiceConfig(settings);
   const inRange = new Set(audibleSegments(preview.segments, tts.range, ttsVoiceConfig(settings)).map(segment => segment.id));
   const head = doc.createElement('p');
-  head.className = 'jy-muted';
-  head.textContent = `第 ${preview.messageId} 楼 · ${preview.segments.length} 句 · ${preview.source === 'translation' ? '读的是镜译译文' : preview.source === 'source' ? '读的是原文' : preview.source === 'dialogue_source' ? '读的是对白原文（旁白是译文）' : '读的是来源标签里的文字'} · 标注来自${preview.analyzed === 'deep' ? '副模型分析（分析模式）' : preview.analyzed === 'simple' ? '副模型分析过' : preview.analyzed === 'pending' ? '还没分析' : '翻译时的骨架与引号'}`;
+  head.className = 'bgt-muted';
+  head.textContent = `第 ${preview.messageId} 楼 · ${preview.segments.length} 句 · ${preview.source === 'translation' ? '读的是测试翻译译文' : preview.source === 'source' ? '读的是原文' : preview.source === 'dialogue_source' ? '读的是对白原文（旁白是译文）' : '读的是来源标签里的文字'} · 标注来自${preview.analyzed === 'deep' ? '副模型分析（分析模式）' : preview.analyzed === 'simple' ? '副模型分析过' : preview.analyzed === 'pending' ? '还没分析' : '翻译时的骨架与引号'}`;
   target.appendChild(head);
   const table = doc.createElement('div');
-  table.className = 'jy-tts-preview-table';
+  table.className = 'bgt-tts-preview-table';
   for (const segment of preview.segments) {
     const row = doc.createElement('div');
-    row.className = 'jy-tts-preview-row';
+    row.className = 'bgt-tts-preview-row';
     row.dataset.type = segment.type;
     if (!inRange.has(segment.id)) row.dataset.skipped = 'true';
     const play = doc.createElement('button');
     play.type = 'button';
-    play.className = 'jy-icon-button';
-    play.dataset.jyAction = 'tts-preview-play';
-    play.dataset.jyTtsMes = String(preview.messageId);
-    play.dataset.jyTtsUtt = String(segment.id);
+    play.className = 'bgt-icon-button';
+    play.dataset.bgtAction = 'tts-preview-play';
+    play.dataset.bgtTtsMes = String(preview.messageId);
+    play.dataset.bgtTtsUtt = String(segment.id);
     play.setAttribute('aria-label', '朗读这一句');
     play.textContent = '▶';
     play.disabled = !inRange.has(segment.id);
     const who = doc.createElement('span');
-    who.className = 'jy-tts-preview-who';
+    who.className = 'bgt-tts-preview-who';
     who.textContent = segment.type === 'narration' ? '旁白' : (segment.speaker || '未知说话人');
     const mood = doc.createElement('span');
-    mood.className = 'jy-badge';
+    mood.className = 'bgt-badge';
     mood.textContent = segment.emotion
       ? `${cueLabel(segment.emotion)}${segment.intensity === 2 ? ' · 强' : segment.intensity === 0 ? ' · 弱' : ''}${segment.voice?.speed ? ` · 语速${segment.voice.speed === 'fast' ? '快' : '慢'}` : ''}`
       : '—';
     if (segment.lang && segment.lang !== 'zh') mood.textContent += ` · ${languageLabel(segment.lang)}`;
     const voice = doc.createElement('span');
-    voice.className = 'jy-tts-preview-voice';
+    voice.className = 'bgt-tts-preview-voice';
     const voiceId = resolveSegmentVoice(segment, config);
     voice.textContent = voiceId ? voiceId.slice(0, 8) : 'Fish 默认';
     if (!voiceId) voice.dataset.missing = 'true';
     const text = doc.createElement('span');
-    text.className = 'jy-tts-preview-text';
+    text.className = 'bgt-tts-preview-text';
     text.textContent = segment.text;
     row.append(play, who, mood, voice, text);
     table.appendChild(row);
@@ -13285,7 +13285,7 @@ async function runTtsPreview(root) {
   const floor = await collectTtsFloor(messageId, settings);
   if (!floor) throw new Error('最新一楼没有可朗读的译文，也没有来源标签。');
   const { segments } = await prepareTtsSegments(floor, settings, {
-    onStatus: text => setText(root, '[data-jy-tts-save-note]', text),
+    onStatus: text => setText(root, '[data-bgt-tts-save-note]', text),
   });
   runtime.tts.preview = {
     messageId,
@@ -13296,13 +13296,13 @@ async function runTtsPreview(root) {
   // This note is a status line, not a save prompt — 朗读 dropped its save button along with every
   // other page (DESIGN §15.4 改了就存), so there is nothing here to remind anyone to do (review
   // finding index.js:10633 and friends).
-  setText(root, '[data-jy-tts-save-note]', '');
+  setText(root, '[data-bgt-tts-save-note]', '');
   renderTtsPreview(root);
   return runtime.tts.preview;
 }
 
 function syncProcessingFields(root, settings) {
-  const select = root.querySelector('[data-jy-processing-select]');
+  const select = root.querySelector('[data-bgt-processing-select]');
   if (!select) return;
   const doc = root.ownerDocument;
   const active = getActiveProcessingProfile(settings);
@@ -13310,33 +13310,33 @@ function syncProcessingFields(root, settings) {
     const option = doc.createElement('option'); option.value = profile.id; option.textContent = profile.name; return option;
   }));
   select.value = active.id;
-  root.querySelector('[data-jy-processing-name]').value = active.name;
-  const list = root.querySelector('[data-jy-processing-regex-list]');
+  root.querySelector('[data-bgt-processing-name]').value = active.name;
+  const list = root.querySelector('[data-bgt-processing-regex-list]');
   list.replaceChildren();
   active.regexScripts.forEach((rule, index) => {
-    const row = doc.createElement('div'); row.className = 'jy-processing-regex';
-    const label = doc.createElement('label'); label.className = 'jy-check';
-    const enabled = doc.createElement('input'); enabled.type = 'checkbox'; enabled.checked = !rule.disabled; enabled.dataset.jyProcessingRule = rule.id;
+    const row = doc.createElement('div'); row.className = 'bgt-processing-regex';
+    const label = doc.createElement('label'); label.className = 'bgt-check';
+    const enabled = doc.createElement('input'); enabled.type = 'checkbox'; enabled.checked = !rule.disabled; enabled.dataset.bgtProcessingRule = rule.id;
     const name = doc.createElement('span'); name.textContent = rule.scriptName;
     label.append(enabled, name);
-    const tools = doc.createElement('div'); tools.className = 'jy-processing-regex-tools';
+    const tools = doc.createElement('div'); tools.className = 'bgt-processing-regex-tools';
     for (const [action, text, title, disabled] of [
       ['move-processing-up', '↑', '上移', index === 0],
       ['move-processing-down', '↓', '下移', index === active.regexScripts.length - 1],
       ['remove-processing-regex', '×', '解除绑定', false],
     ]) {
-      const button = doc.createElement('button'); button.type = 'button'; button.className = 'jy-icon-button';
+      const button = doc.createElement('button'); button.type = 'button'; button.className = 'bgt-icon-button';
       button.textContent = text; button.title = title; button.setAttribute('aria-label', `${title}：${rule.scriptName}`);
-      button.dataset.jyAction = action; button.dataset.jyRegexId = rule.id; button.disabled = disabled;
+      button.dataset.bgtAction = action; button.dataset.bgtRegexId = rule.id; button.disabled = disabled;
       tools.append(button);
     }
     row.append(label, tools); list.append(row);
   });
   if (!active.regexScripts.length) {
-    const empty = doc.createElement('p'); empty.className = 'jy-muted'; empty.textContent = '暂无绑定正则'; list.append(empty);
+    const empty = doc.createElement('p'); empty.className = 'bgt-muted'; empty.textContent = '暂无绑定正则'; list.append(empty);
   }
-  setText(root, '[data-jy-processing-regex-count]', `· ${active.regexScripts.length} 条`);
-  const nativeStatus = root.querySelector('[data-jy-native-regex-status]');
+  setText(root, '[data-bgt-processing-regex-count]', `· ${active.regexScripts.length} 条`);
+  const nativeStatus = root.querySelector('[data-bgt-native-regex-status]');
   nativeStatus.hidden = !getContext().extensionSettings.disabledExtensions?.includes('regex');
   nativeStatus.textContent = nativeStatus.hidden ? '' : '酒馆正则已停用，启用后美化生效。';
 }
@@ -13398,12 +13398,12 @@ async function readProcessingJson(file) {
 }
 
 function updateTaskUi(root, task) {
-  setText(root, '[data-jy-task-title]', task.title);
-  setText(root, '[data-jy-task-message]', task.message);
-  setText(root, '[data-jy-live]', `${task.title}。${task.message}`);
-  const dot = root.querySelector('[data-jy-task-dot]');
-  if (dot) dot.dataset.jyTaskDot = task.status;
-  const progress = root.querySelector('[data-jy-progress]');
+  setText(root, '[data-bgt-task-title]', task.title);
+  setText(root, '[data-bgt-task-message]', task.message);
+  setText(root, '[data-bgt-live]', `${task.title}。${task.message}`);
+  const dot = root.querySelector('[data-bgt-task-dot]');
+  if (dot) dot.dataset.bgtTaskDot = task.status;
+  const progress = root.querySelector('[data-bgt-progress]');
   if (progress) progress.style.transform = `scaleX(${Math.max(0, Math.min(1, (Number(task.progress) || 0) / 100))})`;
   renderThinking(root);
   renderSpeakerReport(root);
@@ -13418,7 +13418,7 @@ function updateTaskUi(root, task) {
  * either way is remembered and overrides both defaults until the next batch.
  */
 function renderThinking(root) {
-  const panel = root.querySelector('[data-jy-thinking]');
+  const panel = root.querySelector('[data-bgt-thinking]');
   if (!panel) return;
   const thinking = runtime.thinking;
   const text = String(thinking.text ?? '');
@@ -13426,14 +13426,14 @@ function renderThinking(root) {
   if (!text) return;
   panel.dataset.live = thinking.live ? 'yes' : 'no';
   const open = runtime.thinkingOpen ?? thinking.live;
-  setText(root, '[data-jy-thinking-label]', thinking.live ? '模型正在思考' : '本批思考过程');
-  setText(root, '[data-jy-thinking-count]', `${text.length.toLocaleString()} 字${thinking.batch ? ` · 第 ${thinking.batch} 批` : ''}`);
-  const head = panel.querySelector('[data-jy-thinking-head], .jy-thinking-head');
+  setText(root, '[data-bgt-thinking-label]', thinking.live ? '模型正在思考' : '本批思考过程');
+  setText(root, '[data-bgt-thinking-count]', `${text.length.toLocaleString()} 字${thinking.batch ? ` · 第 ${thinking.batch} 批` : ''}`);
+  const head = panel.querySelector('[data-bgt-thinking-head], .bgt-thinking-head');
   head?.setAttribute('aria-expanded', String(open));
-  const body = panel.querySelector('[data-jy-thinking-body]');
+  const body = panel.querySelector('[data-bgt-thinking-body]');
   if (body) body.hidden = !open;
   if (!open) return;
-  const target = panel.querySelector('[data-jy-thinking-text]');
+  const target = panel.querySelector('[data-bgt-thinking-text]');
   if (!target) return;
   // While it streams only the tail is painted: twenty thousand characters redrawn every second is
   // what would make the panel stutter, and the tail is the part that is actually moving.
@@ -13477,7 +13477,7 @@ function downloadLogTxt(entries, scopeLabel) {
   const url = URL.createObjectURL(file);
   const link = document.createElement('a');
   link.href = url;
-  link.download = `jingyi-log-${stamp}.txt`;
+  link.download = `beagle-test-log-${stamp}.txt`;
   document.body.appendChild(link); link.click(); link.remove();
   const timer = setTimeout(() => { URL.revokeObjectURL(url); runtime.timers.delete(timer); }, 30000);
   runtime.timers.add(timer);
@@ -13485,23 +13485,23 @@ function downloadLogTxt(entries, scopeLabel) {
 }
 
 function renderDiagnosticLog(root, entries = readDiagnostics()) {
-  setText(root, '[data-jy-log-count]', `${entries.length} 条`);
-  const list = root.querySelector('[data-jy-log-list]');
+  setText(root, '[data-bgt-log-count]', `${entries.length} 条`);
+  const list = root.querySelector('[data-bgt-log-list]');
   if (!list) return;
   list.replaceChildren();
   if (!entries.length) {
     const empty = document.createElement('article');
-    empty.className = 'jy-card jy-log-empty';
+    empty.className = 'bgt-card bgt-log-empty';
     empty.textContent = '还没有日志。完成一次通道测试或翻译后，这里会显示诊断记录。';
     list.appendChild(empty);
     return;
   }
   for (const entry of [...entries].reverse()) {
     const item = document.createElement('article');
-    item.className = 'jy-card jy-log-entry';
+    item.className = 'bgt-card bgt-log-entry';
     item.dataset.level = entry.level;
     const header = document.createElement('div');
-    header.className = 'jy-row-between';
+    header.className = 'bgt-row-between';
     const scope = document.createElement('strong');
     scope.textContent = entry.scope;
     const time = document.createElement('time');
@@ -13513,7 +13513,7 @@ function renderDiagnosticLog(root, entries = readDiagnostics()) {
     item.append(header, message);
     if (entry.details?.requestTokens && Number.isFinite(Number(entry.details.requestTokens.promptTokens))) {
       const tokens = document.createElement('p');
-      tokens.className = 'jy-log-tokens';
+      tokens.className = 'bgt-log-tokens';
       const info = entry.details.requestTokens;
       tokens.textContent = info.basis === 'usage'
         ? `请求 ${Number(info.promptTokens).toLocaleString()} tokens（接口实测）`
@@ -13531,12 +13531,12 @@ function renderDiagnosticLog(root, entries = readDiagnostics()) {
     if (typeof entry.reasoning === 'string' && entry.reasoning.trim()) {
       const thought = entry.reasoning;
       const disclosure = document.createElement('details');
-      disclosure.className = 'jy-log-full-response jy-log-reasoning';
+      disclosure.className = 'bgt-log-full-response bgt-log-reasoning';
       const summary = document.createElement('summary');
       summary.textContent = `查看模型思考（${thought.length.toLocaleString()} 字）`;
       const copy = document.createElement('button');
       copy.type = 'button';
-      copy.className = 'jy-button jy-log-copy-button';
+      copy.className = 'bgt-button bgt-log-copy-button';
       copy.textContent = '复制思考过程';
       copy.addEventListener('click', async () => {
         await copyText(thought);
@@ -13550,15 +13550,15 @@ function renderDiagnosticLog(root, entries = readDiagnostics()) {
     if (Object.hasOwn(entry, 'fullResponse')) {
       const fullText = stringifyFullResponse(entry.fullResponse);
       const disclosure = document.createElement('details');
-      disclosure.className = 'jy-log-full-response';
+      disclosure.className = 'bgt-log-full-response';
       const summary = document.createElement('summary');
       summary.textContent = `查看完整返回（${fullText.length.toLocaleString()} 字符）`;
       const warning = document.createElement('p');
-      warning.className = 'jy-log-privacy-warning';
+      warning.className = 'bgt-log-privacy-warning';
       warning.textContent = '可能包含正文或模型思考。发送给别人前请先检查。';
       const copy = document.createElement('button');
       copy.type = 'button';
-      copy.className = 'jy-button jy-log-copy-button';
+      copy.className = 'bgt-button bgt-log-copy-button';
       copy.textContent = '复制本次完整返回';
       copy.addEventListener('click', async () => {
         await copyText(fullText);
@@ -13576,22 +13576,22 @@ function renderDiagnosticLog(root, entries = readDiagnostics()) {
 async function refreshCurrentCard(root) {
   const settings = runtime.settings || mergeSettings({});
   const targetLanguage = normalizeTargetLanguage(getActivePromptProfile(settings).targetLanguage);
-  setText(root, '[data-jy-desk-target]', targetLanguage);
+  setText(root, '[data-bgt-desk-target]', targetLanguage);
   try {
     const snapshot = await readMessageSnapshot();
     const totalSwipes = Array.isArray(snapshot.message.swipes) ? snapshot.message.swipes.length : 1;
     const swipeLabel = `${snapshot.swipeId + 1} / ${Math.max(1, totalSwipes)}`;
-    setText(root, '[data-jy-floor]', `第 ${snapshot.messageId} 楼`);
-    setText(root, '[data-jy-swipe]', swipeLabel);
-    setText(root, '[data-jy-segments]', `${snapshot.paragraphs} 段 / ${snapshot.segments.length} 行`);
-    setText(root, '[data-jy-current-state]', snapshot.translated ? '已翻译' : '待翻译');
-    setText(root, '[data-jy-desk-context]', `第 ${snapshot.messageId} 楼 · 滑动页 ${swipeLabel}`);
+    setText(root, '[data-bgt-floor]', `第 ${snapshot.messageId} 楼`);
+    setText(root, '[data-bgt-swipe]', swipeLabel);
+    setText(root, '[data-bgt-segments]', `${snapshot.paragraphs} 段 / ${snapshot.segments.length} 行`);
+    setText(root, '[data-bgt-current-state]', snapshot.translated ? '已翻译' : '待翻译');
+    setText(root, '[data-bgt-desk-context]', `第 ${snapshot.messageId} 楼 · 滑动页 ${swipeLabel}`);
   } catch (error) {
-    setText(root, '[data-jy-floor]', '不可翻译');
-    setText(root, '[data-jy-swipe]', '—');
-    setText(root, '[data-jy-segments]', '—');
-    setText(root, '[data-jy-current-state]', safeError(error));
-    setText(root, '[data-jy-desk-context]', safeError(error));
+    setText(root, '[data-bgt-floor]', '不可翻译');
+    setText(root, '[data-bgt-swipe]', '—');
+    setText(root, '[data-bgt-segments]', '—');
+    setText(root, '[data-bgt-current-state]', safeError(error));
+    setText(root, '[data-bgt-desk-context]', safeError(error));
   }
 }
 
@@ -13673,7 +13673,7 @@ async function inspectCurrentFloor(root) {
   } else {
     lines.push('标签结构：正常');
   }
-  const output = root.querySelector('[data-jy-tag-inspection]');
+  const output = root.querySelector('[data-bgt-tag-inspection]');
   if (output) {
     output.textContent = lines.join('\n');
     output.hidden = false;
@@ -13698,20 +13698,20 @@ function createLocalId(prefix) {
 }
 
 function togglePromptEditor(root, id) {
-  const target = root.querySelector(`[data-jy-prompt-editor-panel="${id}"]`);
+  const target = root.querySelector(`[data-bgt-prompt-editor-panel="${id}"]`);
   if (!target) return;
   const shouldOpen = target.hidden;
-  root.dataset.jyOpenEditor = shouldOpen ? id : '';
-  root.querySelector('[data-jy-editor-placeholder]').hidden = shouldOpen;
-  for (const panel of root.querySelectorAll('[data-jy-prompt-editor-panel]')) panel.hidden = true;
-  for (const button of root.querySelectorAll('[data-jy-action="toggle-prompt-editor"]')) button.setAttribute('aria-expanded', 'false');
+  root.dataset.bgtOpenEditor = shouldOpen ? id : '';
+  root.querySelector('[data-bgt-editor-placeholder]').hidden = shouldOpen;
+  for (const panel of root.querySelectorAll('[data-bgt-prompt-editor-panel]')) panel.hidden = true;
+  for (const button of root.querySelectorAll('[data-bgt-action="toggle-prompt-editor"]')) button.setAttribute('aria-expanded', 'false');
   if (shouldOpen) {
     target.hidden = false;
-    const button = root.querySelector(`button[data-jy-action="toggle-prompt-editor"][data-jy-prompt-editor="${id}"]`);
+    const button = root.querySelector(`button[data-bgt-action="toggle-prompt-editor"][data-bgt-prompt-editor="${id}"]`);
     button?.setAttribute('aria-expanded', 'true');
     target.querySelector('textarea,input,select')?.focus?.({ preventScroll: true });
     if (globalThis.innerWidth <= 640) {
-      const workspace = root.querySelector('.jy-workspace');
+      const workspace = root.querySelector('.bgt-workspace');
       workspace.scrollTop += target.getBoundingClientRect().top - workspace.getBoundingClientRect().top - 16;
     }
   }
@@ -13739,13 +13739,13 @@ function deepClonePromptValue(value) {
   return value && typeof value === 'object' ? JSON.parse(JSON.stringify(value)) : value;
 }
 
-// isJingyiRegex-only removal for a scope 镜译 never installs into on purpose (planScopedRegexCleanup
-// in processing.js): 镜译 only ever writes its own rules to the global list, so any of its rules found
+// isTestTranslatorRegex-only removal for a scope 测试翻译 never installs into on purpose (planScopedRegexCleanup
+// in processing.js): 测试翻译 only ever writes its own rules to the global list, so any of its rules found
 // in a character's scoped regex or a preset's regex got there through the reader's own "移到角色 /
 // 预设" and are always orphaned duplicates. Returns null when the scope cannot be read at all -- an
 // older host without this engine module, no character selected, no preset manager -- so a scope that
 // will not cooperate is left out of the cleanup silently instead of surfacing as an error.
-function scopedJingyiRegexPlan(engine, scriptType) {
+function scopedTestTranslatorRegexPlan(engine, scriptType) {
   if (!engine || scriptType === undefined || typeof engine.getScriptsByType !== 'function') return null;
   try {
     return planScopedRegexCleanup(engine.getScriptsByType(scriptType));
@@ -13763,8 +13763,8 @@ function buildRegexCleanupPlan({ next, currentRegex, engine }) {
   const active = getActiveProcessingProfile(next);
   active.regexScripts = dedupeManagedRegexScripts(active.regexScripts);
   const { expected, toRemove, toInstall } = planRegexCleanup(currentRegex, active);
-  const scopedPlan = scopedJingyiRegexPlan(engine, engine?.SCRIPT_TYPES?.SCOPED);
-  const presetPlan = scopedJingyiRegexPlan(engine, engine?.SCRIPT_TYPES?.PRESET);
+  const scopedPlan = scopedTestTranslatorRegexPlan(engine, engine?.SCRIPT_TYPES?.SCOPED);
+  const presetPlan = scopedTestTranslatorRegexPlan(engine, engine?.SCRIPT_TYPES?.PRESET);
   const scopedRemove = scopedPlan?.toRemove ?? 0;
   const presetRemove = presetPlan?.toRemove ?? 0;
   const totalRemove = toRemove + scopedRemove + presetRemove;
@@ -13773,24 +13773,24 @@ function buildRegexCleanupPlan({ next, currentRegex, engine }) {
   // the real getScriptsByType(SCOPED) returns [] rather than throwing when no character is selected (or
   // in a group chat), so scopedPlan is a normal, non-null plan even then, and mentioning it would claim
   // an angle that never applied. 全局 is held to the same rule once a scope clause is actually present:
-  // the common case there is a reader who moved a 镜译 rule out with 酒馆's own "移到角色/预设" and the
-  // global copy 镜译 reinstalled on the next sync is already exactly right, so 全局 has nothing of its
+  // the common case there is a reader who moved a 测试翻译 rule out with 酒馆's own "移到角色/预设" and the
+  // global copy 测试翻译 reinstalled on the next sync is already exactly right, so 全局 has nothing of its
   // own to report and is left out rather than named with the same misleading "0 条".
   const scopeParts = [];
   if (scopedRemove > 0) scopeParts.push(`角色绑定 ${scopedRemove} 条`);
   if (presetRemove > 0) scopeParts.push(`预设绑定 ${presetRemove} 条`);
-  // Left empty (rather than "删除 0 条多余的镜译正则") when there is truly nothing to remove anywhere --
+  // Left empty (rather than "删除 0 条多余的测试翻译正则") when there is truly nothing to remove anywhere --
   // the install-only case, where the fixed rules are simply missing and totalRemove is 0 throughout. The
   // guard above already guarantees toInstall > 0 whenever that happens, so the message built below always
   // has something to say.
   const removalClause = scopeParts.length
-    ? `删除多余的镜译正则：${[...(toRemove > 0 ? [`全局 ${toRemove} 条`] : []), ...scopeParts].join('、')}`
-    : toRemove > 0 ? `删除 ${toRemove} 条多余的镜译正则` : '';
+    ? `删除多余的测试翻译正则：${[...(toRemove > 0 ? [`全局 ${toRemove} 条`] : []), ...scopeParts].join('、')}`
+    : toRemove > 0 ? `删除 ${toRemove} 条多余的测试翻译正则` : '';
   const message = removalClause
     ? (toInstall
-      ? `${removalClause}，补上 ${toInstall} 条缺失的固定正则，只留当前方案需要的 ${expected.length} 条？其他正则不受影响，认领依据是镜译自己的标记或 id 前缀。`
-      : `${removalClause}，只留当前方案需要的 ${expected.length} 条？其他正则不受影响，认领依据是镜译自己的标记或 id 前缀。`)
-    : `补上 ${toInstall} 条缺失的固定正则，只留当前方案需要的 ${expected.length} 条？其他正则不受影响，认领依据是镜译自己的标记或 id 前缀。`;
+      ? `${removalClause}，补上 ${toInstall} 条缺失的固定正则，只留当前方案需要的 ${expected.length} 条？其他正则不受影响，认领依据是测试翻译自己的标记或 id 前缀。`
+      : `${removalClause}，只留当前方案需要的 ${expected.length} 条？其他正则不受影响，认领依据是测试翻译自己的标记或 id 前缀。`)
+    : `补上 ${toInstall} 条缺失的固定正则，只留当前方案需要的 ${expected.length} 条？其他正则不受影响，认领依据是测试翻译自己的标记或 id 前缀。`;
   return { active, expected, toRemove, toInstall, scopedPlan, presetPlan, scopedRemove, presetRemove, totalRemove, message };
 }
 
@@ -13801,7 +13801,7 @@ function regexCleanupSummary(plan) {
   const parts = [];
   if (plan.totalRemove) parts.push(`删除 ${plan.totalRemove} 条`);
   if (plan.toInstall) parts.push(`补上 ${plan.toInstall} 条`);
-  return `已整理镜译正则：${parts.join('，')}，当前方案需要的 ${plan.expected.length} 条都在。`;
+  return `已整理测试翻译正则：${parts.join('，')}，当前方案需要的 ${plan.expected.length} 条都在。`;
 }
 
 // The one part of "删除多余正则" that writes to the host's scoped/preset regex lists, called only
@@ -13826,7 +13826,7 @@ async function applyScopedRegexCleanup(plan, engine, alreadyRestyled = false) {
   // regex editor stripping our marker on Save, see syncNativeRegex's own note) used to leave `wrote`
   // false and skip the reload entirely, so 酒馆's regex panel kept showing the rows just removed, still
   // bound to their old array index (renderScript(script, index) in 酒馆's own regex/index.js) -- the next
-  // click on one of those stale rows then wrote a stale copy of a 镜译 rule straight back into whatever
+  // click on one of those stale rows then wrote a stale copy of a 测试翻译 rule straight back into whatever
   // now sits in that slot.
   if (!wrote && !plan.toRemove && !plan.toInstall) return;
   // A reload that already happened ran before any scoped or preset list was written here, so it only
@@ -13862,7 +13862,7 @@ async function performRegexDedupe(root) {
   // resolves, from whatever is current then — collectSettings and 酒馆's own regex list can each have
   // moved on while the dialog was open, and persisting this earlier snapshot would silently discard that.
   const preview = buildRegexCleanupPlan({ next: collectSettings(root), currentRegex: getContext().extensionSettings.regex ?? [], engine });
-  if (!preview) throw new Error('没有发现多余的镜译正则。');
+  if (!preview) throw new Error('没有发现多余的测试翻译正则。');
   if (!await confirmDestructive({ title: '删除多余正则', message: preview.message, confirmLabel: '删除多余正则' })) return null;
   const next = collectSettings(root);
   // buildRegexCleanupPlan dedupes active.regexScripts in place on `next` -- read it first so this can
@@ -13887,12 +13887,12 @@ async function performRegexDedupe(root) {
  */
 async function performCastImport(root) {
   const snapshot = collectSettings(root);
-  setText(root, '[data-jy-tts-save-note]', '正在读角色卡和世界书、识别角色…');
+  setText(root, '[data-bgt-tts-save-note]', '正在读角色卡和世界书、识别角色…');
   let found;
   try {
     found = await importCastFromWorldbook(snapshot);
   } finally {
-    setText(root, '[data-jy-tts-save-note]', '');
+    setText(root, '[data-bgt-tts-save-note]', '');
   }
   const { cast, dropped } = found;
   // Somebody already in the table under any spelling is the same somebody: a row is not added
@@ -14071,7 +14071,7 @@ async function helperFloorSnapshot(settings) {
 }
 
 /**
- * How many 镜译 regex rules the current profile expects, and how many are surplus across every scope
+ * How many 测试翻译 regex rules the current profile expects, and how many are surplus across every scope
  * 「删除多余正则」 itself acts on — global list, character-bound and preset-bound copies, plus how many
  * fixed rules are still missing — the same counts buildRegexCleanupPlan computes for its own
  * confirmation message, reused here on a clone (review finding index.js:11806: counting only the
@@ -14086,8 +14086,8 @@ async function helperRegexSnapshot(settings) {
     active.regexScripts = dedupeManagedRegexScripts(active.regexScripts);
     const { expected, toRemove, toInstall } = planRegexCleanup(currentRegex, active);
     const engine = runtime.hostRegex || await loadHostRegex();
-    const scopedRemove = scopedJingyiRegexPlan(engine, engine?.SCRIPT_TYPES?.SCOPED)?.toRemove ?? 0;
-    const presetRemove = scopedJingyiRegexPlan(engine, engine?.SCRIPT_TYPES?.PRESET)?.toRemove ?? 0;
+    const scopedRemove = scopedTestTranslatorRegexPlan(engine, engine?.SCRIPT_TYPES?.SCOPED)?.toRemove ?? 0;
+    const presetRemove = scopedTestTranslatorRegexPlan(engine, engine?.SCRIPT_TYPES?.PRESET)?.toRemove ?? 0;
     return {
       expected: expected.length,
       surplus: toRemove + scopedRemove + presetRemove,
@@ -14116,24 +14116,24 @@ function helperLiveRoot(fallback) {
  * sent, the page just opened); otherwise it only follows an answer when the reader was already at the
  * bottom, and a reader scrolled up to read an older turn is left where they are. */
 function renderHelperConversation(root, { follow = false } = {}) {
-  const container = root.querySelector('[data-jy-helper-conversation]');
+  const container = root.querySelector('[data-bgt-helper-conversation]');
   if (!container) return;
   const doc = container.ownerDocument;
   const top = Number(container.scrollTop) || 0;
   const atBottom = (Number(container.scrollHeight) || 0) - top - (Number(container.clientHeight) || 0) <= 80;
   container.replaceChildren(...runtime.helper.turns.map((turn, turnIndex) => {
     const card = doc.createElement('div');
-    card.className = 'jy-helper-turn';
+    card.className = 'bgt-helper-turn';
     const question = doc.createElement('p');
-    question.className = 'jy-helper-bubble jy-helper-question';
+    question.className = 'bgt-helper-bubble bgt-helper-question';
     question.textContent = turn.question;
     const answer = doc.createElement('div');
-    answer.className = 'jy-helper-bubble jy-helper-answer';
+    answer.className = 'bgt-helper-bubble bgt-helper-answer';
     const text = doc.createElement('p');
-    text.className = 'jy-helper-answer-text';
+    text.className = 'bgt-helper-answer-text';
     if (turn.busy) {
       const mark = doc.createElement('span');
-      mark.className = 'jy-state-mark';
+      mark.className = 'bgt-state-mark';
       mark.dataset.state = 'busy';
       mark.setAttribute('aria-hidden', 'true');
       mark.textContent = '◌';
@@ -14147,38 +14147,38 @@ function renderHelperConversation(root, { follow = false } = {}) {
     answer.appendChild(text);
     if (turn.suggestions?.length) {
       const list = doc.createElement('div');
-      list.className = 'jy-helper-suggestions';
+      list.className = 'bgt-helper-suggestions';
       list.append(...turn.suggestions.map((suggestion, suggestionIndex) => {
         const row = doc.createElement('div');
-        row.className = 'jy-helper-suggestion';
+        row.className = 'bgt-helper-suggestion';
         const label = doc.createElement('span');
         label.textContent = describeHelperSuggestion(suggestion);
         row.appendChild(label);
         const tail = doc.createElement('span');
         if (suggestion.applied === 'done') {
           const done = doc.createElement('span');
-          done.className = 'jy-helper-suggestion-done';
+          done.className = 'bgt-helper-suggestion-done';
           done.textContent = '✓ 已改';
           tail.appendChild(done);
           if (suggestion.resultNote) {
             const note = doc.createElement('span');
-            note.className = 'jy-muted';
+            note.className = 'bgt-muted';
             note.textContent = ` · ${suggestion.resultNote}`;
             tail.appendChild(note);
           }
         } else if (suggestion.applied === 'noop') {
-          tail.className = 'jy-muted';
+          tail.className = 'bgt-muted';
           tail.textContent = '现在已经是这样了';
         } else if (suggestion.applied === 'cancelled') {
-          tail.className = 'jy-muted';
+          tail.className = 'bgt-muted';
           tail.textContent = '已取消';
         } else {
           const button = doc.createElement('button');
           button.type = 'button';
-          button.className = 'jy-button';
-          button.dataset.jyAction = 'helper-apply';
-          button.dataset.jyTurn = String(turnIndex);
-          button.dataset.jySuggestion = String(suggestionIndex);
+          button.className = 'bgt-button';
+          button.dataset.bgtAction = 'helper-apply';
+          button.dataset.bgtTurn = String(turnIndex);
+          button.dataset.bgtSuggestion = String(suggestionIndex);
           button.textContent = '照这样改';
           tail.appendChild(button);
         }
@@ -14192,7 +14192,7 @@ function renderHelperConversation(root, { follow = false } = {}) {
   }));
   container.scrollTop = follow || atBottom ? (Number(container.scrollHeight) || 0) : top;
   // One question at a time: 发送 waits for the answer in flight.
-  const send = root.querySelector('[data-jy-action="helper-ask"]');
+  const send = root.querySelector('[data-bgt-action="helper-ask"]');
   if (send) send.disabled = runtime.helper.busy;
 }
 
@@ -14201,30 +14201,30 @@ function renderHelperConversation(root, { follow = false } = {}) {
  * conversation itself (renderHelperConversation covers that separately). */
 function syncHelperFields(root, settings) {
   const helper = settings.helper || {};
-  const promptField = root.querySelector('[data-jy-helper-prompt]');
+  const promptField = root.querySelector('[data-bgt-helper-prompt]');
   if (promptField) {
-    // Same as every other autosaved text field on this page (data-jy-channel-field, data-jy-tts-prompt,
+    // Same as every other autosaved text field on this page (data-bgt-channel-field, data-bgt-tts-prompt,
     // …): by the time a resync runs, the field's own change event has already fired with this exact
     // value, so writing it back here is never a visible overwrite of something still being typed.
     promptField.value = helper.prompt || '';
     promptField.placeholder = DEFAULT_HELPER_PROMPT;
   }
-  setText(root, '[data-jy-fold="helper-prompt"] [data-jy-fold-summary]', helperPromptFoldSummary(helper));
+  setText(root, '[data-bgt-fold="helper-prompt"] [data-bgt-fold-summary]', helperPromptFoldSummary(helper));
 
-  const quick = root.querySelector('[data-jy-helper-quick]');
+  const quick = root.querySelector('[data-bgt-helper-quick]');
   if (quick && !quick.childElementCount) {
     const doc = quick.ownerDocument;
     quick.append(...HELPER_QUICK_QUESTIONS.map(question => {
       const button = doc.createElement('button');
       button.type = 'button';
-      button.dataset.jyAction = 'helper-quick';
-      button.dataset.jyHelperQuestion = question;
+      button.dataset.bgtAction = 'helper-quick';
+      button.dataset.bgtHelperQuestion = question;
       button.textContent = question;
       return button;
     }));
   }
 
-  const note = root.querySelector('[data-jy-helper-note]');
+  const note = root.querySelector('[data-bgt-helper-note]');
   if (note) {
     const doc = note.ownerDocument;
     const choice = connectionUseChoice(settings, 'helper');
@@ -14234,8 +14234,8 @@ function syncHelperFields(root, settings) {
     note.replaceChildren(doc.createTextNode('会发送：版本、设置摘要（密钥只写已填/没填）、当前楼层状态（含正文前 1200 字）、最近运行记录、正则情况、控制中心自身说明、使用手册摘录。走连接：'));
     const link = doc.createElement('button');
     link.type = 'button';
-    link.className = 'jy-text-button';
-    link.dataset.jyAction = 'helper-open-connection';
+    link.className = 'bgt-text-button';
+    link.dataset.bgtAction = 'helper-open-connection';
     link.textContent = channelLabel(settings, choice, { short: true });
     note.appendChild(link);
     note.appendChild(doc.createTextNode('。'));
@@ -14263,7 +14263,7 @@ async function askHelper(root, question) {
   const turn = { question: trimmed, answer: '', suggestions: [], busy: true, error: '' };
   runtime.helper.turns.push(turn);
   runtime.helper.busy = true;
-  const textarea = root.querySelector('[data-jy-helper-input]');
+  const textarea = root.querySelector('[data-bgt-helper-input]');
   if (textarea) textarea.value = '';
   runtime.helper.draft = '';
   renderHelperConversation(helperLiveRoot(root), { follow: true });
@@ -14309,7 +14309,7 @@ async function askHelper(root, question) {
     // Given back to be sent again — unless the reader has started typing something else meanwhile.
     if (!runtime.helper.draft) {
       runtime.helper.draft = trimmed;
-      const input = helperLiveRoot(root)?.querySelector?.('[data-jy-helper-input]');
+      const input = helperLiveRoot(root)?.querySelector?.('[data-bgt-helper-input]');
       if (input && !input.value) input.value = trimmed;
     }
     // A reader-initiated cancel (closing the control center or hitting 清空 mid-ask) is not a failure —
@@ -14361,7 +14361,7 @@ function createControlCenter(rootDocument = document) {
   // control center within the same page load picks up where it left off, syncFields above does not —
   // the question half-typed into the box included.
   renderHelperConversation(root, { follow: true });
-  const helperInput = root.querySelector('[data-jy-helper-input]');
+  const helperInput = root.querySelector('[data-bgt-helper-input]');
   if (helperInput) helperInput.value = runtime.helper.draft;
 
   const unsubscribe = subscribeTask(task => {
@@ -14369,24 +14369,24 @@ function createControlCenter(rootDocument = document) {
     if (task.status === 'success') refreshCurrentCard(root);
   });
   const unsubscribeDiagnostics = subscribeDiagnostics(entries => renderDiagnosticLog(root, entries));
-  const updateButton = root.querySelector('[data-jy-action="check-update"]');
+  const updateButton = root.querySelector('[data-bgt-action="check-update"]');
   updateButtonState(updateButton);
   if (runtime.update.status === 'updated') {
-    const notice = root.querySelector('[data-jy-update-notice]');
+    const notice = root.querySelector('[data-bgt-update-notice]');
     notice.hidden = false;
     notice.textContent = '更新完成，请手动刷新酒馆。';
   } else void checkUpdatesSilently(updateButton);
 
   const selectTab = target => {
-    for (const tabButton of root.querySelectorAll('[data-jy-tab]')) {
-      tabButton.setAttribute('aria-selected', String(tabButton.dataset.jyTab === target));
+    for (const tabButton of root.querySelectorAll('[data-bgt-tab]')) {
+      tabButton.setAttribute('aria-selected', String(tabButton.dataset.bgtTab === target));
     }
-    for (const page of root.querySelectorAll('[data-jy-page]')) {
-      const active = page.dataset.jyPage === target;
+    for (const page of root.querySelectorAll('[data-bgt-page]')) {
+      const active = page.dataset.bgtPage === target;
       page.hidden = !active;
       page.classList.toggle('is-active', active);
     }
-    root.querySelector('.jy-workspace').scrollTop = 0;
+    root.querySelector('.bgt-workspace').scrollTop = 0;
     if (target === 'logs') renderDiagnosticLog(root);
     if (target === 'helper') renderHelperConversation(root, { follow: true });
     // 招式表 lists what the chat has named so far, floors translated since the page was drawn included.
@@ -14398,21 +14398,21 @@ function createControlCenter(rootDocument = document) {
   /**
    * DESIGN §15.1 模式切换: only changes what the rail shows. Hides the tabs that do not exist in the
    * new mode, moves off a page that no longer exists to 翻译台, swaps 翻译台's own two mode-specific
-   * bodies (`[data-jy-mode-content]`, §15.2 vs the unchanged six-page content), and otherwise leaves
+   * bodies (`[data-bgt-mode-content]`, §15.2 vs the unchanged six-page content), and otherwise leaves
    * syncTtsFeatureVisibility's own finer rule (朗读's tab hides further still when the feature itself
    * is off) to apply on top of the mode's list.
    */
   const applyUiMode = mode => {
-    for (const button of root.querySelectorAll('[data-jy-action="set-ui-mode"]')) {
-      button.setAttribute('aria-pressed', String(button.dataset.jyUiMode === mode));
+    for (const button of root.querySelectorAll('[data-bgt-action="set-ui-mode"]')) {
+      button.setAttribute('aria-pressed', String(button.dataset.bgtUiMode === mode));
     }
-    for (const tabButton of root.querySelectorAll('[data-jy-tab]')) {
-      tabButton.hidden = !pageExistsInMode(tabButton.dataset.jyTab, mode);
+    for (const tabButton of root.querySelectorAll('[data-bgt-tab]')) {
+      tabButton.hidden = !pageExistsInMode(tabButton.dataset.bgtTab, mode);
     }
-    for (const block of root.querySelectorAll('[data-jy-mode-content]')) {
-      block.hidden = block.dataset.jyModeContent !== mode;
+    for (const block of root.querySelectorAll('[data-bgt-mode-content]')) {
+      block.hidden = block.dataset.bgtModeContent !== mode;
     }
-    const current = root.querySelector('[data-jy-tab][aria-selected="true"]')?.dataset.jyTab || 'main';
+    const current = root.querySelector('[data-bgt-tab][aria-selected="true"]')?.dataset.bgtTab || 'main';
     const resolved = resolvePageForMode(current, mode);
     if (resolved !== current) selectTab(resolved);
     else syncTtsFeatureVisibility(root);
@@ -14420,29 +14420,29 @@ function createControlCenter(rootDocument = document) {
   applyUiMode(runtime.settings.uiMode);
 
   const onClick = async event => {
-    const tab = event.target.closest('[data-jy-tab]');
+    const tab = event.target.closest('[data-bgt-tab]');
     if (tab) {
-      selectTab(tab.dataset.jyTab);
+      selectTab(tab.dataset.bgtTab);
       return;
     }
 
-    const button = event.target.closest('[data-jy-action]');
+    const button = event.target.closest('[data-bgt-action]');
     if (!button) return;
-    const action = button.dataset.jyAction;
+    const action = button.dataset.bgtAction;
     if (action === 'import-processing' || action === 'import-processing-regex') {
-      root.querySelector(action === 'import-processing' ? '[data-jy-processing-import]' : '[data-jy-processing-regex-import]').click();
+      root.querySelector(action === 'import-processing' ? '[data-bgt-processing-import]' : '[data-bgt-processing-regex-import]').click();
       return;
     }
     if (action === 'set-theme') {
       const next = mergeSettings(runtime.settings);
-      next.theme = button.dataset.jyTheme;
+      next.theme = button.dataset.bgtTheme;
       saveSettings(next);
-      for (const choice of root.querySelectorAll('[data-jy-theme]')) choice.setAttribute('aria-pressed', String(choice.dataset.jyTheme === runtime.settings.theme));
+      for (const choice of root.querySelectorAll('[data-bgt-theme]')) choice.setAttribute('aria-pressed', String(choice.dataset.bgtTheme === runtime.settings.theme));
       button.closest('details').open = false;
       return;
     }
     if (action === 'set-ui-mode') {
-      const mode = button.dataset.jyUiMode;
+      const mode = button.dataset.bgtUiMode;
       if (mode !== runtime.settings.uiMode) saveSettings({ ...mergeSettings(runtime.settings), uiMode: mode });
       applyUiMode(mode);
       return;
@@ -14451,11 +14451,11 @@ function createControlCenter(rootDocument = document) {
       try {
         const profile = getActivePromptProfile(collectSettings(root));
         const sharedProfile = Object.fromEntries(Object.keys(DEFAULT_PROMPT_PROFILE).filter(key => key !== 'id').map(key => [key, profile[key]]));
-        const file = new Blob([JSON.stringify({ format: 'jingyi-prompt-profile', version: 1, profile: sharedProfile }, null, 2)], { type: 'application/json' });
+        const file = new Blob([JSON.stringify({ format: 'beagle-test-prompt-profile', version: 1, profile: sharedProfile }, null, 2)], { type: 'application/json' });
         const url = URL.createObjectURL(file);
         const link = document.createElement('a');
         link.href = url;
-        link.download = (profile.name || '镜译方案').replace(/[\\\\/:*?"<>|]/g, '_') + '.json';
+        link.download = (profile.name || '测试翻译方案').replace(/[\\\\/:*?"<>|]/g, '_') + '.json';
         document.body.appendChild(link); link.click(); link.remove();
         const timer = setTimeout(() => { URL.revokeObjectURL(url); runtime.timers.delete(timer); }, 30000);
         runtime.timers.add(timer);
@@ -14464,17 +14464,17 @@ function createControlCenter(rootDocument = document) {
       return;
     }
     if (action === 'import-profile') {
-      root.querySelector('[data-jy-profile-import]').click();
+      root.querySelector('[data-bgt-profile-import]').click();
       return;
     }
     if (action === 'toggle-prompt-editor') {
-      togglePromptEditor(root, button.dataset.jyPromptEditor);
+      togglePromptEditor(root, button.dataset.bgtPromptEditor);
       return;
     }
     if (action === 'edit-channel') {
       // Whatever is sitting in the card that closes is kept before another one opens, the same as
       // the old 「正在编辑」 dropdown did — switching cards changes nothing any feature uses.
-      const id = button.dataset.jyChannelId;
+      const id = button.dataset.bgtChannelId;
       try {
         saveSettings(collectSettings(root));
       } catch (error) {
@@ -14484,7 +14484,7 @@ function createControlCenter(rootDocument = document) {
       // can collapse to its one-line summary (DESIGN §15.2/§15.4; review finding index.js:8763).
       runtime.editingChannelId = editingChannelId(runtime.settings) === id ? '' : id;
       // renderChannelCards (inside syncFields) rebuilds every card, including the toggle/chevron a
-      // keyboard user just activated (review finding index.js:11759's "Enter on .jy-channel-card-
+      // keyboard user just activated (review finding index.js:11759's "Enter on .bgt-channel-card-
       // chevron" case).
       withFocusPreserved(root, () => syncFields(root, runtime.settings));
       return;
@@ -14497,7 +14497,7 @@ function createControlCenter(rootDocument = document) {
     try {
       if (action === 'save-processing') {
         await persistProcessing(root, collectSettings(root));
-        root.querySelector('.jy-profile-menu').open = false;
+        root.querySelector('.bgt-profile-menu').open = false;
         toast('success', '正文方案及绑定正则已保存。');
       } else if (action === 'export-processing') {
         downloadProcessingProfile(getActiveProcessingProfile(collectSettings(root)));
@@ -14507,29 +14507,29 @@ function createControlCenter(rootDocument = document) {
       } else if (action === 'dedupe-processing-regex') {
         // Opening any of our rules in 酒馆's own regex editor and clicking Save, even with nothing
         // changed, strips the marker we hang identity on (the editor rebuilds the object from its own
-        // form fields); 镜译 no longer recognises that copy and installs a fresh one beside it on the
+        // form fields); 测试翻译 no longer recognises that copy and installs a fresh one beside it on the
         // next sync, leaving the old one behind for good. Batch export-then-reimport can also leave a
         // profile's own regexScripts holding several differently-id'd copies of what is really one
         // rule, from before native edits were read back by id -- a plain sync never converges that,
         // since by then each id is genuinely something the profile asks for, so this button first
         // collapses byte-identical duplicates within the profile itself. 酒馆's own "移到角色 / 预设"
-        // can also carry a 镜译 rule out of the global list into the current character's scoped regex
-        // or the current preset's regex; 镜译 only ever reinstalls a global copy on the next sync, so
+        // can also carry a 测试翻译 rule out of the global list into the current character's scoped regex
+        // or the current preset's regex; 测试翻译 only ever reinstalls a global copy on the next sync, so
         // the moved copy is always a second, orphaned duplicate there too -- both extra scopes are
         // read and cleaned through 酒馆's own regex engine (engine.js, the same module already loaded
         // on activate for restoreStrippedFloors). Counts removal and installation separately rather
         // than a before/after difference, so an equal number of each does not net to a false "nothing
         // to clean", and a reader who has deleted more of the fixed rules than there are surplus
-        // copies never sees a negative count. Claims a rule as 镜译's own by its marker or its id
-        // prefix (see isJingyiRegex), never by name alone, so a reader's own rule is never touched
+        // copies never sees a negative count. Claims a rule as 测试翻译's own by its marker or its id
+        // prefix (see isTestTranslatorRegex), never by name alone, so a reader's own rule is never touched
         // even when it happens to share a name. Destructive, so it asks first, same as the other
         // bulk-remove buttons on this page.
         const plan = await performRegexDedupe(root);
         if (plan) toast('success', regexCleanupSummary(plan));
       } else if (action === 'helper-quick') {
-        await askHelper(root, button.dataset.jyHelperQuestion || '');
+        await askHelper(root, button.dataset.bgtHelperQuestion || '');
       } else if (action === 'helper-ask') {
-        await askHelper(root, root.querySelector('[data-jy-helper-input]')?.value || '');
+        await askHelper(root, root.querySelector('[data-bgt-helper-input]')?.value || '');
       } else if (action === 'helper-clear') {
         if (!runtime.helper.turns.length) return;
         if (!await confirmDestructive({ title: '清空对话', message: '清空这次和小助手的对话？不会改动任何设置。', confirmLabel: '清空' })) return;
@@ -14550,11 +14550,11 @@ function createControlCenter(rootDocument = document) {
           // 正常模式 has no separate 模型连接 page — 翻译台's own API Key 卡 is it, so the note under the
           // input should land there, not just at the top of 翻译台 (spec §16 item 4).
           selectTab('main');
-          root.querySelector('.jy-desk-connections')?.scrollIntoView?.({ block: 'start' });
+          root.querySelector('.bgt-desk-connections')?.scrollIntoView?.({ block: 'start' });
         }
       } else if (action === 'helper-apply') {
-        const turnIndex = Number(button.dataset.jyTurn);
-        const suggestionIndex = Number(button.dataset.jySuggestion);
+        const turnIndex = Number(button.dataset.bgtTurn);
+        const suggestionIndex = Number(button.dataset.bgtSuggestion);
         const suggestion = runtime.helper.turns[turnIndex]?.suggestions?.[suggestionIndex];
         if (!suggestion || suggestion.applied) return;
         if (suggestion.type === 'action') {
@@ -14630,25 +14630,25 @@ function createControlCenter(rootDocument = document) {
       } else if (action === 'probe-theme') {
         await runThemeProbe(root);
       } else if (action === 'add-speaker') {
-        const list = root.querySelector('[data-jy-speaker-list]');
+        const list = root.querySelector('[data-bgt-speaker-list]');
         if (list) {
           // A blank row is dropped by normalizeSpeakerList until a name is typed, so an accidental
           // click leaves nothing behind.
-          if (list.querySelector('.jy-muted')) list.replaceChildren();
+          if (list.querySelector('.bgt-muted')) list.replaceChildren();
           list.appendChild(speakerRowElement(list.ownerDocument, { name: '', aliases: [], source: '', from: 'hair' }));
-          list.querySelector('[data-jy-speaker-row]:last-child [data-jy-speaker-name]')?.focus();
+          list.querySelector('[data-bgt-speaker-row]:last-child [data-bgt-speaker-name]')?.focus();
         }
       } else if (action === 'remove-speaker') {
-        button.closest('[data-jy-speaker-row]')?.remove();
+        button.closest('[data-bgt-speaker-row]')?.remove();
         saveSettings(collectSettings(root));
         refreshSpeakerPreviews(root, runtime.settings);
       } else if (action === 'builtin-processing') {
         const next = collectSettings(root);
-        await persistProcessing(root, addProcessingProfile(next, makeBuiltinReadingProfile(next, root.querySelector('[data-jy-reading-style]').value)));
+        await persistProcessing(root, addProcessingProfile(next, makeBuiltinReadingProfile(next, root.querySelector('[data-bgt-reading-style]').value)));
         toast('success', '已生成美化方案，已有译文同步换好样式。');
       } else if (['move-processing-up', 'move-processing-down', 'remove-processing-regex'].includes(action)) {
         const next = collectSettings(root), rules = getActiveProcessingProfile(next).regexScripts;
-        const index = rules.findIndex(rule => rule.id === button.dataset.jyRegexId);
+        const index = rules.findIndex(rule => rule.id === button.dataset.bgtRegexId);
         if (index < 0) throw new Error('没有找到这条绑定正则。');
         if (action === 'remove-processing-regex') rules.splice(index, 1);
         else {
@@ -14673,7 +14673,7 @@ function createControlCenter(rootDocument = document) {
       } else if (action === 'test-api') {
         saveSettings(collectSettings(root));
         // The connection being edited is the one tested, whoever uses it.
-        await testTranslationChannel({ channelId: root.dataset.jyEditingChannelId || editingChannelId() });
+        await testTranslationChannel({ channelId: root.dataset.bgtEditingChannelId || editingChannelId() });
       } else if (action === 'refresh') {
         await refreshCurrentCard(root);
       } else if (action === 'open-settings') {
@@ -14741,7 +14741,7 @@ function createControlCenter(rootDocument = document) {
         toast('success', '当前翻译方案已恢复默认。');
       } else if (action === 'reset-prompt-item') {
         const next = collectSettings(root);
-        resetPromptItem(getActivePromptProfile(next), button.dataset.jyPromptKey);
+        resetPromptItem(getActivePromptProfile(next), button.dataset.bgtPromptKey);
         saveSettings(next);
         syncFields(root, runtime.settings);
         toast('success', '此项已恢复默认。');
@@ -14756,7 +14756,7 @@ function createControlCenter(rootDocument = document) {
       } else if (['move-prompt-section-up', 'move-prompt-section-down', 'duplicate-prompt-section', 'delete-prompt-section'].includes(action)) {
         const next = collectSettings(root);
         const profile = getActivePromptProfile(next);
-        const sectionId = button.dataset.jySectionId;
+        const sectionId = button.dataset.bgtSectionId;
         const index = profile.customSections.findIndex(section => section.id === sectionId);
         if (index < 0) throw new Error('没有找到这个自定义条目。');
         if (action === 'move-prompt-section-up' && index > 0) {
@@ -14784,46 +14784,46 @@ function createControlCenter(rootDocument = document) {
         syncFields(root, runtime.settings);
         toast('success', '新建了一条连接。填好地址和模型后，在翻译台或朗读页的下拉框里选它才会用上。');
       } else if (action === 'delete-channel') {
-        await deleteChannel(root, root.dataset.jyEditingChannelId || editingChannelId());
+        await deleteChannel(root, root.dataset.bgtEditingChannelId || editingChannelId());
       } else if (action === 'desk-delete-channel') {
-        await deleteChannel(root, button.dataset.jyChannelId);
+        await deleteChannel(root, button.dataset.bgtChannelId);
       } else if (action === 'desk-toggle-channel') {
-        const id = button.dataset.jyChannelId;
+        const id = button.dataset.bgtChannelId;
         runtime.deskExpandedChannelId = runtime.deskExpandedChannelId === id ? null : id;
         // renderDeskConnections (inside syncFields) rebuilds this row's own toggle button.
         withFocusPreserved(root, () => syncFields(root, runtime.settings));
       } else if (action === 'desk-test-channel') {
         saveSettings(collectSettings(root));
-        await testTranslationChannel({ channelId: button.dataset.jyChannelId });
+        await testTranslationChannel({ channelId: button.dataset.bgtChannelId });
       } else if (action === 'goto-advanced') {
-        const targetPage = button.dataset.jyGotoPage || 'main';
+        const targetPage = button.dataset.bgtGotoPage || 'main';
         if (runtime.settings.uiMode !== 'advanced') {
           saveSettings({ ...mergeSettings(runtime.settings), uiMode: 'advanced' });
           applyUiMode('advanced');
         }
         selectTab(targetPage);
         // 微调's 「招式表 →」 lands on the fold itself, open (DESIGN §17.5).
-        const fold = button.dataset.jyOpenFold ? root.querySelector(`[data-jy-page="${targetPage}"] details[data-jy-fold="${button.dataset.jyOpenFold}"]`) : null;
+        const fold = button.dataset.bgtOpenFold ? root.querySelector(`[data-bgt-page="${targetPage}"] details[data-bgt-fold="${button.dataset.bgtOpenFold}"]`) : null;
         if (fold) {
           fold.open = true;
           fold.scrollIntoView?.({ block: 'nearest' });
         }
       } else if (action === 'call-fix') {
         // 已连接的应用's 「去设置」: to the field the missing item is set in, focused.
-        const target = callFixTarget(button.dataset.jyCallFix, button.dataset.jyCallApp);
+        const target = callFixTarget(button.dataset.bgtCallFix, button.dataset.bgtCallApp);
         if (target.channelId) {
           runtime.editingChannelId = target.channelId;
           syncFields(root, runtime.settings);
         }
         if (target.page !== 'tts') selectTab(target.page);
-        const page = root.querySelector(`[data-jy-page="${target.page}"]`);
+        const page = root.querySelector(`[data-bgt-page="${target.page}"]`);
         if (target.fold) {
-          const fold = page?.querySelector(`details[data-jy-fold="${target.fold}"]`);
+          const fold = page?.querySelector(`details[data-bgt-fold="${target.fold}"]`);
           if (fold) fold.open = true;
         }
         let scope = page;
         if (target.row) {
-          const row = [...(page?.querySelectorAll('[data-jy-tts-voice-row]') ?? [])].find(item => item.querySelector('[data-jy-tts-voice-name]')?.value.trim() === target.row);
+          const row = [...(page?.querySelectorAll('[data-bgt-tts-voice-row]') ?? [])].find(item => item.querySelector('[data-bgt-tts-voice-name]')?.value.trim() === target.row);
           if (row) {
             row.open = true;
             scope = row;
@@ -14833,7 +14833,7 @@ function createControlCenter(rootDocument = document) {
         field?.scrollIntoView?.({ block: 'center' });
         field?.focus?.({ preventScroll: true });
       } else if (action === 'move-reset') {
-        resetMoveRow(root, button.closest('[data-jy-move-row]'));
+        resetMoveRow(root, button.closest('[data-bgt-move-row]'));
       } else if (action === 'preset-restore') {
         const next = collectSettings(root);
         if (!next.preset) { toast('info', '还没有套用过套餐，没有「原样」可以恢复。'); return; }
@@ -14841,14 +14841,14 @@ function createControlCenter(rootDocument = document) {
         syncFields(root, runtime.settings);
         toast('success', `已恢复为「${PRESET_LABELS[next.preset]}」原样。`);
       } else if (action === 'preset-drift-toggle') {
-        const list = root.querySelector('[data-jy-preset-drift-list]');
+        const list = root.querySelector('[data-bgt-preset-drift-list]');
         const expanded = button.getAttribute('aria-expanded') === 'true';
         if (list) list.hidden = expanded;
         button.setAttribute('aria-expanded', String(!expanded));
         button.textContent = expanded ? '看改了什么 ▸' : '收起 ▾';
       } else if (action === 'fetch-models') {
         saveSettings(collectSettings(root));
-        const id = root.dataset.jyEditingChannelId || editingChannelId();
+        const id = root.dataset.bgtEditingChannelId || editingChannelId();
         const models = await fetchChannelModels(id);
         syncFields(root, runtime.settings);
         toast('success', `模型列表已更新，共 ${models.length} 个，请选择需要使用的模型。`);
@@ -14857,94 +14857,94 @@ function createControlCenter(rootDocument = document) {
         const result = await testFishConnection(runtime.settings);
         const credit = result.credit === null ? '' : `API 余额 ${result.credit.toFixed(2)}。`;
         const hint = result.credit === 0 && ttsSettings().fish.model !== 's2.1-pro-free' ? '余额为 0，除了 s2.1-pro-free 以外的模型会返回余额不足。' : '';
-        setText(root, '[data-jy-tts-save-note]', `Fish 连接正常。${credit}${hint}`);
+        setText(root, '[data-bgt-tts-save-note]', `Fish 连接正常。${credit}${hint}`);
         toast(hint ? 'warning' : 'success', `Fish 连接正常。${credit}${hint}`);
       } else if (action === 'tts-test-gsv') {
         saveSettings(collectSettings(root));
-        setText(root, '[data-jy-tts-gsv-note]', '正在连接 GPT-SoVITS…第一次或刚换模型时要先把模型装进显卡，可能要半分钟。');
+        setText(root, '[data-bgt-tts-gsv-note]', '正在连接 GPT-SoVITS…第一次或刚换模型时要先把模型装进显卡，可能要半分钟。');
         try {
           const result = await testGsvConnection(runtime.settings);
           const line = `GPT-SoVITS 连接正常${result.version ? `（${result.version}）` : ''}。${result.sampled ? `默认音色试读了一句（${result.seconds.toFixed(1)} 秒）。` : '默认音色还没填参考音频，填好再点一次就能听到。'}`;
-          setText(root, '[data-jy-tts-gsv-note]', line);
+          setText(root, '[data-bgt-tts-gsv-note]', line);
           toast('success', line);
         } catch (error) {
-          setText(root, '[data-jy-tts-gsv-note]', safeError(error));
+          setText(root, '[data-bgt-tts-gsv-note]', safeError(error));
           throw error;
         }
       } else if (action === 'tts-gsv-audition') {
         saveSettings(collectSettings(root));
-        const row = button.closest('[data-jy-tts-library-row]');
+        const row = button.closest('[data-bgt-tts-library-row]');
         const voice = normalizeGsvVoice(readLibraryGsv(row));
         const label = button.textContent;
         button.textContent = '生成中…';
         try {
-          await auditionGsvVoice(voice, runtime.settings, { lang: row?.querySelector('[data-jy-tts-library-lang]')?.value ?? '' });
+          await auditionGsvVoice(voice, runtime.settings, { lang: row?.querySelector('[data-bgt-tts-library-lang]')?.value ?? '' });
         } finally {
           button.textContent = label;
         }
       } else if (action === 'tts-add-mark') {
-        const list = button.closest('.jy-tts-marks-fold')?.querySelector('[data-jy-marks]');
-        if (list) list.appendChild(markRowElement(list.ownerDocument)).querySelector('[data-jy-mark-punct]')?.focus();
+        const list = button.closest('.bgt-tts-marks-fold')?.querySelector('[data-bgt-marks]');
+        if (list) list.appendChild(markRowElement(list.ownerDocument)).querySelector('[data-bgt-mark-punct]')?.focus();
       } else if (action === 'tts-recommend-marks') {
         // DESIGN §15.4 改了就存: this button only ever used to touch the DOM, so closing and
         // reopening the control center silently dropped whatever it had just filled in (review
         // finding, index.js:11406). It now saves like every other field on this page does.
-        const fold = button.closest('.jy-tts-marks-fold');
-        const list = fold?.querySelector('[data-jy-marks]');
+        const fold = button.closest('.bgt-tts-marks-fold');
+        const list = fold?.querySelector('[data-bgt-marks]');
         if (list) {
-          const present = new Set([...list.querySelectorAll('[data-jy-mark-punct]')].map(input => input.value.trim()));
+          const present = new Set([...list.querySelectorAll('[data-bgt-mark-punct]')].map(input => input.value.trim()));
           for (const mark of RECOMMENDED_MARKS) if (!present.has(mark.punct)) list.appendChild(markRowElement(list.ownerDocument, mark));
           saveSettings(collectSettings(root));
-          const summary = fold.querySelector('[data-jy-marks-summary]');
+          const summary = fold.querySelector('[data-bgt-marks-summary]');
           if (summary) summary.textContent = marksSummary(marksFromRows(list));
         }
       } else if (action === 'tts-remove-mark') {
-        const fold = button.closest('.jy-tts-marks-fold');
-        const list = fold?.querySelector('[data-jy-marks]');
-        button.closest('[data-jy-mark-row]')?.remove();
+        const fold = button.closest('.bgt-tts-marks-fold');
+        const list = fold?.querySelector('[data-bgt-marks]');
+        button.closest('[data-bgt-mark-row]')?.remove();
         saveSettings(collectSettings(root));
-        const summary = fold?.querySelector('[data-jy-marks-summary]');
+        const summary = fold?.querySelector('[data-bgt-marks-summary]');
         if (summary && list) summary.textContent = marksSummary(marksFromRows(list));
       } else if (action === 'tts-add-voice') {
         // DESIGN §17.4: the new row appears right under the button that made it, open, with the list
         // back at its top — never at the far end of a long list the reader then has to go looking for.
-        const list = root.querySelector('[data-jy-tts-voice-list]');
+        const list = root.querySelector('[data-bgt-tts-voice-list]');
         if (list) {
-          if (list.querySelector(':scope > .jy-muted')) list.replaceChildren();
-          for (const other of list.querySelectorAll('[data-jy-tts-voice-row][open]')) other.open = false;
+          if (list.querySelector(':scope > .bgt-muted')) list.replaceChildren();
+          for (const other of list.querySelectorAll('[data-bgt-tts-voice-row][open]')) other.open = false;
           const row = ttsVoiceRowElement(list.ownerDocument, { name: '', aliases: [], voiceId: '', voices: {}, title: '' }, runtime.settings, { open: true });
           list.prepend(row);
           list.scrollTop = 0;
-          row.querySelector('[data-jy-tts-voice-name]')?.focus({ preventScroll: true });
+          row.querySelector('[data-bgt-tts-voice-name]')?.focus({ preventScroll: true });
         }
       } else if (action === 'tts-remove-voice') {
-        button.closest('[data-jy-tts-voice-row]')?.remove();
+        button.closest('[data-bgt-tts-voice-row]')?.remove();
         saveSettings(collectSettings(root));
         renderTtsVoiceList(root, runtime.settings);
       } else if (action === 'tts-unbind-voice') {
-        const row = button.closest('[data-jy-tts-voice-row]');
+        const row = button.closest('[data-bgt-tts-voice-row]');
         if (row) {
-          const input = row.querySelector('[data-jy-tts-voice-id]');
+          const input = row.querySelector('[data-bgt-tts-voice-id]');
           if (input) input.value = '';
-          row.querySelector('[data-jy-tts-voice-langs]')?.replaceChildren();
+          row.querySelector('[data-bgt-tts-voice-langs]')?.replaceChildren();
           saveSettings(collectSettings(root));
           renderTtsVoiceList(root, runtime.settings);
           toast('success', '已解除绑定，这个角色改为跟随对白默认音色。');
         }
       } else if (action.startsWith('console-preset-')) {
-        const box = button.closest('[data-jy-tts-console]');
-        const pick = box?.querySelector('[data-jy-console-preset]');
-        const nameInput = box?.querySelector('[data-jy-console-preset-name]');
+        const box = button.closest('[data-bgt-tts-console]');
+        const pick = box?.querySelector('[data-bgt-console-preset]');
+        const nameInput = box?.querySelector('[data-bgt-console-preset-name]');
         const presets = normalizeConsolePresets(runtime.settings.consolePresets);
         if (action === 'console-preset-apply') {
           const preset = presets.find(item => item.id === pick?.value);
           if (!preset) throw new Error('先在左边选一个预设。');
-          for (const input of box.querySelectorAll('[data-jy-console-key]')) {
-            input.value = String(preset.console[input.dataset.jyConsoleKey] ?? 50);
+          for (const input of box.querySelectorAll('[data-bgt-console-key]')) {
+            input.value = String(preset.console[input.dataset.bgtConsoleKey] ?? 50);
             const output = input.parentElement?.querySelector('output');
-            if (output) output.textContent = consoleWord(input.dataset.jyConsoleKey, input.value);
+            if (output) output.textContent = consoleWord(input.dataset.bgtConsoleKey, input.value);
           }
-          const rules = box.querySelector('[data-jy-console-rules]');
+          const rules = box.querySelector('[data-bgt-console-rules]');
           if (rules) rules.value = preset.console.rules ?? '';
           saveSettings(collectSettings(root));
           toast('success', `已套用「${preset.name}」。`);
@@ -14957,11 +14957,11 @@ function createControlCenter(rootDocument = document) {
           next.consolePresets = [...kept, { id: `console-${Date.now().toString(36)}`, name: wanted, console: current }];
           saveSettings(next);
           if (nameInput) nameInput.value = '';
-          for (const other of root.querySelectorAll('[data-jy-tts-console]')) {
-            const list = other.querySelector('[data-jy-console-preset]');
+          for (const other of root.querySelectorAll('[data-bgt-tts-console]')) {
+            const list = other.querySelector('[data-bgt-console-preset]');
             const chosen = list?.value;
             other.replaceChild(consolePresetRow(other.ownerDocument), other.firstElementChild);
-            const refreshed = other.querySelector('[data-jy-console-preset]');
+            const refreshed = other.querySelector('[data-bgt-console-preset]');
             if (refreshed && chosen) refreshed.value = chosen;
           }
           toast('success', `已存为预设「${wanted}」，在任何一套调音台上都能套用。`);
@@ -14971,53 +14971,53 @@ function createControlCenter(rootDocument = document) {
           const next = collectSettings(root);
           next.consolePresets = presets.filter(item => item.id !== preset.id);
           saveSettings(next);
-          for (const other of root.querySelectorAll('[data-jy-tts-console]')) {
+          for (const other of root.querySelectorAll('[data-bgt-tts-console]')) {
             other.replaceChild(consolePresetRow(other.ownerDocument), other.firstElementChild);
           }
           toast('success', `已删掉预设「${preset.name}」。`);
         }
       } else if (action === 'tts-add-lang') {
-        const list = button.closest('[data-jy-tts-voice-row]')?.querySelector('[data-jy-tts-voice-langs]');
+        const list = button.closest('[data-bgt-tts-voice-row]')?.querySelector('[data-bgt-tts-voice-langs]');
         if (list) {
           list.appendChild(ttsLanguageRowElement(list.ownerDocument, '', '', runtime.settings));
-          list.querySelector('[data-jy-tts-lang-row]:last-child [data-jy-tts-lang-id]')?.focus();
+          list.querySelector('[data-bgt-tts-lang-row]:last-child [data-bgt-tts-lang-id]')?.focus();
         }
       } else if (action === 'tts-add-narrator-lang') {
-        const list = root.querySelector('[data-jy-tts-narrator-langs]');
+        const list = root.querySelector('[data-bgt-tts-narrator-langs]');
         if (list) {
           list.appendChild(ttsLanguageRowElement(list.ownerDocument, '', '', runtime.settings));
-          list.querySelector('[data-jy-tts-lang-row]:last-child [data-jy-tts-lang-id]')?.focus();
+          list.querySelector('[data-bgt-tts-lang-row]:last-child [data-bgt-tts-lang-id]')?.focus();
         }
       } else if (action === 'tts-add-mood') {
-        const list = button.closest('[data-jy-tts-voice-row]')?.querySelector('[data-jy-tts-voice-moods]');
+        const list = button.closest('[data-bgt-tts-voice-row]')?.querySelector('[data-bgt-tts-voice-moods]');
         if (list) {
           // The first condition this character has no voice for yet.
           const taken = new Set(readMoodRows(list).map(mood => mood.when));
           const when = VOICE_MOOD_CONDITIONS.find(value => !taken.has(value)) ?? VOICE_MOOD_CONDITIONS[0];
           list.appendChild(ttsMoodRowElement(list.ownerDocument, { when, voiceId: '' }, runtime.settings));
-          list.querySelector('[data-jy-tts-mood-row]:last-child [data-jy-tts-mood-id]')?.focus();
+          list.querySelector('[data-bgt-tts-mood-row]:last-child [data-bgt-tts-mood-id]')?.focus();
         }
       } else if (action === 'tts-remove-mood') {
-        button.closest('[data-jy-tts-mood-row]')?.remove();
+        button.closest('[data-bgt-tts-mood-row]')?.remove();
         saveSettings(collectSettings(root));
         syncTtsFields(root, runtime.settings);
       } else if (action === 'tts-remove-lang') {
-        button.closest('[data-jy-tts-lang-row]')?.remove();
+        button.closest('[data-bgt-tts-lang-row]')?.remove();
         saveSettings(collectSettings(root));
         syncTtsFields(root, runtime.settings);
       } else if (action === 'tts-add-library') {
         // Same as 添加角色 above (DESIGN §17.4): right under the button, open, the list back at its top.
-        const list = root.querySelector('[data-jy-tts-library]');
+        const list = root.querySelector('[data-bgt-tts-library]');
         if (list) {
-          if (list.querySelector(':scope > .jy-muted')) list.replaceChildren();
-          for (const other of list.querySelectorAll('[data-jy-tts-library-row][open]')) other.open = false;
+          if (list.querySelector(':scope > .bgt-muted')) list.replaceChildren();
+          for (const other of list.querySelectorAll('[data-bgt-tts-library-row][open]')) other.open = false;
           const row = ttsLibraryRowElement(list.ownerDocument, { id: '', name: '', voiceId: '', lang: 'zh', title: '' }, { open: true });
           list.prepend(row);
           list.scrollTop = 0;
-          row.querySelector('[data-jy-tts-library-name]')?.focus({ preventScroll: true });
+          row.querySelector('[data-bgt-tts-library-name]')?.focus({ preventScroll: true });
         }
       } else if (action === 'tts-remove-library') {
-        button.closest('[data-jy-tts-library-row]')?.remove();
+        button.closest('[data-bgt-tts-library-row]')?.remove();
         saveSettings(collectSettings(root));
         syncTtsFields(root, runtime.settings);
       } else if (action === 'tts-import-worldbook') {
@@ -15026,7 +15026,7 @@ function createControlCenter(rootDocument = document) {
       } else if (action === 'stream-voice-test') {
         // One short line in the voice calls and 边写边读 use, with the timings, so a key can be checked.
         saveSettings(collectSettings(root));
-        const note = root.querySelector('[data-jy-stream-voice-note]');
+        const note = root.querySelector('[data-bgt-stream-voice-note]');
         const say = text => { if (note) note.textContent = text; };
         const tts = ttsSettings();
         try {
@@ -15048,7 +15048,7 @@ function createControlCenter(rootDocument = document) {
         }
       } else if (action === 'stt-test') {
         saveSettings(collectSettings(root));
-        const note = root.querySelector('[data-jy-stt-test-note]');
+        const note = root.querySelector('[data-bgt-stt-test-note]');
         const say = text => { if (note) note.textContent = text; };
         try {
           if (runtime.sttTest) {
@@ -15070,7 +15070,7 @@ function createControlCenter(rootDocument = document) {
           throw error;
         }
       } else if (action === 'tts-clear-voices') {
-        // DESIGN §15.4 危险操作: every other destructive action here goes through the shared .jy-ask
+        // DESIGN §15.4 危险操作: every other destructive action here goes through the shared .bgt-ask
         // confirm; this one still used the browser's own native confirm() — different styling, theme
         // and Esc behaviour, and skipped confirmation outright on a host that blocks confirm() (review
         // finding index.js:11537/11542).
@@ -15122,7 +15122,7 @@ function createControlCenter(rootDocument = document) {
         syncTtsFoldSummaries(root, runtime.settings);
         toast('success', `删掉了 ${removed} 个没绑音色的角色，留下 ${kept.length} 个。`);
       } else if (action === 'tts-reset-prompt') {
-        const textarea = root.querySelector(`[data-jy-tts-prompt="${button.dataset.prompt}"]`);
+        const textarea = root.querySelector(`[data-bgt-tts-prompt="${button.dataset.prompt}"]`);
         if (textarea) textarea.value = '';
         saveSettings(collectSettings(root));
         syncTtsFields(root, runtime.settings);
@@ -15134,7 +15134,7 @@ function createControlCenter(rootDocument = document) {
         // The translation's own 破限词, its language placeholders already filled in.
         const profile = getActivePromptProfile(runtime.settings);
         const text = resolvePromptVariables(String(profile.jailbreakPrompt ?? '').trim(), profile);
-        const textarea = root.querySelector('[data-jy-tts-prompt="jailbreak"]');
+        const textarea = root.querySelector('[data-bgt-tts-prompt="jailbreak"]');
         if (!text) {
           toast('info', '翻译规则里的破限词是空的，没有可填的。');
         } else if (textarea) {
@@ -15145,14 +15145,14 @@ function createControlCenter(rootDocument = document) {
           toast('success', '已填入翻译的破限词，可以接着改，改完点别处就存。');
         }
       } else if (action === 'tts-fill-prompt') {
-        const textarea = root.querySelector(`[data-jy-tts-prompt="${button.dataset.prompt}"]`);
+        const textarea = root.querySelector(`[data-bgt-tts-prompt="${button.dataset.prompt}"]`);
         if (textarea) {
           textarea.value = TTS_PROMPT_DEFAULTS[button.dataset.prompt] ?? '';
           textarea.focus();
         }
         toast('info', '内置提示词已填进去，可以直接改；改完点别处就存。');
       } else if (action === 'tts-edit-voice') {
-        const scope = button.closest('[data-jy-tts-pick-scope]');
+        const scope = button.closest('[data-bgt-tts-pick-scope]');
         const input = scope?.querySelector('input');
         button.remove();
         if (input) {
@@ -15163,9 +15163,9 @@ function createControlCenter(rootDocument = document) {
         saveSettings(collectSettings(root));
         const messageId = latestAssistantMessageId(getContext());
         if (messageId === null) throw new Error('当前聊天里还没有 AI 楼层。');
-        setText(root, '[data-jy-tts-save-note]', `正在生成第 ${messageId} 楼的音频…`);
+        setText(root, '[data-bgt-tts-save-note]', `正在生成第 ${messageId} 楼的音频…`);
         const made = await pregenerateTtsFloor(messageId, { quiet: true });
-        setText(root, '[data-jy-tts-save-note]', '');
+        setText(root, '[data-bgt-tts-save-note]', '');
         toast('success', made ? `第 ${messageId} 楼的音频已生成（${made} 段），没有播放。` : `第 ${messageId} 楼的音频早就有了，没有重新生成。`);
         void renderTtsUsage(root);
       } else if (action === 'tts-import-speakers') {
@@ -15234,7 +15234,7 @@ function createControlCenter(rootDocument = document) {
         toast('success', `第 ${preview.messageId} 楼共 ${preview.segments.length} 句。`);
       } else if (action === 'tts-preview-play') {
         // Not awaited: the button must not stay disabled for as long as the sentence plays.
-        void playTtsUtterance(Number(button.dataset.jyTtsMes), Number(button.dataset.jyTtsUtt));
+        void playTtsUtterance(Number(button.dataset.bgtTtsMes), Number(button.dataset.bgtTtsUtt));
       } else if (action === 'tts-copy-structure') {
         if (!runtime.tts.preview) throw new Error('先分析一楼。');
         await copyText(JSON.stringify(toStandardDocument(runtime.tts.preview.segments), null, 2));
@@ -15287,10 +15287,10 @@ function createControlCenter(rootDocument = document) {
         try { await getContext().getWorldInfoPrompt([''], 8, true); } catch { /* best-effort cache refresh */ }
         renderWorldInfoList(root);
       } else if (action === 'toggle-export-drawer') {
-        const drawer = root.querySelector('[data-jy-export-drawer]');
+        const drawer = root.querySelector('[data-bgt-export-drawer]');
         if (drawer) drawer.dataset.open = drawer.dataset.open === 'true' ? 'false' : 'true';
       } else if (action === 'export-recent') {
-        const input = root.querySelector('[data-jy-export-floors]');
+        const input = root.querySelector('[data-bgt-export-floors]');
         const count = clampInteger(Number(input?.value), 1, 999, 1);
         const entries = readDiagnostics();
         const floors = listDiagnosticFloors(entries);
@@ -15303,7 +15303,7 @@ function createControlCenter(rootDocument = document) {
       }
       if (['translate', 'translate-missing', 'test-api'].includes(action)) await refreshCurrentCard(root);
     } catch (error) {
-      setText(root, '[data-jy-live]', safeError(error));
+      setText(root, '[data-bgt-live]', safeError(error));
       toast('error', safeError(error));
     } finally {
       button.disabled = false;
@@ -15325,9 +15325,9 @@ function createControlCenter(rootDocument = document) {
   // copy a save afterwards happens to read from always agrees with what was just typed or clicked.
   // A field with only one instance in the document loops over itself and does nothing.
   const DESK_TWIN_ATTRS = Object.freeze([
-    ['jyField', 'data-jy-field'],
-    ['jyTtsField', 'data-jy-tts-field'],
-    ['jyTtsFish', 'data-jy-tts-fish'],
+    ['bgtField', 'data-bgt-field'],
+    ['bgtTtsField', 'data-bgt-tts-field'],
+    ['bgtTtsFish', 'data-bgt-tts-fish'],
   ]);
   const twinField = target => {
     for (const [datasetKey, attr] of DESK_TWIN_ATTRS) {
@@ -15343,8 +15343,8 @@ function createControlCenter(rootDocument = document) {
 
   const onChangeUnguarded = async event => {
     twinField(event.target);
-    if (event.target.matches('[data-jy-preset-choice]')) {
-      const id = event.target.dataset.jyPresetChoice;
+    if (event.target.matches('[data-bgt-preset-choice]')) {
+      const id = event.target.dataset.bgtPresetChoice;
       try {
         const next = applyPreset(collectSettings(root), id);
         saveSettings(next);
@@ -15356,15 +15356,15 @@ function createControlCenter(rootDocument = document) {
       } catch (error) { toast('error', safeError(error)); }
       return;
     }
-    if (event.target.matches('[data-jy-use-picker]')) {
+    if (event.target.matches('[data-bgt-use-picker]')) {
       applyConnectionUseChange(root, event.target);
       return;
     }
-    if (event.target.matches('[data-jy-desk-channel-field]')) {
+    if (event.target.matches('[data-bgt-desk-channel-field]')) {
       applyDeskChannelFieldChange(root);
       return;
     }
-    if (event.target.matches('[data-jy-helper-prompt]')) {
+    if (event.target.matches('[data-bgt-helper-prompt]')) {
       try {
         const next = collectSettings(root);
         next.helper = { ...next.helper, prompt: event.target.value };
@@ -15376,8 +15376,8 @@ function createControlCenter(rootDocument = document) {
       setTimeout(() => withFocusPreserved(root, () => syncFields(root, runtime.settings)), 0);
       return;
     }
-    if (event.target.matches('[data-jy-finetune-profile-field]')) {
-      const field = event.target.dataset.jyFinetuneProfileField;
+    if (event.target.matches('[data-bgt-finetune-profile-field]')) {
+      const field = event.target.dataset.bgtFinetuneProfileField;
       try {
         const next = collectSettings(root);
         getActivePromptProfile(next)[field] = event.target.value;
@@ -15386,7 +15386,7 @@ function createControlCenter(rootDocument = document) {
       } catch (error) { toast('error', safeError(error)); }
       return;
     }
-    if (event.target.matches('[data-jy-finetune-reading-style]')) {
+    if (event.target.matches('[data-bgt-finetune-reading-style]')) {
       const styleId = event.target.value;
       // The blank placeholder means "the active profile isn't one of these three" — reselecting it
       // undoes nothing on its own.
@@ -15402,7 +15402,7 @@ function createControlCenter(rootDocument = document) {
       } catch (error) { toast('error', `套用失败：${safeError(error)}`); }
       return;
     }
-    if (event.target.matches('[data-jy-processing-import], [data-jy-processing-regex-import]')) {
+    if (event.target.matches('[data-bgt-processing-import], [data-bgt-processing-regex-import]')) {
       const input = event.target, files = [...(input.files ?? [])];
       if (!files.length) return;
       input.disabled = true;
@@ -15410,7 +15410,7 @@ function createControlCenter(rootDocument = document) {
         if (files.length > 100) throw new Error('一次最多选择 100 个文件。');
         const data = await Promise.all(files.map(readProcessingJson));
         let next = collectSettings(root);
-        if (input.matches('[data-jy-processing-import]')) next = addProcessingProfile(next, importProcessingProfile(data[0]));
+        if (input.matches('[data-bgt-processing-import]')) next = addProcessingProfile(next, importProcessingProfile(data[0]));
         else {
           const rules = data.flatMap(importNativeRegex), active = getActiveProcessingProfile(next);
           if (active.regexScripts.length + rules.length > 100) throw new Error('每个正文方案最多绑定 100 条正则。');
@@ -15422,21 +15422,21 @@ function createControlCenter(rootDocument = document) {
       finally { input.value = ''; input.disabled = false; }
       return;
     }
-    if (event.target.matches('[data-jy-processing-select], [data-jy-processing-rule]')) {
+    if (event.target.matches('[data-bgt-processing-select], [data-bgt-processing-rule]')) {
       try {
         let next = collectSettings(root);
-        if (event.target.matches('[data-jy-processing-select]')) next = selectProcessingProfile(next, event.target.value);
+        if (event.target.matches('[data-bgt-processing-select]')) next = selectProcessingProfile(next, event.target.value);
         await persistProcessing(root, next);
       } catch (error) { toast('error', safeError(error)); syncFields(root, runtime.settings); }
       return;
     }
-    if (event.target.matches('[data-jy-profile-import]')) {
+    if (event.target.matches('[data-bgt-profile-import]')) {
       const input = event.target, file = input.files?.[0];
       if (!file) return;
       try {
         if (file.size > 2 * 1024 * 1024) throw new Error('方案文件不能超过 2 MB。');
         const data = JSON.parse((await file.text()).replace(/^\\uFEFF/, ''));
-        if (data?.format !== 'jingyi-prompt-profile' || data.version !== 1 || !data.profile || typeof data.profile !== 'object' || Array.isArray(data.profile)) throw new Error('请选择镜译导出的提示词方案 JSON。');
+        if (data?.format !== 'beagle-test-prompt-profile' || data.version !== 1 || !data.profile || typeof data.profile !== 'object' || Array.isArray(data.profile)) throw new Error('请选择测试翻译导出的提示词方案 JSON。');
         const allowed = Object.keys(DEFAULT_PROMPT_PROFILE);
         const clean = {};
         for (const key of allowed) {
@@ -15465,7 +15465,7 @@ function createControlCenter(rootDocument = document) {
       finally { input.value = ''; }
       return;
     }
-    if (event.target.matches('[data-jy-prompt-profile-select]')) {
+    if (event.target.matches('[data-bgt-prompt-profile-select]')) {
       const next = collectSettings(root);
       if (next.promptProfiles.some(profile => profile.id === event.target.value)) {
         next.selectedPromptProfileId = event.target.value;
@@ -15474,8 +15474,8 @@ function createControlCenter(rootDocument = document) {
       }
       return;
     }
-    if (event.target.matches('[data-jy-model-select]')) {
-      const modelInput = root.querySelector('[data-jy-channel-field="model"]');
+    if (event.target.matches('[data-bgt-model-select]')) {
+      const modelInput = root.querySelector('[data-bgt-channel-field="model"]');
       if (modelInput) modelInput.value = event.target.value;
       saveSettings(collectSettings(root));
       // renderChannelCards (inside syncFields) re-appends the shared channel-detail node into a new
@@ -15485,13 +15485,13 @@ function createControlCenter(rootDocument = document) {
       withFocusPreserved(root, () => syncFields(root, runtime.settings));
       return;
     }
-    if (event.target.matches('[data-jy-profile-field="styleMode"], [data-jy-profile-field="leaningMode"], [data-jy-profile-field="honorificMode"], [data-jy-profile-field="nameMode"], [data-jy-profile-field="punctuationMode"]')) {
+    if (event.target.matches('[data-bgt-profile-field="styleMode"], [data-bgt-profile-field="leaningMode"], [data-bgt-profile-field="honorificMode"], [data-bgt-profile-field="nameMode"], [data-bgt-profile-field="punctuationMode"]')) {
       updatePromptConditionalFields(root);
     }
     // 翻译规则 has no save button either (DESIGN §15.4): every field on it — the profile's own name
     // and target language, each standard item's textarea/select, a custom section's own fields, and
     // 近期对话条数 — saves itself once the field settles, the same way the switches above already do.
-    if (event.target.matches('[data-jy-profile-field], [data-jy-custom-field], [data-jy-prompt-profile-name], [data-jy-field="contextMessages"]')) {
+    if (event.target.matches('[data-bgt-profile-field], [data-bgt-custom-field], [data-bgt-prompt-profile-name], [data-bgt-field="contextMessages"]')) {
       let saved = true;
       try {
         saveSettings(collectSettings(root));
@@ -15519,7 +15519,7 @@ function createControlCenter(rootDocument = document) {
       scheduleFieldResync(root, () => withFocusPreserved(root, () => syncFields(root, runtime.settings)));
       return;
     }
-    if (event.target.matches('[data-jy-translation-channel]')) {
+    if (event.target.matches('[data-bgt-translation-channel]')) {
       saveSettings(collectSettings(root));
       syncFields(root, runtime.settings);
       toast('success', `翻译改用：${channelLabel(runtime.settings, translationChannelChoice(runtime.settings))}。分析模式和小助手用的连接不受影响。`);
@@ -15527,7 +15527,7 @@ function createControlCenter(rootDocument = document) {
     }
     // 翻译台 has no save button (DESIGN §15.4 改了就存): 重试次数 saves itself once the field loses focus
     // with a changed value, same as every switch on this page already does at once.
-    if (event.target.matches('[data-jy-field="retries"]')) {
+    if (event.target.matches('[data-bgt-field="retries"]')) {
       try {
         saveSettings(collectSettings(root));
       } catch (error) {
@@ -15540,31 +15540,31 @@ function createControlCenter(rootDocument = document) {
       syncFields(root, runtime.settings);
       return;
     }
-    if (event.target.matches('[data-jy-field="floatingStyle"]')) {
+    if (event.target.matches('[data-bgt-field="floatingStyle"]')) {
       saveSettings(collectSettings(root));
       syncFloatingEntry();
       return;
     }
     // 「点正文跳到悬浮窗」 lives on 正文处理 and on 微调 (DESIGN §17.7); twinField() above already moved the
     // other copy, and the next click on the chat reads the saved value.
-    if (event.target.matches('[data-jy-field="segmentJump"]')) {
+    if (event.target.matches('[data-bgt-field="segmentJump"]')) {
       saveSettings(collectSettings(root));
       syncProcessingFoldSummaries(root, runtime.settings);
       return;
     }
-    if (event.target.matches('[data-jy-field="floorButtons"], [data-jy-field="leftHanded"]')) {
+    if (event.target.matches('[data-bgt-field="floorButtons"], [data-bgt-field="leftHanded"]')) {
       saveSettings(collectSettings(root));
       scheduleTtsDecorateAll({ force: true });
       runtime.mini?.syncQuickPickers?.();
       return;
     }
-    if (event.target.matches('[data-jy-field="translationProvider"], [data-jy-field="autoGeneration"], [data-jy-field="autoSwipe"], [data-jy-field="streamingWriteback"], [data-jy-field="translationOnly"], [data-jy-field="showFloatingButton"], [data-jy-field="includeWorldbook"], [data-jy-field="includeCharacterCard"], [data-jy-field="includeRecentContext"]')) {
+    if (event.target.matches('[data-bgt-field="translationProvider"], [data-bgt-field="autoGeneration"], [data-bgt-field="autoSwipe"], [data-bgt-field="streamingWriteback"], [data-bgt-field="translationOnly"], [data-bgt-field="showFloatingButton"], [data-bgt-field="includeWorldbook"], [data-bgt-field="includeCharacterCard"], [data-bgt-field="includeRecentContext"]')) {
       // twinField() above already carried the new value onto autoGeneration/autoSwipe/translationOnly's
       // 微调 copy (DESIGN §15.3), so every instance already agrees before collectSettings reads any of them.
       saveSettings(collectSettings(root));
       syncFields(root, runtime.settings);
     }
-    if (event.target.matches('[data-jy-wi-book-switch]')) {
+    if (event.target.matches('[data-bgt-wi-book-switch]')) {
       toggleWorldInfoBook(event.target);
       try {
         saveSettings(collectSettings(root));
@@ -15572,8 +15572,8 @@ function createControlCenter(rootDocument = document) {
         toast('error', safeError(error));
       }
     }
-    if (event.target.matches('[data-jy-wi-pick]')) {
-      const group = event.target.closest('.jy-wi-book');
+    if (event.target.matches('[data-bgt-wi-pick]')) {
+      const group = event.target.closest('.bgt-wi-book');
       if (group) updateWorldInfoBookCount(group);
       try {
         saveSettings(collectSettings(root));
@@ -15583,11 +15583,11 @@ function createControlCenter(rootDocument = document) {
     }
     // 模型连接 has no save button either (DESIGN §15.4): every field in the expanded card — name,
     // address, key, request parameters, the connection's own postscript — saves itself once it settles.
-    if (event.target.matches('[data-jy-channel-field]')) {
+    if (event.target.matches('[data-bgt-channel-field]')) {
       applyChannelFieldChange(root);
       return;
     }
-    if (event.target.matches('[data-jy-field="coloringSpeakers"], [data-jy-field="coloringEffects"], [data-jy-field="coloringEmotions"], [data-jy-field="coloringRhythm"], [data-jy-field="coloringAutoSpeakers"], [data-jy-field="coloringContrast"]')) {
+    if (event.target.matches('[data-bgt-field="coloringSpeakers"], [data-bgt-field="coloringEffects"], [data-bgt-field="coloringEmotions"], [data-bgt-field="coloringRhythm"], [data-bgt-field="coloringAutoSpeakers"], [data-bgt-field="coloringContrast"]')) {
       // renderList:false — none of these toggles change a row's own name/alias/colour, so the 说话人
       // list itself does not need rebuilding, and a row still being typed into must not be dropped.
       saveSettings(collectSettings(root));
@@ -15597,8 +15597,8 @@ function createControlCenter(rootDocument = document) {
     }
     // The reading switches take effect at once, like the translation switches on the desk.
     // A voice picked from the library fills the field beside it; the picker itself shows nothing.
-    if (event.target.matches('[data-jy-tts-pick]')) {
-      const input = event.target.closest('[data-jy-tts-pick-scope]')?.querySelector('input');
+    if (event.target.matches('[data-bgt-tts-pick]')) {
+      const input = event.target.closest('[data-bgt-tts-pick-scope]')?.querySelector('input');
       if (input && event.target.value) {
         input.value = event.target.value;
         event.target.value = '';
@@ -15607,10 +15607,10 @@ function createControlCenter(rootDocument = document) {
       }
       return;
     }
-    if (event.target.matches('[data-jy-tts-voice-mute]')) {
+    if (event.target.matches('[data-bgt-tts-voice-mute]')) {
       // The row list is not rebuilt here: doing so would take the focus off the switch just clicked.
-      const row = event.target.closest('[data-jy-tts-voice-row]');
-      const badge = row?.querySelector('[data-jy-tts-voice-lock]');
+      const row = event.target.closest('[data-bgt-tts-voice-row]');
+      const badge = row?.querySelector('[data-bgt-tts-voice-lock]');
       if (badge) {
         const own = badge.dataset.locked === 'true';
         badge.dataset.muted = String(event.target.checked);
@@ -15620,12 +15620,12 @@ function createControlCenter(rootDocument = document) {
       syncTtsFoldSummaries(root, runtime.settings);
       return;
     }
-    if (event.target.matches('[data-jy-tts-field="enabled"], [data-jy-tts-field="side"], [data-jy-tts-field="mode"], [data-jy-tts-field="intimate"], [data-jy-tts-field="range"], [data-jy-tts-field="sanitizeHtml"], [data-jy-tts-field="emotionCues"], [data-jy-tts-field="prosodySplit"], [data-jy-tts-field="autoGenerate"], [data-jy-tts-field="dialogueFallback"], [data-jy-tts-field="speechMarks"], [data-jy-tts-field="playAfterGenerate"], [data-jy-tts-field="autoRead"], [data-jy-tts-field="readWhileWriting"], [data-jy-tts-field="liveAudio"], [data-jy-tts-field="streamVoice"], [data-jy-tts-field="callChannelId"], [data-jy-tts-field="sttProvider"], [data-jy-tts-field="sttPreset"], [data-jy-tts-doubao="resourceId"], [data-jy-tts-doubao="viaProxy"], [data-jy-tts-minimax="baseUrl"], [data-jy-tts-minimax="model"], [data-jy-tts-field="tamePunctuation"], [data-jy-tts-field="deepChannelId"], [data-jy-tts-field="requestUnit"], [data-jy-tts-field="downloadScope"], [data-jy-tts-field="voiceScope"], [data-jy-tts-context], [data-jy-tts-fish="key"], [data-jy-tts-fish="model"], [data-jy-tts-fish="viaProxy"], [data-jy-tts-fish="format"], [data-jy-tts-fish="latency"], [data-jy-tts-field="provider"], [data-jy-tts-gsv="viaProxy"]')) {
-      if (event.target.matches('[data-jy-tts-field="sttPreset"]')) {
+    if (event.target.matches('[data-bgt-tts-field="enabled"], [data-bgt-tts-field="side"], [data-bgt-tts-field="mode"], [data-bgt-tts-field="intimate"], [data-bgt-tts-field="range"], [data-bgt-tts-field="sanitizeHtml"], [data-bgt-tts-field="emotionCues"], [data-bgt-tts-field="prosodySplit"], [data-bgt-tts-field="autoGenerate"], [data-bgt-tts-field="dialogueFallback"], [data-bgt-tts-field="speechMarks"], [data-bgt-tts-field="playAfterGenerate"], [data-bgt-tts-field="autoRead"], [data-bgt-tts-field="readWhileWriting"], [data-bgt-tts-field="liveAudio"], [data-bgt-tts-field="streamVoice"], [data-bgt-tts-field="callChannelId"], [data-bgt-tts-field="sttProvider"], [data-bgt-tts-field="sttPreset"], [data-bgt-tts-doubao="resourceId"], [data-bgt-tts-doubao="viaProxy"], [data-bgt-tts-minimax="baseUrl"], [data-bgt-tts-minimax="model"], [data-bgt-tts-field="tamePunctuation"], [data-bgt-tts-field="deepChannelId"], [data-bgt-tts-field="requestUnit"], [data-bgt-tts-field="downloadScope"], [data-bgt-tts-field="voiceScope"], [data-bgt-tts-context], [data-bgt-tts-fish="key"], [data-bgt-tts-fish="model"], [data-bgt-tts-fish="viaProxy"], [data-bgt-tts-fish="format"], [data-bgt-tts-fish="latency"], [data-bgt-tts-field="provider"], [data-bgt-tts-gsv="viaProxy"]')) {
+      if (event.target.matches('[data-bgt-tts-field="sttPreset"]')) {
         const preset = STT_PRESETS[event.target.value];
         if (preset) {
-          const url = root.querySelector('[data-jy-tts-field="sttUrl"]');
-          const model = root.querySelector('[data-jy-tts-field="sttModel"]');
+          const url = root.querySelector('[data-bgt-tts-field="sttUrl"]');
+          const model = root.querySelector('[data-bgt-tts-field="sttModel"]');
           if (url) url.value = preset.url;
           if (model) model.value = preset.model;
         }
@@ -15646,7 +15646,7 @@ function createControlCenter(rootDocument = document) {
       return;
     }
     // 招式表 saves one row at a time and redraws only that row (DESIGN §17.5).
-    if (event.target.matches('[data-jy-move-field]')) {
+    if (event.target.matches('[data-bgt-move-field]')) {
       applyMoveFieldChange(root, event.target);
       return;
     }
@@ -15654,7 +15654,7 @@ function createControlCenter(rootDocument = document) {
     // out from under them mid-edit. No branch below needs this event either, so this returns instead
     // of falling through to the catch-all, which used to rebuild the list anyway (review finding
     // index.js:12022 — there was no `return` here before).
-    if (event.target.matches('[data-jy-speaker-color], [data-jy-speaker-from]')) {
+    if (event.target.matches('[data-bgt-speaker-color], [data-bgt-speaker-from]')) {
       saveSettings(collectSettings(root));
       refreshSpeakerPreviews(root, runtime.settings);
       return;
@@ -15662,7 +15662,7 @@ function createControlCenter(rootDocument = document) {
     // DESIGN §15.4 改了就存: 正文处理 and 朗读 dropped their own save button, so any field the branches
     // above did not already commit saves itself here — a text/number/textarea field's native `change`
     // event already only fires once its value settles on blur, exactly like the design calls for.
-    // `data-jy-processing-name`/`data-jy-reading-style`/`data-jy-console-preset*` are excluded: they
+    // `data-bgt-processing-name`/`data-bgt-reading-style`/`data-bgt-console-preset*` are excluded: they
     // pick what a separate named-profile or named-preset action (方案「管理」, 内置美化「使用」, the
     // console preset host) will act on next, not a setting of their own to write on every change.
     // renderList/renderLists:false — whatever field lands here is very often sitting inside a list
@@ -15671,8 +15671,8 @@ function createControlCenter(rootDocument = document) {
     // it between mousedown and click swallowed the very next click on that row (review finding
     // index.js:12033 and its focus-loss twin at index.js:11759).
     if (
-      event.target.closest('[data-jy-page="processing"], [data-jy-page="tts"]')
-      && !event.target.matches('[data-jy-processing-name], [data-jy-reading-style], [data-jy-console-preset], [data-jy-console-preset-name]')
+      event.target.closest('[data-bgt-page="processing"], [data-bgt-page="tts"]')
+      && !event.target.matches('[data-bgt-processing-name], [data-bgt-reading-style], [data-bgt-console-preset], [data-bgt-console-preset-name]')
     ) {
       saveSettings(collectSettings(root));
       syncColoringFields(root, runtime.settings, { renderList: false });
@@ -15683,59 +15683,59 @@ function createControlCenter(rootDocument = document) {
 
   const onInput = event => {
     // What the reader has typed for 小助手 survives the control center closing (DESIGN §17.3).
-    if (event.target.matches('[data-jy-helper-input]')) {
+    if (event.target.matches('[data-bgt-helper-input]')) {
       runtime.helper.draft = event.target.value;
       return;
     }
     // A console slider shows its number beside it as it moves.
-    if (event.target.matches('[data-jy-console-key]')) {
+    if (event.target.matches('[data-bgt-console-key]')) {
       const output = event.target.nextElementSibling;
-      if (output) output.textContent = consoleWord(event.target.dataset.jyConsoleKey, event.target.value);
+      if (output) output.textContent = consoleWord(event.target.dataset.bgtConsoleKey, event.target.value);
     }
     // A folded character row shows its name; the name typed into it shows up there at once.
-    if (event.target.matches('[data-jy-tts-voice-name]')) {
-      const label = event.target.closest('[data-jy-tts-voice-row]')?.querySelector('[data-jy-tts-voice-summary-name]');
+    if (event.target.matches('[data-bgt-tts-voice-name]')) {
+      const label = event.target.closest('[data-bgt-tts-voice-row]')?.querySelector('[data-bgt-tts-voice-summary-name]');
       if (label) label.textContent = event.target.value.trim() || '（未命名）';
     }
     // So does a folded 音色库 entry, its voice and language included.
-    if (event.target.matches('[data-jy-tts-library-name]')) {
-      const label = event.target.closest('[data-jy-tts-library-row]')?.querySelector('[data-jy-tts-library-summary-name]');
+    if (event.target.matches('[data-bgt-tts-library-name]')) {
+      const label = event.target.closest('[data-bgt-tts-library-row]')?.querySelector('[data-bgt-tts-library-summary-name]');
       if (label) label.textContent = event.target.value.trim() || '（未命名）';
     }
-    if (event.target.matches('[data-jy-tts-library-id], [data-jy-tts-library-lang], [data-jy-tts-library-gsv="refAudioPath"]')) {
-      const row = event.target.closest('[data-jy-tts-library-row]');
-      const meta = row?.querySelector('.jy-tts-voice-summary-meta');
-      const voiceId = row?.querySelector('[data-jy-tts-library-id]')?.value.trim() ?? '';
+    if (event.target.matches('[data-bgt-tts-library-id], [data-bgt-tts-library-lang], [data-bgt-tts-library-gsv="refAudioPath"]')) {
+      const row = event.target.closest('[data-bgt-tts-library-row]');
+      const meta = row?.querySelector('.bgt-tts-voice-summary-meta');
+      const voiceId = row?.querySelector('[data-bgt-tts-library-id]')?.value.trim() ?? '';
       // The fetched title belongs to the id it was fetched for.
-      if (meta) meta.textContent = ttsLibraryRowMeta({ voiceId, title: voiceId === row.dataset.voiceId ? row.dataset.title : '', lang: row.querySelector('[data-jy-tts-library-lang]')?.value ?? '', gsv: readLibraryGsv(row) });
+      if (meta) meta.textContent = ttsLibraryRowMeta({ voiceId, title: voiceId === row.dataset.voiceId ? row.dataset.title : '', lang: row.querySelector('[data-bgt-tts-library-lang]')?.value ?? '', gsv: readLibraryGsv(row) });
     }
-    if (event.target.matches('[data-jy-field="coloringVividness"]')) {
+    if (event.target.matches('[data-bgt-field="coloringVividness"]')) {
       const percent = Number(event.target.value);
-      setText(root, '[data-jy-vividness-value]', `${percent}%`);
+      setText(root, '[data-bgt-vividness-value]', `${percent}%`);
       // Live preview only; the value is persisted on the next save like every other field.
       runtime.settings = { ...runtime.settings, coloring: { ...activeColoring(), vividness: percent / 100 } };
       refreshSpeakerPreviews(root, runtime.settings);
       return;
     }
-    if (event.target.matches('[data-jy-speaker-name], [data-jy-speaker-aliases]')) {
+    if (event.target.matches('[data-bgt-speaker-name], [data-bgt-speaker-aliases]')) {
       refreshSpeakerPreviews(root, runtime.settings);
       return;
     }
-    if (event.target.matches('[data-jy-model-search]')) {
+    if (event.target.matches('[data-bgt-model-search]')) {
       const query = event.target.value.trim().toLowerCase();
-      const select = root.querySelector('[data-jy-model-select]');
+      const select = root.querySelector('[data-bgt-model-select]');
       for (const option of select.options) {
         option.hidden = Boolean(option.value && !option.selected && !option.textContent.toLowerCase().includes(query));
       }
       return;
     }
-    if (!event.target.matches('[data-jy-profile-field], [data-jy-custom-field], [data-jy-prompt-profile-name]')) return;
+    if (!event.target.matches('[data-bgt-profile-field], [data-bgt-custom-field], [data-bgt-prompt-profile-name]')) return;
     const draft = collectSettings(root);
     const profile = getActivePromptProfile(draft);
-    setText(root, '[data-jy-prompt-size]', `${countPromptCharacters(profile).toLocaleString()} 字`);
+    setText(root, '[data-bgt-prompt-size]', `${countPromptCharacters(profile).toLocaleString()} 字`);
     setText(
       root,
-      '[data-jy-language-support]',
+      '[data-bgt-language-support]',
       isSimplifiedChineseTarget(profile.targetLanguage)
         ? '简体中文会启用完整内置文风、称谓、专名、标点与杀八股规则。'
         : `${normalizeTargetLanguage(profile.targetLanguage)} 使用通用翻译规范；自定义规则照常生效。`,
@@ -15795,7 +15795,7 @@ async function openControlCenter() {
 
   const host = document.createElement('div');
   host.id = PANEL_HOST_ID;
-  host.dataset.jingyiVersion = APP_VERSION;
+  host.dataset.beagleTestVersion = APP_VERSION;
   host.dataset.theme = runtime.settings.theme || 'day';
   host.style.cssText = `${SHADOW_HOST_BOX}z-index:2147483000;pointer-events:none;`;
   keepTypingInside(host);
@@ -15803,19 +15803,19 @@ async function openControlCenter() {
   const style = document.createElement('style');
   style.textContent = await loadPanelCss();
   const overlay = document.createElement('div');
-  overlay.className = 'jy-overlay';
+  overlay.className = 'bgt-overlay';
   const dialog = document.createElement('section');
-  dialog.className = 'jy-dialog';
+  dialog.className = 'bgt-dialog';
   dialog.setAttribute('role', 'dialog');
   dialog.setAttribute('aria-modal', 'true');
   dialog.setAttribute('aria-label', APP_NAME);
   const closeButton = document.createElement('button');
   closeButton.type = 'button';
-  closeButton.className = 'jy-close';
-  closeButton.setAttribute('aria-label', '关闭镜译控制中心');
+  closeButton.className = 'bgt-close';
+  closeButton.setAttribute('aria-label', '关闭测试翻译控制中心');
   closeButton.textContent = '×';
   const viewport = document.createElement('div');
-  viewport.className = 'jy-viewport';
+  viewport.className = 'bgt-viewport';
   const controller = createControlCenter(document);
   viewport.appendChild(controller.root);
   dialog.append(closeButton, viewport);
@@ -15846,7 +15846,7 @@ async function openControlCenter() {
   };
   const onKeydown = event => {
     if (event.key === 'Escape') {
-      // A `.jy-ask` confirm (confirmDestructive) opens its own top-level dialog with its own Escape
+      // A `.bgt-ask` confirm (confirmDestructive) opens its own top-level dialog with its own Escape
       // handler, registered on `document` after this one — capture-phase listeners on the same target
       // run in registration order, so without this check Escape closed the confirm AND the whole
       // control center in one press (review finding index.js:5504/5502). The confirm's own listener,
@@ -15926,18 +15926,18 @@ function ensureSettingsEntry() {
   shell.innerHTML = `
     <div class="inline-drawer">
       <div class="inline-drawer-toggle inline-drawer-header">
-        <b>镜译 · 正文翻译器</b>
+        <b>测试翻译 · 正文翻译器</b>
         <div class="inline-drawer-icon fa-solid fa-circle-chevron-down down"></div>
       </div>
       <div class="inline-drawer-content">
         <p>提取所选正文标签中的原文，按空行段落交给翻译通道，再把目标语言镜像写回当前回复。</p>
-        <div class="jingyi-entry-row">
-          <span class="jingyi-entry-state">v${APP_VERSION} · 支持世界书与固定译名</span>
-          <button type="button" class="menu_button jingyi-open-button">打开控制中心</button>
+        <div class="beagle-test-entry-row">
+          <span class="beagle-test-entry-state">v${APP_VERSION} · 支持世界书与固定译名</span>
+          <button type="button" class="menu_button beagle-test-open-button">打开控制中心</button>
         </div>
       </div>
     </div>`;
-  const button = shell.querySelector('.jingyi-open-button');
+  const button = shell.querySelector('.beagle-test-open-button');
   const activate = () => openControlCenter().catch(error => toast('error', safeError(error)));
   button.addEventListener('click', activate);
   target.appendChild(shell);
@@ -15996,9 +15996,9 @@ function syncFloatingEntry() {
   button.dataset.form = resolveFloatingForm(task.status);
   // Only a run in progress draws a partial arc; every other state shows the ring closed in its colour.
   const ratio = task.status === 'running' ? percent / 100 : 1;
-  button.style.setProperty('--jy-fab-progress', String(ratio));
-  const label = button.querySelector('.jingyi-fab-label');
-  const count = button.querySelector('.jingyi-fab-count');
+  button.style.setProperty('--bgt-fab-progress', String(ratio));
+  const label = button.querySelector('.beagle-test-fab-label');
+  const count = button.querySelector('.beagle-test-fab-count');
   if (label) label.textContent = FLOATING_LABELS[task.status] || FLOATING_LABELS.idle;
   if (count) count.textContent = task.status === 'running' ? `${Math.round(percent)}%` : '';
   // The entry remembers its own position; reading it back from style.left would hand a docked tab,
@@ -16055,22 +16055,22 @@ function ensureFloatingButton() {
   const button = document.createElement('button');
   button.id = FLOATING_ID;
   button.type = 'button';
-  button.className = 'jingyi-floating-button';
+  button.className = 'beagleTest-floating-button';
   button.dataset.status = runtime.task.status;
   button.dataset.theme = runtime.settings.theme || 'day';
   button.setAttribute('aria-label', `打开${APP_NAME}，可拖动`);
-  button.title = '镜译 · 拖动调整位置，点击打开悬浮窗';
+  button.title = '测试翻译 · 拖动调整位置，点击打开悬浮窗';
   button.innerHTML = `
-    <span class="jingyi-fab-core">
-      <svg class="jingyi-fab-ring" viewBox="0 0 36 36" aria-hidden="true">
-        <circle class="jingyi-fab-track" cx="18" cy="18" r="16" pathLength="100"></circle>
-        <circle class="jingyi-fab-value" cx="18" cy="18" r="16" pathLength="100"></circle>
+    <span class="beagle-test-fab-core">
+      <svg class="beagle-test-fab-ring" viewBox="0 0 36 36" aria-hidden="true">
+        <circle class="beagle-test-fab-track" cx="18" cy="18" r="16" pathLength="100"></circle>
+        <circle class="beagle-test-fab-value" cx="18" cy="18" r="16" pathLength="100"></circle>
       </svg>
-      <span class="jingyi-fab-glyph" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 20l4.2-1 10.9-10.9a2 2 0 0 0-2.8-2.8L5.4 16.2 4 20Z"></path><path d="m14.9 6.7 2.8 2.8"></path></svg></span>
+      <span class="beagle-test-fab-glyph" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 20l4.2-1 10.9-10.9a2 2 0 0 0-2.8-2.8L5.4 16.2 4 20Z"></path><path d="m14.9 6.7 2.8 2.8"></path></svg></span>
     </span>
-    <span class="jingyi-fab-detail" aria-hidden="true">
-      <span class="jingyi-fab-line"><span class="jingyi-fab-label"></span><span class="jingyi-fab-count"></span></span>
-      <span class="jingyi-fab-bar"><i></i></span>
+    <span class="beagle-test-fab-detail" aria-hidden="true">
+      <span class="beagle-test-fab-line"><span class="beagle-test-fab-label"></span><span class="beagle-test-fab-count"></span></span>
+      <span class="beagle-test-fab-bar"><i></i></span>
     </span>`;
   const position = readFloatingPosition();
   let pointerId = null;
@@ -16282,16 +16282,16 @@ function saveMiniSize(size) {
  * DESIGN §14 片段跳转 · 减少动态效果: which class the jump highlight (`focusRow`, inside
  * `openMiniWindow`) applies, and how it gets cleared afterward. The animated version relies on
  * `animationend`, but the global `prefers-reduced-motion: reduce` rule (style.css) sets
- * `animation: none !important` on everything — that used to suppress `.jy-mini-row-jump` entirely,
+ * `animation: none !important` on everything — that used to suppress `.bgt-mini-row-jump` entirely,
  * leaving no highlight at all (review finding style.css:975) — so reduced motion instead gets a plain
- * static background (`.jy-mini-row-jump-static`, same colour as the animation's start) that JS clears
+ * static background (`.bgt-mini-row-jump-static`, same colour as the animation's start) that JS clears
  * with a timeout instead of waiting for an event that would never fire. Pure so it is testable without
  * a DOM; the class name and duration are all `focusRow` needs from it.
  */
 function segmentJumpHighlightPlan(reducedMotion) {
   return reducedMotion
-    ? { className: 'jy-mini-row-jump-static', clearAfterMs: 2000 }
-    : { className: 'jy-mini-row-jump', clearAfterMs: null };
+    ? { className: 'bgt-mini-row-jump-static', clearAfterMs: 2000 }
+    : { className: 'bgt-mini-row-jump', clearAfterMs: null };
 }
 
 // The assistant floors of the chat, in order, for the window's floor arrows.
@@ -16322,7 +16322,7 @@ async function openMiniWindow() {
   const touch = isCompactViewport();
   const host = document.createElement('div');
   host.id = MINI_HOST_ID;
-  host.dataset.jingyiVersion = APP_VERSION;
+  host.dataset.beagleTestVersion = APP_VERSION;
   host.dataset.theme = settings.theme || 'day';
   host.style.cssText = `${SHADOW_HOST_BOX}z-index:2147482950;pointer-events:none;`;
   keepTypingInside(host);
@@ -16331,7 +16331,7 @@ async function openMiniWindow() {
   style.textContent = await loadPanelCss();
 
   const win = document.createElement('section');
-  win.className = 'jy-mini';
+  win.className = 'bgt-mini';
   win.setAttribute('role', 'dialog');
   win.setAttribute('aria-label', `${APP_NAME} 悬浮窗`);
   win.dataset.touch = touch ? 'true' : 'false';
@@ -16340,227 +16340,227 @@ async function openMiniWindow() {
   win.dataset.size = readMiniSize(touch);
   win.dataset.miniTab = 'translate';
   win.innerHTML = `
-<div class="jy-mini-bar" data-jy-mini-drag>
-  <span class="jy-mini-mark" aria-hidden="true">镜</span>
-  <span class="jy-mini-name"><span data-jy-mini-title>镜译</span><span class="jy-dot" data-jy-task-dot="idle"></span></span>
-  <button type="button" data-jy-action="mini-max" aria-label="展开" title="展开">⤢</button>
-  <button type="button" data-jy-action="mini-expand" aria-label="打开控制中心" title="控制中心">⚙</button>
-  <button type="button" data-jy-action="mini-collapse" aria-label="收起悬浮窗" title="收起">−</button>
+<div class="bgt-mini-bar" data-bgt-mini-drag>
+  <span class="bgt-mini-mark" aria-hidden="true">镜</span>
+  <span class="bgt-mini-name"><span data-bgt-mini-title>测试翻译</span><span class="bgt-dot" data-bgt-task-dot="idle"></span></span>
+  <button type="button" data-bgt-action="mini-max" aria-label="展开" title="展开">⤢</button>
+  <button type="button" data-bgt-action="mini-expand" aria-label="打开控制中心" title="控制中心">⚙</button>
+  <button type="button" data-bgt-action="mini-collapse" aria-label="收起悬浮窗" title="收起">−</button>
 </div>
-<div class="jy-mini-brief" data-jy-mini-brief>
-  <div class="jy-mini-brief-floor"><span data-jy-mini-brief-title>镜译</span><span class="jy-muted" data-jy-mini-brief-state></span></div>
-  <p class="jy-mini-brief-task" data-jy-mini-brief-task hidden></p>
-  <button type="button" class="jy-mini-playbar" data-jy-action="mini-goto-reading" data-jy-mini-playbar hidden>
-    <span class="jy-mini-playbar-glyph" data-jy-mini-playbar-glyph aria-hidden="true">▶</span>
-    <span class="jy-progress" aria-hidden="true"><span data-jy-mini-playbar-fill></span></span>
-    <span class="jy-mini-playbar-text" data-jy-mini-playbar-text></span>
+<div class="bgt-mini-brief" data-bgt-mini-brief>
+  <div class="bgt-mini-brief-floor"><span data-bgt-mini-brief-title>测试翻译</span><span class="bgt-muted" data-bgt-mini-brief-state></span></div>
+  <p class="bgt-mini-brief-task" data-bgt-mini-brief-task hidden></p>
+  <button type="button" class="bgt-mini-playbar" data-bgt-action="mini-goto-reading" data-bgt-mini-playbar hidden>
+    <span class="bgt-mini-playbar-glyph" data-bgt-mini-playbar-glyph aria-hidden="true">▶</span>
+    <span class="bgt-progress" aria-hidden="true"><span data-bgt-mini-playbar-fill></span></span>
+    <span class="bgt-mini-playbar-text" data-bgt-mini-playbar-text></span>
   </button>
-  <div class="jy-mini-brief-actions">
-    <button type="button" class="jy-button jy-button-primary" data-jy-action="mini-translate" hidden>翻译本楼</button>
-    <button type="button" class="jy-button jy-mini-danger" data-jy-action="mini-stop" hidden>停止翻译</button>
-    <button type="button" class="jy-mini-play jy-mini-play-brief" data-jy-action="tts-toggle" aria-label="播放或暂停" title="播放 / 暂停" hidden>▶</button>
-    <button type="button" class="jy-button jy-mini-danger" data-jy-action="tts-stop" data-jy-brief-stop hidden>停止朗读</button>
-    <button type="button" class="jy-button" data-jy-action="mini-brief-read">读这一楼</button>
-    <button type="button" class="jy-button" data-jy-action="mini-max">展开</button>
+  <div class="bgt-mini-brief-actions">
+    <button type="button" class="bgt-button bgt-button-primary" data-bgt-action="mini-translate" hidden>翻译本楼</button>
+    <button type="button" class="bgt-button bgt-mini-danger" data-bgt-action="mini-stop" hidden>停止翻译</button>
+    <button type="button" class="bgt-mini-play bgt-mini-play-brief" data-bgt-action="tts-toggle" aria-label="播放或暂停" title="播放 / 暂停" hidden>▶</button>
+    <button type="button" class="bgt-button bgt-mini-danger" data-bgt-action="tts-stop" data-bgt-brief-stop hidden>停止朗读</button>
+    <button type="button" class="bgt-button" data-bgt-action="mini-brief-read">读这一楼</button>
+    <button type="button" class="bgt-button" data-bgt-action="mini-max">展开</button>
   </div>
 </div>
-<div class="jy-mini-tabs" role="tablist" data-jy-mini-tabs>
-  <button type="button" role="tab" aria-selected="true" data-jy-mini-tab="translate">翻译</button>
-  <button type="button" role="tab" aria-selected="false" data-jy-mini-tab="reading">朗读</button>
-  <button type="button" role="tab" aria-selected="false" data-jy-mini-tab="log">日志</button>
-  <button type="button" role="tab" aria-selected="false" data-jy-mini-tab="call">通话测试</button>
+<div class="bgt-mini-tabs" role="tablist" data-bgt-mini-tabs>
+  <button type="button" role="tab" aria-selected="true" data-bgt-mini-tab="translate">翻译</button>
+  <button type="button" role="tab" aria-selected="false" data-bgt-mini-tab="reading">朗读</button>
+  <button type="button" role="tab" aria-selected="false" data-bgt-mini-tab="log">日志</button>
+  <button type="button" role="tab" aria-selected="false" data-bgt-mini-tab="call">通话测试</button>
 </div>
-<div class="jy-mini-body jy-mini-translate" data-jy-mini-page="translate">
-  <div class="jy-mini-scroll">
-  <div class="jy-mini-status">
-    <div class="jy-mini-status-top">
-      <div class="jy-mini-floor-nav">
-        <button type="button" data-jy-action="mini-floor-prev" aria-label="上一楼" title="上一楼">‹</button>
-        <strong data-jy-mini-floor-title>等待正文</strong>
-        <button type="button" data-jy-action="mini-floor-next" aria-label="下一楼" title="下一楼">›</button>
+<div class="bgt-mini-body bgt-mini-translate" data-bgt-mini-page="translate">
+  <div class="bgt-mini-scroll">
+  <div class="bgt-mini-status">
+    <div class="bgt-mini-status-top">
+      <div class="bgt-mini-floor-nav">
+        <button type="button" data-bgt-action="mini-floor-prev" aria-label="上一楼" title="上一楼">‹</button>
+        <strong data-bgt-mini-floor-title>等待正文</strong>
+        <button type="button" data-bgt-action="mini-floor-next" aria-label="下一楼" title="下一楼">›</button>
       </div>
-      <span data-jy-mini-floor-state>—</span>
+      <span data-bgt-mini-floor-state>—</span>
     </div>
-    <div class="jy-mini-batches" data-jy-mini-batches hidden></div>
-    <p class="jy-muted jy-mini-taskline"><span data-jy-task-message></span><span class="jy-mini-eta" data-jy-mini-eta></span></p>
-    <button type="button" class="jy-mini-thinking" data-jy-action="mini-thinking" data-jy-mini-thinking hidden aria-expanded="false"><span class="jy-mini-thinking-mark" aria-hidden="true">◔</span><span class="jy-mini-thinking-text" data-jy-mini-thinking-text></span><span class="jy-mini-thinking-more" data-jy-mini-thinking-more>展开</span></button>
-    <pre class="jy-mini-thinking-full" data-jy-mini-thinking-full hidden></pre>
+    <div class="bgt-mini-batches" data-bgt-mini-batches hidden></div>
+    <p class="bgt-muted bgt-mini-taskline"><span data-bgt-task-message></span><span class="bgt-mini-eta" data-bgt-mini-eta></span></p>
+    <button type="button" class="bgt-mini-thinking" data-bgt-action="mini-thinking" data-bgt-mini-thinking hidden aria-expanded="false"><span class="bgt-mini-thinking-mark" aria-hidden="true">◔</span><span class="bgt-mini-thinking-text" data-bgt-mini-thinking-text></span><span class="bgt-mini-thinking-more" data-bgt-mini-thinking-more>展开</span></button>
+    <pre class="bgt-mini-thinking-full" data-bgt-mini-thinking-full hidden></pre>
   </div>
-  <ol class="jy-mini-rows" data-jy-mini-rows></ol>
+  <ol class="bgt-mini-rows" data-bgt-mini-rows></ol>
   </div>
-  <div class="jy-mini-more" data-jy-mini-more hidden>
-    <div class="jy-mini-more-head"><strong>更多</strong><button type="button" class="jy-mini-inspect-close" data-jy-action="mini-more-close" aria-label="收起" title="收起">×</button></div>
-    <div class="jy-mini-quick">
-      <label title="Bing 网页翻译不需要 API Key；镜译模型翻译沿用下面的连接选择。"><span class="jy-label">翻译引擎</span><select data-jy-mini-provider><option value="model">镜译模型翻译</option><option value="bing">Bing 网页翻译（免密钥）</option></select></label>
-      <label title="仅镜译模型翻译使用这条连接。"><span class="jy-label">模型连接</span><select data-jy-mini-channel></select></label>
-      <label><span class="jy-label">方案</span><select data-jy-mini-profile></select></label>
-      <button type="button" class="jy-text-button" data-jy-action="mini-translate-all" data-jy-mini-untranslated hidden></button>
-      <button type="button" class="jy-text-button" data-jy-action="mini-clear-floor" hidden title="清除这一楼的译文，正文恢复成原文">清除这一楼的译文</button>
+  <div class="bgt-mini-more" data-bgt-mini-more hidden>
+    <div class="bgt-mini-more-head"><strong>更多</strong><button type="button" class="bgt-mini-inspect-close" data-bgt-action="mini-more-close" aria-label="收起" title="收起">×</button></div>
+    <div class="bgt-mini-quick">
+      <label title="Bing 网页翻译不需要 API Key；测试翻译模型翻译沿用下面的连接选择。"><span class="bgt-label">翻译引擎</span><select data-bgt-mini-provider><option value="model">测试翻译模型翻译</option><option value="bing">Bing 网页翻译（免密钥）</option></select></label>
+      <label title="仅测试翻译模型翻译使用这条连接。"><span class="bgt-label">模型连接</span><select data-bgt-mini-channel></select></label>
+      <label><span class="bgt-label">方案</span><select data-bgt-mini-profile></select></label>
+      <button type="button" class="bgt-text-button" data-bgt-action="mini-translate-all" data-bgt-mini-untranslated hidden></button>
+      <button type="button" class="bgt-text-button" data-bgt-action="mini-clear-floor" hidden title="清除这一楼的译文，正文恢复成原文">清除这一楼的译文</button>
     </div>
-    <details class="jy-mini-scratch" data-jy-mini-scratch data-expanded="false">
-      <summary class="jy-mini-scratch-top"><strong>随手翻</strong><span data-jy-mini-target>简体中文</span></summary>
-      <div class="jy-mini-scratch-drawer">
-        <div class="jy-mini-scratch-body">
-          <textarea data-jy-mini-input rows="3" spellcheck="false" placeholder="粘一段原文进来，不写回楼层。"></textarea>
-          <div class="jy-mini-run">
-            <button type="button" class="jy-button jy-button-primary" data-jy-action="mini-scratch">翻译这段</button>
-            <p class="jy-muted" data-jy-mini-note>Ctrl + Enter 直接翻</p>
+    <details class="bgt-mini-scratch" data-bgt-mini-scratch data-expanded="false">
+      <summary class="bgt-mini-scratch-top"><strong>随手翻</strong><span data-bgt-mini-target>简体中文</span></summary>
+      <div class="bgt-mini-scratch-drawer">
+        <div class="bgt-mini-scratch-body">
+          <textarea data-bgt-mini-input rows="3" spellcheck="false" placeholder="粘一段原文进来，不写回楼层。"></textarea>
+          <div class="bgt-mini-run">
+            <button type="button" class="bgt-button bgt-button-primary" data-bgt-action="mini-scratch">翻译这段</button>
+            <p class="bgt-muted" data-bgt-mini-note>Ctrl + Enter 直接翻</p>
           </div>
-          <div class="jy-mini-result" data-jy-mini-result hidden>
-            <p data-jy-mini-output></p>
-            <div class="jy-mini-result-foot">
-              <p class="jy-muted" data-jy-mini-meta></p>
-              <button type="button" data-jy-action="mini-copy">复制</button>
+          <div class="bgt-mini-result" data-bgt-mini-result hidden>
+            <p data-bgt-mini-output></p>
+            <div class="bgt-mini-result-foot">
+              <p class="bgt-muted" data-bgt-mini-meta></p>
+              <button type="button" data-bgt-action="mini-copy">复制</button>
             </div>
           </div>
         </div>
       </div>
     </details>
   </div>
-  <div class="jy-mini-foot">
-    <button type="button" class="jy-mini-playbar" data-jy-action="mini-goto-reading" data-jy-mini-playbar hidden>
-      <span class="jy-mini-playbar-glyph" data-jy-mini-playbar-glyph aria-hidden="true">▶</span>
-      <span class="jy-progress" aria-hidden="true"><span data-jy-mini-playbar-fill></span></span>
-      <span class="jy-mini-playbar-text" data-jy-mini-playbar-text></span>
-      <span class="jy-mini-playbar-more" aria-hidden="true">︿</span>
+  <div class="bgt-mini-foot">
+    <button type="button" class="bgt-mini-playbar" data-bgt-action="mini-goto-reading" data-bgt-mini-playbar hidden>
+      <span class="bgt-mini-playbar-glyph" data-bgt-mini-playbar-glyph aria-hidden="true">▶</span>
+      <span class="bgt-progress" aria-hidden="true"><span data-bgt-mini-playbar-fill></span></span>
+      <span class="bgt-mini-playbar-text" data-bgt-mini-playbar-text></span>
+      <span class="bgt-mini-playbar-more" aria-hidden="true">︿</span>
     </button>
-    <div class="jy-mini-actions" data-jy-mini-actions>
-      <button type="button" class="jy-button jy-button-primary" data-jy-action="mini-translate">翻译本楼</button>
-      <button type="button" class="jy-button jy-mini-danger" data-jy-action="mini-stop" hidden>停止</button>
-      <button type="button" class="jy-button" data-jy-action="mini-repair" hidden>补译</button>
-      <button type="button" class="jy-button" data-jy-action="mini-retranslate" hidden>重翻</button>
-      <button type="button" class="jy-button jy-mini-auto" data-jy-action="mini-auto" aria-pressed="true" title="新楼生成完自动翻译">自动 开</button>
-      <button type="button" class="jy-button" data-jy-action="mini-more" aria-expanded="false" title="翻译模型、方案、全翻、清除译文、随手翻">更多</button>
+    <div class="bgt-mini-actions" data-bgt-mini-actions>
+      <button type="button" class="bgt-button bgt-button-primary" data-bgt-action="mini-translate">翻译本楼</button>
+      <button type="button" class="bgt-button bgt-mini-danger" data-bgt-action="mini-stop" hidden>停止</button>
+      <button type="button" class="bgt-button" data-bgt-action="mini-repair" hidden>补译</button>
+      <button type="button" class="bgt-button" data-bgt-action="mini-retranslate" hidden>重翻</button>
+      <button type="button" class="bgt-button bgt-mini-auto" data-bgt-action="mini-auto" aria-pressed="true" title="新楼生成完自动翻译">自动 开</button>
+      <button type="button" class="bgt-button" data-bgt-action="mini-more" aria-expanded="false" title="翻译模型、方案、全翻、清除译文、随手翻">更多</button>
     </div>
   </div>
 </div>
-<div class="jy-mini-body jy-mini-reading" data-jy-mini-page="reading" hidden>
-  <div class="jy-mini-scroll">
-  <div class="jy-mini-player-head">
-    <div class="jy-mini-status-top"><strong data-jy-tts-title>没有在读</strong><span data-jy-tts-floor>—</span></div>
-    <div class="jy-mini-pills" data-jy-tts-pills hidden></div>
-    <ul class="jy-mini-steps" data-jy-tts-steps hidden></ul>
+<div class="bgt-mini-body bgt-mini-reading" data-bgt-mini-page="reading" hidden>
+  <div class="bgt-mini-scroll">
+  <div class="bgt-mini-player-head">
+    <div class="bgt-mini-status-top"><strong data-bgt-tts-title>没有在读</strong><span data-bgt-tts-floor>—</span></div>
+    <div class="bgt-mini-pills" data-bgt-tts-pills hidden></div>
+    <ul class="bgt-mini-steps" data-bgt-tts-steps hidden></ul>
   </div>
-  <ol class="jy-mini-sentences" data-jy-tts-list hidden></ol>
-  <p class="jy-muted jy-mini-sentences-note" data-jy-tts-list-note hidden></p>
-  <div class="jy-mini-inspect" data-jy-tts-inspect hidden>
-    <div class="jy-mini-inspect-head"><strong data-jy-tts-who>—</strong><select data-jy-tts-speaker aria-label="这一句是谁说的" title="这一句是谁说的。改了就按这个人的音色重新生成，不重新分析" hidden></select><button type="button" class="jy-mini-inspect-close" data-jy-action="tts-inspect-close" aria-label="关闭改句面板" title="关闭">×</button></div>
-    <p class="jy-muted jy-mini-inspect-depth" data-jy-tts-depth></p>
-    <p class="jy-mini-inspect-source" data-jy-tts-source hidden></p>
-    <p class="jy-mini-inspect-text" data-jy-tts-text></p>
-    <dl class="jy-mini-inspect-summary" data-jy-tts-summary hidden></dl>
-    <label class="jy-mini-inspect-field"><span class="jy-label">发给 Fish 的内容（方括号里是情绪、停顿、强调标签，可以直接改、直接插）</span><textarea data-jy-tts-fish rows="3" spellcheck="false"></textarea></label>
-    <div class="jy-mini-inspect-tags" data-jy-tts-tags></div>
-    <div class="jy-mini-inspect-custom"><input type="text" data-jy-tts-custom maxlength="40" placeholder="自己写一条指令插到光标处，比如：压低声音"><button type="button" class="jy-text-button" data-jy-action="tts-insert-custom">插入</button></div>
-    <div class="jy-mini-inspect-prosody"><label><span class="jy-label">语速</span><input type="number" data-jy-tts-speed min="0.5" max="2" step="0.05"></label><label title="1 平静到 5 极端顶点，越高 Fish 的 temperature 越高；留空按分析的"><span class="jy-label">张力</span><input type="number" data-jy-tts-tension min="1" max="5" step="1"></label><label><span class="jy-label">音量 dB</span><input type="number" data-jy-tts-volume min="-20" max="20" step="1"></label></div>
-    <div class="jy-mini-inspect-actions">
-      <button type="button" class="jy-button jy-button-primary" data-jy-action="tts-apply" hidden>重新生成并播放</button>
-      <button type="button" class="jy-text-button" data-jy-action="tts-refine-sentence" title="说一句哪里不对，让副模型只改这一句的分析">改这一句的分析</button>
-      <button type="button" class="jy-text-button" data-jy-action="tts-save-sentence" title="把这一句的音频存到本地，从已经听到的那一条里剪出来">保存这一句</button>
-      <button type="button" class="jy-text-button" data-jy-action="tts-reset" hidden>恢复自动</button>
+  <ol class="bgt-mini-sentences" data-bgt-tts-list hidden></ol>
+  <p class="bgt-muted bgt-mini-sentences-note" data-bgt-tts-list-note hidden></p>
+  <div class="bgt-mini-inspect" data-bgt-tts-inspect hidden>
+    <div class="bgt-mini-inspect-head"><strong data-bgt-tts-who>—</strong><select data-bgt-tts-speaker aria-label="这一句是谁说的" title="这一句是谁说的。改了就按这个人的音色重新生成，不重新分析" hidden></select><button type="button" class="bgt-mini-inspect-close" data-bgt-action="tts-inspect-close" aria-label="关闭改句面板" title="关闭">×</button></div>
+    <p class="bgt-muted bgt-mini-inspect-depth" data-bgt-tts-depth></p>
+    <p class="bgt-mini-inspect-source" data-bgt-tts-source hidden></p>
+    <p class="bgt-mini-inspect-text" data-bgt-tts-text></p>
+    <dl class="bgt-mini-inspect-summary" data-bgt-tts-summary hidden></dl>
+    <label class="bgt-mini-inspect-field"><span class="bgt-label">发给 Fish 的内容（方括号里是情绪、停顿、强调标签，可以直接改、直接插）</span><textarea data-bgt-tts-fish rows="3" spellcheck="false"></textarea></label>
+    <div class="bgt-mini-inspect-tags" data-bgt-tts-tags></div>
+    <div class="bgt-mini-inspect-custom"><input type="text" data-bgt-tts-custom maxlength="40" placeholder="自己写一条指令插到光标处，比如：压低声音"><button type="button" class="bgt-text-button" data-bgt-action="tts-insert-custom">插入</button></div>
+    <div class="bgt-mini-inspect-prosody"><label><span class="bgt-label">语速</span><input type="number" data-bgt-tts-speed min="0.5" max="2" step="0.05"></label><label title="1 平静到 5 极端顶点，越高 Fish 的 temperature 越高；留空按分析的"><span class="bgt-label">张力</span><input type="number" data-bgt-tts-tension min="1" max="5" step="1"></label><label><span class="bgt-label">音量 dB</span><input type="number" data-bgt-tts-volume min="-20" max="20" step="1"></label></div>
+    <div class="bgt-mini-inspect-actions">
+      <button type="button" class="bgt-button bgt-button-primary" data-bgt-action="tts-apply" hidden>重新生成并播放</button>
+      <button type="button" class="bgt-text-button" data-bgt-action="tts-refine-sentence" title="说一句哪里不对，让副模型只改这一句的分析">改这一句的分析</button>
+      <button type="button" class="bgt-text-button" data-bgt-action="tts-save-sentence" title="把这一句的音频存到本地，从已经听到的那一条里剪出来">保存这一句</button>
+      <button type="button" class="bgt-text-button" data-bgt-action="tts-reset" hidden>恢复自动</button>
     </div>
-    <p class="jy-muted" data-jy-tts-note></p>
+    <p class="bgt-muted" data-bgt-tts-note></p>
   </div>
   </div>
-  <div class="jy-mini-more" data-jy-mini-more hidden>
-    <div class="jy-mini-more-head"><strong>更多</strong><button type="button" class="jy-mini-inspect-close" data-jy-action="mini-more-close" aria-label="收起" title="收起">×</button></div>
-    <div class="jy-mini-links">
-      <button type="button" class="jy-text-button" data-jy-action="tts-read-floor" title="从头朗读这一楼">从头读</button>
-      <button type="button" class="jy-text-button" data-jy-action="tts-reanalyze" title="按你的意见改这一楼的分析，或者丢掉重来">重新分析</button>
-      <button type="button" class="jy-text-button jy-mini-auto" data-jy-action="tts-intimate" aria-pressed="false" title="点一下换一档：关 → 自动 → 开。自动是分析模式自己判断这一楼是不是亲密戏；和朗读页的「亲密场景」是同一个设置" hidden>亲密场景 关</button>
-      <button type="button" class="jy-text-button" data-jy-action="tts-download" title="把这段音频保存到本地">保存到本地</button>
-      <button type="button" class="jy-text-button" data-jy-action="tts-locate" title="把聊天滚到正在读的句子">定位到正文</button>
-      <button type="button" class="jy-text-button" data-jy-action="tts-copy-analysis" title="把这一楼的分析结果复制成 JSON">复制分析</button>
+  <div class="bgt-mini-more" data-bgt-mini-more hidden>
+    <div class="bgt-mini-more-head"><strong>更多</strong><button type="button" class="bgt-mini-inspect-close" data-bgt-action="mini-more-close" aria-label="收起" title="收起">×</button></div>
+    <div class="bgt-mini-links">
+      <button type="button" class="bgt-text-button" data-bgt-action="tts-read-floor" title="从头朗读这一楼">从头读</button>
+      <button type="button" class="bgt-text-button" data-bgt-action="tts-reanalyze" title="按你的意见改这一楼的分析，或者丢掉重来">重新分析</button>
+      <button type="button" class="bgt-text-button bgt-mini-auto" data-bgt-action="tts-intimate" aria-pressed="false" title="点一下换一档：关 → 自动 → 开。自动是分析模式自己判断这一楼是不是亲密戏；和朗读页的「亲密场景」是同一个设置" hidden>亲密场景 关</button>
+      <button type="button" class="bgt-text-button" data-bgt-action="tts-download" title="把这段音频保存到本地">保存到本地</button>
+      <button type="button" class="bgt-text-button" data-bgt-action="tts-locate" title="把聊天滚到正在读的句子">定位到正文</button>
+      <button type="button" class="bgt-text-button" data-bgt-action="tts-copy-analysis" title="把这一楼的分析结果复制成 JSON">复制分析</button>
     </div>
   </div>
-  <div class="jy-mini-foot jy-mini-player">
-    <div class="jy-progress jy-progress-seek" data-jy-tts-seek role="slider" aria-label="播放进度，拖动或点击跳转" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" tabindex="0"><span data-jy-tts-progress></span><i data-jy-tts-knob></i></div>
-    <div class="jy-mini-clock"><span data-jy-tts-clock-now>0:00</span><span class="jy-muted" data-jy-tts-message>点播放键读这一楼，或者点上面的某一句。</span><span data-jy-tts-clock-total>0:00</span></div>
-    <div class="jy-mini-transport">
-      <button type="button" class="jy-button jy-mini-danger" data-jy-action="tts-stop" title="停止朗读" disabled>停止</button>
-      <button type="button" class="jy-button" data-jy-action="tts-prev" title="回到上一段">上一段</button>
-      <button type="button" class="jy-mini-play" data-jy-action="tts-toggle" aria-label="播放或暂停" title="播放 / 暂停">▶</button>
-      <button type="button" class="jy-button" data-jy-action="tts-next" title="快进到下一段">下一段</button>
-      <button type="button" class="jy-button" data-jy-action="mini-more" aria-expanded="false" title="从头读、重新分析、保存到本地、定位到正文、复制分析">更多</button>
+  <div class="bgt-mini-foot bgt-mini-player">
+    <div class="bgt-progress bgt-progress-seek" data-bgt-tts-seek role="slider" aria-label="播放进度，拖动或点击跳转" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" tabindex="0"><span data-bgt-tts-progress></span><i data-bgt-tts-knob></i></div>
+    <div class="bgt-mini-clock"><span data-bgt-tts-clock-now>0:00</span><span class="bgt-muted" data-bgt-tts-message>点播放键读这一楼，或者点上面的某一句。</span><span data-bgt-tts-clock-total>0:00</span></div>
+    <div class="bgt-mini-transport">
+      <button type="button" class="bgt-button bgt-mini-danger" data-bgt-action="tts-stop" title="停止朗读" disabled>停止</button>
+      <button type="button" class="bgt-button" data-bgt-action="tts-prev" title="回到上一段">上一段</button>
+      <button type="button" class="bgt-mini-play" data-bgt-action="tts-toggle" aria-label="播放或暂停" title="播放 / 暂停">▶</button>
+      <button type="button" class="bgt-button" data-bgt-action="tts-next" title="快进到下一段">下一段</button>
+      <button type="button" class="bgt-button" data-bgt-action="mini-more" aria-expanded="false" title="从头读、重新分析、保存到本地、定位到正文、复制分析">更多</button>
     </div>
   </div>
 </div>
-<div class="jy-mini-body jy-mini-logpage" data-jy-mini-page="log" hidden>  <div class="jy-mini-log-filters" data-jy-mini-log-filters>
-    <button type="button" class="jy-mini-chip" data-jy-action="log-filter" data-filter="floor" aria-pressed="true">本楼</button>
-    <button type="button" class="jy-mini-chip" data-jy-action="log-filter" data-filter="all" aria-pressed="false">全部</button>
-    <button type="button" class="jy-mini-chip" data-jy-action="log-filter" data-filter="translation" aria-pressed="false">翻译</button>
-    <button type="button" class="jy-mini-chip" data-jy-action="log-filter" data-filter="tts" aria-pressed="false">朗读</button>
-    <button type="button" class="jy-mini-chip jy-mini-chip-error" data-jy-action="log-filter" data-filter="errors" aria-pressed="false">只看出错</button>
-    <button type="button" class="jy-text-button" data-jy-action="log-copy">复制全部</button>
+<div class="bgt-mini-body bgt-mini-logpage" data-bgt-mini-page="log" hidden>  <div class="bgt-mini-log-filters" data-bgt-mini-log-filters>
+    <button type="button" class="bgt-mini-chip" data-bgt-action="log-filter" data-filter="floor" aria-pressed="true">本楼</button>
+    <button type="button" class="bgt-mini-chip" data-bgt-action="log-filter" data-filter="all" aria-pressed="false">全部</button>
+    <button type="button" class="bgt-mini-chip" data-bgt-action="log-filter" data-filter="translation" aria-pressed="false">翻译</button>
+    <button type="button" class="bgt-mini-chip" data-bgt-action="log-filter" data-filter="tts" aria-pressed="false">朗读</button>
+    <button type="button" class="bgt-mini-chip bgt-mini-chip-error" data-bgt-action="log-filter" data-filter="errors" aria-pressed="false">只看出错</button>
+    <button type="button" class="bgt-text-button" data-bgt-action="log-copy">复制全部</button>
   </div>
-  <div class="jy-mini-scroll">
-  <ol class="jy-mini-log" data-jy-mini-log></ol>
-  <p class="jy-muted jy-mini-log-empty" data-jy-mini-log-empty hidden>这里还没有记录。</p>
-  <div class="jy-mini-log-detail" data-jy-mini-log-detail hidden></div>
+  <div class="bgt-mini-scroll">
+  <ol class="bgt-mini-log" data-bgt-mini-log></ol>
+  <p class="bgt-muted bgt-mini-log-empty" data-bgt-mini-log-empty hidden>这里还没有记录。</p>
+  <div class="bgt-mini-log-detail" data-bgt-mini-log-detail hidden></div>
   </div>
 </div>
-<div class="jy-mini-body jy-mini-call" data-jy-mini-page="call" hidden>
-  <div class="jy-mini-scroll" data-jy-call-scroll>
-  <div class="jy-mini-status">
-    <div class="jy-mini-status-top"><strong data-jy-call-peer>通话测试</strong><span data-jy-call-clock>—</span></div>
-    <p class="jy-muted jy-mini-taskline"><span data-jy-call-state></span><span class="jy-mini-eta" data-jy-call-wait></span></p>
-    <p class="jy-muted" data-jy-call-note hidden></p>
+<div class="bgt-mini-body bgt-mini-call" data-bgt-mini-page="call" hidden>
+  <div class="bgt-mini-scroll" data-bgt-call-scroll>
+  <div class="bgt-mini-status">
+    <div class="bgt-mini-status-top"><strong data-bgt-call-peer>通话测试</strong><span data-bgt-call-clock>—</span></div>
+    <p class="bgt-muted bgt-mini-taskline"><span data-bgt-call-state></span><span class="bgt-mini-eta" data-bgt-call-wait></span></p>
+    <p class="bgt-muted" data-bgt-call-note hidden></p>
   </div>
-  <ol class="jy-mini-sentences" data-jy-call-lines hidden></ol>
+  <ol class="bgt-mini-sentences" data-bgt-call-lines hidden></ol>
   </div>
-  <div class="jy-mini-more" data-jy-mini-more hidden>
-    <div class="jy-mini-more-head"><strong>往期通话</strong><button type="button" class="jy-mini-inspect-close" data-jy-action="mini-more-close" aria-label="收起" title="收起">×</button></div>
-    <ol class="jy-mini-log" data-jy-call-history></ol>
-    <p class="jy-muted jy-mini-log-empty" data-jy-call-history-empty hidden>和这个角色还没有通话记录。</p>
-    <div class="jy-mini-log-detail" data-jy-call-detail hidden></div>
-    <div class="jy-mini-links">
-      <button type="button" class="jy-text-button" data-jy-action="call-clear" hidden>清空这个角色的通话记录</button>
-      <button type="button" class="jy-text-button" data-jy-action="call-settings" title="语音输入、通话用哪条连接">通话设置</button>
+  <div class="bgt-mini-more" data-bgt-mini-more hidden>
+    <div class="bgt-mini-more-head"><strong>往期通话</strong><button type="button" class="bgt-mini-inspect-close" data-bgt-action="mini-more-close" aria-label="收起" title="收起">×</button></div>
+    <ol class="bgt-mini-log" data-bgt-call-history></ol>
+    <p class="bgt-muted bgt-mini-log-empty" data-bgt-call-history-empty hidden>和这个角色还没有通话记录。</p>
+    <div class="bgt-mini-log-detail" data-bgt-call-detail hidden></div>
+    <div class="bgt-mini-links">
+      <button type="button" class="bgt-text-button" data-bgt-action="call-clear" hidden>清空这个角色的通话记录</button>
+      <button type="button" class="bgt-text-button" data-bgt-action="call-settings" title="语音输入、通话用哪条连接">通话设置</button>
     </div>
   </div>
-  <div class="jy-mini-foot">
-    <div class="jy-mini-inspect-custom" data-jy-call-typing hidden><input type="text" data-jy-call-input maxlength="500" placeholder="语音输入没开，打字说"><button type="button" class="jy-button jy-button-primary" data-jy-action="call-send">发送</button></div>
-    <div class="jy-mini-actions">
-      <button type="button" class="jy-button jy-button-primary" data-jy-action="call-dial">拨打</button>
-      <button type="button" class="jy-button jy-button-primary jy-mini-call-talk" data-jy-call-talk aria-pressed="false" title="按住说话，说完松开；对方在说时按下会打断" hidden>按住说话</button>
-      <button type="button" class="jy-button jy-button-primary" data-jy-action="call-resume" hidden>继续</button>
-      <button type="button" class="jy-button jy-mini-danger" data-jy-action="call-interrupt" title="让对方停下，电话不挂" hidden>打断</button>
-      <button type="button" class="jy-button jy-mini-danger" data-jy-action="call-hang" hidden>挂断</button>
-      <button type="button" class="jy-button" data-jy-action="mini-more" aria-expanded="false" title="往期通话、清空记录、通话设置">更多</button>
+  <div class="bgt-mini-foot">
+    <div class="bgt-mini-inspect-custom" data-bgt-call-typing hidden><input type="text" data-bgt-call-input maxlength="500" placeholder="语音输入没开，打字说"><button type="button" class="bgt-button bgt-button-primary" data-bgt-action="call-send">发送</button></div>
+    <div class="bgt-mini-actions">
+      <button type="button" class="bgt-button bgt-button-primary" data-bgt-action="call-dial">拨打</button>
+      <button type="button" class="bgt-button bgt-button-primary bgt-mini-call-talk" data-bgt-call-talk aria-pressed="false" title="按住说话，说完松开；对方在说时按下会打断" hidden>按住说话</button>
+      <button type="button" class="bgt-button bgt-button-primary" data-bgt-action="call-resume" hidden>继续</button>
+      <button type="button" class="bgt-button bgt-mini-danger" data-bgt-action="call-interrupt" title="让对方停下，电话不挂" hidden>打断</button>
+      <button type="button" class="bgt-button bgt-mini-danger" data-bgt-action="call-hang" hidden>挂断</button>
+      <button type="button" class="bgt-button" data-bgt-action="mini-more" aria-expanded="false" title="往期通话、清空记录、通话设置">更多</button>
     </div>
   </div>
 </div>`;
   shadow.append(style, win);
   document.body.appendChild(host);
 
-  const bar = win.querySelector('[data-jy-mini-drag]');
-  const input = win.querySelector('[data-jy-mini-input]');
-  const resultBox = win.querySelector('[data-jy-mini-result]');
-  const output = win.querySelector('[data-jy-mini-output]');
-  const scratch = win.querySelector('[data-jy-mini-scratch]');
+  const bar = win.querySelector('[data-bgt-mini-drag]');
+  const input = win.querySelector('[data-bgt-mini-input]');
+  const resultBox = win.querySelector('[data-bgt-mini-result]');
+  const output = win.querySelector('[data-bgt-mini-output]');
+  const scratch = win.querySelector('[data-bgt-mini-scratch]');
   const scratchSummary = scratch.querySelector('summary');
-  const channelSelect = win.querySelector('[data-jy-mini-channel]');
-  const providerSelect = win.querySelector('[data-jy-mini-provider]');
-  const profileSelect = win.querySelector('[data-jy-mini-profile]');
-  const rowsList = win.querySelector('[data-jy-mini-rows]');
-  const tabs = win.querySelector('[data-jy-mini-tabs]');
+  const channelSelect = win.querySelector('[data-bgt-mini-channel]');
+  const providerSelect = win.querySelector('[data-bgt-mini-provider]');
+  const profileSelect = win.querySelector('[data-bgt-mini-profile]');
+  const rowsList = win.querySelector('[data-bgt-mini-rows]');
+  const tabs = win.querySelector('[data-bgt-mini-tabs]');
   const pages = {
-    translate: win.querySelector('[data-jy-mini-page="translate"]'),
-    reading: win.querySelector('[data-jy-mini-page="reading"]'),
-    log: win.querySelector('[data-jy-mini-page="log"]'),
-    call: win.querySelector('[data-jy-mini-page="call"]'),
+    translate: win.querySelector('[data-bgt-mini-page="translate"]'),
+    reading: win.querySelector('[data-bgt-mini-page="reading"]'),
+    log: win.querySelector('[data-bgt-mini-page="log"]'),
+    call: win.querySelector('[data-bgt-mini-page="call"]'),
   };
-  const inspectBox = win.querySelector('[data-jy-tts-inspect]');
-  const sentenceList = win.querySelector('[data-jy-tts-list]');
-  const fishInput = win.querySelector('[data-jy-tts-fish]');
-  const speedInput = win.querySelector('[data-jy-tts-speed]');
-  const volumeInput = win.querySelector('[data-jy-tts-volume]');
-  const tensionInput = win.querySelector('[data-jy-tts-tension]');
-  const speakerSelect = win.querySelector('[data-jy-tts-speaker]');
-  const tagBox = win.querySelector('[data-jy-tts-tags]');
-  const seekBar = win.querySelector('[data-jy-tts-seek]');
-  const logList = win.querySelector('[data-jy-mini-log]');
-  const logDetail = win.querySelector('[data-jy-mini-log-detail]');
+  const inspectBox = win.querySelector('[data-bgt-tts-inspect]');
+  const sentenceList = win.querySelector('[data-bgt-tts-list]');
+  const fishInput = win.querySelector('[data-bgt-tts-fish]');
+  const speedInput = win.querySelector('[data-bgt-tts-speed]');
+  const volumeInput = win.querySelector('[data-bgt-tts-volume]');
+  const tensionInput = win.querySelector('[data-bgt-tts-tension]');
+  const speakerSelect = win.querySelector('[data-bgt-tts-speaker]');
+  const tagBox = win.querySelector('[data-bgt-tts-tags]');
+  const seekBar = win.querySelector('[data-bgt-tts-seek]');
+  const logList = win.querySelector('[data-bgt-mini-log]');
+  const logDetail = win.querySelector('[data-bgt-mini-log-detail]');
 
   let miniTab = 'translate';
   // The floor the translate page shows; the arrows move it, a new run pulls it along.
@@ -16614,7 +16614,7 @@ async function openMiniWindow() {
     const before = switching && win.dataset.size !== 'max' ? win.offsetHeight : 0;
     const direction = PAGE_ORDER.indexOf(name) > PAGE_ORDER.indexOf(miniTab) ? 'forward' : 'back';
     miniTab = name;
-    for (const button of tabs.querySelectorAll('[data-jy-mini-tab]')) button.setAttribute('aria-selected', String(button.dataset.jyMiniTab === name));
+    for (const button of tabs.querySelectorAll('[data-bgt-mini-tab]')) button.setAttribute('aria-selected', String(button.dataset.bgtMiniTab === name));
     for (const [key, page] of Object.entries(pages)) page.hidden = key !== name;
     win.dataset.miniTab = name;
     const reduced = globalThis.matchMedia?.('(prefers-reduced-motion: reduce)')?.matches === true;
@@ -16650,15 +16650,15 @@ async function openMiniWindow() {
   };
   const syncMiniTabs = () => {
     const enabled = ttsSettings().enabled;
-    const readingTab = tabs.querySelector('[data-jy-mini-tab="reading"]');
+    const readingTab = tabs.querySelector('[data-bgt-mini-tab="reading"]');
     if (readingTab) readingTab.hidden = !enabled;
     if (!enabled && miniTab === 'reading') selectMiniTab('translate');
     win.dataset.hand = runtime.settings.leftHanded ? 'left' : 'right';
     host.dataset.theme = runtime.settings.theme || 'day';
   };
   const onTabClick = event => {
-    const tab = event.target.closest('[data-jy-mini-tab]');
-    if (tab) selectMiniTab(tab.dataset.jyMiniTab);
+    const tab = event.target.closest('[data-bgt-mini-tab]');
+    if (tab) selectMiniTab(tab.dataset.bgtMiniTab);
   };
   const setSize = (size, { remember = true } = {}) => {
     win.dataset.size = size;
@@ -16666,8 +16666,8 @@ async function openMiniWindow() {
     const touchNow = win.dataset.touch === 'true';
     const next = nextMiniSize(size, touchNow);
     const label = next === 'card' ? (size === 'max' ? '缩回卡片' : '展开') : next === 'max' ? '放大到满屏' : '收成小窗';
-    for (const button of win.querySelectorAll('[data-jy-action="mini-max"]')) {
-      if (button.closest('.jy-mini-bar')) button.textContent = next === 'compact' ? '⤡' : '⤢';
+    for (const button of win.querySelectorAll('[data-bgt-action="mini-max"]')) {
+      if (button.closest('.bgt-mini-bar')) button.textContent = next === 'compact' ? '⤡' : '⤢';
       else button.textContent = label;
       button.setAttribute('aria-label', label);
       button.title = label;
@@ -16706,14 +16706,14 @@ async function openMiniWindow() {
       profileSelect.appendChild(option);
     }
     profileSelect.value = current.selectedPromptProfileId;
-    setText(win, '[data-jy-mini-target]', normalizeTargetLanguage(getActivePromptProfile(current).targetLanguage));
-    const auto = win.querySelector('[data-jy-action="mini-auto"]');
+    setText(win, '[data-bgt-mini-target]', normalizeTargetLanguage(getActivePromptProfile(current).targetLanguage));
+    const auto = win.querySelector('[data-bgt-action="mini-auto"]');
     if (auto) {
       auto.textContent = current.autoGeneration ? '自动 开' : '自动 关';
       auto.setAttribute('aria-pressed', String(Boolean(current.autoGeneration)));
     }
     // 「亲密场景」, the reading page's own switch, here too while 分析模式 is on.
-    const intimate = win.querySelector('[data-jy-action="tts-intimate"]');
+    const intimate = win.querySelector('[data-bgt-action="tts-intimate"]');
     if (intimate) {
       const tts = ttsSettings(current);
       intimate.hidden = tts.mode !== 'deep';
@@ -16730,16 +16730,16 @@ async function openMiniWindow() {
   const floorLockKey = snapshot => `${snapshot.chatId}|${snapshot.messageId}|${snapshot.swipeId}`;
   const renderRowTags = row => {
     const tags = document.createElement('div');
-    tags.className = 'jy-mini-row-tags';
+    tags.className = 'bgt-mini-row-tags';
     if (row.speaker) {
       const speaker = document.createElement('span');
-      speaker.className = 'jy-mini-pill';
+      speaker.className = 'bgt-mini-pill';
       speaker.textContent = row.speaker;
       tags.appendChild(speaker);
     }
     if (row.emotion) {
       const emotion = document.createElement('span');
-      emotion.className = 'jy-mini-pill';
+      emotion.className = 'bgt-mini-pill';
       emotion.textContent = cueLabel(row.emotion);
       tags.appendChild(emotion);
     }
@@ -16748,8 +16748,8 @@ async function openMiniWindow() {
   const rowButton = (label, action, id, { primary = false, danger = false } = {}) => {
     const button = document.createElement('button');
     button.type = 'button';
-    button.className = `jy-button jy-mini-row-button${primary ? ' jy-button-primary' : ''}${danger ? ' jy-mini-row-button-danger' : ''}`;
-    button.dataset.jyAction = action;
+    button.className = `bgt-button bgt-mini-row-button${primary ? ' bgt-button-primary' : ''}${danger ? ' bgt-mini-row-button-danger' : ''}`;
+    button.dataset.bgtAction = action;
     button.dataset.id = String(id);
     button.textContent = label;
     return button;
@@ -16760,21 +16760,21 @@ async function openMiniWindow() {
     // the stored translation only when the row was actually closed first (row-write, row-fix/retry,
     // toggleRow closing it, a floor change): all of those already set editingRow to null or to a
     // different id before calling this, so there is nothing here to mistake a deliberate reset for.
-    const pendingEdit = editingRow !== null ? rowsList.querySelector(`[data-jy-row-field="${editingRow}"]`)?.value : undefined;
+    const pendingEdit = editingRow !== null ? rowsList.querySelector(`[data-bgt-row-field="${editingRow}"]`)?.value : undefined;
     rowsList.replaceChildren();
     const reading = ttsSettings().enabled;
     for (const row of viewRows.slice(0, MINI_ROW_LIMIT)) {
       const item = document.createElement('li');
-      item.className = 'jy-mini-row';
+      item.className = 'bgt-mini-row';
       item.dataset.id = String(row.id);
       item.dataset.state = row.state;
       const mark = document.createElement('span');
-      mark.className = 'jy-mini-row-mark';
+      mark.className = 'bgt-mini-row-mark';
       mark.textContent = row.state === 'done' ? '✓' : row.state === 'running' ? '◌' : row.state === 'missing' ? '!' : '·';
       const body = document.createElement('div');
-      body.className = 'jy-mini-row-body';
+      body.className = 'bgt-mini-row-body';
       const source = document.createElement('div');
-      source.className = 'jy-mini-row-src';
+      source.className = 'bgt-mini-row-src';
       source.textContent = row.source;
       body.appendChild(source);
       if (editingRow === row.id) {
@@ -16782,22 +16782,22 @@ async function openMiniWindow() {
         const tags = renderRowTags(row);
         if (tags) body.appendChild(tags);
         const field = document.createElement('textarea');
-        field.className = 'jy-mini-row-field';
+        field.className = 'bgt-mini-row-field';
         field.rows = 3;
         field.spellcheck = false;
-        field.dataset.jyRowField = String(row.id);
+        field.dataset.bgtRowField = String(row.id);
         field.value = pendingEdit !== undefined ? pendingEdit : row.translation;
         field.placeholder = row.state === 'done' ? '' : '这一段还没有译文，可以直接写一段。';
         body.appendChild(field);
         const actions = document.createElement('div');
-        actions.className = 'jy-mini-row-actions';
+        actions.className = 'bgt-mini-row-actions';
         actions.append(rowButton('写回', 'row-write', row.id, { primary: true }), rowButton('重翻这段', 'row-retry', row.id));
         if (reading && row.state === 'done') actions.append(rowButton('试听', 'row-listen', row.id));
         actions.append(rowButton('关闭', 'row-close', row.id));
         body.appendChild(actions);
       } else {
         const target = document.createElement('div');
-        target.className = 'jy-mini-row-dst';
+        target.className = 'bgt-mini-row-dst';
         if (row.state === 'done') target.textContent = row.translation;
         else if (row.state === 'running') target.textContent = '翻译中…';
         else if (row.state === 'missing') target.textContent = '缺失';
@@ -16809,7 +16809,7 @@ async function openMiniWindow() {
       item.append(mark, body);
       if (editingRow !== row.id && row.state === 'missing' && !viewRunning) {
         const side = document.createElement('div');
-        side.className = 'jy-mini-row-side';
+        side.className = 'bgt-mini-row-side';
         side.appendChild(rowButton('补这段', 'row-fix', row.id, { danger: true }));
         item.appendChild(side);
       }
@@ -16826,7 +16826,7 @@ async function openMiniWindow() {
     const reduced = globalThis.matchMedia?.('(prefers-reduced-motion: reduce)')?.matches === true;
     row.scrollIntoView({ block: 'center', behavior: reduced ? 'auto' : 'smooth' });
     const { className, clearAfterMs } = segmentJumpHighlightPlan(reduced);
-    row.classList.remove('jy-mini-row-jump', 'jy-mini-row-jump-static');
+    row.classList.remove('bgt-mini-row-jump', 'bgt-mini-row-jump-static');
     void row.offsetWidth;
     row.classList.add(className);
     if (clearAfterMs) globalThis.setTimeout(() => row.classList.remove(className), clearAfterMs);
@@ -16835,7 +16835,7 @@ async function openMiniWindow() {
   const renderFloorActions = () => {
     const running = viewRunning;
     const show = (action, visible) => {
-      for (const button of win.querySelectorAll(`[data-jy-action="${action}"]`)) button.hidden = !visible;
+      for (const button of win.querySelectorAll(`[data-bgt-action="${action}"]`)) button.hidden = !visible;
     };
     show('mini-stop', running || Boolean(runtime.translateAll));
     show('mini-translate', !running && viewState.key === 'pending');
@@ -16844,7 +16844,7 @@ async function openMiniWindow() {
     show('mini-repair', !running && viewState.key === 'missing');
     show('mini-clear-floor', !running && ['done', 'missing'].includes(viewState.key));
     const untranslated = untranslatedFloors(getContext().chat, { limit: 50 }).filter(id => id !== viewFloor);
-    const all = win.querySelector('[data-jy-mini-untranslated]');
+    const all = win.querySelector('[data-bgt-mini-untranslated]');
     // While 全翻 runs, the link says how far it has got.
     if (all && !runtime.translateAll) {
       all.hidden = !untranslated.length || running;
@@ -16853,34 +16853,34 @@ async function openMiniWindow() {
   };
   const setFloorTitle = () => {
     const title = Number.isInteger(viewFloor) ? `第 ${viewFloor} 楼` : '等待正文';
-    setText(win, '[data-jy-mini-floor-title]', title);
-    setText(win, '[data-jy-mini-floor-state]', Number.isInteger(viewFloor) ? `${viewState.label}${viewState.total ? ` · ${viewState.done}/${viewState.total} 段` : ''}` : '—');
-    setText(win, '[data-jy-mini-title]', Number.isInteger(viewFloor) ? `${title} · ${viewState.label}` : '镜译');
-    setText(win, '[data-jy-mini-brief-title]', Number.isInteger(viewFloor) ? title : '镜译');
-    setText(win, '[data-jy-mini-brief-state]', Number.isInteger(viewFloor) ? viewState.label : '');
+    setText(win, '[data-bgt-mini-floor-title]', title);
+    setText(win, '[data-bgt-mini-floor-state]', Number.isInteger(viewFloor) ? `${viewState.label}${viewState.total ? ` · ${viewState.done}/${viewState.total} 段` : ''}` : '—');
+    setText(win, '[data-bgt-mini-title]', Number.isInteger(viewFloor) ? `${title} · ${viewState.label}` : '测试翻译');
+    setText(win, '[data-bgt-mini-brief-title]', Number.isInteger(viewFloor) ? title : '测试翻译');
+    setText(win, '[data-bgt-mini-brief-state]', Number.isInteger(viewFloor) ? viewState.label : '');
     renderBriefActions();
     const ids = assistantFloorIds();
     const at = ids.indexOf(viewFloor);
-    const prev = win.querySelector('[data-jy-action="mini-floor-prev"]');
-    const next = win.querySelector('[data-jy-action="mini-floor-next"]');
+    const prev = win.querySelector('[data-bgt-action="mini-floor-prev"]');
+    const next = win.querySelector('[data-bgt-action="mini-floor-next"]');
     if (prev) prev.disabled = at <= 0;
     if (next) next.disabled = at < 0 || at >= ids.length - 1;
   };
   // The first layer carries the one button the moment calls for: translate this floor, stop the
   // translation, or play / pause and stop the reading — so stopping never needs the window opened.
   const renderBriefActions = () => {
-    const brief = win.querySelector('[data-jy-mini-brief]');
+    const brief = win.querySelector('[data-bgt-mini-brief]');
     if (!brief) return;
     const reading = ttsTransportDescription(runtime.tts.transport);
     const streaming = Boolean(runtime.tts.stream && !runtime.tts.stream.done);
     const live = streaming || Boolean(reading && ['loading', 'playing', 'paused'].includes(reading.state));
-    const toggle = brief.querySelector('[data-jy-action="tts-toggle"]');
+    const toggle = brief.querySelector('[data-bgt-action="tts-toggle"]');
     if (toggle) toggle.hidden = !live;
-    const stop = brief.querySelector('[data-jy-brief-stop]');
+    const stop = brief.querySelector('[data-bgt-brief-stop]');
     if (stop) stop.hidden = !live;
-    const read = brief.querySelector('[data-jy-action="mini-brief-read"]');
+    const read = brief.querySelector('[data-bgt-action="mini-brief-read"]');
     if (read) read.hidden = live || !(ttsSettings().enabled && Number.isInteger(viewFloor));
-    const reel = win.querySelector('.jy-mini-transport [data-jy-action="tts-stop"]');
+    const reel = win.querySelector('.bgt-mini-transport [data-bgt-action="tts-stop"]');
     if (reel) reel.disabled = !live;
   };
   // The reading page, redrawn when the floor on screen changes. Bound once that page's pieces exist.
@@ -16935,15 +16935,15 @@ async function openMiniWindow() {
   // The run in progress: batches as a bar of blocks, the seconds still to go, the model's thinking.
   const renderTaskLine = task => {
     const running = task.status === 'running' && (!Number.isInteger(viewFloor) || runtime.activeFloor === viewFloor);
-    setText(win, '[data-jy-task-message]', running || !Number.isInteger(viewFloor) ? task.message : '');
-    const briefTask = win.querySelector('[data-jy-mini-brief-task]');
+    setText(win, '[data-bgt-task-message]', running || !Number.isInteger(viewFloor) ? task.message : '');
+    const briefTask = win.querySelector('[data-bgt-mini-brief-task]');
     if (briefTask) {
       briefTask.textContent = running ? task.message : '';
       briefTask.hidden = !running;
     }
-    const dot = win.querySelector('[data-jy-task-dot]');
-    if (dot) dot.dataset.jyTaskDot = task.status;
-    const batchBox = win.querySelector('[data-jy-mini-batches]');
+    const dot = win.querySelector('[data-bgt-task-dot]');
+    if (dot) dot.dataset.bgtTaskDot = task.status;
+    const batchBox = win.querySelector('[data-bgt-mini-batches]');
     const batches = running ? task.batches : null;
     if (batchBox) {
       batchBox.replaceChildren();
@@ -16964,7 +16964,7 @@ async function openMiniWindow() {
         durations: batches.durations, elapsedActive, history: runtime.timing.translation,
       }));
     }
-    setText(win, '[data-jy-mini-eta]', eta);
+    setText(win, '[data-bgt-mini-eta]', eta);
     if (running && etaTicker === null) {
       etaTicker = globalThis.setInterval(() => {
         if (!win.isConnected) {
@@ -16983,8 +16983,8 @@ async function openMiniWindow() {
   const renderThinkingLine = () => {
     const thinking = runtime.thinking;
     const text = String(thinking.text ?? '').trim();
-    const line = win.querySelector('[data-jy-mini-thinking]');
-    const full = win.querySelector('[data-jy-mini-thinking-full]');
+    const line = win.querySelector('[data-bgt-mini-thinking]');
+    const full = win.querySelector('[data-bgt-mini-thinking-full]');
     if (!line || !full) return;
     const relevant = text && (thinking.live || runtime.task.status === 'running');
     line.hidden = !relevant;
@@ -16993,8 +16993,8 @@ async function openMiniWindow() {
       return;
     }
     const last = text.split('\n').map(item => item.trim()).filter(Boolean).at(-1) ?? '';
-    setText(win, '[data-jy-mini-thinking-text]', `${thinking.live ? '副模型：' : '上一批思考：'}${miniShort(last, 90)}`);
-    setText(win, '[data-jy-mini-thinking-more]', thinkingOpen ? '收起' : '展开');
+    setText(win, '[data-bgt-mini-thinking-text]', `${thinking.live ? '副模型：' : '上一批思考：'}${miniShort(last, 90)}`);
+    setText(win, '[data-bgt-mini-thinking-more]', thinkingOpen ? '收起' : '展开');
     line.setAttribute('aria-expanded', String(thinkingOpen));
     full.hidden = !thinkingOpen;
     if (thinkingOpen) {
@@ -17039,8 +17039,8 @@ async function openMiniWindow() {
   // 唱 comes first and stays pressed while the text opens on [singing]; the other chips only drop a cue in.
   const singChip = document.createElement('button');
   singChip.type = 'button';
-  singChip.className = 'jy-mini-chip';
-  singChip.dataset.jyTtsSing = '';
+  singChip.className = 'bgt-mini-chip';
+  singChip.dataset.bgtTtsSing = '';
   singChip.textContent = '唱';
   singChip.setAttribute('aria-pressed', 'false');
   tagBox.appendChild(singChip);
@@ -17049,15 +17049,15 @@ async function openMiniWindow() {
   for (const [label, tag] of [['停顿', 'pause'], ['长停顿', 'long pause'], ['重读', 'emphasis'], ['耳语', 'whispering'], ['轻声', 'soft tone'], ['喊', 'shouting'], ['急促', 'in a hurry tone'], ...FISH_SOUNDS.map(sound => [cueLabel(sound), sound])]) {
     const chip = document.createElement('button');
     chip.type = 'button';
-    chip.className = 'jy-mini-chip';
-    chip.dataset.jyTtsTag = tag;
+    chip.className = 'bgt-mini-chip';
+    chip.dataset.bgtTtsTag = tag;
     chip.textContent = label;
     chip.title = `[${tag}]`;
     tagBox.appendChild(chip);
   }
   const markDirty = () => {
     inspectDirty = true;
-    const apply = win.querySelector('[data-jy-action="tts-apply"]');
+    const apply = win.querySelector('[data-bgt-action="tts-apply"]');
     if (apply) apply.hidden = false;
   };
   const insertCue = tag => {
@@ -17096,15 +17096,15 @@ async function openMiniWindow() {
   };
   // Keeping focus in the textarea across a chip tap is what makes the caret position survive.
   const onTagPointerDown = event => {
-    if (event.target.closest('[data-jy-tts-tag]')) event.preventDefault();
+    if (event.target.closest('[data-bgt-tts-tag]')) event.preventDefault();
   };
   const onTagClick = event => {
-    if (event.target.closest('[data-jy-tts-sing]')) {
+    if (event.target.closest('[data-bgt-tts-sing]')) {
       toggleSing();
       return;
     }
-    const chip = event.target.closest('[data-jy-tts-tag]');
-    if (chip) insertCue(chip.dataset.jyTtsTag);
+    const chip = event.target.closest('[data-bgt-tts-tag]');
+    if (chip) insertCue(chip.dataset.bgtTtsTag);
   };
   const onEmotionPick = () => {
     if (emotionPicker.value) insertCue(emotionPicker.value);
@@ -17121,7 +17121,7 @@ async function openMiniWindow() {
     if (!viewport || win.dataset.touch !== 'true') return;
     const shrunk = viewport.height < globalThis.innerHeight - 120;
     win.dataset.keyboard = shrunk ? 'true' : 'false';
-    win.style.setProperty('--jy-mini-vh', `${Math.round(viewport.height)}px`);
+    win.style.setProperty('--bgt-mini-vh', `${Math.round(viewport.height)}px`);
   };
   const onFieldFocus = event => {
     if (win.dataset.touch !== 'true' || !event.target.matches('textarea, input[type="text"], input[type="number"]')) return;
@@ -17129,15 +17129,15 @@ async function openMiniWindow() {
     globalThis.setTimeout(() => { if (field.isConnected) field.scrollIntoView({ block: 'center', behavior: 'smooth' }); }, 260);
   };
   const onCustomKey = event => {
-    if (event.key === 'Enter' && event.target.matches('[data-jy-tts-custom]')) {
+    if (event.key === 'Enter' && event.target.matches('[data-bgt-tts-custom]')) {
       event.preventDefault();
-      win.querySelector('[data-jy-action="tts-insert-custom"]')?.click();
+      win.querySelector('[data-bgt-action="tts-insert-custom"]')?.click();
     }
   };
   const showInspector = show => {
     inspectBox.hidden = !show;
     sentenceList.hidden = show || !sentenceList.childElementCount;
-    const note = win.querySelector('[data-jy-tts-list-note]');
+    const note = win.querySelector('[data-bgt-tts-list-note]');
     if (note && show) note.hidden = true;
   };
   const renderInspector = async (messageId, utteranceId, { pinned = true, side = null } = {}) => {
@@ -17146,19 +17146,19 @@ async function openMiniWindow() {
     inspecting = { messageId, utteranceId, pinned, side: which };
     inspectDirty = false;
     showInspector(true);
-    setText(win, '[data-jy-tts-who]', '读取中…');
+    setText(win, '[data-bgt-tts-who]', '读取中…');
     let data;
     try {
       data = await ttsInspect(messageId, utteranceId, which);
     } catch (error) {
-      if (token === inspectToken) setText(win, '[data-jy-tts-who]', safeError(error));
+      if (token === inspectToken) setText(win, '[data-bgt-tts-who]', safeError(error));
       return;
     }
     if (token !== inspectToken || !win.isConnected) return;
     const { segment } = data;
     const voiceName = data.voiceId ? (normalizeVoiceLibrary(runtime.settings.voiceLibrary).find(entry => entry.voiceId === data.voiceId)?.name ?? `${data.voiceId.slice(0, 6)}…`) : '';
-    setText(win, '[data-jy-tts-who]', `${segment.type === 'narration' ? '旁白' : (segment.speaker || '未知说话人')}${segment.lang && segment.lang !== 'zh' ? ` · ${languageLabel(segment.lang)}` : ''}`);
-    setText(win, '[data-jy-tts-depth]', `第 ${messageId} 楼${which === 'source' ? '（原文）' : ''} · 第 ${utteranceId} 句 · ${data.depth === 'deep' ? '分析模式' : data.depth === 'simple' ? '分析过' : data.depth === 'pending' ? '还没分析' : data.depth === 'off' ? '不分析' : ttsSettings().mode === 'deep' ? '翻译骨架（还没分析）' : '翻译骨架'}${data.derived ? '（由译文推出）' : ''}${voiceName ? ` · 音色 ${voiceName}` : ' · Fish 默认音色'}${data.recorded ? ' · 已有音频' : ''}`);
+    setText(win, '[data-bgt-tts-who]', `${segment.type === 'narration' ? '旁白' : (segment.speaker || '未知说话人')}${segment.lang && segment.lang !== 'zh' ? ` · ${languageLabel(segment.lang)}` : ''}`);
+    setText(win, '[data-bgt-tts-depth]', `第 ${messageId} 楼${which === 'source' ? '（原文）' : ''} · 第 ${utteranceId} 句 · ${data.depth === 'deep' ? '分析模式' : data.depth === 'simple' ? '分析过' : data.depth === 'pending' ? '还没分析' : data.depth === 'off' ? '不分析' : ttsSettings().mode === 'deep' ? '翻译骨架（还没分析）' : '翻译骨架'}${data.derived ? '（由译文推出）' : ''}${voiceName ? ` · 音色 ${voiceName}` : ' · Fish 默认音色'}${data.recorded ? ' · 已有音频' : ''}`);
     // Who says it, and how that was decided; the reader can name someone else from the list.
     if (speakerSelect) {
       // A 歌词行 is the narrator's to sing until the reader gives it to somebody here.
@@ -17171,7 +17171,7 @@ async function openMiniWindow() {
         speakerSelect.value = data.manualSpeaker ?? '';
       }
     }
-    const depthBox = win.querySelector('[data-jy-tts-depth]');
+    const depthBox = win.querySelector('[data-bgt-tts-depth]');
     if (depthBox && segment.type === 'dialogue') {
       const sourceLabel = SPEAKER_SOURCE_LABELS[data.speakerSource] ?? '副模型';
       // The evidence is what showed the name; a source that is its own evidence is not said twice.
@@ -17180,14 +17180,14 @@ async function openMiniWindow() {
         ? ` · 说话人：${sourceLabel}${why.length ? `（${why.join('；')}）` : ''}`
         : ' · 说话人：没认出来，用对白默认音色';
     }
-    setText(win, '[data-jy-tts-text]', segment.text);
-    const sourceLine = win.querySelector('[data-jy-tts-source]');
+    setText(win, '[data-bgt-tts-text]', segment.text);
+    const sourceLine = win.querySelector('[data-bgt-tts-source]');
     if (sourceLine) {
       const showOriginal = ['both', 'dialogue_source'].includes(ttsSettings().side) && data.original && data.original !== segment.text;
       sourceLine.hidden = !showOriginal;
       sourceLine.textContent = showOriginal ? `原文：${data.original}` : '';
     }
-    const summary = win.querySelector('[data-jy-tts-summary]');
+    const summary = win.querySelector('[data-bgt-tts-summary]');
     summary.replaceChildren();
     const lines = [...data.summary];
     if (data.scene) lines.unshift(['场景', data.scene]);
@@ -17203,7 +17203,7 @@ async function openMiniWindow() {
     summary.hidden = !lines.length;
     fishInput.value = data.override?.text ?? data.text;
     // What the box holds is what the provider hears: GPT-SoVITS gets the words alone.
-    const fieldLabel = fishInput.closest('.jy-mini-inspect-field')?.querySelector('.jy-label');
+    const fieldLabel = fishInput.closest('.bgt-mini-inspect-field')?.querySelector('.bgt-label');
     if (fieldLabel) {
       fieldLabel.textContent = ttsSettings().provider === 'gsv'
         ? '发给 GPT-SoVITS 的内容（它只读字，方括号里的标签会被去掉）'
@@ -17213,9 +17213,9 @@ async function openMiniWindow() {
     volumeInput.value = data.override?.volume ?? data.prosody.volume;
     tensionInput.value = data.override?.tension ?? data.tension ?? '';
     syncSing();
-    const reset = win.querySelector('[data-jy-action="tts-reset"]');
+    const reset = win.querySelector('[data-bgt-action="tts-reset"]');
     if (reset) reset.hidden = !data.override;
-    const apply = win.querySelector('[data-jy-action="tts-apply"]');
+    const apply = win.querySelector('[data-bgt-action="tts-apply"]');
     if (apply) apply.hidden = true;
     // 唱: a 歌词行 by itself, or a line the reader set to it. A voice that cannot sing says so here too,
     // where a phone shows no tooltip.
@@ -17233,7 +17233,7 @@ async function openMiniWindow() {
           : data.inRange
             ? '改上面的内容、语速、张力或音量，「重新生成并播放」只重做这一句，整楼朗读时也用这个版本。上面的下拉框可以直接改说话人，改了就按那个人的音色重做，不重新分析。点「唱」整句改成唱的。'
             : '这句不在当前的朗读范围里，改了也不会读。';
-    setText(win, '[data-jy-tts-note]', !sung && singBlocked ? `${note}「唱」现在用不了：${singBlocked}` : note);
+    setText(win, '[data-bgt-tts-note]', !sung && singBlocked ? `${note}「唱」现在用不了：${singBlocked}` : note);
     globalThis.requestAnimationFrame?.(() => { if (win.isConnected) reanchor(); });
   };
   const closeInspector = () => {
@@ -17307,7 +17307,7 @@ async function openMiniWindow() {
   const renderSentencesNow = async ({ force = false } = {}) => {
     const enabled = ttsSettings().enabled;
     const { transport, messageId, side } = readingTarget();
-    const note = win.querySelector('[data-jy-tts-list-note]');
+    const note = win.querySelector('[data-bgt-tts-list-note]');
     if (!enabled || !Number.isInteger(messageId)) {
       sentenceList.hidden = true;
       if (note) note.hidden = true;
@@ -17349,7 +17349,7 @@ async function openMiniWindow() {
       const muted = skipped.has(segment.id);
       const ready = !muted && Boolean(findCoveringEntry(records, { text: segment.text, voiceId: item.voiceId, fingerprint, identity: itemIdentity(item) }));
       const row = document.createElement('li');
-      row.className = 'jy-mini-sentence';
+      row.className = 'bgt-mini-sentence';
       row.dataset.id = String(segment.id);
       row.dataset.side = side;
       row.dataset.messageId = String(messageId);
@@ -17357,12 +17357,12 @@ async function openMiniWindow() {
       row.dataset.ready = ready ? 'true' : 'false';
       if (muted) row.dataset.muted = 'true';
       const mark = document.createElement('span');
-      mark.className = 'jy-mini-sentence-mark';
+      mark.className = 'bgt-mini-sentence-mark';
       mark.textContent = muted ? '⊘' : ready ? '✓' : '·';
       const body = document.createElement('div');
-      body.className = 'jy-mini-sentence-body';
+      body.className = 'bgt-mini-sentence-body';
       const text = document.createElement('div');
-      text.className = 'jy-mini-sentence-text';
+      text.className = 'bgt-mini-sentence-text';
       text.textContent = segment.text;
       body.appendChild(text);
       // Reading the original, the list is in the original's language. The translation of that line
@@ -17370,20 +17370,20 @@ async function openMiniWindow() {
       const mirror = side === 'source' ? prepared.floor.references?.get(segment.lineId) : '';
       if (mirror) {
         const echo = document.createElement('div');
-        echo.className = 'jy-mini-sentence-echo';
+        echo.className = 'bgt-mini-sentence-echo';
         echo.textContent = miniShort(mirror, 60);
         echo.title = mirror;
         body.appendChild(echo);
       }
       const tags = document.createElement('div');
-      tags.className = 'jy-mini-row-tags';
+      tags.className = 'bgt-mini-row-tags';
       const who = document.createElement('span');
-      who.className = 'jy-mini-pill';
+      who.className = 'bgt-mini-pill';
       who.textContent = segment.type === 'narration' ? '旁白' : (segment.speaker || '对白');
       tags.appendChild(who);
       if (segment.emotion) {
         const mood = document.createElement('span');
-        mood.className = 'jy-mini-pill';
+        mood.className = 'bgt-mini-pill';
         mood.textContent = cueLabel(segment.emotion);
         tags.appendChild(mood);
       }
@@ -17391,20 +17391,20 @@ async function openMiniWindow() {
       const sungNow = item.override?.text ? isSungText(item.override.text) : segment.sung === true;
       if (item.override?.text || sungNow) {
         const edited = document.createElement('span');
-        edited.className = 'jy-mini-pill jy-mini-pill-edited';
+        edited.className = 'bgt-mini-pill bgt-mini-pill-edited';
         edited.textContent = sungNow ? '唱' : '改过';
         tags.appendChild(edited);
       }
       if (muted) {
         const hush = document.createElement('span');
-        hush.className = 'jy-mini-pill';
+        hush.className = 'bgt-mini-pill';
         hush.textContent = item.reason === 'fallback' ? '没有专属音色 · 跳过' : '已屏蔽';
         hush.title = item.reason === 'fallback' ? '「没有专属音色的角色」设成了跳过，这一句不读。' : '这个角色的对白在音色表里设成了不朗读。';
         tags.appendChild(hush);
       }
       body.appendChild(tags);
       const tools = document.createElement('div');
-      tools.className = 'jy-mini-sentence-tools';
+      tools.className = 'bgt-mini-sentence-tools';
       // 唱 sits right after 播放 (design §17.15); with a voice that cannot sing it is faded and says why.
       const singBlocked = singingBlockedReason(ttsSettings());
       const sing = ['sentence-sing', sungNow ? '取消唱' : '唱', singBlocked || (sungNow ? '这句不唱了，重新生成并播放' : '这句改成唱，重新生成并播放')];
@@ -17414,8 +17414,8 @@ async function openMiniWindow() {
       for (const [action, label, title] of actions) {
         const tool = document.createElement('button');
         tool.type = 'button';
-        tool.className = 'jy-text-button jy-mini-sentence-edit';
-        tool.dataset.jyAction = action;
+        tool.className = 'bgt-text-button bgt-mini-sentence-edit';
+        tool.dataset.bgtAction = action;
         tool.dataset.id = String(segment.id);
         tool.textContent = label;
         tool.title = title;
@@ -17440,11 +17440,11 @@ async function openMiniWindow() {
   const markCurrentSentence = () => {
     const transport = runtime.tts.transport;
     const playing = transport?.items[transport.index]?.segment.id;
-    for (const row of sentenceList.querySelectorAll('.jy-mini-sentence')) {
+    for (const row of sentenceList.querySelectorAll('.bgt-mini-sentence')) {
       const on = transport && String(transport.messageId) === row.dataset.messageId && transport.side === row.dataset.side && String(playing) === row.dataset.id && ['playing', 'paused', 'loading'].includes(transport.state);
       const current = on ? 'true' : 'false';
       if (row.dataset.current !== current) row.dataset.current = current;
-      const mark = row.querySelector('.jy-mini-sentence-mark');
+      const mark = row.querySelector('.bgt-mini-sentence-mark');
       const glyph = on ? '♪' : row.dataset.ready === 'true' ? '✓' : '·';
       if (mark && mark.textContent !== glyph) mark.textContent = glyph;
     }
@@ -17479,14 +17479,14 @@ async function openMiniWindow() {
 
   // What the run is doing, as three pills: the reading, the audio parts, the connection.
   const renderPills = () => {
-    const box = win.querySelector('[data-jy-tts-pills]');
+    const box = win.querySelector('[data-bgt-tts-pills]');
     if (!box) return;
     const target = readingTarget();
     const messageId = target.messageId;
     const side = target.transport ? target.side : (inspecting?.messageId === messageId ? inspecting.side : target.side);
     const record = Number.isInteger(messageId) ? ttsProgressFor(messageId, side) : null;
     // In the plain reading the link asks for this floor's one analysis; elsewhere it redoes one.
-    const link = win.querySelector('[data-jy-action="tts-reanalyze"]');
+    const link = win.querySelector('[data-bgt-action="tts-reanalyze"]');
     if (link) {
       const step = record?.steps.find(item => item.id === 'analysis');
       const plain = ttsSettings().mode === 'off' && (!step || step.label === '不分析');
@@ -17518,7 +17518,7 @@ async function openMiniWindow() {
     box.dataset.signature = signature;
     box.replaceChildren(...pills.map(([label, state]) => {
       const span = document.createElement('span');
-      span.className = 'jy-mini-pill';
+      span.className = 'bgt-mini-pill';
       span.dataset.state = state;
       span.textContent = label;
       return span;
@@ -17545,12 +17545,12 @@ async function openMiniWindow() {
     // Only the reading the page is about: one stopped on another floor leaves the player to this one.
     const { transport } = readingTarget();
     const info = transport ? ttsTransportDescription(transport) : null;
-    const title = win.querySelector('[data-jy-tts-title]');
-    const floorLabel = win.querySelector('[data-jy-tts-floor]');
-    const progress = win.querySelector('[data-jy-tts-progress]');
-    const message = win.querySelector('[data-jy-tts-message]');
-    const toggles = [...win.querySelectorAll('[data-jy-action="tts-toggle"]')];
-    const stepButtons = [win.querySelector('[data-jy-action="tts-prev"]'), win.querySelector('[data-jy-action="tts-next"]')];
+    const title = win.querySelector('[data-bgt-tts-title]');
+    const floorLabel = win.querySelector('[data-bgt-tts-floor]');
+    const progress = win.querySelector('[data-bgt-tts-progress]');
+    const message = win.querySelector('[data-bgt-tts-message]');
+    const toggles = [...win.querySelectorAll('[data-bgt-action="tts-toggle"]')];
+    const stepButtons = [win.querySelector('[data-bgt-action="tts-prev"]'), win.querySelector('[data-bgt-action="tts-next"]')];
     const stream = runtime.tts.stream && !runtime.tts.stream.done ? runtime.tts.stream : null;
     if (!info && stream) {
       // Read while it is written: no transport, but something is sounding and can be paused or stopped.
@@ -17577,8 +17577,8 @@ async function openMiniWindow() {
         seekBar.setAttribute('aria-valuenow', '0');
         seekBar.dataset.live = 'false';
       }
-      setText(win, '[data-jy-tts-clock-now]', '0:00');
-      setText(win, '[data-jy-tts-clock-total]', '0:00');
+      setText(win, '[data-bgt-tts-clock-now]', '0:00');
+      setText(win, '[data-bgt-tts-clock-total]', '0:00');
       if (message) putText(message, busy ? '好了会提示，这期间可以先做别的。' : '点播放键读这一楼，或者点下面的某一句。');
       for (const toggle of toggles) {
         putText(toggle, '▶');
@@ -17606,8 +17606,8 @@ async function openMiniWindow() {
       seekBar.setAttribute('aria-valuenow', String(Math.round(fraction * 100)));
       seekBar.dataset.live = transport.current ? 'true' : 'false';
     }
-    setText(win, '[data-jy-tts-clock-now]', miniClock(info.time));
-    setText(win, '[data-jy-tts-clock-total]', miniClock(info.duration));
+    setText(win, '[data-bgt-tts-clock-now]', miniClock(info.time));
+    setText(win, '[data-bgt-tts-clock-total]', miniClock(info.duration));
     if (message) {
       const eta = info.state === 'loading' ? readingEta(ttsProgressFor(info.messageId, transport.side)) : '';
       putText(message, info.state === 'loading' || info.state === 'error'
@@ -17633,7 +17633,7 @@ async function openMiniWindow() {
   // The steps of the last run on the floor being read, or looked at, or the latest one touched.
   let stepTicker = null;
   const renderSteps = () => {
-    const list = win.querySelector('[data-jy-tts-steps]');
+    const list = win.querySelector('[data-bgt-tts-steps]');
     if (!list) return;
     const { transport, messageId: shown, side: shownSide } = readingTarget();
     let record = transport?.floor ? ttsProgressFor(transport.messageId, transport.side) : null;
@@ -17664,12 +17664,12 @@ async function openMiniWindow() {
         const item = document.createElement('li');
         item.dataset.state = state;
         const mark = document.createElement('span');
-        mark.className = 'jy-mini-step-mark';
+        mark.className = 'bgt-mini-step-mark';
         const label = document.createElement('span');
-        label.className = 'jy-mini-step-label';
+        label.className = 'bgt-mini-step-label';
         label.textContent = labelText;
         const detail = document.createElement('span');
-        detail.className = 'jy-mini-step-detail';
+        detail.className = 'bgt-mini-step-detail';
         detail.textContent = detailText;
         item.append(mark, label, detail);
         return item;
@@ -17695,21 +17695,21 @@ async function openMiniWindow() {
     const live = info && ['loading', 'playing', 'paused'].includes(info.state);
     const fraction = live && info.duration ? Math.max(0, Math.min(1, info.time / info.duration)) : 0;
     const speaker = live && info.segment ? (info.segment.type === 'narration' ? '旁白' : (info.segment.speaker || '对白')) : '';
-    for (const barButton of win.querySelectorAll('[data-jy-mini-playbar]')) {
+    for (const barButton of win.querySelectorAll('[data-bgt-mini-playbar]')) {
       barButton.hidden = !live;
       if (!live) continue;
-      const fill = barButton.querySelector('[data-jy-mini-playbar-fill]');
+      const fill = barButton.querySelector('[data-bgt-mini-playbar-fill]');
       if (fill) fill.style.transform = `scaleX(${fraction})`;
-      setText(barButton, '[data-jy-mini-playbar-glyph]', info.state === 'playing' ? '❚❚' : info.state === 'loading' ? '◌' : '▶');
-      setText(barButton, '[data-jy-mini-playbar-text]', info.state === 'loading' ? `第 ${info.messageId} 楼 · 准备中` : `第 ${info.messageId} 楼 · ${speaker} ${info.index + 1}/${info.count}`);
+      setText(barButton, '[data-bgt-mini-playbar-glyph]', info.state === 'playing' ? '❚❚' : info.state === 'loading' ? '◌' : '▶');
+      setText(barButton, '[data-bgt-mini-playbar-text]', info.state === 'loading' ? `第 ${info.messageId} 楼 · 准备中` : `第 ${info.messageId} 楼 · ${speaker} ${info.index + 1}/${info.count}`);
     }
   };
   // The progress bar is a slider: a tap jumps, a drag scrubs, the arrow keys nudge by five percent.
   let seekDragging = false;
-  // Where the bar stands, as one number the fill and the knob both read (see .jy-progress-seek).
+  // Where the bar stands, as one number the fill and the knob both read (see .bgt-progress-seek).
   const setSeek = fraction => {
     const value = Math.max(0, Math.min(1, Number(fraction) || 0)).toFixed(4);
-    if (seekBar && seekBar.style.getPropertyValue('--jy-seek') !== value) seekBar.style.setProperty('--jy-seek', value);
+    if (seekBar && seekBar.style.getPropertyValue('--bgt-seek') !== value) seekBar.style.setProperty('--bgt-seek', value);
   };
   let seekPointer = null;
   const seekFraction = event => {
@@ -17765,13 +17765,13 @@ async function openMiniWindow() {
       if (!seekDragging) setSeek(fraction);
       const now = String(Math.round(fraction * 100));
       if (seekBar && seekBar.getAttribute('aria-valuenow') !== now) seekBar.setAttribute('aria-valuenow', now);
-      setText(win, '[data-jy-tts-clock-now]', miniClock(info.time));
-      setText(win, '[data-jy-tts-clock-total]', miniClock(info.duration));
+      setText(win, '[data-bgt-tts-clock-now]', miniClock(info.time));
+      setText(win, '[data-bgt-tts-clock-total]', miniClock(info.duration));
     }
     const live = transport ? ttsTransportDescription(transport) : null;
     if (!live?.duration) return;
     const scale = `scaleX(${Math.max(0, Math.min(1, live.time / live.duration)).toFixed(3)})`;
-    for (const fill of win.querySelectorAll('[data-jy-mini-playbar-fill]')) if (fill.style.transform !== scale) fill.style.transform = scale;
+    for (const fill of win.querySelectorAll('[data-bgt-mini-playbar-fill]')) if (fill.style.transform !== scale) fill.style.transform = scale;
   };
   const unsubscribeProgress = subscribeTtsProgress(renderProgress);
   refreshReading = () => {
@@ -17811,25 +17811,25 @@ async function openMiniWindow() {
   const renderLog = () => {
     const filtered = filterLogs(logEntries, { filter: logFilter, floor: viewFloor });
     logShown = filtered.slice(0, MINI_LOG_LIMIT);
-    for (const chip of win.querySelectorAll('[data-jy-action="log-filter"]')) chip.setAttribute('aria-pressed', String(chip.dataset.filter === logFilter));
+    for (const chip of win.querySelectorAll('[data-bgt-action="log-filter"]')) chip.setAttribute('aria-pressed', String(chip.dataset.filter === logFilter));
     logList.replaceChildren();
     logShown.forEach((entry, index) => {
       const line = describeLog(entry);
       const item = document.createElement('li');
-      item.className = 'jy-mini-log-item';
+      item.className = 'bgt-mini-log-item';
       item.dataset.level = line.level;
-      item.dataset.jyAction = 'log-open';
+      item.dataset.bgtAction = 'log-open';
       item.dataset.index = String(index);
       const meta = document.createElement('span');
-      meta.className = 'jy-mini-log-meta';
+      meta.className = 'bgt-mini-log-meta';
       meta.textContent = `${line.time} · ${line.area}${line.floor !== null ? ` · 第 ${line.floor} 楼` : ''}${line.level === 'error' ? ' · 出错' : line.level === 'warn' ? ' · 提醒' : ''}`;
       const text = document.createElement('span');
-      text.className = 'jy-mini-log-text';
+      text.className = 'bgt-mini-log-text';
       text.textContent = line.message;
       item.append(meta, text);
       logList.appendChild(item);
     });
-    const empty = win.querySelector('[data-jy-mini-log-empty]');
+    const empty = win.querySelector('[data-bgt-mini-log-empty]');
     if (empty) {
       empty.hidden = logShown.length > 0;
       empty.textContent = logFilter === 'floor' ? (Number.isInteger(viewFloor) ? `第 ${viewFloor} 楼还没有记录。` : '还没有楼层。') : logFilter === 'errors' ? '没有出错的记录。' : '这里还没有记录。';
@@ -17850,28 +17850,28 @@ async function openMiniWindow() {
     const line = describeLog(entry);
     logDetail.replaceChildren();
     const head = document.createElement('div');
-    head.className = 'jy-mini-log-detail-head';
+    head.className = 'bgt-mini-log-detail-head';
     const meta = document.createElement('strong');
     meta.dataset.level = line.level;
     meta.textContent = `${line.time} · ${line.area}${line.floor !== null ? ` · 第 ${line.floor} 楼` : ''}${line.level === 'error' ? ' · 出错' : ''}`;
     const close = document.createElement('button');
     close.type = 'button';
-    close.className = 'jy-mini-inspect-close';
-    close.dataset.jyAction = 'log-close';
+    close.className = 'bgt-mini-inspect-close';
+    close.dataset.bgtAction = 'log-close';
     close.setAttribute('aria-label', '关闭');
     close.textContent = '×';
     head.append(meta, close);
     const message = document.createElement('p');
-    message.className = 'jy-mini-log-detail-message';
+    message.className = 'bgt-mini-log-detail-message';
     message.textContent = line.message;
     const scope = document.createElement('p');
-    scope.className = 'jy-muted';
+    scope.className = 'bgt-muted';
     scope.textContent = entry.scope ?? '';
     logDetail.append(head, message, scope);
     const section = (label, value, open = false) => {
       if (value === undefined || value === null || (typeof value === 'object' && !Object.keys(value).length) || value === '') return;
       const details = document.createElement('details');
-      details.className = 'jy-mini-log-section';
+      details.className = 'bgt-mini-log-section';
       details.open = open;
       const summary = document.createElement('summary');
       summary.textContent = label;
@@ -17885,18 +17885,18 @@ async function openMiniWindow() {
     section('返回', entry.fullResponse);
     section('思考', entry.reasoning);
     const actions = document.createElement('div');
-    actions.className = 'jy-mini-log-detail-actions';
+    actions.className = 'bgt-mini-log-detail-actions';
     const copy = document.createElement('button');
     copy.type = 'button';
-    copy.className = 'jy-button';
-    copy.dataset.jyAction = 'log-copy-one';
+    copy.className = 'bgt-button';
+    copy.dataset.bgtAction = 'log-copy-one';
     copy.textContent = '复制这条';
     actions.appendChild(copy);
     if (Number.isInteger(line.floor) && line.area === '翻译' && line.level !== 'info') {
       const repair = document.createElement('button');
       repair.type = 'button';
-      repair.className = 'jy-button';
-      repair.dataset.jyAction = 'log-repair';
+      repair.className = 'bgt-button';
+      repair.dataset.bgtAction = 'log-repair';
       repair.dataset.floor = String(line.floor);
       repair.textContent = '补译这楼';
       actions.appendChild(repair);
@@ -17905,13 +17905,13 @@ async function openMiniWindow() {
     logDetail.dataset.entry = JSON.stringify(entry).slice(0, 400000);
     logDetail.hidden = false;
     logList.hidden = true;
-    win.querySelector('[data-jy-mini-log-filters]').hidden = true;
+    win.querySelector('[data-bgt-mini-log-filters]').hidden = true;
     globalThis.requestAnimationFrame?.(() => { if (win.isConnected) reanchor(); });
   };
   const closeLogDetail = () => {
     logDetail.hidden = true;
     delete logDetail.dataset.entry;
-    win.querySelector('[data-jy-mini-log-filters]').hidden = false;
+    win.querySelector('[data-bgt-mini-log-filters]').hidden = false;
     renderLog();
   };
   const logReport = () => {
@@ -17923,7 +17923,7 @@ async function openMiniWindow() {
   };
   const countLogErrors = entries => entries.filter(entry => entry.level === 'error').length;
   const updateLogBadge = () => {
-    const logTab = tabs.querySelector('[data-jy-mini-tab="log"]');
+    const logTab = tabs.querySelector('[data-bgt-mini-tab="log"]');
     if (!logTab) return;
     const unseen = Math.max(0, countLogErrors(logEntries) - logSeenErrors);
     logTab.dataset.errors = unseen ? String(Math.min(unseen, 99)) : '';
@@ -18008,13 +18008,13 @@ async function openMiniWindow() {
   // held, not clicked.
   // -------------------------------------------------------------------------------------------
   const callPage = pages.call;
-  const callScroll = callPage.querySelector('[data-jy-call-scroll]');
-  const callLines = callPage.querySelector('[data-jy-call-lines]');
-  const callTalk = callPage.querySelector('[data-jy-call-talk]');
-  const callTyping = callPage.querySelector('[data-jy-call-typing]');
-  const callInput = callPage.querySelector('[data-jy-call-input]');
-  const callHistoryList = callPage.querySelector('[data-jy-call-history]');
-  const callDetail = callPage.querySelector('[data-jy-call-detail]');
+  const callScroll = callPage.querySelector('[data-bgt-call-scroll]');
+  const callLines = callPage.querySelector('[data-bgt-call-lines]');
+  const callTalk = callPage.querySelector('[data-bgt-call-talk]');
+  const callTyping = callPage.querySelector('[data-bgt-call-typing]');
+  const callInput = callPage.querySelector('[data-bgt-call-input]');
+  const callHistoryList = callPage.querySelector('[data-bgt-call-history]');
+  const callDetail = callPage.querySelector('[data-bgt-call-detail]');
   let callView = callController().snapshot;
   let callFrame = null;
   let callTicker = null;
@@ -18034,9 +18034,9 @@ async function openMiniWindow() {
   const renderCallClock = () => {
     const view = callView;
     const inCall = view.phase !== 'idle';
-    putText(callPage.querySelector('[data-jy-call-clock]'), inCall ? callClock(Date.now() - view.startedAt) : view.ended ? `通话 ${callClock(view.ended.at - view.startedAt)}` : '—');
+    putText(callPage.querySelector('[data-bgt-call-clock]'), inCall ? callClock(Date.now() - view.startedAt) : view.ended ? `通话 ${callClock(view.ended.at - view.startedAt)}` : '—');
     const since = view.phase === 'thinking' ? view.askedAt : view.phase === 'listening' ? view.listenedAt : 0;
-    putText(callPage.querySelector('[data-jy-call-wait]'), since ? `${Math.floor((Date.now() - since) / 1000)} 秒` : '');
+    putText(callPage.querySelector('[data-bgt-call-wait]'), since ? `${Math.floor((Date.now() - since) / 1000)} 秒` : '');
   };
   const renderCallLines = view => {
     const turns = view.turns;
@@ -18045,15 +18045,15 @@ async function openMiniWindow() {
     while (callLines.children.length > turns.length) callLines.lastElementChild.remove();
     while (callLines.children.length < turns.length) {
       const row = document.createElement('li');
-      row.className = 'jy-mini-sentence';
+      row.className = 'bgt-mini-sentence';
       const mark = document.createElement('span');
-      mark.className = 'jy-mini-sentence-mark';
+      mark.className = 'bgt-mini-sentence-mark';
       const body = document.createElement('div');
-      body.className = 'jy-mini-sentence-body';
+      body.className = 'bgt-mini-sentence-body';
       const who = document.createElement('div');
-      who.className = 'jy-mini-sentence-echo';
+      who.className = 'bgt-mini-sentence-echo';
       const text = document.createElement('div');
-      text.className = 'jy-mini-sentence-text';
+      text.className = 'bgt-mini-sentence-text';
       body.append(who, text);
       row.append(mark, body);
       callLines.appendChild(row);
@@ -18063,8 +18063,8 @@ async function openMiniWindow() {
       const current = turn.live ? 'true' : 'false';
       if (row.dataset.current !== current) row.dataset.current = current;
       putText(row.firstElementChild, turn.live ? (view.phase === 'speaking' ? '♪' : '…') : '·');
-      putText(row.querySelector('.jy-mini-sentence-echo'), turn.from === 'user' ? (view.user || '我') : (view.peer || '对方'));
-      putText(row.querySelector('.jy-mini-sentence-text'), turn.text ? `${turn.text}${turn.cut ? '……' : ''}` : '…');
+      putText(row.querySelector('.bgt-mini-sentence-echo'), turn.from === 'user' ? (view.user || '我') : (view.peer || '对方'));
+      putText(row.querySelector('.bgt-mini-sentence-text'), turn.text ? `${turn.text}${turn.cut ? '……' : ''}` : '…');
     });
     if (atBottom) callScroll.scrollTop = callScroll.scrollHeight;
   };
@@ -18075,7 +18075,7 @@ async function openMiniWindow() {
     const inCall = view.phase !== 'idle';
     const peer = view.peer || callPeerName();
     const stt = sttAvailability();
-    putText(callPage.querySelector('[data-jy-call-peer]'), peer ? (inCall ? `和${peer}通话中` : `打给${peer}`) : '通话测试');
+    putText(callPage.querySelector('[data-bgt-call-peer]'), peer ? (inCall ? `和${peer}通话中` : `打给${peer}`) : '通话测试');
     const other = view.peer || '对方';
     const says = {
       thinking: `${other}在想`,
@@ -18085,7 +18085,7 @@ async function openMiniWindow() {
       transcribing: '在转写',
       idle: view.ended ? `通话结束${view.ended.reason ? `（${view.ended.reason}）` : ''}` : '按「拨打」，对方会先开口',
     };
-    putText(callPage.querySelector('[data-jy-call-state]'), view.blocked ? '浏览器要先点一下才出声：点「继续」' : view.paused ? '暂停了：点「继续」接着听' : says[view.phase] ?? '');
+    putText(callPage.querySelector('[data-bgt-call-state]'), view.blocked ? '浏览器要先点一下才出声：点「继续」' : view.paused ? '暂停了：点「继续」接着听' : says[view.phase] ?? '');
     const notes = [];
     if (view.error) notes.push(`出错：${view.error}`);
     else if (view.note) notes.push(view.note);
@@ -18098,7 +18098,7 @@ async function openMiniWindow() {
     }
     if (inCall && !stt.available) notes.push(`语音输入没开：${stt.reason}`);
     if (callRequestSettings().apiMode !== 'independent') notes.push('通话连接跟随酒馆，要等整段写完才开始读。在「更多 → 通话设置」里给通话选一条自己的连接，就能边写边读。');
-    const note = callPage.querySelector('[data-jy-call-note]');
+    const note = callPage.querySelector('[data-bgt-call-note]');
     putText(note, notes.join('\n'));
     note.hidden = !notes.length;
     renderCallLines(view);
@@ -18107,12 +18107,12 @@ async function openMiniWindow() {
       const button = callPage.querySelector(selector);
       if (button && button.hidden === visible) button.hidden = !visible;
     };
-    show('[data-jy-action="call-dial"]', !inCall);
-    show('[data-jy-action="call-hang"]', inCall);
+    show('[data-bgt-action="call-dial"]', !inCall);
+    show('[data-bgt-action="call-hang"]', inCall);
     const held = view.blocked || view.paused;
-    show('[data-jy-action="call-interrupt"]', inCall && talking && !held);
-    show('[data-jy-action="call-resume"]', inCall && held);
-    show('[data-jy-call-talk]', inCall && stt.available);
+    show('[data-bgt-action="call-interrupt"]', inCall && talking && !held);
+    show('[data-bgt-action="call-resume"]', inCall && held);
+    show('[data-bgt-call-talk]', inCall && stt.available);
     if (callTyping.hidden === (inCall && !stt.available)) callTyping.hidden = !(inCall && !stt.available);
     putText(callTalk, view.phase === 'listening' ? '松开发送' : view.phase === 'transcribing' ? '在转写…' : '按住说话');
     callTalk.disabled = view.phase === 'transcribing';
@@ -18145,20 +18145,20 @@ async function openMiniWindow() {
     const calls = key ? callHistory().list(key) : [];
     callHistoryList.replaceChildren(...calls.map(call => {
       const item = document.createElement('li');
-      item.className = 'jy-mini-log-item';
+      item.className = 'bgt-mini-log-item';
       item.dataset.callId = call.id;
       const meta = document.createElement('span');
-      meta.className = 'jy-mini-log-meta';
+      meta.className = 'bgt-mini-log-meta';
       meta.textContent = `${callWhen(call.startedAt)} · ${call.endedAt ? callClock(call.endedAt - call.startedAt) : '—'} · ${call.turns.length} 句`;
       const text = document.createElement('span');
-      text.className = 'jy-mini-log-text';
+      text.className = 'bgt-mini-log-text';
       const last = [...call.turns].reverse().find(turn => turn.from === 'char') ?? call.turns[call.turns.length - 1];
       text.textContent = last?.text ?? '';
       item.append(meta, text);
       return item;
     }));
-    callPage.querySelector('[data-jy-call-history-empty]').hidden = calls.length > 0;
-    callPage.querySelector('[data-jy-action="call-clear"]').hidden = !calls.length;
+    callPage.querySelector('[data-bgt-call-history-empty]').hidden = calls.length > 0;
+    callPage.querySelector('[data-bgt-action="call-clear"]').hidden = !calls.length;
     if (!callDetail.hidden && !calls.some(call => call.id === callDetail.dataset.callId)) {
       callDetail.hidden = true;
       callHistoryList.hidden = false;
@@ -18174,20 +18174,20 @@ async function openMiniWindow() {
     const call = callHistory().list(key).find(item => item.id === id);
     if (!call) return;
     const head = document.createElement('div');
-    head.className = 'jy-mini-log-detail-head';
+    head.className = 'bgt-mini-log-detail-head';
     const title = document.createElement('strong');
     title.textContent = `${call.peer || '通话'} · ${callWhen(call.startedAt)}`;
     const back = document.createElement('button');
     back.type = 'button';
-    back.className = 'jy-mini-inspect-close';
-    back.dataset.jyAction = 'call-detail-close';
+    back.className = 'bgt-mini-inspect-close';
+    back.dataset.bgtAction = 'call-detail-close';
     back.setAttribute('aria-label', '回到往期通话');
     back.title = '回到往期通话';
     back.textContent = '×';
     head.append(title, back);
     const lines = call.turns.map(turn => {
       const line = document.createElement('p');
-      line.className = 'jy-mini-log-detail-message';
+      line.className = 'bgt-mini-log-detail-message';
       line.textContent = `${turn.from === 'user' ? '我' : (call.peer || '对方')}：${turn.text}${turn.cut ? '……' : ''}`;
       return line;
     });
@@ -18313,7 +18313,7 @@ async function openMiniWindow() {
   const onInputKeydown = event => {
     if (event.key !== 'Enter' || !(event.ctrlKey || event.metaKey)) return;
     event.preventDefault();
-    win.querySelector('[data-jy-action="mini-scratch"]')?.click();
+    win.querySelector('[data-bgt-action="mini-scratch"]')?.click();
   };
   const typingInside = () => {
     const active = shadow.activeElement;
@@ -18331,7 +18331,7 @@ async function openMiniWindow() {
     const info = ttsTransportDescription();
     if (event.key === ' ' && ttsSettings().enabled) {
       event.preventDefault();
-      win.querySelector('[data-jy-action="tts-toggle"]')?.click();
+      win.querySelector('[data-bgt-action="tts-toggle"]')?.click();
     } else if ((event.key === 'ArrowLeft' || event.key === 'ArrowRight') && info?.duration && shadow.activeElement !== seekBar) {
       event.preventDefault();
       seekTts(Math.max(0, Math.min(1, info.time / info.duration + (event.key === 'ArrowLeft' ? -0.05 : 0.05))));
@@ -18348,7 +18348,7 @@ async function openMiniWindow() {
   };
   const onInput = () => {
     const length = input.value.trim().length;
-    setText(win, '[data-jy-mini-note]', length ? `${length} 字 · Ctrl + Enter 直接翻` : 'Ctrl + Enter 直接翻');
+    setText(win, '[data-bgt-mini-note]', length ? `${length} 字 · Ctrl + Enter 直接翻` : 'Ctrl + Enter 直接翻');
   };
   const onScratchToggle = () => {
     globalThis.requestAnimationFrame?.(() => { if (win.isConnected) reanchor(); });
@@ -18391,7 +18391,7 @@ async function openMiniWindow() {
   const toggleRow = id => {
     editingRow = editingRow === id ? null : id;
     renderRows();
-    if (editingRow !== null) win.querySelector(`[data-jy-row-field="${editingRow}"]`)?.focus();
+    if (editingRow !== null) win.querySelector(`[data-bgt-row-field="${editingRow}"]`)?.focus();
     globalThis.requestAnimationFrame?.(() => { if (win.isConnected) reanchor(); });
   };
   // The sentence of the reading that starts with this paragraph's translation, played from there.
@@ -18409,31 +18409,31 @@ async function openMiniWindow() {
 
   // A page's 更多 sheet opened or put away, its toggles told which.
   const setMoreSheet = (page, open) => {
-    const sheet = page?.querySelector('[data-jy-mini-more]');
+    const sheet = page?.querySelector('[data-bgt-mini-more]');
     if (!sheet) return;
     sheet.hidden = !open;
-    for (const toggle of page.querySelectorAll('[data-jy-action="mini-more"]')) toggle.setAttribute('aria-expanded', String(open));
+    for (const toggle of page.querySelectorAll('[data-bgt-action="mini-more"]')) toggle.setAttribute('aria-expanded', String(open));
   };
   const onClick = async event => {
-    const button = event.target.closest('[data-jy-action]');
+    const button = event.target.closest('[data-bgt-action]');
     if (!button) {
       const callItem = event.target.closest('[data-call-id]');
       if (callItem) {
         showCallDetail(callItem.dataset.callId);
         return;
       }
-      if (event.target.closest('[data-jy-mini-page="call"]')) return;
-      const row = event.target.closest('.jy-mini-row');
+      if (event.target.closest('[data-bgt-mini-page="call"]')) return;
+      const row = event.target.closest('.bgt-mini-row');
       if (row && !event.target.closest('textarea, button')) toggleRow(Number(row.dataset.id));
-      const sentence = event.target.closest('.jy-mini-sentence');
+      const sentence = event.target.closest('.bgt-mini-sentence');
       if (sentence && !event.target.closest('button')) {
-        for (const other of sentenceList.querySelectorAll('.jy-mini-sentence[data-open="true"]')) if (other !== sentence) delete other.dataset.open;
+        for (const other of sentenceList.querySelectorAll('.bgt-mini-sentence[data-open="true"]')) if (other !== sentence) delete other.dataset.open;
         sentence.dataset.open = 'true';
         void playTtsUtterance(Number(sentence.dataset.messageId), Number(sentence.dataset.id), sentence.dataset.side);
       }
       return;
     }
-    const action = button.dataset.jyAction;
+    const action = button.dataset.bgtAction;
     if (action === 'mini-collapse') { close(); return; }
     if (action === 'mini-expand') { close(); openControlCenter().catch(error => toast('error', safeError(error))); return; }
     if (action === 'mini-max') { setSize(nextMiniSize(win.dataset.size, win.dataset.touch === 'true')); return; }
@@ -18441,8 +18441,8 @@ async function openMiniWindow() {
     if (action === 'mini-goto-reading') { selectMiniTab('reading'); return; }
     if (action === 'mini-thinking') { thinkingOpen = !thinkingOpen; renderThinkingLine(); globalThis.requestAnimationFrame?.(() => { if (win.isConnected) reanchor(); }); return; }
     if (action === 'mini-more' || action === 'mini-more-close') {
-      const page = button.closest('[data-jy-mini-page]');
-      const sheet = page?.querySelector('[data-jy-mini-more]');
+      const page = button.closest('[data-bgt-mini-page]');
+      const sheet = page?.querySelector('[data-bgt-mini-more]');
       if (!sheet) return;
       setMoreSheet(page, action === 'mini-more-close' ? false : sheet.hidden);
       return;
@@ -18513,7 +18513,7 @@ async function openMiniWindow() {
     }
     if (action === 'log-close') { closeLogDetail(); return; }
     if (action === 'sentence-edit') {
-      const row = button.closest('.jy-mini-sentence');
+      const row = button.closest('.bgt-mini-sentence');
       if (row) void renderInspector(Number(row.dataset.messageId), Number(row.dataset.id), { pinned: true, side: row.dataset.side });
       return;
     }
@@ -18524,14 +18524,14 @@ async function openMiniWindow() {
       return;
     }
     if (action === 'sentence-sing') {
-      const row = button.closest('.jy-mini-sentence');
+      const row = button.closest('.bgt-mini-sentence');
       if (!row) return;
       if (button.getAttribute('aria-disabled') !== 'true') button.textContent = '生成中…';
       toggleTtsSing(Number(row.dataset.messageId), Number(row.dataset.id), row.dataset.side).catch(error => { if (!isAbortError(error)) toast('error', safeError(error)); });
       return;
     }
     if (action === 'sentence-play' || action === 'sentence-regen') {
-      const row = button.closest('.jy-mini-sentence');
+      const row = button.closest('.bgt-mini-sentence');
       if (!row) return;
       const run = action === 'sentence-play' ? playTtsUtterance : regenerateTtsSentence;
       run(Number(row.dataset.messageId), Number(row.dataset.id), row.dataset.side).catch(error => { if (!isAbortError(error)) toast('error', safeError(error)); });
@@ -18542,7 +18542,7 @@ async function openMiniWindow() {
       return;
     }
     if (action === 'tts-insert-custom') {
-      const input = win.querySelector('[data-jy-tts-custom]');
+      const input = win.querySelector('[data-bgt-tts-custom]');
       const value = input?.value.trim().replace(/^[[(（【]|[\])）】]$/g, '').slice(0, 40);
       if (value) insertCue(value);
       if (input) input.value = '';
@@ -18702,7 +18702,7 @@ async function openMiniWindow() {
         await startTranslation(viewFloor, { only: new Set([id]) });
       } else if (action === 'row-write') {
         const id = Number(button.dataset.id);
-        const field = win.querySelector(`[data-jy-row-field="${id}"]`);
+        const field = win.querySelector(`[data-bgt-row-field="${id}"]`);
         button.textContent = '写回中…';
         await editTranslationSegment(viewFloor, id, field?.value ?? '');
         editingRow = null;
@@ -18732,7 +18732,7 @@ async function openMiniWindow() {
           output.textContent = translated;
           const channel = getActiveChannel(runtime.settings);
           const seconds = ((globalThis.performance.now() - started) / 1000).toFixed(1);
-          setText(win, '[data-jy-mini-meta]', `${seconds} 秒 · ${runtime.settings.translationProvider === BING_TRANSLATION_PROVIDER ? BING_TRANSLATION_LABEL : (channel.model || '跟随酒馆')}`);
+          setText(win, '[data-bgt-mini-meta]', `${seconds} 秒 · ${runtime.settings.translationProvider === BING_TRANSLATION_PROVIDER ? BING_TRANSLATION_LABEL : (channel.model || '跟随酒馆')}`);
           resultBox.hidden = false;
           setScratchOpen(true);
         } finally {
@@ -18919,7 +18919,7 @@ async function resolveSegmentAtPoint(messageId, root, point) {
   }
   if (snapshot.messageId !== messageId || !snapshot.segments.length || !root.isConnected) return null;
   const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, {
-    acceptNode: node => (node.parentElement?.closest('.jy-tts-bar, .jy-tts-play, .jy-tts-edit, .jy-tts-line, script, style') ? NodeFilter.FILTER_REJECT : NodeFilter.FILTER_ACCEPT),
+    acceptNode: node => (node.parentElement?.closest('.bgt-tts-bar, .bgt-tts-play, .bgt-tts-edit, .bgt-tts-line, script, style') ? NodeFilter.FILTER_REJECT : NodeFilter.FILTER_ACCEPT),
   });
   const nodes = [];
   while (walker.nextNode()) nodes.push(walker.currentNode);
@@ -18945,7 +18945,7 @@ function chatInDeleteMode() {
 
 /**
  * Never hijacks a click that means something else: a link, a button, an input, a `<summary>` or
- * anything else with an interactive role, the floor's own reading controls (`.jy-tts-bar` and
+ * anything else with an interactive role, the floor's own reading controls (`.bgt-tts-bar` and
  * everything in it), a real text selection, the host's own edit textarea open on this floor, or the
  * host's delete-message mode. Everything else on a floor's rendered text is fair game.
  *
@@ -18966,7 +18966,7 @@ async function handleSegmentJumpClick(event) {
   if (!target) return;
   const mes = target.closest?.('#chat .mes[mesid]');
   if (!mes) return;
-  if (target.closest('a, button, input, textarea, select, summary, label, [contenteditable="true"], [role="button"], [onclick], .jy-tts-bar')) return;
+  if (target.closest('a, button, input, textarea, select, summary, label, [contenteditable="true"], [role="button"], [onclick], .bgt-tts-bar')) return;
   if (chatInDeleteMode()) return;
   const messageId = Number(mes.getAttribute('mesid'));
   if (!Number.isInteger(messageId)) return;
@@ -19141,7 +19141,7 @@ function scheduleAuto(messageId, reason) {
     } catch (error) {
       if (isAbortError(error)) return;
       const message = safeError(error);
-      const routine = error?.code === 'JY_FLOOR_DIVERGED' || /没有找到|正文标签|已经翻译|不是普通 AI 回复|没有可翻译的正文段落/.test(message);
+      const routine = error?.code === 'BGT_FLOOR_DIVERGED' || /没有找到|正文标签|已经翻译|不是普通 AI 回复|没有可翻译的正文段落/.test(message);
       recordDiagnostic(routine ? 'info' : 'error', 'translation.auto', `第 ${messageId} 楼自动翻译${routine ? '没有进行' : '失败'}：${message}`, { floor: id, reason });
       if (!routine) toast('error', message);
       else if (/正文标签/.test(message)) noteMissingBodyTag(id, message);
@@ -19358,7 +19358,7 @@ function registerPromptFallback(eventTypes) {
       if (payload?.dryRun || runtime.scriptCall || runtime.interceptorSeen) {
         if (runtime.scriptCall && !payload?.dryRun && !runtime.scriptPromptNoted) {
           runtime.scriptPromptNoted = true;
-          recordDiagnostic('info', 'host.script-prompt', '别的插件自己请求模型时带上了楼层里的镜译译文，已在发出前去掉。', { event: name, stripped });
+          recordDiagnostic('info', 'host.script-prompt', '别的插件自己请求模型时带上了楼层里的测试翻译译文，已在发出前去掉。', { event: name, stripped });
         }
         return;
       }
@@ -19655,7 +19655,7 @@ function registerRuntimeEvents() {
 
 function cleanupRuntime() {
   runtime.processingRevision += 1;
-  runtime.call?.hangUp('镜译停用了');
+  runtime.call?.hangUp('测试翻译停用了');
   runtime.epoch += 1;
   cancelPendingWork();
   runtime.generationBase = null;
@@ -20843,7 +20843,7 @@ async function apiLlmStream({ messages, signal = null, onText = null } = {}) {
   const thinkingNote = !independent
     ? '跟随酒馆，整段返回，想不想由酒馆预设的推理设置决定'
     : thought
-      ? `模型先想了 ${thought} 字（${thinkingFrom === null ? '—' : `${(thinkingFrom / 1000).toFixed(2)} 秒开始`}）${off ? `，关思考的参数（${off.label}）没关住` : '，这个模型镜译不知道怎么关思考'}`
+      ? `模型先想了 ${thought} 字（${thinkingFrom === null ? '—' : `${(thinkingFrom / 1000).toFixed(2)} 秒开始`}）${off ? `，关思考的参数（${off.label}）没关住` : '，这个模型测试翻译不知道怎么关思考'}`
       : off ? `已关思考（${off.label}）` : '没有思考';
   recordDiagnostic(thought ? 'warn' : 'info', 'llm.stream', `通话请求（${channelLabel(settings, independent ? settings.selectedChannelId : 'follow', { short: true })}）：首字 ${first === null ? '—' : `${(first / 1000).toFixed(2)} 秒`}，写完 ${(total / 1000).toFixed(2)} 秒，${text.length} 字；${thinkingNote}。`, {
     streamed: independent, firstMs: first === null ? null : Math.round(first), totalMs: Math.round(total), characters: text.length, thinkingOff: off?.label ?? null, thought,
@@ -20947,10 +20947,10 @@ async function openCallSettings() {
   // 朗读 only exists in 高级模式 (DESIGN §15.1) — switch there first, the same way goto-advanced
   // does, before selecting a page the 正常模式 rail cannot reach (review finding index.js:18981).
   if (runtime.settings.uiMode !== 'advanced') {
-    root?.querySelector('[data-jy-action="set-ui-mode"][data-jy-ui-mode="advanced"]')?.click();
+    root?.querySelector('[data-bgt-action="set-ui-mode"][data-bgt-ui-mode="advanced"]')?.click();
   }
-  root?.querySelector('[data-jy-tab="tts"]')?.click();
-  const fold = root?.querySelector('[data-jy-fold="tts-call"]');
+  root?.querySelector('[data-bgt-tab="tts"]')?.click();
+  const fold = root?.querySelector('[data-bgt-fold="tts-call"]');
   if (fold) {
     fold.open = true;
     globalThis.requestAnimationFrame?.(() => fold.scrollIntoView({ block: 'start' }));
@@ -21046,10 +21046,10 @@ function callAppMissing(entry, settings = runtime.settings) {
 
 /** call.connect: the app's own words in, what is still missing out. */
 function apiCallConnect(options = {}) {
-  if (!runtime.initialized) throw new Error('镜译还没启动完，稍后再试。');
+  if (!runtime.initialized) throw new Error('测试翻译还没启动完，稍后再试。');
   const entry = callApps().connect(options);
   const missing = callAppMissing(entry);
-  recordDiagnostic(missing.length ? 'warn' : 'info', 'call', `${entry.app}连上了镜译（要用 ${entry.needs.join('、') || '—'}）：${missing.length ? `还缺 ${missing.map(item => item.title).join('、')}` : '都设好了'}。`, {
+  recordDiagnostic(missing.length ? 'warn' : 'info', 'call', `${entry.app}连上了测试翻译（要用 ${entry.needs.join('、') || '—'}）：${missing.length ? `还缺 ${missing.map(item => item.title).join('、')}` : '都设好了'}。`, {
     app: entry.app, characters: entry.characters, needs: entry.needs, missing: missing.map(item => item.id),
   });
   if (missing.length && callApps().remind(entry.app)) toast('warning', callReminder(entry.app, missing));
@@ -21072,7 +21072,7 @@ const callAppsShown = new WeakMap();
  * again only when what it says changed, so a click on 「去设置」 is never lost to a redraw.
  */
 function renderCallApps(root, settings = runtime.settings) {
-  const box = root?.querySelector?.('[data-jy-call-apps]');
+  const box = root?.querySelector?.('[data-bgt-call-apps]');
   if (!box) return;
   const apps = runtime.callApps?.list() ?? [];
   const shown = apps.map(entry => ({ entry, missing: callAppMissing(entry, settings) }));
@@ -21083,14 +21083,14 @@ function renderCallApps(root, settings = runtime.settings) {
   const doc = box.ownerDocument;
   const row = ({ sub = false, done = false, title, text, app = '', fix = '' }) => {
     const element = doc.createElement('div');
-    element.className = sub ? 'jy-summary-row jy-summary-row-sub' : 'jy-summary-row';
+    element.className = sub ? 'bgt-summary-row bgt-summary-row-sub' : 'bgt-summary-row';
     const mark = doc.createElement('span');
-    mark.className = 'jy-state-mark';
+    mark.className = 'bgt-state-mark';
     mark.dataset.state = done ? 'done' : 'idle';
     mark.setAttribute('aria-hidden', 'true');
     mark.textContent = done ? '✓' : '·';
     const copy = doc.createElement('div');
-    copy.className = 'jy-summary-copy';
+    copy.className = 'bgt-summary-copy';
     const heading = doc.createElement('h3');
     heading.textContent = title;
     const line = doc.createElement('p');
@@ -21100,10 +21100,10 @@ function renderCallApps(root, settings = runtime.settings) {
     if (fix) {
       const button = doc.createElement('button');
       button.type = 'button';
-      button.className = 'jy-text-button';
-      button.dataset.jyAction = 'call-fix';
-      button.dataset.jyCallFix = fix;
-      button.dataset.jyCallApp = app;
+      button.className = 'bgt-text-button';
+      button.dataset.bgtAction = 'call-fix';
+      button.dataset.bgtCallFix = fix;
+      button.dataset.bgtCallApp = app;
       button.textContent = '去设置';
       element.appendChild(button);
     }
@@ -21131,28 +21131,28 @@ function refreshCallApps() {
 function callFixTarget(id, app = '', settings = runtime.settings) {
   const tts = ttsSettings(settings);
   const fold = 'tts-call';
-  if (id === 'tts') return { page: 'tts', selector: '[data-jy-tts-master] [data-jy-tts-field="enabled"]' };
+  if (id === 'tts') return { page: 'tts', selector: '[data-bgt-tts-master] [data-bgt-tts-field="enabled"]' };
   if (id === 'key') {
     // GPT-SoVITS's address is on its own card, shown while it is the 声音来源; otherwise that choice first.
     if (tts.streamVoice === 'gsv') {
       return tts.provider === 'gsv'
-        ? { page: 'tts', selector: '[data-jy-tts-provider-card="gsv"] [data-jy-tts-gsv="baseUrl"]' }
-        : { page: 'tts', selector: '[data-jy-tts-provider-card="fish"] [data-jy-tts-field="provider"]' };
+        ? { page: 'tts', selector: '[data-bgt-tts-provider-card="gsv"] [data-bgt-tts-gsv="baseUrl"]' }
+        : { page: 'tts', selector: '[data-bgt-tts-provider-card="fish"] [data-bgt-tts-field="provider"]' };
     }
-    if (tts.streamVoice !== 'fish') return { page: 'tts', fold, selector: `[data-jy-tts-${tts.streamVoice}="key"]` };
+    if (tts.streamVoice !== 'fish') return { page: 'tts', fold, selector: `[data-bgt-tts-${tts.streamVoice}="key"]` };
     return tts.provider === 'fish'
-      ? { page: 'tts', selector: '[data-jy-tts-provider-card="fish"] [data-jy-tts-fish="key"]' }
-      : { page: 'tts', fold, selector: '[data-jy-tts-field="streamVoice"]' };
+      ? { page: 'tts', selector: '[data-bgt-tts-provider-card="fish"] [data-bgt-tts-fish="key"]' }
+      : { page: 'tts', fold, selector: '[data-bgt-tts-field="streamVoice"]' };
   }
   if (id === 'stt') {
     const problem = sttAvailability(tts).problem;
-    return { page: 'tts', fold, selector: problem === 'url' ? '[data-jy-tts-field="sttUrl"]' : problem === 'key' ? '[data-jy-tts-field="sttApiKey"]' : '[data-jy-tts-field="sttProvider"]' };
+    return { page: 'tts', fold, selector: problem === 'url' ? '[data-bgt-tts-field="sttUrl"]' : problem === 'key' ? '[data-bgt-tts-field="sttApiKey"]' : '[data-bgt-tts-field="sttProvider"]' };
   }
   if (id === 'llm') {
     const request = callRequestSettings(settings);
     return request.apiMode === 'independent'
-      ? { page: 'settings', channelId: request.selectedChannelId, selector: getActiveChannel(request).url ? '[data-jy-channel-field="model"]' : '[data-jy-channel-field="url"]' }
-      : { page: 'tts', fold, selector: '[data-jy-tts-field="callChannelId"]' };
+      ? { page: 'settings', channelId: request.selectedChannelId, selector: getActiveChannel(request).url ? '[data-bgt-channel-field="model"]' : '[data-bgt-channel-field="url"]' }
+      : { page: 'tts', fold, selector: '[data-bgt-tts-field="callChannelId"]' };
   }
   // voices: where the call's voice looks for the first name missing one — 豆包's or MiniMax's 「角色音色」,
   // or that character's row in the table (opened), or 「添加角色」 when there is no row yet.
@@ -21160,12 +21160,12 @@ function callFixTarget(id, app = '', settings = runtime.settings) {
   const statuses = entry ? callVoiceStatuses(callAppNames(entry), settings) : [];
   const first = statuses.find(item => item.status !== 'own');
   if ((tts.streamVoice === 'doubao' || tts.streamVoice === 'minimax') && statuses.some(item => item.status === 'default')) {
-    return { page: 'tts', fold, selector: `[data-jy-tts-${tts.streamVoice}="voiceMap"]` };
+    return { page: 'tts', fold, selector: `[data-bgt-tts-${tts.streamVoice}="voiceMap"]` };
   }
   const row = first ? findVoiceEntry(ttsVoicesFor(settings), unifySpeakerNames([first.name], ttsKnownNames(settings)).get(first.name) ?? first.name) : null;
   return row
-    ? { page: 'tts', row: row.name, selector: first.status === 'muted' ? '[data-jy-tts-voice-mute]' : '[data-jy-tts-voice-id]' }
-    : { page: 'tts', selector: '[data-jy-action="tts-add-voice"]' };
+    ? { page: 'tts', row: row.name, selector: first.status === 'muted' ? '[data-bgt-tts-voice-mute]' : '[data-bgt-tts-voice-id]' }
+    : { page: 'tts', selector: '[data-bgt-action="tts-add-voice"]' };
 }
 
 /** 边写边读 for the main model's reply: the first streamed text of a generation opens a reading of that floor. */
@@ -21197,10 +21197,10 @@ function onReplyStreaming(text) {
   session.set(text);
 }
 
-const PUBLIC_API_NAME = '__JINGYI__';
+const PUBLIC_API_NAME = '__BE_EAGLE_TEST_TRANSLATOR__';
 const PUBLIC_API_VERSION = 1;
 // One synthetic floor id for everything the interface reads: a second call replaces the first.
-const API_FLOOR_PREFIX = 'jy-api';
+const API_FLOOR_PREFIX = 'bgt-api';
 
 /** Text somebody handed us, shaped as a floor so the whole reading pipeline applies to it unchanged. */
 async function apiFloor(text, { speaker = '', lang = '', emotion = '' } = {}) {
@@ -21244,12 +21244,12 @@ function apiLabels(utterances, { speaker = '', lang = '' } = {}) {
  */
 function apiTtsReason({ stream = false } = {}) {
   const tts = ttsSettings(runtime.settings);
-  if (!runtime.initialized) return '镜译还没启动完，稍后再试。';
-  if (!tts.enabled) return '镜译的朗读没有打开：镜译 → 朗读 → 打开朗读。';
+  if (!runtime.initialized) return '测试翻译还没启动完，稍后再试。';
+  if (!tts.enabled) return '测试翻译的朗读没有打开：测试翻译 → 朗读 → 打开朗读。';
   const voice = stream ? tts.streamVoice : tts.provider;
   if (voice === 'gsv') return '';
-  if (voice === 'fish' && !tts.fish.key) return '镜译还没填 Fish Audio 的 API Key：镜译 → 朗读 →「Fish Audio」。';
-  if (voice !== 'fish' && !tts[voice]?.key) return spacedLatin(`镜译还没填${CLOUD_VOICE_LABELS[voice]}的 Key：镜译 → 朗读 → 更多 → 实时通话。`);
+  if (voice === 'fish' && !tts.fish.key) return '测试翻译还没填 Fish Audio 的 API Key：测试翻译 → 朗读 →「Fish Audio」。';
+  if (voice !== 'fish' && !tts[voice]?.key) return spacedLatin(`测试翻译还没填${CLOUD_VOICE_LABELS[voice]}的 Key：测试翻译 → 朗读 → 更多 → 实时通话。`);
   return '';
 }
 
@@ -21397,7 +21397,7 @@ function apiSession(floor, items, settings, { play, signal, speaker = '' }) {
       const wanted = String(name ?? '').trim();
       const filename = wanted
         ? (/\.[a-z0-9]{2,4}$/i.test(wanted) ? wanted : `${wanted}.${extension}`)
-        : `镜译-朗读${speaker ? `-${speaker}` : ''}-${stamp}.${extension}`;
+        : `测试翻译-朗读${speaker ? `-${speaker}` : ''}-${stamp}.${extension}`;
       return saveBlobAsFile(blob, filename);
     },
     onProgress(listener) {
@@ -21461,11 +21461,11 @@ async function apiScenes({ from = 0, to = null } = {}) {
 // ---------------------------------------------------------------------------------------------
 // The public interface's floors: a floor's text as the main model wrote it, for another extension that
 // reads the chat itself (a phone building its own chat from the story, a fingerprint kept of a floor)
-// and must see the same text before and after 镜译 translates it.
+// and must see the same text before and after 测试翻译 translates it.
 // ---------------------------------------------------------------------------------------------
 
 /**
- * A floor's original: the floor's number or the message itself, with every line 镜译 wrote into it
+ * A floor's original: the floor's number or the message itself, with every line 测试翻译 wrote into it
  * taken out; a floor with only its translation left in it (「只留译文」) gives the original from the
  * record kept beside it. A floor changed by hand after that gives what it holds (a fingerprint follows
  * the change; reading.get calls that floor a 'conflict'). '' for no floor.
@@ -21479,14 +21479,14 @@ function apiFloorOriginal(target) {
 }
 
 // ---------------------------------------------------------------------------------------------
-// The public interface's reading (reading.js): one floor's alternative as 镜译 reads it, for another
-// extension that builds its own reading on 镜译's — the original for its history and summaries, each
+// The public interface's reading (reading.js): one floor's alternative as 测试翻译 reads it, for another
+// extension that builds its own reading on 测试翻译's — the original for its history and summaries, each
 // line's translation for its own view — and a word whenever that may have changed. Nothing here
 // translates, asks a model, speaks, saves or changes a setting.
 // ---------------------------------------------------------------------------------------------
 
 // Why a floor has no original to give (reading's 'conflict'), in words the reader can act on.
-const READING_CONFLICT_REASON = '这一楼只留了译文，后来又被改过，镜译存的原文已经对不上楼层，给不出原文。在镜译总控页点「恢复本聊天的原文」可以放回原文，这一楼的改动会丢。';
+const READING_CONFLICT_REASON = '这一楼只留了译文，后来又被改过，测试翻译存的原文已经对不上楼层，给不出原文。在测试翻译总控页点「恢复本聊天的原文」可以放回原文，这一楼的改动会丢。';
 
 /** reading.get: one floor's alternative (the one shown when `swipeId` is left out); null when there is none. */
 async function apiReadingGet({ messageId, swipeId = null } = {}) {
@@ -21502,7 +21502,7 @@ async function apiReadingGet({ messageId, swipeId = null } = {}) {
   if (!Number.isInteger(swipe) || swipe < 0) return null;
   if (swipe !== shown && !(Array.isArray(message.swipes) && swipe < message.swipes.length)) return null;
   const owner = { chatId, messageId: id, swipeId: swipe };
-  // A reader's own message and a system line are taken as written: 镜译 translates neither.
+  // A reader's own message and a system line are taken as written: 测试翻译 translates neither.
   if (message.is_user || message.is_system) {
     return readingSnapshot({ ...owner, source: String((swipe === shown ? message.mes : message.swipes?.[swipe]) ?? '') });
   }
@@ -21516,9 +21516,9 @@ async function apiReadingGet({ messageId, swipeId = null } = {}) {
   try {
     snapshot = await readMessageSnapshot(id, runtime.settings, { quiet: true, swipeId: swipe });
   } catch (error) {
-    // None of its body where 镜译 is told to look (its body tag not in 提取标签, say): nothing in it to
+    // None of its body where 测试翻译 is told to look (its body tag not in 提取标签, say): nothing in it to
     // translate, and its original all the same. Tags that are there but cannot be read stay an error.
-    if (error?.code !== 'JY_NO_BODY') throw error;
+    if (error?.code !== 'BGT_NO_BODY') throw error;
     return readingSnapshot({ ...owner, source: alternative.original });
   }
   const key = `${chatId}|${id}|${swipe}`;
@@ -21706,7 +21706,7 @@ function installPublicApi() {
       stream: options => apiStream(options ?? {}, { fromApp: true }),
       /**
        * Whatever this interface is saying, stopped; a floor being read is left alone. With { all: true }
-       * everything 镜译 is saying stops — a floor being read, a reply read while written, 镜译's own 通话测试
+       * everything 测试翻译 is saying stops — a floor being read, a reply read while written, 测试翻译's own 通话测试
        * call — for an app about to speak on its own (its own call starting), so two voices never sound at
        * once. Returns whether anything it stopped was sounding.
        */
@@ -21763,15 +21763,15 @@ function installPublicApi() {
     }),
     /**
      * The chat's floors as the main model wrote them. `original(floor)` takes the floor's number or the
-     * message, and gives its text without the translation lines 镜译 wrote into it, the same before and
+     * message, and gives its text without the translation lines 测试翻译 wrote into it, the same before and
      * after a translation, 「只留译文」 included.
      */
     floor: Object.freeze({
       original: target => apiFloorOriginal(target),
     }),
     /**
-     * The chat's floors as 镜译 reads them (reading.js). `get({ messageId, swipeId })` gives one floor's
-     * alternative: its original, each line 镜译 translates placed in it, the line's translation and marks,
+     * The chat's floors as 测试翻译 reads them (reading.js). `get({ messageId, swipeId })` gives one floor's
+     * alternative: its original, each line 测试翻译 translates placed in it, the line's translation and marks,
      * and where the floor stands; `onChange(fn)` tells of a change; `status()` gives the settings a reading
      * is shaped by, nothing secret. Reading never translates, asks a model, speaks, saves or changes a
      * setting.
@@ -21810,7 +21810,7 @@ function installPublicApi() {
 
 globalThis[INTERCEPTOR_NAME] = interceptGeneration;
 
-export async function onActivate() {
+export async function BeEagleTestTranslator_onActivate() {
   if (runtime.initialized) return;
   runtime.epoch += 1;
   globalThis[INTERCEPTOR_NAME] = interceptGeneration;
@@ -21824,11 +21824,11 @@ export async function onActivate() {
   installLiveUnlock();
   // Floors already on screen were rendered before this extension listened for anything.
   scheduleTtsDecorateAll({ delay: 600 });
-  recordDiagnostic('info', 'lifecycle', `镜译 v${APP_VERSION} 已启动。`);
+  recordDiagnostic('info', 'lifecycle', `测试翻译 v${APP_VERSION} 已启动。`);
   console.info(`[${APP_NAME}] v${APP_VERSION} 已启动。`);
 }
 
-export function onDisable() {
+export function BeEagleTestTranslator_onDisable() {
   const context = getContext();
   const active = getActiveProcessingProfile(runtime.settings);
   if (runtime.nativeRegexInstalled) active.regexScripts = readNativeRegexEdits(context.extensionSettings.regex, active);
@@ -21839,7 +21839,7 @@ export function onDisable() {
   if (globalThis[INTERCEPTOR_NAME] === interceptGeneration) delete globalThis[INTERCEPTOR_NAME];
 }
 
-export function onClean() {
+export function BeEagleTestTranslator_onClean() {
   cleanupRuntime();
   clearDiagnostics();
   try {
@@ -21856,14 +21856,14 @@ export function onClean() {
 }
 
 // SillyTavern 1.14 loads module scripts but has no manifest activate hook.
-// 1.18 calls onActivate itself; the deferred fallback is idempotent and checks capabilities, not versions.
+// 1.18 calls BeEagleTestTranslator_onActivate itself; the deferred fallback is idempotent and checks capabilities, not versions.
 if (typeof document !== 'undefined') {
   let attempts = 0;
   const bootstrap = () => {
     if (runtime.initialized) return;
     const context = globalThis.SillyTavern?.getContext?.();
     if (context?.extensionSettings) {
-      void onActivate().catch(error => console.error(`[${APP_NAME}] 启动失败：${safeError(error)}`));
+      void BeEagleTestTranslator_onActivate().catch(error => console.error(`[${APP_NAME}] 启动失败：${safeError(error)}`));
       return;
     }
     if (++attempts < 40) {

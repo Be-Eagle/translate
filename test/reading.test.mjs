@@ -8,7 +8,7 @@ import { __testing } from '../index.js';
 globalThis.toastr ??= Object.fromEntries(['success', 'error', 'warning', 'info'].map(kind => [kind, () => {}]));
 
 // ---------------------------------------------------------------------------------------------
-// __JINGYI__.reading: one floor's alternative as 镜译 reads it — the original, each line placed in it
+// __BE_EAGLE_TEST_TRANSLATOR__.reading: one floor's alternative as 测试翻译 reads it — the original, each line placed in it
 // by UTF-16 offsets, the line's translation and marks, where the floor stands — and a word on change.
 // The floor is the 东京都2051 card's own sample: a body tag of its own, tagged dialogue and a thought,
 // a character outside the BMP, and blocks other scripts append after the body.
@@ -134,7 +134,7 @@ function useHost(t, chat, { reply = () => Promise.resolve(REPLY), settings = {} 
 
 test('reading.get: absent before a translation, ready after it, the original and its revision untouched', async t => {
   const context = useHost(t, [floorOf([SOURCE])]);
-  const { reading, features } = globalThis.__JINGYI__;
+  const { reading, features } = globalThis.__BE_EAGLE_TEST_TRANSLATOR__;
   assert.ok(features.includes('reading'));
   const before = await reading.get({ messageId: 0 });
   assert.equal(before.state, 'absent');
@@ -148,7 +148,7 @@ test('reading.get: absent before a translation, ready after it, the original and
   assert.notEqual(context.chat[0].mes, SOURCE, 'the translation is written into the floor');
   const after = await reading.get({ messageId: 0, swipeId: 0 });
   assert.equal(after.state, 'ready');
-  assert.equal(after.sourceMessage, SOURCE, 'what 镜译 wrote is not the original');
+  assert.equal(after.sourceMessage, SOURCE, 'what 测试翻译 wrote is not the original');
   assert.equal(after.sourceRevision, before.sourceRevision);
   assert.notEqual(after.readingRevision, 'none');
   assert.deepEqual(after.segments.map(segment => segment.reading?.text), ['雨珠从校门边缘一滴滴落下。🌧️', '明天见啦。', '但愿一切顺利。']);
@@ -163,7 +163,7 @@ test('reading.get: absent before a translation, ready after it, the original and
 
 test('reading.get never borrows another alternative\'s translation, and gives null for what is not there', async t => {
   useHost(t, [floorOf([SOURCE, OTHER], 0)]);
-  const { reading } = globalThis.__JINGYI__;
+  const { reading } = globalThis.__BE_EAGLE_TEST_TRANSLATOR__;
   await __testing.startTranslation(0, { quiet: true });
   const shown = await reading.get({ messageId: 0 });
   const other = await reading.get({ messageId: 0, swipeId: 1 });
@@ -185,15 +185,15 @@ test('a floor with only its translation left in it reads its original back', asy
   const context = useHost(t, [floorOf([SOURCE])], { settings: { translationOnly: true } });
   await __testing.startTranslation(0, { quiet: true });
   assert.doesNotMatch(context.chat[0].mes, /希望能顺利/, 'the floor holds only the translation');
-  const snapshot = await globalThis.__JINGYI__.reading.get({ messageId: 0 });
+  const snapshot = await globalThis.__BE_EAGLE_TEST_TRANSLATOR__.reading.get({ messageId: 0 });
   assert.equal(snapshot.state, 'ready');
   assert.equal(snapshot.sourceMessage, SOURCE);
   assert.equal(snapshot.segments[1].reading.text, '明天见啦。');
 });
 
-test('a floor whose body is nowhere 镜译 looks reads absent with its original; tags that cannot be read stay an error', async t => {
+test('a floor whose body is nowhere 测试翻译 looks reads absent with its original; tags that cannot be read stay an error', async t => {
   const context = useHost(t, [floorOf([SOURCE])], { settings: { bodyTags: ['story_scene'] } });
-  const { reading } = globalThis.__JINGYI__;
+  const { reading } = globalThis.__BE_EAGLE_TEST_TRANSLATOR__;
   const missing = await reading.get({ messageId: 0 });
   assert.equal(missing.state, 'absent');
   assert.equal(missing.sourceMessage, SOURCE);
@@ -206,7 +206,7 @@ test('a floor whose body is nowhere 镜译 looks reads absent with its original;
   context.chat[0].mes = context.chat[0].swipes[0] = '雨停了。\n</story_scene>';
   assert.equal((await reading.get({ messageId: 0 })).state, 'absent');
 
-  // Translated with the body tag, then the tag taken out of 提取标签: what 镜译 wrote still is not the original.
+  // Translated with the body tag, then the tag taken out of 提取标签: what 测试翻译 wrote still is not the original.
   context.chat[0].mes = context.chat[0].swipes[0] = SOURCE;
   __testing.configureForTest({ settings: { bodyTags: ['cxx-story'] } });
   await __testing.startTranslation(0, { quiet: true });
@@ -222,7 +222,7 @@ test('a floor whose body is nowhere 镜译 looks reads absent with its original;
 
 test('a floor with only its translation left, changed inside its body, has no original to give until the change is undone', async t => {
   const context = useHost(t, [floorOf([SOURCE])], { settings: { translationOnly: true } });
-  const { reading, floor } = globalThis.__JINGYI__;
+  const { reading, floor } = globalThis.__BE_EAGLE_TEST_TRANSLATOR__;
   await __testing.startTranslation(0, { quiet: true });
   const written = context.chat[0].mes;
   assert.ok(written.includes('明天见啦。'));
@@ -254,7 +254,7 @@ test('a floor with only its translation left, changed inside its body, has no or
 test('a floor changed after its translation is stale; a failed translation says so, until it succeeds', async t => {
   let fail = true;
   const context = useHost(t, [floorOf([SOURCE])], { reply: () => (fail ? Promise.reject(new Error('模拟的接口错误')) : Promise.resolve(REPLY)) });
-  const { reading } = globalThis.__JINGYI__;
+  const { reading } = globalThis.__BE_EAGLE_TEST_TRANSLATOR__;
   await assert.rejects(__testing.startTranslation(0, { quiet: true }));
   const failed = await reading.get({ messageId: 0 });
   assert.equal(failed.state, 'failed');
@@ -273,7 +273,7 @@ test('a floor changed after its translation is stale; a failed translation says 
 test('a floor being translated reads processing, and onChange tells of it, never after the listener left', async t => {
   let release = null;
   useHost(t, [floorOf([SOURCE])], { reply: () => new Promise(resolve => { release = () => resolve(REPLY); }) });
-  const { reading } = globalThis.__JINGYI__;
+  const { reading } = globalThis.__BE_EAGLE_TEST_TRANSLATOR__;
   const heard = [];
   const stop = reading.onChange(event => heard.push(event));
   const run = __testing.startTranslation(0, { quiet: true });
@@ -312,7 +312,7 @@ test('reading asks no model, saves nothing and changes no setting', async t => {
   context.saveSettingsDebounced = () => { calls.save += 1; };
   __testing.configureForTest({ settings: { apiMode: 'follow', streamingWriteback: false, retries: 0, bodyTags: ['cxx-story'] }, initialized: true });
   const before = JSON.stringify(context.chat);
-  const { reading } = globalThis.__JINGYI__;
+  const { reading } = globalThis.__BE_EAGLE_TEST_TRANSLATOR__;
   const stop = reading.onChange(() => {});
   await reading.get({ messageId: 0 });
   await reading.get({ messageId: 0, swipeId: 1 });
@@ -324,7 +324,7 @@ test('reading asks no model, saves nothing and changes no setting', async t => {
 
 test('reading.status gives the settings a reading is shaped by and nothing secret; tts.status says whether speak can read', async t => {
   useHost(t, [floorOf([SOURCE])]);
-  const status = globalThis.__JINGYI__.reading.status();
+  const status = globalThis.__BE_EAGLE_TEST_TRANSLATOR__.reading.status();
   assert.equal(status.apiVersion, 2);
   assert.equal(status.autoGeneration, true);
   assert.equal(status.translationOnly, false);
@@ -332,7 +332,7 @@ test('reading.status gives the settings a reading is shaped by and nothing secre
   assert.deepEqual(status.bodyTags, ['cxx-story']);
   assert.deepEqual(Object.keys(status.tts).sort(), ['autoRead', 'enabled', 'range', 'side']);
   assert.doesNotMatch(JSON.stringify(status), /key|url|channel/i);
-  const tts = globalThis.__JINGYI__.tts.status();
+  const tts = globalThis.__BE_EAGLE_TEST_TRANSLATOR__.tts.status();
   assert.equal(tts.readReady, false);
   assert.match(tts.readReason, /朗读/);
 });

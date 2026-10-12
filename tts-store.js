@@ -5,7 +5,7 @@
 // it was made for, so a floor whose text changed can drop what no longer belongs to it. When IndexedDB is
 // refused — a sandboxed frame, a private window — the same interface runs in memory for the session.
 
-const DB_NAME = 'jingyi-tts';
+const DB_NAME = 'beagle-test-tts';
 const DB_VERSION = 1;
 const AUDIO_STORE = 'audio';
 const ANALYSIS_STORE = 'analysis';

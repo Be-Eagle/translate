@@ -7,21 +7,21 @@ const { collectDeskChannelFields, configureForTest, focusIdentity, withFocusPres
 
 // --- collectDeskChannelFields -------------------------------------------------------------------
 // Review findings index.js:9054 (both the JP and EN write-ups): 高级模式 hides the desk API Key
-// card's own [data-jy-desk-channel-field] inputs but leaves them in the DOM with stale values, and
+// card's own [data-bgt-desk-channel-field] inputs but leaves them in the DOM with stale values, and
 // collectSettings used to apply them to whatever connection runtime.deskExpandedChannelId names
 // regardless — clobbering a 模型连接 edit to the very same connection.
 
 function fakeDeskField(key, value, modeHidden) {
   const modeBlock = { hidden: modeHidden };
   return {
-    dataset: { jyDeskChannelField: key },
+    dataset: { bgtDeskChannelField: key },
     value,
-    closest: selector => (selector === '[data-jy-mode-content]' ? modeBlock : null),
+    closest: selector => (selector === '[data-bgt-mode-content]' ? modeBlock : null),
   };
 }
 
 function fakeRoot(fields) {
-  return { querySelectorAll: selector => (selector === '[data-jy-desk-channel-field]' ? fields : []) };
+  return { querySelectorAll: selector => (selector === '[data-bgt-desk-channel-field]' ? fields : []) };
 }
 
 test('collectDeskChannelFields leaves the connection alone while the desk card sits in a hidden 正常模式 block (高级模式)', () => {
@@ -77,26 +77,26 @@ function fakeElement(tag, attrs, { selectable = false } = {}) {
   return el;
 }
 
-test('focusIdentity builds a tag-qualified selector from data-jy-* attributes only', () => {
-  const el = fakeElement('SELECT', { 'data-jy-tts-field': 'deepChannelId', class: 'jy-summary-select', id: 'x' });
-  assert.equal(focusIdentity(el), 'select[data-jy-tts-field="deepChannelId"]');
+test('focusIdentity builds a tag-qualified selector from data-bgt-* attributes only', () => {
+  const el = fakeElement('SELECT', { 'data-bgt-tts-field': 'deepChannelId', class: 'bgt-summary-select', id: 'x' });
+  assert.equal(focusIdentity(el), 'select[data-bgt-tts-field="deepChannelId"]');
 });
 
-test('focusIdentity returns null for an element with no data-jy-* attribute, or no element at all', () => {
+test('focusIdentity returns null for an element with no data-bgt-* attribute, or no element at all', () => {
   assert.equal(focusIdentity({ tagName: 'DIV', attributes: [] }), null);
   assert.equal(focusIdentity(null), null);
   assert.equal(focusIdentity(undefined), null);
 });
 
 test('withFocusPreserved refocuses the rebuilt node carrying the same identity and restores its caret', () => {
-  const before = fakeElement('INPUT', { 'data-jy-desk-channel-field': 'url' }, { selectable: true });
+  const before = fakeElement('INPUT', { 'data-bgt-desk-channel-field': 'url' }, { selectable: true });
   before.selectionStart = 3;
   before.selectionEnd = 5;
-  const after = fakeElement('INPUT', { 'data-jy-desk-channel-field': 'url' }, { selectable: true });
+  const after = fakeElement('INPUT', { 'data-bgt-desk-channel-field': 'url' }, { selectable: true });
   const root = {
     ownerDocument: { activeElement: before },
     contains: element => element === before,
-    querySelector: selector => (selector === 'input[data-jy-desk-channel-field="url"]' ? after : null),
+    querySelector: selector => (selector === 'input[data-bgt-desk-channel-field="url"]' ? after : null),
   };
   const result = withFocusPreserved(root, () => 'rendered');
   assert.equal(result, 'rendered', "passes the render callback's own return value through");
@@ -106,7 +106,7 @@ test('withFocusPreserved refocuses the rebuilt node carrying the same identity a
   assert.equal(after.selectionEnd, 5);
 });
 
-test('withFocusPreserved does nothing when nothing inside root had focus, or the focused element has no data-jy-* identity', () => {
+test('withFocusPreserved does nothing when nothing inside root had focus, or the focused element has no data-bgt-* identity', () => {
   const untouchable = selector => { throw new Error(`querySelector should not run: ${selector}`); };
   const noFocus = { ownerDocument: { activeElement: null }, contains: () => false, querySelector: untouchable };
   assert.equal(withFocusPreserved(noFocus, () => 42), 42);
@@ -117,7 +117,7 @@ test('withFocusPreserved does nothing when nothing inside root had focus, or the
 });
 
 test('withFocusPreserved leaves focus alone when the rebuilt DOM has nothing matching that identity any more', () => {
-  const before = fakeElement('BUTTON', { 'data-jy-channel-id': 'gone' });
+  const before = fakeElement('BUTTON', { 'data-bgt-channel-id': 'gone' });
   const root = { ownerDocument: { activeElement: before }, contains: element => element === before, querySelector: () => null };
   assert.equal(withFocusPreserved(root, () => 'ok'), 'ok');
 });
@@ -128,15 +128,15 @@ test('withFocusPreserved leaves focus alone when the rebuilt DOM has nothing mat
 // refocused anything after a resync. `root.getRootNode()` returns that shadow root, whose own
 // `.activeElement` does track focus within it.
 test('withFocusPreserved finds the active element through getRootNode() when root sits in a shadow root, not the shadow host via ownerDocument', () => {
-  const before = fakeElement('BUTTON', { 'data-jy-channel-chevron': 'true', 'data-jy-channel-id': 'c1' });
-  const after = fakeElement('BUTTON', { 'data-jy-channel-chevron': 'true', 'data-jy-channel-id': 'c1' });
+  const before = fakeElement('BUTTON', { 'data-bgt-channel-chevron': 'true', 'data-bgt-channel-id': 'c1' });
+  const after = fakeElement('BUTTON', { 'data-bgt-channel-chevron': 'true', 'data-bgt-channel-id': 'c1' });
   const shadowHost = fakeElement('DIV', {}); // what ownerDocument.activeElement is stuck on from outside the shadow tree
   const shadowRoot = { activeElement: before };
   const root = {
     ownerDocument: { activeElement: shadowHost },
     getRootNode: () => shadowRoot,
     contains: element => element === before,
-    querySelector: selector => (selector === 'button[data-jy-channel-chevron="true"][data-jy-channel-id="c1"]' ? after : null),
+    querySelector: selector => (selector === 'button[data-bgt-channel-chevron="true"][data-bgt-channel-id="c1"]' ? after : null),
   };
   const result = withFocusPreserved(root, () => 'rendered');
   assert.equal(result, 'rendered', "passes the render callback's own return value through");
@@ -150,12 +150,12 @@ test('withFocusPreserved finds the active element through getRootNode() when roo
 // whenever they were the identical node, even though the shadow root's own activeElement had already gone
 // stale (null, here) the instant render() moved it.
 test('withFocusPreserved refocuses a node that render() only moved, once the shadow root itself has already dropped focus from it', () => {
-  const moved = fakeElement('SELECT', { 'data-jy-model-select': 'true' });
+  const moved = fakeElement('SELECT', { 'data-bgt-model-select': 'true' });
   const shadowRoot = { activeElement: moved };
   const root = {
     getRootNode: () => shadowRoot,
     contains: element => element === moved,
-    querySelector: selector => (selector === 'select[data-jy-model-select="true"]' ? moved : null),
+    querySelector: selector => (selector === 'select[data-bgt-model-select="true"]' ? moved : null),
   };
   const result = withFocusPreserved(root, () => {
     // A render that only relocates the node in the DOM — the way renderChannelCards re-appends the
@@ -169,15 +169,15 @@ test('withFocusPreserved refocuses a node that render() only moved, once the sha
 });
 
 // Review finding index.js:8246 (second half): the chevron and the toggle used to share the exact same
-// data-jy-action/data-jy-channel-id pair, so focusIdentity built the same selector for both and
+// data-bgt-action/data-bgt-channel-id pair, so focusIdentity built the same selector for both and
 // querySelector always resolved to whichever comes first in the head (the toggle) — even when the
 // chevron is what a keyboard user actually activated.
-test('focusIdentity gives the chevron its own selector once it carries data-jy-channel-chevron, distinct from the toggle sharing the same action/id', () => {
-  const toggle = fakeElement('BUTTON', { 'data-jy-action': 'edit-channel', 'data-jy-channel-id': 'c1' });
-  const chevron = fakeElement('BUTTON', { 'data-jy-action': 'edit-channel', 'data-jy-channel-id': 'c1', 'data-jy-channel-chevron': 'true' });
+test('focusIdentity gives the chevron its own selector once it carries data-bgt-channel-chevron, distinct from the toggle sharing the same action/id', () => {
+  const toggle = fakeElement('BUTTON', { 'data-bgt-action': 'edit-channel', 'data-bgt-channel-id': 'c1' });
+  const chevron = fakeElement('BUTTON', { 'data-bgt-action': 'edit-channel', 'data-bgt-channel-id': 'c1', 'data-bgt-channel-chevron': 'true' });
   const toggleSelector = focusIdentity(toggle);
   const chevronSelector = focusIdentity(chevron);
-  assert.equal(toggleSelector, 'button[data-jy-action="edit-channel"][data-jy-channel-id="c1"]');
-  assert.equal(chevronSelector, 'button[data-jy-action="edit-channel"][data-jy-channel-id="c1"][data-jy-channel-chevron="true"]');
+  assert.equal(toggleSelector, 'button[data-bgt-action="edit-channel"][data-bgt-channel-id="c1"]');
+  assert.equal(chevronSelector, 'button[data-bgt-action="edit-channel"][data-bgt-channel-id="c1"][data-bgt-channel-chevron="true"]');
   assert.notEqual(chevronSelector, toggleSelector, '箭头和展开按钮不再共用同一个选择器');
 });

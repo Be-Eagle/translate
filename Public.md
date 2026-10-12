@@ -1,22 +1,22 @@
-# 镜译 · 接手说明（Public.md）
+# 测试翻译 · 接手说明（Public.md）
 
 ## 速查
 
 | 项 | 内容 |
 | --- | --- |
-| 是什么 | SillyTavern 的浏览器端扩展。主模型照常用原文写正文；回复写完后，镜译把正文翻成目标语言，用不可见边界写回楼层；发给主模型前由生成拦截器去掉译文。另有朗读（有声小说）、实时通话、小助手 |
+| 是什么 | SillyTavern 的浏览器端扩展。主模型照常用原文写正文；回复写完后，测试翻译把正文翻成目标语言，用不可见边界写回楼层；发给主模型前由生成拦截器去掉译文。另有朗读（有声小说）、实时通话、小助手 |
 | 技术栈 | 原生 ES 模块 + CSS，没有依赖、没有打包、没有构建步骤；测试用 Node 自带的 `node --test` |
-| 入口 | `manifest.json` → `index.js`（生命周期钩子 `onActivate` / `onDisable` / `onClean`，生成拦截器 `JingyiTranslator_interceptGeneration`）；宿主页面样式 `host.css`（引入 `reading.css`）；控制中心、悬浮窗和弹出的对话框用的 `style.css` 由脚本读进各自的 shadow root |
-| 设置存放 | `SillyTavern.getContext().extensionSettings['jingyi-translator']`，`schemaVersion: 13`，读入时由 `core.js` 的 `mergeSettings` 补默认值并迁移旧字段 |
-| 公开接口 | `window.__JINGYI__`：`tts`（`status` / `voices` / `speak` / `read` / `stream` / `stop`）、`stt`（`status` / `start`）、`llm`（`status` / `stream`）、`call.connect`、`scene`（`get` / `list` / `onChange`）、`floor.original`、`reading`（`get` / `onChange` / `status`）。能不能用看 `features` |
-| 当前版本 | 0.51.4。版本号写在 `core.js` 的 `APP_VERSION`、`manifest.json`（`version` 和两个 `?v=`）、`package.json`，以及每个模块导入路径的 `?v=` |
+| 入口 | `manifest.json` → `index.js`（生命周期钩子 `BeEagleTestTranslator_onActivate` / `BeEagleTestTranslator_onDisable` / `BeEagleTestTranslator_onClean`，生成拦截器 `BeEagleTestTranslator_interceptGeneration`）；宿主页面样式 `host.css`（引入 `reading.css`）；控制中心、悬浮窗和弹出的对话框用的 `style.css` 由脚本读进各自的 shadow root |
+| 设置存放 | `SillyTavern.getContext().extensionSettings['beagle-test-translator']`，`schemaVersion: 13`，读入时由 `core.js` 的 `mergeSettings` 补默认值并迁移旧字段 |
+| 公开接口 | `window.__BE_EAGLE_TEST_TRANSLATOR__`：`tts`（`status` / `voices` / `speak` / `read` / `stream` / `stop`）、`stt`（`status` / `start`）、`llm`（`status` / `stream`）、`call.connect`、`scene`（`get` / `list` / `onChange`）、`floor.original`、`reading`（`get` / `onChange` / `status`）。能不能用看 `features` |
+| 当前版本 | 0.1.0-test。版本号写在 `core.js` 的 `APP_VERSION`、`manifest.json`（`version` 和两个 `?v=`）、`package.json`，以及每个模块导入路径的 `?v=` |
 | 当前未做 | 场景只记录、界面里还没有用它的功能（配乐、大纲、配图，配图字段关着）；豆包语音、MiniMax 只用于边写边读和通话；TauriTavern 真机和豆包、MiniMax 的真实接口没有实测；「只留译文」的楼层被插件在正文标签里插入内容（比如图片）后算作手改过（`conflict`），不再自动翻译；v0.51.4 只在沙盒酒馆里验证过；`使用手册.md`、`VALIDATION.md` 停在 v0.32.3 |
 | 接手先看 | `交接.md`（交接时的状态和待办）、`AGENT_LOG.md` 末尾（开发记录，只追加）、`DESIGN.md`（界面与动效规约） |
 
 ## 仓库结构
 
 ```text
-MirrorTranslate/
+BeEagleTestTranslator/
 ├─ manifest.json            扩展清单：入口、样式、生成拦截器、生命周期钩子
 ├─ index.js                 运行时：宿主事件、翻译流程、写回、拦截器、全部界面、朗读与通话调度、公开接口
 ├─ core.js                  设置默认值与迁移、正文分段、双语 / 只留译文的拼装与读回、连接、生成门闸
@@ -70,7 +70,7 @@ scripts/mock-services.mjs  scripts/sandbox-tavern.mjs
 validation/sillytavern-1.18.0.snapshot.json
 design/Baseline.dc.html  design/Connection.dc.html  design/Logs.dc.html  design/Main.dc.html
 design/Mini.dc.html  design/MiniStates.dc.html  design/Motion.dc.html  design/Processing.dc.html
-design/Rules.dc.html  design/canvas.json  design/jingyi-control-center.html
+design/Rules.dc.html  design/canvas.json  design/beagleTest-control-center.html
 test/*.test.mjs（43 个文件）
 ```
 
@@ -78,7 +78,7 @@ test/*.test.mjs（43 个文件）
 
 ## 加载与数据流
 
-1. **加载**：酒馆按 `manifest.json` 载入 `index.js`。`onActivate` 读设置并迁移，装上入口（魔法棒菜单、扩展设置页的「打开控制中心」、悬浮按钮），注册宿主事件，装好 `window.__JINGYI__`。拦截器挂在 `globalThis.JingyiTranslator_interceptGeneration`。
+1. **加载**：酒馆按 `manifest.json` 载入 `index.js`。`BeEagleTestTranslator_onActivate` 读设置并迁移，装上入口（魔法棒菜单、扩展设置页的「打开控制中心」、悬浮按钮），注册宿主事件，装好 `window.__BE_EAGLE_TEST_TRANSLATOR__`。拦截器挂在 `globalThis.BeEagleTestTranslator_interceptGeneration`。
 2. **自动翻译**：
    1. 宿主自己的生成开始时（`GENERATION_STARTED` 之后的 `GENERATION_AFTER_COMMANDS`），打开生成门闸，记下这次的生成类型。
    2. 回复渲染（`CHARACTER_MESSAGE_RENDERED`）的类型对得上，就把这一楼排进翻译。楼层被编辑（`MESSAGE_EDITED`）且开着 `autoEdit` 时也排进来，但不强制重翻：要翻的原文没变就跳过。
@@ -95,7 +95,7 @@ test/*.test.mjs（43 个文件）
       - 双语：原文段和译文段各用不可见边界包住；
       - 只留译文：`mes` 只留译文，双语稿存进楼层的 `extra`。
    8. 写回后重画楼层并保存聊天，发出 `MESSAGE_UPDATED`。
-3. **发给主模型**：宿主调用生成拦截器时，镜译依次做四件事：
+3. **发给主模型**：宿主调用生成拦截器时，测试翻译依次做四件事：
    1. 「让主模型给台词标上说话人和情绪」开着时，加上标记要求；
    2. 把「只留译文」的楼层换回原文；
    3. 按译文里的名字强制激活世界书条目；
@@ -111,7 +111,7 @@ test/*.test.mjs（43 个文件）
    1. `STREAM_TOKEN_RECEIVED` 把正在写的文字交给 `tts-stream.js` 切句；
    2. 每句向选定的声音（Fish / GPT-SoVITS / 豆包语音 / MiniMax）要音频，`pcm-player.js` 边收边放。
    3. 通话测试（`call.js`）拨号后，模型流式回答（和 `llm.stream` 同一条路），回答交给边写边读；通话记录存在浏览器里。
-6. **其他插件**：经 `window.__JINGYI__` 调用，见下面的「公开接口」。
+6. **其他插件**：经 `window.__BE_EAGLE_TEST_TRANSLATOR__` 调用，见下面的「公开接口」。
 
 <details>
 <summary>边界情况</summary>
@@ -130,7 +130,7 @@ test/*.test.mjs（43 个文件）
 
 - 同一种标签的每一组完整内容都翻译。一组写在另一组（同名或不同名）里面时，按外层整块翻译；互相跨过结束标签的分不出外层，报错。
 - 写在排除标签的成对标签里、或已闭合的 HTML 注释里的组不翻译，「检查当前楼层」逐个标签写明「另 N 组在 `<x>` 里面」。没闭合的排除标签和注释不遮任何东西。提取标签同时写进排除标签时，不遮它自己。
-- 所有组都在排除块里、又没有正文起点时，报「没有找到排除标签以外的正文标签」（`code: 'JY_NO_BODY'`，正文接口按 `absent` 处理）。
+- 所有组都在排除块里、又没有正文起点时，报「没有找到排除标签以外的正文标签」（`code: 'BGT_NO_BODY'`，正文接口按 `absent` 处理）。
 - 一组完整的都没有时，取最后一个没闭合的开标签到楼层末尾（这个开标签也不能在排除块里）。
 - 读回已有译文时，同一种标签的各组按出现顺序对应。原文行和它的译文之间插进了排除块（比如插件插在原文行下面的图片），跨过它照样读到译文。
 - 判断「原文变没变」用的是各段要翻的文字（`createTranslationSignature`），排除块的增删改不算。
@@ -154,7 +154,7 @@ test/*.test.mjs（43 个文件）
 
 **朗读**
 
-- 同时只响一路：开始新的读会停掉楼层朗读；`tts.stop({ all: true })` 让其他插件停下镜译的一切。
+- 同时只响一路：开始新的读会停掉楼层朗读；`tts.stop({ all: true })` 让其他插件停下测试翻译的一切。
 - Fish 经酒馆 CORS 代理时，Key 放在 `api-key` 头里，`Authorization` 留给酒馆登录；TauriTavern 没有代理，直连自己的转发地址。
 - 浏览器不让自动出声时停在原位，点一下接着读。
 
@@ -162,7 +162,7 @@ test/*.test.mjs（43 个文件）
 
 ## 设置与主题
 
-设置在 `extensionSettings['jingyi-translator']`，下表是常用字段；完整默认值见 `core.js` 的 `DEFAULT_SETTINGS`、`DEFAULT_TTS`。
+设置在 `extensionSettings['beagle-test-translator']`，下表是常用字段；完整默认值见 `core.js` 的 `DEFAULT_SETTINGS`、`DEFAULT_TTS`。
 
 | 字段 | 默认值 | 含义 |
 | --- | --- | --- |
@@ -205,21 +205,21 @@ test/*.test.mjs（43 个文件）
 
 | 位置 | 键 | 内容 |
 | --- | --- | --- |
-| localStorage | `jingyi-translator.diagnostics.v1` | 运行记录（最多 100 条，超出总量时整条淘汰最旧的） |
-| localStorage | `jingyi-translator.call-log.v1` | 通话测试的通话记录 |
-| localStorage | `jingyi-translator.floating-position.v1`、`jingyi-translator-mini-position`、`jingyi-translator-mini-size` | 悬浮按钮和悬浮窗的位置、大小 |
-| IndexedDB | `jingyi-tts` | 生成过的音频（按内容寻址，再听不再请求） |
-| 楼层 `extra.jingyi_translation` | — | 每楼的翻译记录：分段规则版本、标注、场景；「只留译文」时还有双语稿 |
+| localStorage | `beagle-test-translator.diagnostics.v1` | 运行记录（最多 100 条，超出总量时整条淘汰最旧的） |
+| localStorage | `beagle-test-translator.call-log.v1` | 通话测试的通话记录 |
+| localStorage | `beagle-test-translator.floating-position.v1`、`beagle-test-translator-mini-position`、`beagle-test-translator-mini-size` | 悬浮按钮和悬浮窗的位置、大小 |
+| IndexedDB | `beagle-test-tts` | 生成过的音频（按内容寻址，再听不再请求） |
+| 楼层 `extra.beagle_test_translation` | — | 每楼的翻译记录：分段规则版本、标注、场景；「只留译文」时还有双语稿 |
 
-**主题**：`theme` 决定控制中心和悬浮窗的配色（CSS 变量 `--jy-*`，在 `style.css`）。说话人颜色不跟主题走：`theme-probe.js` 读取聊天背后实际的背景，`palette.js` 按对比度目标（默认 4.5）算出每个角色的颜色。
+**主题**：`theme` 决定控制中心和悬浮窗的配色（CSS 变量 `--bgt-*`，在 `style.css`）。说话人颜色不跟主题走：`theme-probe.js` 读取聊天背后实际的背景，`palette.js` 按对比度目标（默认 4.5）算出每个角色的颜色。
 
 ## 公开接口
 
-镜译在页面上挂 `window.__JINGYI__`。下面的示例都在测试酒馆里原样跑过（`reading` 的示例在 0.51.4 的沙盒酒馆里，其余在 0.49.0），可以直接贴进酒馆页面的浏览器控制台运行（`stt.start` 要真麦克风，只验证到 `status`）。
+测试翻译在页面上挂 `window.__BE_EAGLE_TEST_TRANSLATOR__`。下面的示例都在测试酒馆里原样跑过（`reading` 的示例在 0.51.4 的沙盒酒馆里，其余在 0.49.0），可以直接贴进酒馆页面的浏览器控制台运行（`stt.start` 要真麦克风，只验证到 `status`）。
 
 | 字段 | 内容 |
 | --- | --- |
-| `name` / `version` | `'镜译 · 正文翻译器'` / 镜译版本 |
+| `name` / `version` | `'测试翻译 · 正文翻译器'` / 测试翻译版本 |
 | `ready` | Promise，resolve 成接口本身 |
 | `features` | `['tts.speak', 'tts.stream', 'stt', 'llm.stream', 'call.connect', 'floor.original', 'reading']`，按名字判断能不能用，别按版本号判断 |
 | `beta` | 一直是 `true`：按测试版时期写法判断的插件照常能用；新代码只看 `features` |
@@ -227,9 +227,9 @@ test/*.test.mjs（43 个文件）
 ### 先判断能不能用
 
 ```js
-const jy = await (window.__JINGYI__?.ready ?? Promise.resolve(null));
+const jy = await (window.__BE_EAGLE_TEST_TRANSLATOR__?.ready ?? Promise.resolve(null));
 if (!jy) {
-  console.log('没装镜译：插件照自己的路子走，别报错');
+  console.log('没装测试翻译：插件照自己的路子走，别报错');
 } else {
   console.log(jy.version, jy.features);
   console.log(jy.tts.status(), jy.stt.status(), jy.llm.status());
@@ -246,7 +246,7 @@ if (!jy) {
 ### 读一段文字：`tts.speak` / `tts.read`
 
 ```js
-const jy = await window.__JINGYI__.ready;
+const jy = await window.__BE_EAGLE_TEST_TRANSLATOR__.ready;
 const reading = await jy.tts.speak({ text: '「今天也来了啊。」\n等你很久了，坐吧。', speaker: '美咲' });
 const stopWatching = reading.onProgress(state => console.log(`读到第 ${state.index + 1} 段，共 ${state.total} 段`));
 await reading.done;
@@ -256,7 +256,7 @@ stopWatching();
 只要音频、不播放：
 
 ```js
-const jy = await window.__JINGYI__.ready;
+const jy = await window.__BE_EAGLE_TEST_TRANSLATOR__.ready;
 const audio = await jy.tts.speak({ text: '晚安。', speaker: '美咲', play: false });
 const blob = await audio.blob();
 console.log(audio.format, blob.type, blob.size);
@@ -274,10 +274,10 @@ console.log(audio.format, blob.type, blob.size);
 ### 一边写一边读：`tts.stream` + `llm.stream`
 
 ```js
-const jy = await window.__JINGYI__.ready;
+const jy = await window.__BE_EAGLE_TEST_TRANSLATOR__.ready;
 const controller = new AbortController();
 const voice = jy.tts.stream({ speaker: '美咲', signal: controller.signal });
-voice.on('state', ({ state }) => console.log('镜译朗读：', state));
+voice.on('state', ({ state }) => console.log('测试翻译朗读：', state));
 const answer = await jy.llm.stream({
   messages: [
     { role: 'system', content: '你正在和用户打电话，只说台词。' },
@@ -301,21 +301,21 @@ console.log(answer, await voice.done);
 
 `llm.stream({ messages, signal, onText })`：`messages` 是 OpenAI 格式、不能为空；走「朗读 → 更多 → 实时通话 → 通话用的连接」（留空时和分析模式同一条）；选的是存好的连接时真流式，跟随酒馆时写完才回调一次；返回整段回答，出错时 reject，`error.message` 是中文。
 
-### 停下镜译的一切：`tts.stop`
+### 停下测试翻译的一切：`tts.stop`
 
 ```js
-const jy = await window.__JINGYI__.ready;
+const jy = await window.__BE_EAGLE_TEST_TRANSLATOR__.ready;
 const wasSounding = jy.tts.stop({ all: true });
 console.log('刚才在响吗：', wasSounding);
 ```
 
-- `stop({ all: true })`：楼层朗读、边写边读、接口读的内容都停，镜译自己的通话测试也挂断；返回刚才有没有在响。
+- `stop({ all: true })`：楼层朗读、边写边读、接口读的内容都停，测试翻译自己的通话测试也挂断；返回刚才有没有在响。
 - 不带参数的 `stop()` 只停接口自己读的内容，楼层正在读时不去动它。
 
 ### 语音输入：`stt`
 
 ```js
-const jy = await window.__JINGYI__.ready;
+const jy = await window.__BE_EAGLE_TEST_TRANSLATOR__.ready;
 const st = jy.stt.status();
 if (!st.available) {
   console.log('语音输入用不了：', st.reason);
@@ -336,10 +336,10 @@ if (!st.available) {
 - `onPartial` 只有「浏览器自带识别」会实时给字。
 - 麦克风只能在 https 或本机地址下打开。
 
-### 连上镜译：`call.connect`
+### 连上测试翻译：`call.connect`
 
 ```js
-const jy = await window.__JINGYI__.ready;
+const jy = await window.__BE_EAGLE_TEST_TRANSLATOR__.ready;
 const { app, needs, missing } = jy.call.connect({ app: '示例插件', characters: ['美咲', '老周'], needs: ['tts.stream', 'stt', 'llm.stream'] });
 console.log(app, needs);
 for (const item of missing) console.log(`${item.title}：${item.reason}（${item.where}）`);
@@ -347,12 +347,12 @@ for (const item of missing) console.log(`${item.title}：${item.reason}（${item
 
 - 传 `app`（必填，最长 40 字）、`characters`（最多 60 个）、`needs`（`'tts.stream'` / `'stt'` / `'llm.stream'` 里的几个，不传就都查）。
 - 拿回 `{ app, needs, missing }`。`missing` 每项有 `id`（`tts` / `key` / `voices` / `stt` / `llm`）、`need`、`title`、`reason`、`where`，`voices` 项还有 `names`。
-- 它只检查，不花钱、不开麦。再调一次就是按当时的设置重新检查。镜译还没启动完时会抛错。
+- 它只检查，不花钱、不开麦。再调一次就是按当时的设置重新检查。测试翻译还没启动完时会抛错。
 
 ### 场景：`scene`
 
 ```js
-const jy = await window.__JINGYI__.ready;
+const jy = await window.__BE_EAGLE_TEST_TRANSLATOR__.ready;
 const stop = jy.scene.onChange(scene => console.log(`第 ${scene.messageId} 楼：${scene.tone}｜${scene.summary}`));
 const last = SillyTavern.getContext().chat.length - 1;
 console.log(await jy.scene.get(last));
@@ -368,7 +368,7 @@ console.log(await jy.scene.list());
 ### 楼层原文：`floor.original`
 
 ```js
-const jy = await window.__JINGYI__.ready;
+const jy = await window.__BE_EAGLE_TEST_TRANSLATOR__.ready;
 const chat = SillyTavern.getContext().chat;
 const last = chat.length - 1;
 console.log(jy.floor.original(last));
@@ -378,10 +378,10 @@ console.log(jy.floor.original(chat[last]));
 | 情况 | 返回 |
 | --- | --- |
 | 参数 | 楼层号（数字或数字字符串），或楼层的消息对象 |
-| 镜译翻译过的双语楼层 | 去掉译文后的原文 |
-| 「只留译文」的楼层 | 收在镜译楼层数据里的原文 |
-| 「只留译文」之后又被手改的楼层 | 楼层现在的文字（镜译认不出原文） |
-| 镜译没写过的楼层 | 原样返回 |
+| 测试翻译翻译过的双语楼层 | 去掉译文后的原文 |
+| 「只留译文」的楼层 | 收在测试翻译楼层数据里的原文 |
+| 「只留译文」之后又被手改的楼层 | 楼层现在的文字（测试翻译认不出原文） |
+| 测试翻译没写过的楼层 | 原样返回 |
 | 没有这层 | `''` |
 
 适合自己读楼层、给楼层算指纹的插件：同一楼在翻译前后读到的是同一段文字。
@@ -391,7 +391,7 @@ console.log(jy.floor.original(chat[last]));
 只读：不触发翻译、不请求模型、不保存，楼层原样不动。字段沿用和「东京都2051」卡片作者商定的格式（`schema: 1`）。
 
 ```js
-const jy = await (window.__JINGYI__?.ready ?? Promise.resolve(null));
+const jy = await (window.__BE_EAGLE_TEST_TRANSLATOR__?.ready ?? Promise.resolve(null));
 if (jy?.features?.includes('reading')) {
   const chat = SillyTavern.getContext().chat;
   const snapshot = await jy.reading.get({ messageId: chat.length - 1 });
@@ -408,7 +408,7 @@ if (jy?.features?.includes('reading')) {
 | --- | --- |
 | 参数 | `messageId` 楼层号（数字或数字字符串，必填）；`swipeId` 滑动页序号，不填就是正在显示的那一页。没有这一楼或这一页时给 `null`（`messageId: null` 也给 `null`，不当成第 0 楼） |
 | `schema` / `owner` | `1` / `{ chatId, messageId, swipeId }`：读的那一刻所在的聊天、楼层和滑动页 |
-| `sourceMessage` | 原文：主模型写的和其他扩展后来追加的都在，镜译写的全部去掉；「只留译文」的楼层取回收起的原文。`conflict` 时为 `null` |
+| `sourceMessage` | 原文：主模型写的和其他扩展后来追加的都在，测试翻译写的全部去掉；「只留译文」的楼层取回收起的原文。`conflict` 时为 `null` |
 | `segments[]` | `{ id, source: { start, end, text }, reading: { text, language } \| null, annotations: { speaker, emotion? } }`。`id` 是按出现顺序的 `"1"`、`"2"`…，同一原文版本里稳定；位置是相对 `sourceMessage` 的 UTF-16 下标，左闭右开，`source.text` 恒等于 `sourceMessage.slice(start, end)`；`language` 是翻译方案里的目标语言名字（比如 `"简体中文"`）；没译的段 `reading` 为 `null`，不借别的滑动页的译文 |
 | `sourceRevision` / `readingRevision` | 原文版本 / 阅读版本，都是内容哈希。原文不变，原文版本就不变（重翻不影响）；译文或标注变了，阅读版本才变；还没有译文时阅读版本是 `"none"`；`conflict` 时原文版本为 `null` |
 | `state` | 见下表 |
@@ -416,13 +416,13 @@ if (jy?.features?.includes('reading')) {
 
 | `state` | 什么时候 |
 | --- | --- |
-| `absent` | 没翻译，或者这一楼没有镜译要翻的正文（提取标签、正文起点都没命中时照样给出原文，`segments` 为空） |
-| `processing` | 镜译正在翻这一楼的这一页 |
+| `absent` | 没翻译，或者这一楼没有测试翻译要翻的正文（提取标签、正文起点都没命中时照样给出原文，`segments` 为空） |
+| `processing` | 测试翻译正在翻这一楼的这一页 |
 | `partial` | 有的段译好了，有的还没有 |
 | `ready` | 每段都有译文 |
 | `failed` | 上一次翻译这段原文失败了 |
 | `stale` | 楼层上的译文是按改动前的原文写的 |
-| `conflict` | 「只留译文」之后楼层又被改过：镜译给不出原文，`sourceMessage`、`sourceRevision` 为 `null`，`segments` 为空 |
+| `conflict` | 「只留译文」之后楼层又被改过：测试翻译给不出原文，`sourceMessage`、`sourceRevision` 为 `null`，`segments` 为空 |
 
 `reading.onChange(fn)` 返回取消订阅的函数。`fn` 收到 `{ owner, reasons, state, sourceRevision, readingRevision }`；`reasons` 里是 `state`（翻译开始、结束或失败）、`update`（楼层文字被写回或改写）、`edit`（用户编辑）、`swipe`、`delete`（`messageId` 为 `null`，后面的楼层号都会变）、`chat`（换了聊天，`messageId` 为 `null`）。同一楼同一页 150 毫秒内的多次变化合成一条；换聊天、删楼只给 `owner` 和 `reasons`，请自己重新读。
 
@@ -430,13 +430,13 @@ if (jy?.features?.includes('reading')) {
 
 - 段落位置一般落在这段的文字上，不含外面的标签；文字里夹着标签的那一行，位置覆盖整行，不含两端空白。
 - 用户自己发的楼层和系统楼层，按原样给出 `sourceMessage`，`segments` 为空。
-- 卡片自己的标签（比如 `<cxx-say speaker=…>`）镜译不解析，原样留在 `sourceMessage` 里。
+- 卡片自己的标签（比如 `<cxx-say speaker=…>`）测试翻译不解析，原样留在 `sourceMessage` 里。
 
 ### 约定
 
 1. 出错一律 reject（或抛错），`error.message` 是中文，可以直接给用户看。
-2. Key、连接、音色都是用户在镜译里填的，插件拿不到，也不用管。
-3. 镜译不读插件的存档、不写聊天记录；通话测试的记录只在用户自己的浏览器里。
+2. Key、连接、音色都是用户在测试翻译里填的，插件拿不到，也不用管。
+3. 测试翻译不读插件的存档、不写聊天记录；通话测试的记录只在用户自己的浏览器里。
 4. 接口只加不改；判断能不能用看 `features`。
 
 ## 当前接入情况
@@ -459,7 +459,7 @@ if (jy?.features?.includes('reading')) {
 | `/api/extensions/discover`、`version`、`update` | 否 | 用酒馆的扩展管理页更新 |
 | `/version`、`mainApi`、流式开关 | 否 | 小助手看不到这几项，按「不知道」报告 |
 
-**外部服务**（Key 都由用户在镜译里填）：
+**外部服务**（Key 都由用户在测试翻译里填）：
 
 | 服务 | 用在 | 怎么连 |
 | --- | --- | --- |
@@ -476,7 +476,7 @@ if (jy?.features?.includes('reading')) {
 | --- | --- |
 | TauriTavern | 识别 TauriTavern 页面后不走 `/proxy/`，提示填转发地址；只有单元测试和无头预览，真机没跑过。安卓正式版不允许页面访问 `http://`，本机 GPT-SoVITS 和局域网转发连不上 |
 | 酒馆助手 | 不依赖。它的 `generate()` / `generateRaw()` 被认作脚本自己的模型调用，不影响自动翻译和边写边读 |
-| 通用通讯终端 V4（小手机） | 能同时用。它的「自动主动消息」按楼层文字记指纹，要打配套补丁（改用 `floor.original` 读楼层）才不会因为镜译翻译而丢消息 |
+| 通用通讯终端 V4（小手机） | 能同时用。它的「自动主动消息」按楼层文字记指纹，要打配套补丁（改用 `floor.original` 读楼层）才不会因为测试翻译翻译而丢消息 |
 | 「东京都2051」卡片 | 用 `reading` 读正文（正文标签是 `cxx-story`，要用户加进提取标签）；`apiVersion` 2 起要处理 `conflict` 状态 |
 | tokimemo | 用 `tts.speak` 读台词和睡前故事，用 `tts.stream`、`llm.stream`、`stt` 打电话 |
 | 往正文里插图的生图插件（比如百宝汇的 `bbi_image`） | 把插图的标签加进排除标签后，插图不触发重翻；「只留译文」的楼层插图后会变成 `conflict` |
@@ -490,9 +490,9 @@ if (jy?.features?.includes('reading')) {
 | `npm test` | 跑全部自动测试（`node --test`，目前 1021 项） |
 | `npm run validate` | 上面两步一起跑 |
 | `npm run preview` | 起本地预览服务（`scripts/preview-server.mjs`）：模拟酒馆、翻译模型、Fish、豆包、MiniMax，打开 `preview.html` 看控制中心、悬浮窗和楼层 |
-| `npm run mock` | 起模拟服务（`scripts/mock-services.mjs`，端口 8812）：OpenAI 兼容的聊天补全（主回复、镜译的翻译请求、小手机的请求）、Fish、GPT-SoVITS、语音转写，声音是一段纯音。`POST /__mock/config` 打开失败、延迟、拒收某个参数（`refuseField`），`GET /__mock/log` 看收到的请求，`POST /__mock/reset` 复原 |
-| `npm run sandbox -- setup <SillyTavern 目录> <沙盒目录>` | 建一个隔离的测试酒馆（`scripts/sandbox-tavern.mjs`）：端口 8811，聊天连接和 Fish 都接模拟服务，镜译开自动翻译，测试角色「美咲」和一本小世界书，除酒馆助手外的全局第三方扩展（包括全局的镜译）都停用。不写 SillyTavern 目录 |
-| `npm run sandbox -- sync <沙盒目录>` | 把仓库文件复制进沙盒的用户扩展目录（文件夹名 `MirrorTranslate-dev`），改了代码就再跑一次，然后刷新页面 |
+| `npm run mock` | 起模拟服务（`scripts/mock-services.mjs`，端口 8812）：OpenAI 兼容的聊天补全（主回复、测试翻译的翻译请求、小手机的请求）、Fish、GPT-SoVITS、语音转写，声音是一段纯音。`POST /__mock/config` 打开失败、延迟、拒收某个参数（`refuseField`），`GET /__mock/log` 看收到的请求，`POST /__mock/reset` 复原 |
+| `npm run sandbox -- setup <SillyTavern 目录> <沙盒目录>` | 建一个隔离的测试酒馆（`scripts/sandbox-tavern.mjs`）：端口 8811，聊天连接和 Fish 都接模拟服务，测试翻译开自动翻译，测试角色「美咲」和一本小世界书，除酒馆助手外的全局第三方扩展（包括全局的测试翻译）都停用。不写 SillyTavern 目录 |
+| `npm run sandbox -- sync <沙盒目录>` | 把仓库文件复制进沙盒的用户扩展目录（文件夹名 `BeEagleTestTranslator-dev`），改了代码就再跑一次，然后刷新页面 |
 
 沙盒的启动：先 `npm run mock`，再 `node <SillyTavern 目录>/server.js --configPath <沙盒目录>/config.yaml --dataRoot <沙盒目录>/data`，打开 `http://127.0.0.1:8811`，选「美咲」发一条消息，回复写完就会自动翻译。
 
@@ -508,6 +508,6 @@ if (jy?.features?.includes('reading')) {
 1. 自测：
    - `npm run validate` 全过；
    - 改界面的，在本地预览里用桌面和手机宽度各看一遍；
-   - 和宿主事件、其他插件有关的，在沙盒酒馆里实测。全局装着镜译时，副本要换个文件夹名并停用全局的那份（`sandbox` 已经这样做）：同名时酒馆仍从全局目录取文件。
+   - 和宿主事件、其他插件有关的，在沙盒酒馆里实测。全局装着测试翻译时，副本要换个文件夹名并停用全局的那份（`sandbox` 已经这样做）：同名时酒馆仍从全局目录取文件。
 2. 维护者在自己的酒馆里验收。
 3. 验收通过后更新 README.md 和本文件。

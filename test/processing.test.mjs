@@ -8,10 +8,10 @@ import {
 import {
   normalizeProcessingSettings, normalizeProcessingProfile, processingSnapshot, getActiveProcessingProfile, makeBuiltinReadingProfile,
   selectProcessingProfile, captureProcessingProfile, exportProcessingProfile, importProcessingProfile,
-  importNativeRegex, syncNativeRegex, readNativeRegexEdits, compileNativeRegex, isJingyiRegex, REGEX_OWNER_KEY,
+  importNativeRegex, syncNativeRegex, readNativeRegexEdits, compileNativeRegex, isTestTranslatorRegex, REGEX_OWNER_KEY,
   dedupeManagedRegexScripts, planRegexCleanup, planScopedRegexCleanup, detectBuiltinReadingStyle,
 } from '../processing.js';
-import { __testing, onDisable } from '../index.js';
+import { __testing, BeEagleTestTranslator_onDisable } from '../index.js';
 
 const visible = text => text.replace(/[\u200b\u200c\u2060-\u2064]/g, '');
 
@@ -147,7 +147,7 @@ test('native registration is isolated, stable across saves and switches, and rea
   // Internal rules sit ahead of everything else: display rules (boundary cleanup, hidden replace
   // originals, the quotation marks inside the story's own speaker marks, the marks themselves) and
   // four prompt guards.
-  const internal = first.filter(rule => rule.jingyi_managed?.internal);
+  const internal = first.filter(rule => rule.beagle_test_managed?.internal);
   assert.equal(internal.length, 10);
   const marks = internal.find(rule => rule.id.endsWith(':speech-marks'));
   const quoteRules = internal.filter(rule => rule.id.includes(':speech-quote-'));
@@ -171,11 +171,11 @@ test('native registration is isolated, stable across saves and switches, and rea
   assert.equal(marks.promptOnly, false, 'and kept in what the main model reads, so it keeps writing them');
   assert.equal('樱井笑了。<say who="樱井" mood="开心">「好。」</say><saying>留着</saying>'.replace(compileNativeRegex(marks.findRegex), ''), '樱井笑了。「好。」<saying>留着</saying>');
   assert.equal(first[internal.length], unrelated);
-  const nativeRule = first.find(rule => rule.jingyi_managed?.profileId === cute.id);
+  const nativeRule = first.find(rule => rule.beagle_test_managed?.profileId === cute.id);
   nativeRule.replaceString = '<p>edited in native manager</p>';
   assert.equal(readNativeRegexEdits(first, cute)[0].replaceString, nativeRule.replaceString);
   const switched = syncNativeRegex(first, fold);
-  assert.equal(switched.filter(rule => rule.jingyi_managed?.profileId === cute.id).length, 0);
+  assert.equal(switched.filter(rule => rule.beagle_test_managed?.profileId === cute.id).length, 0);
   assert.deepEqual(syncNativeRegex(switched, null), [unrelated]);
 });
 
@@ -199,8 +199,8 @@ test('built-in styles preserve extraction settings and use display-only native r
       assert.equal(rule.markdownOnly, true); assert.equal(rule.promptOnly, false);
       display = display.replace(compileNativeRegex(rule.findRegex), rule.replaceString);
     }
-    assert.ok(display.includes(`jy-reading-${id}`));
-    assert.doesNotMatch(display, /<jy-source>|<jy-translation>|[\u200b\u200c\u2060-\u2064]/);
+    assert.ok(display.includes(`bgt-reading-${id}`));
+    assert.doesNotMatch(display, /<bgt-source>|<bgt-translation>|[\u200b\u200c\u2060-\u2064]/);
     assert.ok(display.includes('Original.') && display.includes('译文。'));
     if (id === 'fold') { assert.match(display, /<details class=/); assert.doesNotMatch(display, /<details[^>]*\bopen\b/); }
   }
@@ -220,7 +220,7 @@ test('detectBuiltinReadingStyle recognises each built-in style makeBuiltinReadin
   // A profile with the right prefixes but a hand-edited rule (or none at all) is not mistaken for a
   // style the reader never actually chose from the picker.
   const renamed = makeBuiltinReadingProfile(settings, 'cute');
-  renamed.regexScripts[0].replaceString = renamed.regexScripts[0].replaceString.replace('jy-reading-cute', 'jy-reading-cute-mine');
+  renamed.regexScripts[0].replaceString = renamed.regexScripts[0].replaceString.replace('bgt-reading-cute', 'bgt-reading-cute-mine');
   assert.equal(detectBuiltinReadingStyle(renamed), null);
   const noRule = makeBuiltinReadingProfile(settings, 'cute');
   noRule.regexScripts = [];
@@ -230,7 +230,7 @@ test('detectBuiltinReadingStyle recognises each built-in style makeBuiltinReadin
   const active = getActiveProcessingProfile(settings);
   const prefixOnly = {
     ...active,
-    settings: { ...active.settings, segmentPrefix: '<jy-source>', segmentSuffix: '</jy-source>', translationPrefix: '<jy-translation>', translationSuffix: '</jy-translation>' },
+    settings: { ...active.settings, segmentPrefix: '<bgt-source>', segmentSuffix: '</bgt-source>', translationPrefix: '<bgt-translation>', translationSuffix: '</bgt-translation>' },
     regexScripts: [],
   };
   assert.equal(detectBuiltinReadingStyle(prefixOnly), null);
@@ -240,25 +240,25 @@ test('the built-in beautify never wraps a source block whose own block tags are 
   const settings = normalizeProcessingSettings();
   const profile = makeBuiltinReadingProfile(settings, 'cute');
   const rule = profile.regexScripts[0];
-  const wrap = source => `<jy-source>${source}</jy-source>\n<jy-translation>译文</jy-translation>`
+  const wrap = source => `<bgt-source>${source}</bgt-source>\n<bgt-translation>译文</bgt-translation>`
     .replace(compileNativeRegex(rule.findRegex), rule.replaceString);
   const untouched = source => {
-    const raw = `<jy-source>${source}</jy-source>\n<jy-translation>译文</jy-translation>`;
+    const raw = `<bgt-source>${source}</bgt-source>\n<bgt-translation>译文</bgt-translation>`;
     return raw.replace(compileNativeRegex(rule.findRegex), rule.replaceString) === raw;
   };
-  assert.match(wrap('一段<div>卡片</div>文字'), /jy-reading-source/, 'flat, balanced div still gets the beautify shell');
-  assert.match(wrap('一段<b>加粗</b>文字'), /jy-reading-source/, 'inline tags are not what this guard is about');
-  assert.match(wrap('一段<DIV>大写标签</DIV>文字'), /jy-reading-source/, 'a tag name in any case is still recognised');
+  assert.match(wrap('一段<div>卡片</div>文字'), /bgt-reading-source/, 'flat, balanced div still gets the beautify shell');
+  assert.match(wrap('一段<b>加粗</b>文字'), /bgt-reading-source/, 'inline tags are not what this guard is about');
+  assert.match(wrap('一段<DIV>大写标签</DIV>文字'), /bgt-reading-source/, 'a tag name in any case is still recognised');
   assert.ok(untouched('一段<div>卡片文字'), 'an unclosed <div> is left exactly as it was, not nested inside the shell\'s own');
   assert.ok(untouched('一段</div>卡片文字'), 'a stray closing </div> with no open is left alone the same way');
   assert.ok(untouched('<details><summary>Status panel</summary>\nPlace: Old Library'), 'an unclosed <details> is caught too, not just div/p');
   assert.ok(untouched('<section>Place: Old Library'), 'as is an unclosed <section>');
   assert.ok(untouched('<ul><li>one'), 'and an unclosed <ul>');
   // Nesting up to three deep is now recognised and still wrapped, tag for same-named tag.
-  assert.match(wrap('一段<div><div>卡片</div>文字</div>更多'), /jy-reading-source/, 'two levels of nesting');
-  assert.match(wrap('一段<div><div><div>卡片</div>文字</div>更多</div>末尾'), /jy-reading-source/, 'three levels of nesting');
-  assert.match(wrap('<div class="row"><div class="k">Place</div><div class="v">Old Library</div></div>'), /jy-reading-source/, 'a one-line nested status card');
-  assert.match(wrap('<details><summary>Status panel</summary>\nPlace: Old Library\n\nHour: Late night\n</details>'), /jy-reading-source/, 'a balanced <details> card');
+  assert.match(wrap('一段<div><div>卡片</div>文字</div>更多'), /bgt-reading-source/, 'two levels of nesting');
+  assert.match(wrap('一段<div><div><div>卡片</div>文字</div>更多</div>末尾'), /bgt-reading-source/, 'three levels of nesting');
+  assert.match(wrap('<div class="row"><div class="k">Place</div><div class="v">Old Library</div></div>'), /bgt-reading-source/, 'a one-line nested status card');
+  assert.match(wrap('<details><summary>Status panel</summary>\nPlace: Old Library\n\nHour: Late night\n</details>'), /bgt-reading-source/, 'a balanced <details> card');
   // Four levels deep is past the limit: conservatively left alone, the same as an unbalanced block.
   assert.ok(untouched('一段<div><div><div><div>卡片</div>文字</div>更多</div>末尾</div>结束'), 'nesting past the depth limit is left alone too, never wrapped mismatched');
 });
@@ -266,10 +266,10 @@ test('the built-in beautify never wraps a source block whose own block tags are 
 test('an existing profile\'s saved built-in beautify rule picks up the balanced-tag guard, but only when untouched', () => {
   // What a profile saved before v0.36.1 carries: the old, unguarded findRegex, and one of the three
   // built-in styles' own replaceString, exactly as makeBuiltinReadingProfile used to write it.
-  const legacyFindRegex = '/<jy-source>([\\s\\S]*?)<\\/jy-source>\\n<jy-translation>([\\s\\S]*?)<\\/jy-translation>/g';
+  const legacyFindRegex = '/<bgt-source>([\\s\\S]*?)<\\/bgt-source>\\n<bgt-translation>([\\s\\S]*?)<\\/bgt-translation>/g';
   const fresh = makeBuiltinReadingProfile(normalizeProcessingSettings(), 'cute').regexScripts[0];
   // The template as it was saved then: its two groups read by number.
-  const cuteReplace = fresh.replaceString.replace('$<jySource>', '$1').replace('$<jyTranslation>', '$2');
+  const cuteReplace = fresh.replaceString.replace('$<bgtSource>', '$1').replace('$<bgtTranslation>', '$2');
   const saved = normalizeProcessingProfile({
     name: '可爱风',
     settings: processingSnapshot(normalizeProcessingSettings()),
@@ -277,9 +277,9 @@ test('an existing profile\'s saved built-in beautify rule picks up the balanced-
   });
   assert.equal(saved.regexScripts[0].findRegex, fresh.findRegex, 'the saved rule is upgraded to the new, guarded pattern');
   assert.equal(saved.regexScripts[0].replaceString, fresh.replaceString, 'and its template with it, since the new pattern numbers its groups differently');
-  const rawFor = source => `<jy-source>${source}</jy-source>\n<jy-translation>译文</jy-translation>`;
+  const rawFor = source => `<bgt-source>${source}</bgt-source>\n<bgt-translation>译文</bgt-translation>`;
   const wrap = source => rawFor(source).replace(compileNativeRegex(saved.regexScripts[0].findRegex), saved.regexScripts[0].replaceString);
-  assert.match(wrap('一段<div>卡片</div>文字'), /jy-reading-source">\n\n一段<div>卡片<\/div>文字\n\n[\s\S]*jy-reading-translation">\n\n译文\n\n/, 'a balanced div is still wrapped after the migration, source and translation each in its place');
+  assert.match(wrap('一段<div>卡片</div>文字'), /bgt-reading-source">\n\n一段<div>卡片<\/div>文字\n\n[\s\S]*bgt-reading-translation">\n\n译文\n\n/, 'a balanced div is still wrapped after the migration, source and translation each in its place');
   assert.equal(wrap('一段<div>卡片文字'), rawFor('一段<div>卡片文字'), 'the migrated rule guards against an unbalanced tag exactly like a freshly made one');
   // A rule with the legacy findRegex but a replaceString the reader changed is left exactly as saved.
   const edited = normalizeProcessingProfile({
@@ -331,12 +331,12 @@ test('a picture on a line of its own is left as it is, shown once, and the text 
 // SillyTavern's own regex editor (extensions/regex/index.js), opened on an existing rule and saved
 // with nothing changed, rebuilds a whole new object from the form fields and replaces the array entry
 // with it outright (saveRegexScript: array[existingScriptIndex] = regexScript); the new object only
-// carries fields the editor's own form knows about, so jingyi_managed is gone, wholesale. The id
+// carries fields the editor's own form knows about, so beagle_test_managed is gone, wholesale. The id
 // survives, since the editor keeps the same existingId for a script it already knows. The fixtures
 // below replay exactly that replacement, with the same field set the editor actually builds -- minDepth/
 // maxDepth included: the editor fills the field with `existingScript.minDepth ?? ''` (SillyTavern
 // 1.18.0, extensions/regex/index.js:788-789) and reads it back with `parseInt(String(...))` on Save
-// (index.js:866-867), so a null depth -- every fixed and profile-bound rule 镜译 writes -- round-trips
+// (index.js:866-867), so a null depth -- every fixed and profile-bound rule 测试翻译 writes -- round-trips
 // as parseInt('') = NaN, never null, whether or not the reader actually touched that field.
 function simulateNativeEditorSave(script) {
   return {
@@ -353,23 +353,23 @@ test('a rule that lost its marker exactly the way 酒馆\'s own editor strips it
   const settings = normalizeProcessingSettings();
   const profile = makeBuiltinReadingProfile(settings, 'cute');
   let list = syncNativeRegex([], profile);
-  const nameFor = () => `镜译 · ${profile.name} · ${profile.regexScripts[0].scriptName}`;
+  const nameFor = () => `测试翻译 · ${profile.name} · ${profile.regexScripts[0].scriptName}`;
   const index = list.findIndex(rule => rule.scriptName === nameFor());
   assert.ok(index >= 0);
 
   // The reader opens that rule in 酒馆's editor, changes nothing, clicks Save.
   const stripped = simulateNativeEditorSave(list[index]);
-  assert.equal(Object.hasOwn(stripped, 'jingyi_managed'), false, 'the marker is gone, exactly as the host leaves it');
-  assert.equal(isJingyiRegex(stripped), true, 'but the id 镜译 minted for it is still there, and is enough on its own');
+  assert.equal(Object.hasOwn(stripped, 'beagle_test_managed'), false, 'the marker is gone, exactly as the host leaves it');
+  assert.equal(isTestTranslatorRegex(stripped), true, 'but the id 测试翻译 minted for it is still there, and is enough on its own');
   list = [...list.slice(0, index), stripped, ...list.slice(index + 1)];
 
-  // Any later 镜译 sync (a settings save, a chat change, a profile switch) must mend it in place, not
+  // Any later 测试翻译 sync (a settings save, a chat change, a profile switch) must mend it in place, not
   // duplicate it: before the fix this left the stripped copy behind, unrecognised, and installed a
   // second one beside it.
   list = syncNativeRegex(list, profile);
   assert.equal(list.filter(rule => rule.scriptName === nameFor()).length, 1, 'still exactly one copy');
   const mended = list.find(rule => rule.scriptName === nameFor());
-  assert.equal(mended.jingyi_managed?.owner, 'jingyi-translator', 'the marker is restored');
+  assert.equal(mended.beagle_test_managed?.owner, 'beagle-test-translator', 'the marker is restored');
 
   // Uninstalling now removes it cleanly too -- nothing orphaned is left behind for a host disable/clean
   // sweep to miss.
@@ -379,13 +379,13 @@ test('a rule that lost its marker exactly the way 酒馆\'s own editor strips it
 test('six "open in 酒馆\'s editor, click Save with nothing changed" cycles reproduce the reported six-fold duplicate, and the fix collapses them back to one', () => {
   const settings = normalizeProcessingSettings();
   const profile = makeBuiltinReadingProfile(settings, 'cute');
-  const nameFor = () => `镜译 · ${profile.name} · ${profile.regexScripts[0].scriptName}`;
+  const nameFor = () => `测试翻译 · ${profile.name} · ${profile.regexScripts[0].scriptName}`;
   let list = syncNativeRegex([], profile);
 
   // Six edit-and-save cycles in 酒馆's own regex panel, exactly as a reader idly checking what a rule
   // does would produce -- the report's own count.
   for (let i = 0; i < 6; i++) {
-    const index = list.findIndex(rule => rule.scriptName === nameFor() && isJingyiRegex(rule));
+    const index = list.findIndex(rule => rule.scriptName === nameFor() && isTestTranslatorRegex(rule));
     list[index] = simulateNativeEditorSave(list[index]);
     list = syncNativeRegex(list, profile);
   }
@@ -394,13 +394,13 @@ test('six "open in 酒馆\'s editor, click Save with nothing changed" cycles rep
 
   // Simulate the same six cycles against the OLD, marker-only ownership rule to document what the
   // reader actually saw: this is the regression the id-based recognition above closes.
-  const legacyIsOwned = rule => rule?.jingyi_managed?.owner === 'jingyi-translator';
+  const legacyIsOwned = rule => rule?.beagle_test_managed?.owner === 'beagle-test-translator';
   function legacySync(existing, activeProfile) {
     const originals = Array.isArray(existing) ? existing : [];
     const managed = activeProfile ? activeProfile.regexScripts.map(rule => ({
-      ...structuredClone(rule), id: `jingyi-translator:${activeProfile.id}:${rule.id}`,
-      scriptName: `镜译 · ${activeProfile.name} · ${rule.scriptName}`,
-      jingyi_managed: { owner: 'jingyi-translator', profileId: activeProfile.id, ruleId: rule.id },
+      ...structuredClone(rule), id: `beagle-test-translator:${activeProfile.id}:${rule.id}`,
+      scriptName: `测试翻译 · ${activeProfile.name} · ${rule.scriptName}`,
+      beagle_test_managed: { owner: 'beagle-test-translator', profileId: activeProfile.id, ruleId: rule.id },
     })) : [];
     const kept = originals.filter(rule => !legacyIsOwned(rule));
     kept.push(...managed);
@@ -419,7 +419,7 @@ test('an edit made in 酒馆\'s own editor is still read back into the profile e
   const settings = normalizeProcessingSettings();
   const profile = makeBuiltinReadingProfile(settings, 'cute');
   let list = syncNativeRegex([], profile);
-  const index = list.findIndex(rule => isJingyiRegex(rule) && !rule.jingyi_managed?.internal);
+  const index = list.findIndex(rule => isTestTranslatorRegex(rule) && !rule.beagle_test_managed?.internal);
   const edited = simulateNativeEditorSave({ ...list[index], replaceString: '<p>改过，编辑器保存时标记也丢了</p>' });
   list = [...list.slice(0, index), edited, ...list.slice(index + 1)];
   const edits = readNativeRegexEdits(list, profile);
@@ -427,31 +427,31 @@ test('an edit made in 酒馆\'s own editor is still read back into the profile e
   assert.equal(edits[0].replaceString, '<p>改过，编辑器保存时标记也丢了</p>');
 });
 
-test('isJingyiRegex never matches a rule that is not 镜译\'s own, even one with a similar name or stray fields', () => {
-  assert.equal(isJingyiRegex({ id: 'user-rule-1', scriptName: '镜译 · 可爱风 · 可爱风', findRegex: 'x', replaceString: 'y' }), false,
+test('isTestTranslatorRegex never matches a rule that is not 测试翻译\'s own, even one with a similar name or stray fields', () => {
+  assert.equal(isTestTranslatorRegex({ id: 'user-rule-1', scriptName: '测试翻译 · 可爱风 · 可爱风', findRegex: 'x', replaceString: 'y' }), false,
     'a user\'s own rule that merely happens to share the name is left alone');
-  assert.equal(isJingyiRegex({ id: 'some-other-extensions-id', scriptName: '随便什么', jingyi_managed: 'not an object' }), false);
-  assert.equal(isJingyiRegex({ id: 'jingyi-translator-but-not-quite:abc', scriptName: '不是我们的' }), false,
+  assert.equal(isTestTranslatorRegex({ id: 'some-other-extensions-id', scriptName: '随便什么', beagle_test_managed: 'not an object' }), false);
+  assert.equal(isTestTranslatorRegex({ id: 'beagle-test-translator-but-not-quite:abc', scriptName: '不是我们的' }), false,
     'the prefix must be followed by the separator colon, not just start with the same letters');
-  assert.equal(isJingyiRegex(null), false);
-  assert.equal(isJingyiRegex(undefined), false);
+  assert.equal(isTestTranslatorRegex(null), false);
+  assert.equal(isTestTranslatorRegex(undefined), false);
 });
 
 test('a reader upgrading straight out of the bug, whose native list already holds six stale orphans plus the one live copy, is healed on the very first sync -- readNativeRegexEdits does not fold the stale duplicates into the profile as if they were distinct rules', () => {
   const settings = normalizeProcessingSettings();
   const profile = makeBuiltinReadingProfile(settings, 'cute');
-  const nameFor = () => `镜译 · ${profile.name} · ${profile.regexScripts[0].scriptName}`;
+  const nameFor = () => `测试翻译 · ${profile.name} · ${profile.regexScripts[0].scriptName}`;
 
   // Build up exactly the polluted list a reader who has been on the old, unfixed build for a while
   // already has sitting in their extension_settings.regex, using the OLD marker-only sync so the
   // fixture does not depend on the very code under test.
-  const legacyIsOwned = rule => rule?.jingyi_managed?.owner === MODULE_ID;
+  const legacyIsOwned = rule => rule?.beagle_test_managed?.owner === MODULE_ID;
   function legacySync(existing, activeProfile) {
     const originals = Array.isArray(existing) ? existing : [];
     const managed = activeProfile ? activeProfile.regexScripts.map(rule => ({
       ...structuredClone(rule), id: `${MODULE_ID}:${activeProfile.id}:${rule.id}`,
-      scriptName: `镜译 · ${activeProfile.name} · ${rule.scriptName}`,
-      jingyi_managed: { owner: MODULE_ID, profileId: activeProfile.id, ruleId: rule.id },
+      scriptName: `测试翻译 · ${activeProfile.name} · ${rule.scriptName}`,
+      beagle_test_managed: { owner: MODULE_ID, profileId: activeProfile.id, ruleId: rule.id },
     })) : [];
     const kept = originals.filter(rule => !legacyIsOwned(rule));
     kept.push(...managed);
@@ -467,8 +467,8 @@ test('a reader upgrading straight out of the bug, whose native list already hold
 
   // This is what index.js' initializeSettings actually does on load: read back any native edits first,
   // and only then sync. All seven stale copies decode to the very same profileId/ruleId pair (the id
-  // 镜译 mints is deterministic), so without dedup this would hand the profile seven "edits" for what
-  // is really one rule -- baking the duplication permanently into 镜译's own saved data, which no later
+  // 测试翻译 mints is deterministic), so without dedup this would hand the profile seven "edits" for what
+  // is really one rule -- baking the duplication permanently into 测试翻译's own saved data, which no later
   // sync could ever clean up again (syncNativeRegex would keep regenerating one native copy per profile
   // entry, forever).
   const nativeEdits = readNativeRegexEdits(stale, profile);
@@ -480,11 +480,11 @@ test('a reader upgrading straight out of the bug, whose native list already hold
   assert.equal(secondSync.filter(rule => rule.scriptName === nameFor()).length, 1, 'stays healed -- idempotent');
 });
 
-test('sync collapses a list mixing 镜译 duplicates, a rule from a since-deleted profile, a disabled duplicate, a reader\'s own rule with a look-alike name, and another extension\'s rule -- touching only what is certainly 镜译\'s own, and settles idempotently', () => {
+test('sync collapses a list mixing 测试翻译 duplicates, a rule from a since-deleted profile, a disabled duplicate, a reader\'s own rule with a look-alike name, and another extension\'s rule -- touching only what is certainly 测试翻译\'s own, and settles idempotently', () => {
   const settings = normalizeProcessingSettings();
   const profile = makeBuiltinReadingProfile(settings, 'cute');
   const ruleId = profile.regexScripts[0].id;
-  const ourName = `镜译 · ${profile.name} · ${profile.regexScripts[0].scriptName}`;
+  const ourName = `测试翻译 · ${profile.name} · ${profile.regexScripts[0].scriptName}`;
   const shared = {
     findRegex: profile.regexScripts[0].findRegex, replaceString: profile.regexScripts[0].replaceString,
     trimStrings: [], placement: [2], markdownOnly: true, promptOnly: false, runOnEdit: true,
@@ -496,14 +496,14 @@ test('sync collapses a list mixing 镜译 duplicates, a rule from a since-delete
   const dup1 = { ...shared, id: `${MODULE_ID}:${profile.id}:${ruleId}`, scriptName: ourName, disabled: false };
   const dup2 = { ...shared, id: `${MODULE_ID}:${profile.id}:${ruleId}`, scriptName: ourName, disabled: true };
 
-  // A rule 镜译 made for a processing profile the reader has since deleted: the marker is intact, so
+  // A rule 测试翻译 made for a processing profile the reader has since deleted: the marker is intact, so
   // it is unambiguously ours, but no profile with that id exists in this settings object any more.
   const orphanedProfileRule = {
-    ...shared, id: `${MODULE_ID}:profile-that-no-longer-exists:some-rule`, scriptName: '镜译 · 已删除的方案 · 旧规则', disabled: false,
+    ...shared, id: `${MODULE_ID}:profile-that-no-longer-exists:some-rule`, scriptName: '测试翻译 · 已删除的方案 · 旧规则', disabled: false,
     [REGEX_OWNER_KEY]: { owner: MODULE_ID, profileId: 'profile-that-no-longer-exists', ruleId: 'some-rule' },
   };
 
-  // The reader's own rule, named so it merely looks like ours -- no marker, no 镜译 id prefix.
+  // The reader's own rule, named so it merely looks like ours -- no marker, no 测试翻译 id prefix.
   const lookalike = { ...shared, id: 'user-own-rule-42', scriptName: ourName, findRegex: '/自己写的/g', disabled: false };
 
   // Another extension's own rule, unrelated in every way.
@@ -512,9 +512,9 @@ test('sync collapses a list mixing 镜译 duplicates, a rule from a since-delete
   const mixed = [foreign, lookalike, dup1, orphanedProfileRule, dup2];
   const cleaned = syncNativeRegex(mixed, profile);
 
-  // Filtered by isJingyiRegex, not just by name: the look-alike below shares this exact scriptName on
-  // purpose, and must not be counted as one of 镜译's own copies.
-  assert.equal(cleaned.filter(rule => rule.scriptName === ourName && isJingyiRegex(rule)).length, 1, 'the duplicate managed copies collapse to one');
+  // Filtered by isTestTranslatorRegex, not just by name: the look-alike below shares this exact scriptName on
+  // purpose, and must not be counted as one of 测试翻译's own copies.
+  assert.equal(cleaned.filter(rule => rule.scriptName === ourName && isTestTranslatorRegex(rule)).length, 1, 'the duplicate managed copies collapse to one');
   assert.equal(cleaned.some(rule => rule.id === orphanedProfileRule.id), false, 'the deleted profile\'s rule is gone -- nothing asks for it any more');
   assert.deepEqual(cleaned.find(rule => rule.id === 'user-own-rule-42'), lookalike, 'the look-alike user rule is untouched, byte for byte');
   assert.deepEqual(cleaned.find(rule => rule.id === 'some-other-extension:abc'), foreign, 'the other extension\'s rule is untouched, byte for byte');
@@ -538,10 +538,10 @@ test('a native copy that fails our own validation outright -- every "Affects" ch
   let list = syncNativeRegex([], active);
 
   // The reader genuinely edits the first rule in 酒馆's own editor...
-  const i1 = list.findIndex(rule => rule.scriptName === `镜译 · ${active.name} · 第一条`);
+  const i1 = list.findIndex(rule => rule.scriptName === `测试翻译 · ${active.name} · 第一条`);
   list[i1] = simulateNativeEditorSave({ ...list[i1], replaceString: '壹' });
   // ...and on the second, unchecks every "Affects" box and saves anyway.
-  const i2 = list.findIndex(rule => rule.scriptName === `镜译 · ${active.name} · 第二条`);
+  const i2 = list.findIndex(rule => rule.scriptName === `测试翻译 · ${active.name} · 第二条`);
   list[i2] = simulateNativeEditorSave({ ...list[i2], placement: [] });
 
   const edits = readNativeRegexEdits(list, active);
@@ -550,7 +550,7 @@ test('a native copy that fails our own validation outright -- every "Affects" ch
   assert.deepEqual(edits.find(rule => rule.id === ruleTwoId), active.regexScripts[1], 'the broken copy falls back to the profile\'s own already-saved version of that rule');
 });
 
-test('initializeSettings and onDisable do not crash on the copy 酒馆\'s own editor leaves after any "open the rule, click Save" -- even with nothing changed at all, since every fixed and profile-bound rule ships with blank depth fields', () => {
+test('initializeSettings and BeEagleTestTranslator_onDisable do not crash on the copy 酒馆\'s own editor leaves after any "open the rule, click Save" -- even with nothing changed at all, since every fixed and profile-bound rule ships with blank depth fields', () => {
   const previousHost = globalThis.SillyTavern;
   try {
     const settings = normalizeProcessingSettings();
@@ -558,12 +558,12 @@ test('initializeSettings and onDisable do not crash on the copy 酒馆\'s own ed
     settings.processingProfiles = [profile];
     settings.selectedProcessingProfileId = profile.id;
     const list = syncNativeRegex([], profile);
-    const index = list.findIndex(rule => rule.scriptName === `镜译 · ${profile.name} · ${profile.regexScripts[0].scriptName}`);
+    const index = list.findIndex(rule => rule.scriptName === `测试翻译 · ${profile.name} · ${profile.regexScripts[0].scriptName}`);
     list[index] = simulateNativeEditorSave(list[index]); // opened, nothing touched, saved
     const context = { extensionSettings: { [MODULE_ID]: settings, regex: list }, saveSettingsDebounced: () => {} };
     globalThis.SillyTavern = { getContext: () => context };
     assert.doesNotThrow(() => __testing.initializeSettings(), '整个扩展不因为一条原生规则读不回来就起不来');
-    assert.doesNotThrow(() => onDisable());
+    assert.doesNotThrow(() => BeEagleTestTranslator_onDisable());
   } finally {
     globalThis.SillyTavern = previousHost;
     __testing.configureForTest({ initialized: false });
@@ -574,7 +574,7 @@ test('readNativeRegexEdits prefers a reader\'s real edit over a merely-regenerat
   const settings = normalizeProcessingSettings();
   const profile = makeBuiltinReadingProfile(settings, 'cute');
   const list = syncNativeRegex([], profile);
-  const ruleName = `镜译 · ${profile.name} · ${profile.regexScripts[0].scriptName}`;
+  const ruleName = `测试翻译 · ${profile.name} · ${profile.regexScripts[0].scriptName}`;
   const index = list.findIndex(rule => rule.scriptName === ruleName);
 
   // The old marker-loss bug's own aftermath: the reader's real edit sits in an unmarked copy (酒馆's
@@ -609,7 +609,7 @@ test('planRegexCleanup counts removal and installation separately, so an equal n
   const settings = normalizeProcessingSettings();
   const profile = makeBuiltinReadingProfile(settings, 'cute');
   const full = syncNativeRegex([], profile);
-  const ruleName = `镜译 · ${profile.name} · ${profile.regexScripts[0].scriptName}`;
+  const ruleName = `测试翻译 · ${profile.name} · ${profile.regexScripts[0].scriptName}`;
   const ruleCopy = full.find(rule => rule.scriptName === ruleName);
   // The reader has deleted two of the fixed rules directly in 酒馆's own panel (its own findIndex(id)
   // picks the first match, so this really does remove the one live copy), and a surplus copy of the
@@ -622,7 +622,7 @@ test('planRegexCleanup counts removal and installation separately, so an equal n
   assert.equal(toInstall, 2, 'the two deleted fixed rules');
   assert.equal(expected.length, full.length);
 
-  const oldNetDiff = polluted.filter(isJingyiRegex).length - syncNativeRegex(polluted, profile).filter(isJingyiRegex).length;
+  const oldNetDiff = polluted.filter(isTestTranslatorRegex).length - syncNativeRegex(polluted, profile).filter(isTestTranslatorRegex).length;
   assert.equal(oldNetDiff, -1, 'the before-minus-after arithmetic this replaces would have shown a negative count here');
 });
 
@@ -630,7 +630,7 @@ test('a re-imported copy of a bound rule -- 酒馆 mints it a fresh id but leave
   const settings = normalizeProcessingSettings();
   const profile = makeBuiltinReadingProfile(settings, 'cute');
   const list = syncNativeRegex([], profile);
-  const ruleName = `镜译 · ${profile.name} · ${profile.regexScripts[0].scriptName}`;
+  const ruleName = `测试翻译 · ${profile.name} · ${profile.regexScripts[0].scriptName}`;
   const original = list.find(rule => rule.scriptName === ruleName);
   // The reader exports this rule, hand-edits the exported JSON's colours, and re-imports it: 酒馆's own
   // import (extensions/regex/index.js:1506) assigns a fresh id, but every other field -- the marker
@@ -663,7 +663,7 @@ test('saveSettings reads a reader\'s still-pending native-editor edit into the a
 
     __testing.configureForTest({ initialized: false });
     __testing.initializeSettings();
-    const ruleName = `镜译 · ${profile.name} · ${profile.regexScripts[0].scriptName}`;
+    const ruleName = `测试翻译 · ${profile.name} · ${profile.regexScripts[0].scriptName}`;
     const index = context.extensionSettings.regex.findIndex(rule => rule.scriptName === ruleName);
     assert.ok(index >= 0);
     context.extensionSettings.regex[index] = simulateNativeEditorSave({ ...context.extensionSettings.regex[index], replaceString: '<p>读者在酒馆里改的样式</p>' });
@@ -692,19 +692,19 @@ test('saveSettings reads a reader\'s still-pending native-editor edit into the a
   }
 });
 
-test('planScopedRegexCleanup removes only rules isJingyiRegex claims from a character-scoped or preset regex list, keeping the reader\'s own rules and their order untouched', () => {
+test('planScopedRegexCleanup removes only rules isTestTranslatorRegex claims from a character-scoped or preset regex list, keeping the reader\'s own rules and their order untouched', () => {
   const settings = normalizeProcessingSettings();
   const profile = makeBuiltinReadingProfile(settings, 'cute');
   const full = syncNativeRegex([], profile);
-  // A rule 酒馆's own "移到角色 / 预设" carried out of the global list -- 镜译 never installed it here on
-  // purpose, but it is still unmistakably 镜译's own by id prefix.
-  const movedBoundRule = { ...full.find(rule => rule.scriptName === `镜译 · ${profile.name} · ${profile.regexScripts[0].scriptName}`) };
+  // A rule 酒馆's own "移到角色 / 预设" carried out of the global list -- 测试翻译 never installed it here on
+  // purpose, but it is still unmistakably 测试翻译's own by id prefix.
+  const movedBoundRule = { ...full.find(rule => rule.scriptName === `测试翻译 · ${profile.name} · ${profile.regexScripts[0].scriptName}`) };
   const readerA = { id: 'user-a', scriptName: '读者规则甲', findRegex: '/a/g', replaceString: '' };
   const readerB = { id: 'user-b', scriptName: '读者规则乙', findRegex: '/b/g', replaceString: '' };
 
   const { kept, toRemove } = planScopedRegexCleanup([readerA, movedBoundRule, readerB]);
   assert.equal(toRemove, 1);
-  assert.deepEqual(kept, [readerA, readerB], 'only the 镜译-owned copy is removed; the reader\'s own rules and their relative order survive');
+  assert.deepEqual(kept, [readerA, readerB], 'only the 测试翻译-owned copy is removed; the reader\'s own rules and their relative order survive');
 });
 
 test('planScopedRegexCleanup treats a missing or already-clean list as nothing to remove', () => {
@@ -720,7 +720,7 @@ test('buildRegexCleanupPlan folds a character-scoped and a preset regex cleanup 
   settings.processingProfiles = [profile];
   settings.selectedProcessingProfileId = profile.id;
   const full = syncNativeRegex([], profile); // nothing missing or surplus globally
-  const movedBoundRule = { ...full.find(rule => rule.scriptName === `镜译 · ${profile.name} · ${profile.regexScripts[0].scriptName}`) };
+  const movedBoundRule = { ...full.find(rule => rule.scriptName === `测试翻译 · ${profile.name} · ${profile.regexScripts[0].scriptName}`) };
   const movedFixedA = { ...full.find(rule => rule.id === `${MODULE_ID}:prompt-affix`) };
   const movedFixedB = { ...full.find(rule => rule.id === `${MODULE_ID}:prompt-boundaries`) };
   const readerScoped = { id: 'user-scoped', scriptName: '角色自己的规则', findRegex: '/z/g', replaceString: '' };
@@ -758,7 +758,7 @@ test('buildRegexCleanupPlan names 全局 alongside a scoped/preset clause only w
   settings.processingProfiles = [profile];
   settings.selectedProcessingProfileId = profile.id;
   const full = syncNativeRegex([], profile);
-  const ruleName = `镜译 · ${profile.name} · ${profile.regexScripts[0].scriptName}`;
+  const ruleName = `测试翻译 · ${profile.name} · ${profile.regexScripts[0].scriptName}`;
   const polluted = [...full, { ...full.find(rule => rule.scriptName === ruleName) }]; // one surplus global copy too
   const readerScoped = { id: 'user-scoped', scriptName: '角色自己的规则', findRegex: '/z/g', replaceString: '' };
   const engine = {
@@ -781,7 +781,7 @@ test('buildRegexCleanupPlan does name the global count once it actually has some
   settings.processingProfiles = [profile];
   settings.selectedProcessingProfileId = profile.id;
   const full = syncNativeRegex([], profile);
-  const ruleName = `镜译 · ${profile.name} · ${profile.regexScripts[0].scriptName}`;
+  const ruleName = `测试翻译 · ${profile.name} · ${profile.regexScripts[0].scriptName}`;
   const ruleCopy = full.find(rule => rule.scriptName === ruleName);
   const polluted = [...full, { ...ruleCopy }]; // one surplus global copy
   const movedFixed = { ...full.find(rule => rule.id === `${MODULE_ID}:prompt-affix`) };
@@ -806,7 +806,7 @@ test('buildRegexCleanupPlan skips a scope the host cannot give an answer for -- 
   settings.processingProfiles = [profile];
   settings.selectedProcessingProfileId = profile.id;
   const full = syncNativeRegex([], profile);
-  const ruleName = `镜译 · ${profile.name} · ${profile.regexScripts[0].scriptName}`;
+  const ruleName = `测试翻译 · ${profile.name} · ${profile.regexScripts[0].scriptName}`;
   const ruleCopy = full.find(rule => rule.scriptName === ruleName);
   // A surplus global copy, exactly like the plain planRegexCleanup case, so there is still something
   // for the button to report even with every extra scope unavailable.
@@ -819,7 +819,7 @@ test('buildRegexCleanupPlan skips a scope the host cannot give an answer for -- 
   assert.equal(planNoEngine.presetPlan, null);
   assert.equal(planNoEngine.totalRemove, 1);
   assert.doesNotMatch(planNoEngine.message, /角色绑定|预设绑定/, '没有引擎时，弹窗文案和改动前完全一样，不提额外范围');
-  assert.match(planNoEngine.message, /^删除 1 条多余的镜译正则/);
+  assert.match(planNoEngine.message, /^删除 1 条多余的测试翻译正则/);
 
   const movedFixed = { ...full.find(rule => rule.id === `${MODULE_ID}:prompt-affix`) };
   const engineScopedUnavailable = {
@@ -975,7 +975,7 @@ test('buildRegexCleanupPlan\'s own dedupe of active.regexScripts is exactly what
   cleanSettings.processingProfiles = [cleanProfile];
   cleanSettings.selectedProcessingProfileId = cleanProfile.id;
   const cleanFull = syncNativeRegex([], cleanProfile);
-  const cleanRuleName = `镜译 · ${cleanProfile.name} · ${cleanProfile.regexScripts[0].scriptName}`;
+  const cleanRuleName = `测试翻译 · ${cleanProfile.name} · ${cleanProfile.regexScripts[0].scriptName}`;
   const cleanPolluted = [...cleanFull, { ...cleanFull.find(rule => rule.scriptName === cleanRuleName) }];
   const cleanBefore = getActiveProcessingProfile(cleanSettings).regexScripts;
   const cleanPlan = __testing.buildRegexCleanupPlan({ next: cleanSettings, currentRegex: cleanPolluted, engine: null });
@@ -991,7 +991,7 @@ test('buildRegexCleanupPlan never says "删除 0 条" when there is nothing anyw
   settings.processingProfiles = [profile];
   settings.selectedProcessingProfileId = profile.id;
   const full = syncNativeRegex([], profile);
-  // The reader deleted one fixed 镜译 rule directly in 酒馆's own panel; nothing else is surplus
+  // The reader deleted one fixed 测试翻译 rule directly in 酒馆's own panel; nothing else is surplus
   // anywhere, so toRemove stays 0 throughout while toInstall alone is > 0.
   const missingOneFixed = full.filter(rule => rule.id !== `${MODULE_ID}:prompt-affix`);
   const plan = __testing.buildRegexCleanupPlan({ next: settings, currentRegex: missingOneFixed, engine: null });
@@ -1005,13 +1005,13 @@ test('buildRegexCleanupPlan never says "删除 0 条" when there is nothing anyw
 
 test('regexCleanupSummary states only the half that actually happened, never "删除 0 条" or "补上 0 条"', () => {
   const removeOnly = __testing.regexCleanupSummary({ totalRemove: 3, toInstall: 0, expected: { length: 11 } });
-  assert.equal(removeOnly, '已整理镜译正则：删除 3 条，当前方案需要的 11 条都在。');
+  assert.equal(removeOnly, '已整理测试翻译正则：删除 3 条，当前方案需要的 11 条都在。');
 
   const installOnly = __testing.regexCleanupSummary({ totalRemove: 0, toInstall: 1, expected: { length: 11 } });
-  assert.equal(installOnly, '已整理镜译正则：补上 1 条，当前方案需要的 11 条都在。');
+  assert.equal(installOnly, '已整理测试翻译正则：补上 1 条，当前方案需要的 11 条都在。');
 
   const both = __testing.regexCleanupSummary({ totalRemove: 2, toInstall: 1, expected: { length: 11 } });
-  assert.equal(both, '已整理镜译正则：删除 2 条，补上 1 条，当前方案需要的 11 条都在。');
+  assert.equal(both, '已整理测试翻译正则：删除 2 条，补上 1 条，当前方案需要的 11 条都在。');
 });
 
 test('buildRegexCleanupPlan leaves the scoped clause out of the message when no character is selected -- getScriptsByType(SCOPED) returns [] rather than throwing, so the scope is not "unavailable", just empty', () => {
@@ -1020,12 +1020,12 @@ test('buildRegexCleanupPlan leaves the scoped clause out of the message when no 
   settings.processingProfiles = [profile];
   settings.selectedProcessingProfileId = profile.id;
   const full = syncNativeRegex([], profile);
-  const ruleName = `镜译 · ${profile.name} · ${profile.regexScripts[0].scriptName}`;
+  const ruleName = `测试翻译 · ${profile.name} · ${profile.regexScripts[0].scriptName}`;
   const ruleCopy = full.find(rule => rule.scriptName === ruleName);
   const polluted = [...full, { ...ruleCopy }];
   const movedFixed = { ...full.find(rule => rule.id === `${MODULE_ID}:prompt-affix`) };
   // The real host never throws for "no character selected" -- characters[undefined] is just undefined,
-  // so getScriptsByType(SCOPED) returns [] like any other scope with nothing 镜译-owned in it.
+  // so getScriptsByType(SCOPED) returns [] like any other scope with nothing 测试翻译-owned in it.
   const engine = {
     SCRIPT_TYPES: { GLOBAL: 0, SCOPED: 1, PRESET: 2 },
     getScriptsByType(type) {

@@ -103,36 +103,36 @@ function findByDataset(node, matches) {
 
 function makeConsoleRoot() {
   const doc = makeDoc();
-  const usesBox = makeElement('div', doc); // [data-jy-connection-uses]
-  const host = makeElement('div', doc); // [data-jy-channel-cards]
+  const usesBox = makeElement('div', doc); // [data-bgt-connection-uses]
+  const host = makeElement('div', doc); // [data-bgt-channel-cards]
   const detail = makeElement('div', doc);
   const holder = makeElement('div', doc);
   detail.hidden = true;
   holder.hidden = true;
   const presetGrid = makeElement('div', doc); // just needs to exist so syncDeskFields does not bail out
-  const presetDriftList = makeElement('ul', doc); // [data-jy-preset-drift-list]
-  const deskList = makeElement('div', doc); // [data-jy-desk-connection-list]
-  const channelSummary = makeElement('p', doc); // [data-jy-channel-summary]
+  const presetDriftList = makeElement('ul', doc); // [data-bgt-preset-drift-list]
+  const deskList = makeElement('div', doc); // [data-bgt-desk-connection-list]
+  const channelSummary = makeElement('p', doc); // [data-bgt-channel-summary]
   const deepSelects = [makeElement('select', doc)];
 
   const root = {
     dataset: {},
     querySelector(selector) {
-      if (selector === '[data-jy-channel-cards]') return host;
-      if (selector === '[data-jy-channel-detail]') return detail;
-      if (selector === '[data-jy-channel-detail-holder]') return holder;
-      if (selector === '[data-jy-preset-grid]') return presetGrid;
-      if (selector === '[data-jy-preset-drift-list]') return presetDriftList;
-      if (selector === '[data-jy-desk-connection-list]') return deskList;
-      if (selector === '[data-jy-channel-summary]') return channelSummary;
-      const toggle = /^\[data-jy-action="desk-toggle-channel"\]\[data-jy-channel-id="([^"]+)"\]$/.exec(selector);
-      if (toggle) return findByDataset(deskList, d => d.jyAction === 'desk-toggle-channel' && d.jyChannelId === toggle[1]);
+      if (selector === '[data-bgt-channel-cards]') return host;
+      if (selector === '[data-bgt-channel-detail]') return detail;
+      if (selector === '[data-bgt-channel-detail-holder]') return holder;
+      if (selector === '[data-bgt-preset-grid]') return presetGrid;
+      if (selector === '[data-bgt-preset-drift-list]') return presetDriftList;
+      if (selector === '[data-bgt-desk-connection-list]') return deskList;
+      if (selector === '[data-bgt-channel-summary]') return channelSummary;
+      const toggle = /^\[data-bgt-action="desk-toggle-channel"\]\[data-bgt-channel-id="([^"]+)"\]$/.exec(selector);
+      if (toggle) return findByDataset(deskList, d => d.bgtAction === 'desk-toggle-channel' && d.bgtChannelId === toggle[1]);
       return null;
     },
     querySelectorAll(selector) {
-      if (selector === '[data-jy-channel-card]') return host.children;
-      if (selector === '[data-jy-connection-uses]') return [usesBox];
-      if (selector === '[data-jy-tts-field="deepChannelId"]') return deepSelects;
+      if (selector === '[data-bgt-channel-card]') return host.children;
+      if (selector === '[data-bgt-connection-uses]') return [usesBox];
+      if (selector === '[data-bgt-tts-field="deepChannelId"]') return deepSelects;
       return [];
     },
   };
@@ -166,10 +166,10 @@ test('syncChannelFields({ rebuildCards: false }) renames the open card and the p
   syncChannelFields(root, settings);
 
   const rows = [...usesBox.children];
-  assert.deepEqual(rows.map(row => row.dataset.jyUseRow), ['translation', 'deep', 'helper'], '三行：翻译、分析模式、小助手');
-  const pickers = rows.map(row => usesBox.querySelector(`[data-jy-use-row="${row.dataset.jyUseRow}"]`).querySelector('[data-jy-use-picker]'));
+  assert.deepEqual(rows.map(row => row.dataset.bgtUseRow), ['translation', 'deep', 'helper'], '三行：翻译、分析模式、小助手');
+  const pickers = rows.map(row => usesBox.querySelector(`[data-bgt-use-row="${row.dataset.bgtUseRow}"]`).querySelector('[data-bgt-use-picker]'));
   assert.deepEqual(pickers.map(picker => picker.value), ['a', 'follow', 'follow'], '各自选中现在用的那一条');
-  assert.equal(collectByDatasetKey(host, 'jyChannelUse').length, 0, '连接卡上不再有用途勾选');
+  assert.equal(collectByDatasetKey(host, 'bgtChannelUse').length, 0, '连接卡上不再有用途勾选');
 
   const renamed = { ...settings, channels: settings.channels.map(c => (c.id === 'a' ? { ...c, name: 'Renamed Chan' } : c)) };
   syncChannelFields(root, renamed, { rebuildCards: false });
@@ -177,7 +177,7 @@ test('syncChannelFields({ rebuildCards: false }) renames the open card and the p
   assert.deepEqual([...usesBox.children], rows, '行还是原来那几行，没有被换掉');
   const option = pickers[0].children.find(o => o.value === 'a');
   assert.match(option.textContent, /^Renamed Chan/);
-  const heading = findByDataset(host, d => d.jyChannelCard === 'a').querySelector('h2');
+  const heading = findByDataset(host, d => d.bgtChannelCard === 'a').querySelector('h2');
   assert.equal(heading.textContent, 'Renamed Chan');
 });
 
@@ -207,18 +207,18 @@ test('fillTtsChannelPickers refills 分析模式\'s selects and 「各功能用�
   assert.match(deepSelects[0].children.find(o => o.value === 'a').textContent, /model-a\b/);
   assert.equal(deepSelects[0].value, 'a');
   assert.equal(deepSelects[0].children.some(o => o.value === ''), false, '没有「和朗读分析用同一条」这一项了');
-  const deepRow = usesBox.querySelector('[data-jy-use-row="deep"]');
-  assert.equal(deepRow.querySelector('[data-jy-use-picker]').value, 'a');
-  assert.equal(deepRow.querySelector('[data-jy-use-note]').hidden, true, '开着分析模式时不写「用不到」');
+  const deepRow = usesBox.querySelector('[data-bgt-use-row="deep"]');
+  assert.equal(deepRow.querySelector('[data-bgt-use-picker]').value, 'a');
+  assert.equal(deepRow.querySelector('[data-bgt-use-note]').hidden, true, '开着分析模式时不写「用不到」');
 
   const renamed = { ...settings, channels: settings.channels.map(c => (c.id === 'a' ? { ...c, name: 'Renamed', model: 'model-a2' } : c)) };
   fillTtsChannelPickers(root, renamed);
   assert.match(deepSelects[0].children.find(o => o.value === 'a').textContent, /Renamed · model-a2/);
 
   fillTtsChannelPickers(root, { ...renamed, tts: { ...renamed.tts, mode: 'off' } });
-  assert.equal(deepRow.querySelector('[data-jy-use-note]').textContent, '分析模式没开，眼下用不到');
+  assert.equal(deepRow.querySelector('[data-bgt-use-note]').textContent, '分析模式没开，眼下用不到');
   fillTtsChannelPickers(root, { ...renamed, tts: { ...renamed.tts, enabled: false } });
-  assert.equal(deepRow.querySelector('[data-jy-use-note]').textContent, '朗读没开，眼下用不到');
+  assert.equal(deepRow.querySelector('[data-bgt-use-note]').textContent, '朗读没开，眼下用不到');
 });
 
 // --- syncDeskFields({ rebuildList: false }) --------------------------------------------------------
@@ -235,16 +235,16 @@ test('syncDeskFields({ rebuildList: false }) updates only the open row\'s own mo
 
   const rowsBefore = [...deskList.children];
   assert.equal(rowsBefore.length, 3, 'follow + two channels');
-  const toggleBefore = findByDataset(deskList, d => d.jyAction === 'desk-toggle-channel' && d.jyChannelId === 'a');
-  const testButtonBefore = findByDataset(deskList, d => d.jyAction === 'desk-test-channel' && d.jyChannelId === 'a');
+  const toggleBefore = findByDataset(deskList, d => d.bgtAction === 'desk-toggle-channel' && d.bgtChannelId === 'a');
+  const testButtonBefore = findByDataset(deskList, d => d.bgtAction === 'desk-test-channel' && d.bgtChannelId === 'a');
   assert.ok(toggleBefore && testButtonBefore, 'sanity: row a is expanded with its own buttons');
 
   const updated = { ...settings, channels: settings.channels.map(c => (c.id === 'a' ? { ...c, model: 'brand-new-model' } : c)) };
   syncDeskFields(root, updated, { rebuildList: false });
 
   assert.deepEqual(deskList.children, rowsBefore, '一整批行节点都还是原来那些，没有被换掉');
-  const toggleAfter = findByDataset(deskList, d => d.jyAction === 'desk-toggle-channel' && d.jyChannelId === 'a');
-  const testButtonAfter = findByDataset(deskList, d => d.jyAction === 'desk-test-channel' && d.jyChannelId === 'a');
+  const toggleAfter = findByDataset(deskList, d => d.bgtAction === 'desk-toggle-channel' && d.bgtChannelId === 'a');
+  const testButtonAfter = findByDataset(deskList, d => d.bgtAction === 'desk-test-channel' && d.bgtChannelId === 'a');
   assert.equal(toggleAfter, toggleBefore, '展开/收起按钮没有被换掉——一次正在进行中的点击不会被吞掉');
   assert.equal(testButtonAfter, testButtonBefore, '「测试这条连接」按钮也没有被换掉');
   const small = toggleAfter.children.find(el => el.tagName === 'SMALL');
@@ -263,10 +263,10 @@ test('syncDeskFields({ rebuildList: false }) leaves the 套餐 grid and its drif
   const settings = { ...testSettings(), preset: 'comfort' };
   syncDeskFields(root, settings); // first, full build (rebuildList defaults to true)
 
-  const presetGrid = root.querySelector('[data-jy-preset-grid]');
+  const presetGrid = root.querySelector('[data-bgt-preset-grid]');
   const cardsBefore = [...presetGrid.children];
   assert.ok(cardsBefore.length > 0, 'sanity: 套餐 grid has cards after a full build');
-  const driftList = root.querySelector('[data-jy-preset-drift-list]');
+  const driftList = root.querySelector('[data-bgt-preset-drift-list]');
   const driftItemsBefore = [...driftList.children];
 
   const updated = { ...settings, channels: settings.channels.map(c => (c.id === 'a' ? { ...c, model: 'brand-new-model' } : c)) };

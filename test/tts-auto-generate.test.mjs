@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 
 // Probe: does the newest floor's audio get generated automatically in the background once its deep
 // analysis is done and the floor has settled, with autoGenerate on and autoRead off (R1's toggles)?
-// Real event emitter (SillyTavern 1.18 shape), real onActivate(), a floor that already carries its
+// Real event emitter (SillyTavern 1.18 shape), real BeEagleTestTranslator_onActivate(), a floor that already carries its
 // translation (so ttsFloorClosed takes the "carries" branch straight away), mocked sub-model + Fish.
 
 globalThis.document = {
@@ -46,7 +46,7 @@ globalThis.fetch = async (url, init) => {
   return new Response(`event: message\ndata: ${JSON.stringify(event)}\n\n`, { status: 200 });
 };
 
-const { onActivate, __testing } = await import('../index.js');
+const { BeEagleTestTranslator_onActivate, __testing } = await import('../index.js');
 const { readDiagnostics, clearDiagnostics } = await import('../diagnostics.js');
 const { MESSAGE_META_KEY, assembleBilingual, createTranslationSignature, hashText, segmentSource, normalizeChannel } = await import('../core.js');
 
@@ -73,7 +73,7 @@ const wait = ms => new Promise(resolve => setTimeout(resolve, ms));
 const eventSource = new Emitter();
 const chat = [];
 const context = {
-  chat, chatId: 'r1-chat', extensionSettings: { 'jingyi-translator': { showFloatingButton: false } }, characters: [{ name: '泰罗', avatar: 'taro.png', description: '', personality: '', scenario: '' }], characterId: 0,
+  chat, chatId: 'r1-chat', extensionSettings: { 'beagle-test-translator': { showFloatingButton: false } }, characters: [{ name: '泰罗', avatar: 'taro.png', description: '', personality: '', scenario: '' }], characterId: 0,
   name1: '玩家', name2: '泰罗',
   substituteParams: value => String(value ?? ''), saveChat: async () => {}, updateMessageBlock: () => {}, getRequestHeaders: () => ({}),
   saveSettingsDebounced: () => {}, eventTypes: T, eventSource, streamingProcessor: null,
@@ -83,7 +83,7 @@ const context = {
   } },
 };
 globalThis.SillyTavern = { getContext: () => context };
-await onActivate();
+await BeEagleTestTranslator_onActivate();
 await eventSource.emit(T.CHAT_CHANGED, 'r1-chat');
 
 const CHANNEL = normalizeChannel({ id: 'c1', name: 'test', url: 'https://relay.example/v1', key: 'k', model: 'labeler' });

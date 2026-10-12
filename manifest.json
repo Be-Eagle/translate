@@ -1,17 +1,17 @@
 {
-  "display_name": "镜译 · 正文翻译器",
+  "display_name": "测试翻译",
   "loading_order": 100,
   "dependencies": [],
-  "js": "index.js?v=0.51.4",
-  "author": "iabil",
-  "version": "0.51.4",
-  "homePage": "https://github.com/iabil-604/MirrorTranslate",
+  "js": "index.js?v=0.1.0-test",
+  "author": "Be-Eagle",
+  "version": "0.1.0-test",
+  "homePage": "https://github.com/Be-Eagle/translate",
   "auto_update": true,
-  "generate_interceptor": "JingyiTranslator_interceptGeneration",
+  "generate_interceptor": "BeEagleTestTranslator_interceptGeneration",
   "hooks": {
-    "activate": "onActivate",
-    "disable": "onDisable",
-    "clean": "onClean"
+    "activate": "BeEagleTestTranslator_onActivate",
+    "disable": "BeEagleTestTranslator_onDisable",
+    "clean": "BeEagleTestTranslator_onClean"
   },
-  "css": "host.css?v=0.51.4"
+  "css": "host.css?v=0.1.0-test"
 }

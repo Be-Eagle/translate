@@ -46,19 +46,19 @@ export function resolveAutosaveWrite(settings, raw, { validate, commit }) {
 
 /**
  * The 「改了就存 ✓」 label DESIGN §15.4 puts at a page header's right side once that page's save
- * button is gone (11px, `--jy-ok`; see the matching `.jy-autosave-indicator` rule in style.css).
+ * button is gone (11px, `--bgt-ok`; see the matching `.bgt-autosave-indicator` rule in style.css).
  * Idempotent — a page header that already has one is left as it is — so a page can call this once
  * it switches a page's markup over to save-on-change without tracking whether it already ran.
  */
 export function ensureAutosaveIndicator(pageHeading, ownerDocument = typeof document === 'undefined' ? null : document) {
   if (!pageHeading) return null;
-  const existing = pageHeading.querySelector('[data-jy-autosave-indicator]');
+  const existing = pageHeading.querySelector('[data-bgt-autosave-indicator]');
   if (existing) return existing;
   const doc = ownerDocument || pageHeading.ownerDocument;
   if (!doc) return null;
   const node = doc.createElement('span');
-  node.dataset.jyAutosaveIndicator = '';
-  node.className = 'jy-autosave-indicator';
+  node.dataset.bgtAutosaveIndicator = '';
+  node.className = 'bgt-autosave-indicator';
   node.textContent = '改了就存 ✓';
   pageHeading.appendChild(node);
   return node;

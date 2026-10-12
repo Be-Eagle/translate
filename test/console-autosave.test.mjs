@@ -54,7 +54,7 @@ test('ensureAutosaveIndicator creates the DESIGN §15.4 label once and is a no-o
     },
     children: [],
     querySelector(selector) {
-      return this.children.find(child => selector === '[data-jy-autosave-indicator]' && 'jyAutosaveIndicator' in child.dataset) || null;
+      return this.children.find(child => selector === '[data-bgt-autosave-indicator]' && 'bgtAutosaveIndicator' in child.dataset) || null;
     },
     appendChild(node) {
       this.children.push(node);
@@ -63,7 +63,7 @@ test('ensureAutosaveIndicator creates the DESIGN §15.4 label once and is a no-o
   };
   const first = ensureAutosaveIndicator(heading);
   assert.ok(first);
-  assert.equal(first.className, 'jy-autosave-indicator');
+  assert.equal(first.className, 'bgt-autosave-indicator');
   assert.equal(first.textContent, '改了就存 ✓');
   assert.equal(heading.children.length, 1);
   const second = ensureAutosaveIndicator(heading);

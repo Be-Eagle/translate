@@ -1,4 +1,4 @@
-const STORAGE_KEY = 'jingyi-translator.diagnostics.v1';
+const STORAGE_KEY = 'beagle-test-translator.diagnostics.v1';
 const MAX_ENTRIES = 100;
 const MAX_STORAGE_CHARACTERS = 1_800_000;
 const SECRET_KEY_RE = /(?:api.?key|secret|password|authorization|proxy_password|token)/i;
@@ -15,7 +15,7 @@ function isSecretKey(key) {
 // cost of logging, and a busy floor logs dozens of lines.
 // Shared through globalThis: a second copy of this module (one imported under another URL) must see
 // the same log, or a line written through one copy would be missing from the other until it is saved.
-const state = (globalThis[Symbol.for('jingyi-translator.diagnostics')] ??= {
+const state = (globalThis[Symbol.for('beagle-test-translator.diagnostics')] ??= {
   entries: [], pending: [], fallback: false, mirrored: null, timer: null, target: null,
 });
 const PERSIST_DELAY = 800;
@@ -232,7 +232,7 @@ function formatReport(entries, metadata = {}, includeFullResponses = false) {
     ...sanitizeDiagnostic(metadata),
   };
   const lines = [
-    '镜译诊断报告',
+    '测试翻译诊断报告',
     JSON.stringify(header, null, 2),
     '',
   ];

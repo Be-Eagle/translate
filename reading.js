@@ -1,11 +1,11 @@
 import { hashTextSync } from './core.js?v=0.51.4';
 
 // ---------------------------------------------------------------------------------------------
-// The public interface's reading of a floor (window.__JINGYI__.reading), in the shape agreed with the
+// The public interface's reading of a floor (window.__BE_EAGLE_TEST_TRANSLATOR__.reading), in the shape agreed with the
 // 东京都2051 card (schema 1): the floor's original — what the main model wrote and other extensions added
-// after it, without anything 镜译 wrote — each line 镜译 translates, placed in that original by UTF-16
+// after it, without anything 测试翻译 wrote — each line 测试翻译 translates, placed in that original by UTF-16
 // offsets (start inclusive, end exclusive), the translation written for the line, the speaker and mood
-// the translation marked, and where the floor stands. Where 镜译 cannot tell the original (a floor with
+// the translation marked, and where the floor stands. Where 测试翻译 cannot tell the original (a floor with
 // only its translation left in it, changed since), it gives none rather than another text in its place.
 //
 // Pure: index.js reads the floor (readMessageSnapshot) and the runtime (a run in flight, the last failure)
@@ -18,7 +18,7 @@ export const READING_API_VERSION = 2;
 
 /**
  * Where a floor stands:
- * - absent: nothing of it translated (or nothing in it for 镜译 to translate);
+ * - absent: nothing of it translated (or nothing in it for 测试翻译 to translate);
  * - processing: a translation of this floor's alternative is running now;
  * - partial: some lines translated, the others not yet;
  * - ready: every line translated;

@@ -1,6 +1,6 @@
 {
-  "name": "st-jingyi-translator",
-  "version": "0.51.4",
+  "name": "be-eagle-test-translator",
+  "version": "0.1.0-test",
   "private": true,
   "type": "module",
   "scripts": {

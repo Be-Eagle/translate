@@ -851,20 +851,20 @@ test('manifest and entry describe a native extension without TavernHelper calls'
   const entry = fs.readFileSync(path.join(root, 'index.js'), 'utf8');
   assert.equal(Object.hasOwn(manifest, 'minimum_client_version'), false);
   assert.equal(manifest.version, APP_VERSION);
-  assert.equal(manifest.generate_interceptor, 'JingyiTranslator_interceptGeneration');
-  assert.equal(manifest.hooks.activate, 'onActivate');
+  assert.equal(manifest.generate_interceptor, 'BeEagleTestTranslator_interceptGeneration');
+  assert.equal(manifest.hooks.activate, 'BeEagleTestTranslator_onActivate');
   assert.match(manifest.js, /^index\.js\?v=\d+\.\d+\.\d+(?:-[0-9A-Za-z.]+)?$/);
   assert.match(manifest.css, /^host\.css\?v=\d+\.\d+\.\d+(?:-[0-9A-Za-z.]+)?$/);
   assert.doesNotMatch(entry, /TavernHelper|getVariables|setChatMessages|script_id/);
   assert.doesNotMatch(entry, /ConnectionManagerRequestService/);
   assert.match(entry, /ChatCompletionService/);
   assert.match(entry, /chat-completions\/status/);
-  assert.match(entry, /data-jy-model-select/);
-  assert.match(entry, /data-jy-field="preserveLineRules"/);
+  assert.match(entry, /data-bgt-model-select/);
+  assert.match(entry, /data-bgt-field="preserveLineRules"/);
   assert.match(entry, /parsePreserveLineRulesWithErrors/);
-  assert.doesNotMatch(entry, /<datalist[^>]*jy-model-list/);
+  assert.doesNotMatch(entry, /<datalist[^>]*bgt-model-list/);
   assert.doesNotMatch(entry, /channel\.model\s*=\s*models\[0\]/);
-  assert.match(entry, /autoSwipe"\], \[data-jy-field="streamingWriteback"/);
+  assert.match(entry, /autoSwipe"\], \[data-bgt-field="streamingWriteback"/);
   assert.match(entry, /toggle-export-drawer/);
   assert.match(entry, /export-recent/);
   assert.match(entry, /export-all/);
@@ -878,30 +878,30 @@ test('manifest and entry describe a native extension without TavernHelper calls'
   assert.doesNotMatch(entry, /globalThis\.location\.(replace|reload)/);
   assert.match(entry, /invokeWithRetries\(snapshot\.segments/);
   assert.doesNotMatch(entry, /chunkSegments|chunkChars|单批字符预算|单批最多段数/);
-  assert.match(entry, /data-jy-standard-prompt-list/);
+  assert.match(entry, /data-bgt-standard-prompt-list/);
   assert.match(entry, /add-prompt-section/);
   const hostCss = fs.readFileSync(path.join(root, manifest.css.split('?')[0]), 'utf8');
   assert.doesNotMatch(hostCss, /(^|\n)\s*(?:input|select|textarea|button)\b/m);
 });
 
 // DESIGN.md §15.4（常夜灯 2026-09-26 批准）：危险操作是红字文字按钮，放在自己那组的末尾。「删除多余正则」是
-// 「绑定正则」组里唯一的破坏性操作，是这一条实际适用的地方（§9.1 的 .jy-text-button 本身只是 --jy-accent）。
+// 「绑定正则」组里唯一的破坏性操作，是这一条实际适用的地方（§9.1 的 .bgt-text-button 本身只是 --bgt-accent）。
 test('the "删除多余正则" button is a red text button at the end of its own group, per DESIGN.md §9.1/§15.4', () => {
   const entry = fs.readFileSync(path.join(root, 'index.js'), 'utf8');
-  const group = entry.match(/<div class="jy-form-section"><span class="jy-label">绑定正则[\s\S]*?<\/details>/)?.[0];
+  const group = entry.match(/<div class="bgt-form-section"><span class="bgt-label">绑定正则[\s\S]*?<\/details>/)?.[0];
   assert.ok(group, '找到「绑定正则」这一组的标记');
-  const button = group.match(/<button[^>]*data-jy-action="dedupe-processing-regex"[^>]*>删除多余正则<\/button>/)?.[0];
+  const button = group.match(/<button[^>]*data-bgt-action="dedupe-processing-regex"[^>]*>删除多余正则<\/button>/)?.[0];
   assert.ok(button, '找到「删除多余正则」按钮本身');
-  assert.match(button, /class="jy-text-button jy-text-button-danger"/, '无边框的文字按钮，字色走危险色');
+  assert.match(button, /class="bgt-text-button bgt-text-button-danger"/, '无边框的文字按钮，字色走危险色');
   // 组内唯一另一个按钮是「导入正则」；危险操作要排在它之后，也排在正则列表和状态行之后（组的末尾）。
   assert.ok(group.indexOf('导入正则') < group.indexOf('删除多余正则'), '排在「导入正则」之后');
-  assert.ok(group.indexOf('data-jy-processing-regex-list') < group.indexOf('删除多余正则'), '排在正则列表之后');
-  assert.ok(group.indexOf('data-jy-native-regex-status') < group.indexOf('删除多余正则'), '排在状态行之后，即组的末尾');
+  assert.ok(group.indexOf('data-bgt-processing-regex-list') < group.indexOf('删除多余正则'), '排在正则列表之后');
+  assert.ok(group.indexOf('data-bgt-native-regex-status') < group.indexOf('删除多余正则'), '排在状态行之后，即组的末尾');
 
   const hostCss = fs.readFileSync(path.join(root, 'style.css'), 'utf8');
-  const rule = hostCss.match(/\.jy-text-button-danger\s*\{[^}]*\}/)?.[0];
-  assert.ok(rule, '.jy-text-button-danger 的样式规则存在');
-  assert.match(rule, /color:\s*var\(--jy-error\)/, '危险文字按钮的字色是 --jy-error（DESIGN.md §9.1）');
+  const rule = hostCss.match(/\.bgt-text-button-danger\s*\{[^}]*\}/)?.[0];
+  assert.ok(rule, '.bgt-text-button-danger 的样式规则存在');
+  assert.match(rule, /color:\s*var\(--bgt-error\)/, '危险文字按钮的字色是 --bgt-error（DESIGN.md §9.1）');
 });
 
 test('manifest files, lifecycle exports, and capability snapshot are self-consistent', () => {
@@ -998,8 +998,8 @@ test('a replace-tag paragraph keeps what is not for translation where the reader
 });
 
 test('a restyle leaves a replace pair as it is and restyles the bilingual blocks around it', () => {
-  const pair = renderReplacePair('"你好"她说。', '"Hi," she said.', { stylePrefix: '<span class="jy-spk" style="color:red">', styleSuffix: '</span>' });
-  const bilingual = `${renderSourceBlock('Rain.', { segmentPrefix: '<jy-source>', segmentSuffix: '</jy-source>' })}\n${renderTranslationBlock('下雨了。', { translationPrefix: '{', translationSuffix: '}' })}`;
+  const pair = renderReplacePair('"你好"她说。', '"Hi," she said.', { stylePrefix: '<span class="bgt-spk" style="color:red">', styleSuffix: '</span>' });
+  const bilingual = `${renderSourceBlock('Rain.', { segmentPrefix: '<bgt-source>', segmentSuffix: '</bgt-source>' })}\n${renderTranslationBlock('下雨了。', { translationPrefix: '{', translationSuffix: '}' })}`;
   const floor = `${pair}\n\n${bilingual}`;
   const restyled = restyleBilingual(floor, { segmentPrefix: '<p>', segmentSuffix: '</p>', translationPrefix: '[', translationSuffix: ']' });
   assert.ok(restyled.startsWith(pair), 'the pair is untouched: colours kept, no source prefixes put on the translation');
@@ -1021,8 +1021,8 @@ test('a partly translated replace-tag floor seeds 补译 by hidden original, not
 
 test('a tag affix that lost its invisible boundaries is repaired instead of nested twice', () => {
   const style = {
-    segmentPrefix: '<jy-source>', segmentSuffix: '</jy-source>',
-    translationPrefix: '<jy-translation>', translationSuffix: '</jy-translation>',
+    segmentPrefix: '<bgt-source>', segmentSuffix: '</bgt-source>',
+    translationPrefix: '<bgt-translation>', translationSuffix: '</bgt-translation>',
   };
   const metadata = {
     schema_version: 4,
@@ -1041,7 +1041,7 @@ test('a tag affix that lost its invisible boundaries is repaired instead of nest
   );
   assert.equal(rewritten, floor);
   // No second opener before the matching close, i.e. no nested copy of the affix.
-  assert.doesNotMatch(rewritten, /<jy-source>(?:(?!<\/jy-source>)[\s\S])*<jy-source>/);
+  assert.doesNotMatch(rewritten, /<bgt-source>(?:(?!<\/bgt-source>)[\s\S])*<bgt-source>/);
   // The detector runs on the repaired text, so a wrapper this pass already healed is not reported.
   assert.equal(detectUnmarkedAffixes(stripGeneratedTranslationLines(damaged, metadata), metadata), false);
 });
@@ -1057,8 +1057,8 @@ test('symbol affixes stay untouched because a scene may legitimately open and cl
 
 test('a floor whose mirror boundaries are gone entirely is reported rather than silently re-wrapped', () => {
   const style = {
-    segmentPrefix: '<jy-source>', segmentSuffix: '</jy-source>',
-    translationPrefix: '<jy-translation>', translationSuffix: '</jy-translation>',
+    segmentPrefix: '<bgt-source>', segmentSuffix: '</bgt-source>',
+    translationPrefix: '<bgt-translation>', translationSuffix: '</bgt-translation>',
   };
   const metadata = {
     schema_version: 4,
@@ -1196,35 +1196,35 @@ test('speaker and emotion labels ride alongside the translation without touching
 
 test('a coloured floor still hands the main model nothing but the original', () => {
   const source = '「你到底在想什么！」\n\n……我不知道。';
-  const styleFor = ids => ({ open: `<span class="jy-spk jy-spk-${ids[0]}" style="color:#e2a148">`, close: '</span>' });
+  const styleFor = ids => ({ open: `<span class="bgt-spk bgt-spk-${ids[0]}" style="color:#e2a148">`, close: '</span>' });
   const options = { translationPrefix: '{', translationSuffix: '}', styleFor };
   const floor = assembleBilingual(
     segmentSource(source, options).layout,
     new Map([[1, '「你到底在想什么！」'], [2, '……我不知道。']]),
     options,
   );
-  assert.match(floor, /<span class="jy-spk/);
+  assert.match(floor, /<span class="bgt-spk/);
   assert.equal(stripGeneratedTranslationLines(floor), source, '剥离后必须逐字还原原文');
   assert.equal(stripGeneratedTranslationLines(floor, undefined, 'prompt'), source);
   const prompt = [{ mes: floor }];
   interceptGenerationChat(prompt);
-  assert.doesNotMatch(prompt[0].mes, /span|jy-spk|color/);
+  assert.doesNotMatch(prompt[0].mes, /span|bgt-spk|color/);
 
   // Replace-tag regions put the translation where the main model reads it, so the wrapper has to be
   // marked there too, or the markup itself would leak into the prompt.
   const replaced = assembleReplace(segmentSource(source, options).layout, new Map([[1, '译一'], [2, '译二']]), options);
-  assert.match(replaced, /<span class="jy-spk/);
-  assert.doesNotMatch(stripGeneratedTranslationLines(replaced, undefined, 'prompt'), /span|jy-spk/);
+  assert.match(replaced, /<span class="bgt-spk/);
+  assert.doesNotMatch(stripGeneratedTranslationLines(replaced, undefined, 'prompt'), /span|bgt-spk/);
   assert.equal(stripGeneratedTranslationLines(replaced), source);
   assert.deepEqual([...extractReplaceTranslations(replaced, options).values()], ['译一', '译二']);
 });
 
 test('changing the visible affixes keeps a floor and its speaker colours intact', () => {
-  const styleFor = () => ({ open: '<span class="jy-spk jy-spk-abc" style="color:#84adff">', close: '</span>' });
+  const styleFor = () => ({ open: '<span class="bgt-spk bgt-spk-abc" style="color:#84adff">', close: '</span>' });
   const options = { translationPrefix: '{', translationSuffix: '}', styleFor };
   const floor = assembleBilingual(segmentSource('原文一行。', options).layout, new Map([[1, '译文一行。']]), options);
   const restyled = restyleBilingual(floor, { translationPrefix: '【', translationSuffix: '】' }, { schema_version: 4 });
-  assert.match(restyled, /<span class="jy-spk jy-spk-abc" style="color:#84adff">/);
+  assert.match(restyled, /<span class="bgt-spk bgt-spk-abc" style="color:#84adff">/);
   assert.match(restyled, /【/);
   assert.equal(stripGeneratedTranslationLines(restyled), '原文一行。');
   assert.equal(restyleBilingual(restyled, { translationPrefix: '【', translationSuffix: '】' }, { schema_version: 4 }), restyled);
@@ -1326,11 +1326,11 @@ test('speaker colouring wins the colour but the carried weight and slant still a
   const options = {
     translationPrefix: '',
     translationSuffix: '',
-    styleFor: () => ({ open: '<span class="jy-spk" style="color:#cbaa40 !important">', close: '</span>', paintsColor: true }),
+    styleFor: () => ({ open: '<span class="bgt-spk" style="color:#cbaa40 !important">', close: '</span>', paintsColor: true }),
   };
   const floor = assembleBilingual(segmentSource(source, options).layout, new Map([[1, '「译文」']]), options);
   const visible = floor.replace(/[​‌‍﻿⁠-⁤]/g, '');
-  assert.match(visible, /<span class="jy-spk" style="color:#cbaa40 !important"><b>「译文」<\/b><\/span>/);
+  assert.match(visible, /<span class="bgt-spk" style="color:#cbaa40 !important"><b>「译文」<\/b><\/span>/);
   assert.doesNotMatch(visible, /<b style="color:#e79">「译文」/);
   assert.equal(stripGeneratedTranslationLines(floor), source);
 });
@@ -1793,9 +1793,9 @@ test('只留译文 writes each line as its translation and leaves every picture 
 
 test('只留译文 keeps the speaker colours as plain HTML', () => {
   const layout = segmentSource('\n「こんにちは」\n', {}).layout;
-  const styleFor = () => ({ open: '<span class="jy-spk jy-spk-a" style="color:#123456 !important">', close: '</span>' });
+  const styleFor = () => ({ open: '<span class="bgt-spk bgt-spk-a" style="color:#123456 !important">', close: '</span>' });
   const out = assembleTranslationOnly(layout, new Map([[1, '「你好」']]), { styleFor });
-  assert.equal(out, '\n<span class="jy-spk jy-spk-a" style="color:#123456 !important">「你好」</span>\n');
+  assert.equal(out, '\n<span class="bgt-spk bgt-spk-a" style="color:#123456 !important">「你好」</span>\n');
 });
 
 test('a floor with only its translation left in it is read from the text kept for it, until something else changes it', () => {
@@ -2183,9 +2183,9 @@ test('the host\'s default reader name is a person, and a real value wrapped in t
 });
 
 test('a restyle changes the outer affixes only: the runs painted one by one and the carried formatting stay', () => {
-  const run = color => `${AFFIX_START}<span class="jy-spk-x" style="color:${color} !important">${AFFIX_END}`;
+  const run = color => `${AFFIX_START}<span class="bgt-spk-x" style="color:${color} !important">${AFFIX_END}`;
   const close = `${AFFIX_START}</span>${AFFIX_END}`;
-  const wrapper = '<span class="jy-spk" title="诗羽、英梨梨">';
+  const wrapper = '<span class="bgt-spk" title="诗羽、英梨梨">';
   const body = `${run('#00fffb')}「你来了？」${close}诗羽问道，英梨梨点点头：${run('#facf36')}「嗯。」${close}\n${AFFIX_START}<b>${AFFIX_END}警报。${AFFIX_START}</b>${AFFIX_END}`;
   const floor = `${renderSourceBlock('原文。')}\n${renderTranslationBlock(body, { translationPrefix: '{', translationSuffix: '}', stylePrefix: wrapper, styleSuffix: '</span>' })}`;
   const metadata = { schema_version: 4, translation_prefix: '{', translation_suffix: '}' };
@@ -2206,16 +2206,16 @@ test('a restyle changes the outer affixes only: the runs painted one by one and 
 });
 
 test('a restyle never keeps inside the body an outer affix its record does not know about', () => {
-  const wrapper = '<span class="jy-spk" title="诗羽">';
+  const wrapper = '<span class="bgt-spk" title="诗羽">';
   const style = { translationPrefix: '【', translationSuffix: '】' };
-  // Written with <jy-t>…</jy-t> while the record, not kept up, still says the block has no visible affixes.
-  const floor = `${renderSourceBlock('原文。')}\n${renderTranslationBlock('「你来了？」诗羽问道。', { translationPrefix: '<jy-t>', translationSuffix: '</jy-t>', stylePrefix: wrapper, styleSuffix: '</span>' })}`;
+  // Written with <bgt-t>…</bgt-t> while the record, not kept up, still says the block has no visible affixes.
+  const floor = `${renderSourceBlock('原文。')}\n${renderTranslationBlock('「你来了？」诗羽问道。', { translationPrefix: '<bgt-t>', translationSuffix: '</bgt-t>', stylePrefix: wrapper, styleSuffix: '</span>' })}`;
   const record = { schema_version: 4, translation_prefix: '', translation_suffix: '' };
   const restyled = restyleBilingual(floor, style, record);
-  assert.doesNotMatch(restyled, /jy-t/);
+  assert.doesNotMatch(restyled, /bgt-t/);
   assert.ok(restyled.includes(`${AFFIX_START}【${wrapper}${AFFIX_END}「你来了？」诗羽问道。${AFFIX_START}</span>】${AFFIX_END}`));
   // A prefix of formatting tags is told apart by the speaker wrapper it sits in front of.
-  const bold = floor.replace(/<jy-t>/g, '<b>').replace(/<\/jy-t>/g, '</b>');
+  const bold = floor.replace(/<bgt-t>/g, '<b>').replace(/<\/bgt-t>/g, '</b>');
   assert.equal((restyleBilingual(bold, style, record).match(/<b>/g) ?? []).length, 0);
   // The original's own formatting at the start of a block written with no visible affixes is the body's.
   const carried = `${AFFIX_START}<span style="color:#ff0000">${AFFIX_END}警报响了。${AFFIX_START}</span>${AFFIX_END}`;
@@ -2977,7 +2977,7 @@ test('voiceLibraryFoldSummary counts voices with a usable id and reads "空" for
 });
 
 // --- channelRequestFoldSummary / channelPostscriptFoldSummary ---------------------------------
-// DESIGN §15.4: 模型连接 每条连接卡的「请求参数」「后置提示词」became .jy-fold groups, matching every
+// DESIGN §15.4: 模型连接 每条连接卡的「请求参数」「后置提示词」became .bgt-fold groups, matching every
 // other advanced-mode fold's collapsed-row summary (review: they used to be plain <details> with no
 // summary at all, so a collapsed card said nothing about what was actually set).
 

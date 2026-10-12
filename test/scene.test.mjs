@@ -127,17 +127,17 @@ test('a translated floor keeps its scene, other extensions can read it and hear 
   const mes = '<story_scene>\n雨が降っている。\n\n風が強い。\n</story_scene>';
   context.chat.push({ mes, swipe_id: 0, swipes: [mes], extra: {} });
   const heard = [];
-  const stop = globalThis.__JINGYI__.scene.onChange(scene => heard.push(scene));
+  const stop = globalThis.__BE_EAGLE_TEST_TRANSLATOR__.scene.onChange(scene => heard.push(scene));
   t.after(stop);
 
   await __testing.startTranslation(0, { quiet: true });
   assert.ok(asked[0].some(message => message.content === composeSceneSection()), 'the first pass asks for the scene');
   assert.deepEqual(context.chat[0].extra[MESSAGE_META_KEY].scene, SCENE);
   assert.deepEqual(heard, [{ messageId: 0, ...SCENE }]);
-  assert.deepEqual(await globalThis.__JINGYI__.scene.get(0), { messageId: 0, ...SCENE });
-  assert.deepEqual(await globalThis.__JINGYI__.scene.list(), [{ messageId: 0, ...SCENE }]);
-  assert.equal(await globalThis.__JINGYI__.scene.get(5), null);
-  assert.equal(globalThis.__JINGYI__.scene.apiVersion, 1);
+  assert.deepEqual(await globalThis.__BE_EAGLE_TEST_TRANSLATOR__.scene.get(0), { messageId: 0, ...SCENE });
+  assert.deepEqual(await globalThis.__BE_EAGLE_TEST_TRANSLATOR__.scene.list(), [{ messageId: 0, ...SCENE }]);
+  assert.equal(await globalThis.__BE_EAGLE_TEST_TRANSLATOR__.scene.get(5), null);
+  assert.equal(globalThis.__BE_EAGLE_TEST_TRANSLATOR__.scene.apiVersion, 1);
 
   // A paragraph rewritten by hand keeps the floor's scene.
   await __testing.editTranslationSegment(0, 2, '风真大。');
@@ -151,7 +151,7 @@ test('a translated floor keeps its scene, other extensions can read it and hear 
 
   // A floor whose text changed has no scene to speak of until it is translated again.
   context.chat[0].mes = context.chat[0].mes.replace('雨が降っている。', '晴れている。');
-  assert.equal(await globalThis.__JINGYI__.scene.get(0), null);
+  assert.equal(await globalThis.__BE_EAGLE_TEST_TRANSLATOR__.scene.get(0), null);
 });
 
 test('the streamed translation keeps the scene of its reply too', async t => {

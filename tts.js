@@ -67,7 +67,7 @@ function escapeRegex(value) {
  * Lines inside literal source tags, for floors this extension never translated.
  *
  * A floor written by the translator is read through its own boundaries instead, which work whatever the
- * visible affixes are; this is the fallback for a preset that types `<jy-translation>` itself.
+ * visible affixes are; this is the fallback for a preset that types `<bgt-translation>` itself.
  */
 export function linesFromTaggedText(text, tags = [], { excludedTags = [] } = {}) {
   // Comments are not shown, so they are not read; an unclosed one hides the rest.
@@ -93,7 +93,7 @@ export function linesFromTaggedText(text, tags = [], { excludedTags = [] } = {})
       const text = plainLineText(raw);
       // The same judgement segmentSource applies through isBuiltinPreservedLine — a play-time readout or
       // a pseudo waveform read as if it were prose otherwise, exactly the card this fallback path most
-      // often meets (a floor with no mirror of its own, read straight off its literal <jy-translation>).
+      // often meets (a floor with no mirror of its own, read straight off its literal <bgt-translation>).
       if (text && !isDecorativeLine(text)) lines.push({ lineId: lines.length + 1, text });
     }
   }

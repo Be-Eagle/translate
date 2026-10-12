@@ -9,7 +9,7 @@
 // Everything that touches the host, the model, the microphone or the audio is handed in, so the
 // behaviour here can be tested without any of them.
 
-export const CALL_LOG_KEY = 'jingyi-translator.call-log.v1';
+export const CALL_LOG_KEY = 'beagle-test-translator.call-log.v1';
 /** The reader's side of the conversation before the first word: the line is picked up. */
 export const CALL_OPENING = '（电话接通了）';
 
@@ -591,7 +591,7 @@ export const CALL_NEEDS = Object.freeze(['tts.stream', 'stt', 'llm.stream']);
 const CALL_APP_NAME_MAX = 40;
 const CALL_NAME_MAX = 60;
 const CALL_NAMES_MAX = 60;
-const CALL_SETTINGS = '镜译 → 朗读 → 更多 → 实时通话';
+const CALL_SETTINGS = '测试翻译 → 朗读 → 更多 → 实时通话';
 const CALL_KEY_TITLES = Object.freeze({ fish: 'Fish Audio API Key', gsv: 'GPT-SoVITS 接口地址', doubao: '豆包 API Key', minimax: 'MiniMax API Key' });
 const CALL_KEY_MISSING = Object.freeze({ fish: '还没填 Fish Audio 的 API Key', gsv: '还没填 GPT-SoVITS 的接口地址', doubao: '还没填豆包语音的 Key', minimax: '还没填 MiniMax 的 Key' });
 
@@ -689,7 +689,7 @@ function voicesItem(tts, voices) {
   if (muted.length) parts.push(`${list(muted)}在角色表里设成了不朗读，通话里不出声`);
   if (skipped.length) parts.push(`${list(skipped)}没有专属音色，「对白默认音色」又设成了跳过，通话里不出声`);
   // Where the first of them is fixed: a voice that is missing where the call's voice looks for it.
-  const where = (unbound.length || gsvOnly.length) && cloud ? `${CALL_SETTINGS} → 角色音色` : '镜译 → 朗读 → 音色 → 角色表';
+  const where = (unbound.length || gsvOnly.length) && cloud ? `${CALL_SETTINGS} → 角色音色` : '测试翻译 → 朗读 → 音色 → 角色表';
   return { id: 'voices', need: 'tts.stream', title: '角色音色', reason: `${parts.join('；')}。`, where, names };
 }
 
@@ -721,7 +721,7 @@ export function callMissing(needs, facts = {}) {
     const tts = facts.tts ?? {};
     const voice = CALL_KEY_TITLES[tts.voice] ? tts.voice : 'fish';
     if (!tts.enabled) {
-      items.push({ id: 'tts', need: 'tts.stream', title: '朗读功能', reason: '朗读功能没打开，镜译读不了通话里的话。', where: '镜译 → 朗读 → 打开朗读' });
+      items.push({ id: 'tts', need: 'tts.stream', title: '朗读功能', reason: '朗读功能没打开，测试翻译读不了通话里的话。', where: '测试翻译 → 朗读 → 打开朗读' });
     }
     if (tts.keyMissing) {
       const hidden = voice === 'fish' && tts.fishCardHidden === true;
@@ -729,8 +729,8 @@ export function callMissing(needs, facts = {}) {
         id: 'key',
         need: 'tts.stream',
         title: CALL_KEY_TITLES[voice],
-        reason: `${CALL_KEY_MISSING[voice]}，镜译读不了通话里的话。${hidden ? '声音来源是 GPT-SoVITS 时「Fish Audio」卡不显示：把通话用的声音也换成 GPT-SoVITS，或者把声音来源换成 Fish Audio 填好 Key。' : ''}`,
-        where: voice === 'gsv' ? '镜译 → 朗读 →「GPT-SoVITS」→ 接口地址' : voice !== 'fish' ? CALL_SETTINGS : hidden ? `${CALL_SETTINGS} → 边写边读和通话用的声音` : '镜译 → 朗读 →「Fish Audio」',
+        reason: `${CALL_KEY_MISSING[voice]}，测试翻译读不了通话里的话。${hidden ? '声音来源是 GPT-SoVITS 时「Fish Audio」卡不显示：把通话用的声音也换成 GPT-SoVITS，或者把声音来源换成 Fish Audio 填好 Key。' : ''}`,
+        where: voice === 'gsv' ? '测试翻译 → 朗读 →「GPT-SoVITS」→ 接口地址' : voice !== 'fish' ? CALL_SETTINGS : hidden ? `${CALL_SETTINGS} → 边写边读和通话用的声音` : '测试翻译 → 朗读 →「Fish Audio」',
       });
     }
     const voices = voicesItem({ voice }, Array.isArray(facts.voices) ? facts.voices : []);
@@ -743,7 +743,7 @@ export function callMissing(needs, facts = {}) {
   if (wanted('llm.stream') && facts.llm?.problem) {
     const { problem, connection = '', sameAsAnalysis = false } = facts.llm;
     items.push(problem === 'incomplete'
-      ? { id: 'llm', need: 'llm.stream', title: '通话用的连接', reason: `通话用的连接「${connection}」还没填好地址或模型，请求不出去。`, where: '镜译 → 模型连接' }
+      ? { id: 'llm', need: 'llm.stream', title: '通话用的连接', reason: `通话用的连接「${connection}」还没填好地址或模型，请求不出去。`, where: '测试翻译 → 模型连接' }
       : {
         id: 'llm',
         need: 'llm.stream',
@@ -762,5 +762,5 @@ export function callAppSummary(missing) {
 
 /** The reminder an app's first connect with something missing gets, once per page. */
 export function callReminder(app, missing) {
-  return `${app}连上了镜译，还缺 ${missing.length} 项：${missing.map(item => item.title).join('、')}。到「${CALL_SETTINGS.replace(/^镜译 → /, '')}」看怎么补。`;
+  return `${app}连上了测试翻译，还缺 ${missing.length} 项：${missing.map(item => item.title).join('、')}。到「${CALL_SETTINGS.replace(/^测试翻译 → /, '')}」看怎么补。`;
 }

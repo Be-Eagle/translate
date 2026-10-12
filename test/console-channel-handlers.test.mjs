@@ -2,11 +2,11 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 
 // applyDeskChannelFieldChange/applyChannelFieldChange run the real fast-path change handlers —
-// createControlCenter's own [data-jy-desk-channel-field]/[data-jy-channel-field] change listeners are now
+// createControlCenter's own [data-bgt-desk-channel-field]/[data-bgt-channel-field] change listeners are now
 // single-line calls straight into these two (index.js:12792/13014), so driving the functions here IS
 // driving the handlers a revert of either call site would break. Both call
 // saveSettings(collectSettings(root)), and collectSettings reaches worldInfoCharacterKey() (through
-// collectColoringFields, which this file's "black hole" stub root's always-present [data-jy-coloring]
+// collectColoringFields, which this file's "black hole" stub root's always-present [data-bgt-coloring]
 // makes collectSettings always run) — that calls getContext(), so this must exist before index.js is even
 // imported, same as test/console-confirm-races.test.mjs's own header comment explains. `document` is set
 // only *after* the import below, once index.js's own module-level bootstrap (its last few lines) has
@@ -90,34 +90,34 @@ function makeStubDoc() {
   return doc;
 }
 
-// A desk-card field, [data-jy-desk-channel-field] — `hidden: false` on its 正常模式 block is the only
+// A desk-card field, [data-bgt-desk-channel-field] — `hidden: false` on its 正常模式 block is the only
 // case this fast path ever runs from (the card does not exist in 高级模式 at all).
 function deskField(key, value) {
   const modeBlock = { hidden: false };
-  return { dataset: { jyDeskChannelField: key }, value, closest: selector => (selector === '[data-jy-mode-content]' ? modeBlock : null) };
+  return { dataset: { bgtDeskChannelField: key }, value, closest: selector => (selector === '[data-bgt-mode-content]' ? modeBlock : null) };
 }
 
-// A 模型连接页 field, [data-jy-channel-field] — starts holding whatever that page's own render last put
+// A 模型连接页 field, [data-bgt-channel-field] — starts holding whatever that page's own render last put
 // there, independent of the desk card's own value (review finding index.js:12561's whole point).
 function channelField(key, value) {
-  return { dataset: { jyChannelField: key }, type: 'text', value };
+  return { dataset: { bgtChannelField: key }, type: 'text', value };
 }
 
 function makeTrackedRoot({ deskFields = [], channelFields = [], editingChannelId } = {}) {
   const doc = makeStubDoc();
   const root = doc.createElement();
-  root.dataset.jyEditingChannelId = editingChannelId;
+  root.dataset.bgtEditingChannelId = editingChannelId;
   const channelSummary = doc.createElement();
   const deepSelect = doc.createElement();
   const genericQuerySelector = root.querySelector;
   root.querySelector = selector => {
-    if (selector === '[data-jy-channel-summary]') return channelSummary;
+    if (selector === '[data-bgt-channel-summary]') return channelSummary;
     return genericQuerySelector(selector);
   };
   root.querySelectorAll = selector => {
-    if (selector === '[data-jy-desk-channel-field]') return deskFields;
-    if (selector === '[data-jy-channel-field]') return channelFields;
-    if (selector === '[data-jy-tts-field="deepChannelId"]') return [deepSelect];
+    if (selector === '[data-bgt-desk-channel-field]') return deskFields;
+    if (selector === '[data-bgt-channel-field]') return channelFields;
+    if (selector === '[data-bgt-tts-field="deepChannelId"]') return [deepSelect];
     return [];
   };
   return { root, channelSummary, deepSelect };
@@ -136,7 +136,7 @@ function testSettings(overrides = {}) {
 
 // --- applyDeskChannelFieldChange (review finding index.js:12561, HIGH) -----------------------------
 // Before this fix, the handler only ran syncDeskFields({ rebuildList: false }) — it left the 模型连接
-// page's own [data-jy-channel-field] copy of this same connection exactly as it was. Since 模型连接 is
+// page's own [data-bgt-channel-field] copy of this same connection exactly as it was. Since 模型连接 is
 // hidden in 正常模式, nothing rebuilds that copy until the reader actually opens 模型连接 — and
 // collectSettings(root) always reads it regardless of visibility. The next save made from anywhere while
 // 模型连接 sits hidden (switching to 高级模式 and touching any field there at all) then wrote that stale
@@ -174,7 +174,7 @@ test('applyDeskChannelFieldChange leaves everything alone and reports failure wh
   const realQuerySelector = root.querySelector;
   // 排除标签 filled with something parseTagNamesWithErrors rejects outright — the same shape review
   // finding index.js:11889 used to reproduce collectSettings throwing on an unrelated field.
-  root.querySelector = selector => (selector === '[data-jy-field="excludedTags"]' ? { value: '<<<' } : realQuerySelector(selector));
+  root.querySelector = selector => (selector === '[data-bgt-field="excludedTags"]' ? { value: '<<<' } : realQuerySelector(selector));
 
   const ok = applyDeskChannelFieldChange(root);
 

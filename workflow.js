@@ -138,7 +138,7 @@ async function buildWorldbookContext(snapshot, settings) {
     );
     return worldInfoChunks(result).join('\n\n');
   } catch (error) {
-    console.warn('[镜译 · 正文翻译器] 读取世界书失败，本轮将不带世界书。', error);
+    console.warn('[测试翻译 · 正文翻译器] 读取世界书失败，本轮将不带世界书。', error);
     return '';
   }
 }

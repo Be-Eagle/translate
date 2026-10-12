@@ -132,7 +132,7 @@ test('a call asks with thinking off, says so, and asks again without it where th
   assert.equal(await __testing.apiLlmStream({ messages: [{ role: 'user', content: '在吗？' }] }), '嗯。');
   const line = readDiagnostics().at(-1);
   assert.equal(line.level, 'warn');
-  assert.match(line.message, /模型先想了 8 字.*这个模型镜译不知道怎么关思考/, 'thinking that was not turned off is said');
+  assert.match(line.message, /模型先想了 8 字.*这个模型测试翻译不知道怎么关思考/, 'thinking that was not turned off is said');
 });
 
 test('a 400 that is not about the field (a wrong key) is said as it is, and the field is still sent next time', async t => {

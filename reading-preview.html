@@ -1,10 +1,10 @@
 <!doctype html>
-<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>镜译 · 三种阅读心情</title><style>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>测试翻译 · 三种阅读心情</title><style>
 :root{color-scheme:light;--bg:#f5f3ed;--surface:#fffefa;--text:#35453f;--muted:#7a867e;--line:#e0e4db}
 :root[data-theme="dark"]{color-scheme:dark;--bg:#1b2320;--surface:#232e28;--text:#e1e7df;--muted:#9ba89e;--line:#3b483f}
 *{box-sizing:border-box}body{margin:0;padding:40px 28px;font:15px/1.7 system-ui,"Microsoft YaHei",sans-serif;color:var(--text);background:var(--bg)}main{max-width:1220px;margin:0 auto}header{display:flex;align-items:center;justify-content:space-between;gap:20px;padding-bottom:28px;border-bottom:1px solid var(--line)}.brand{letter-spacing:.18em;font-size:12px;color:var(--muted)}.hero{margin:38px 0 32px}h1{font:500 clamp(27px,4vw,39px)/1.4 Georgia,"Noto Serif SC",serif;letter-spacing:.04em;margin:0 0 12px}.hero p{color:var(--muted);margin:0;font-size:14px}.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}article{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:24px 22px 27px;min-width:0}.card-heading{display:flex;gap:12px;border-bottom:1px solid var(--line);padding-bottom:20px;margin-bottom:25px;min-height:112px}.number{font:italic 23px Georgia,serif;color:#9da99e}.card-heading h2{font-size:17px;font-weight:600;margin:0 0 8px}.card-heading p{font-size:12px;color:var(--muted);margin:0;line-height:1.8}.sample{font-size:15px}.hint{margin-top:26px;color:var(--muted);font-size:12px}.theme{padding:9px 15px;border:1px solid var(--line);border-radius:20px;background:var(--surface);color:var(--text);font:inherit;font-size:12px;cursor:pointer}.theme:focus-visible{outline:2px solid #9cae99;outline-offset:3px}@media(max-width:850px){.grid{grid-template-columns:1fr}.card-heading{min-height:0}.sample{font-size:16px}body{padding:24px 18px}.hero{margin:28px 0}.card-heading{margin-bottom:16px}article{padding:22px}}
 /* Both class forms are intentional: SillyTavern sanitizes message classes with custom-. */
-:is(.jy-reading, .custom-jy-reading) {
+:is(.bgt-reading, .custom-bgt-reading) {
   margin: .9em 0 1.25em;
   color: inherit;
   font: inherit;
@@ -12,21 +12,21 @@
   overflow-wrap: anywhere;
   min-width: 0;
 }
-:is(.jy-reading, .custom-jy-reading) p { margin: .35em 0; }
-:is(.jy-reading-source, .custom-jy-reading-source) {
+:is(.bgt-reading, .custom-bgt-reading) p { margin: .35em 0; }
+:is(.bgt-reading-source, .custom-bgt-reading-source) {
   font-size: .88em;
   color: color-mix(in srgb, currentColor 72%, transparent);
   line-height: 1.8;
 }
-:is(.jy-reading-translation, .custom-jy-reading-translation) { margin-top: .8em; }
-:is(.jy-reading-cute, .custom-jy-reading-cute) {
+:is(.bgt-reading-translation, .custom-bgt-reading-translation) { margin-top: .8em; }
+:is(.bgt-reading-cute, .custom-bgt-reading-cute) {
   position: relative;
   padding: 17px 20px 18px 24px;
   border: 1px solid #c88b952e;
   border-radius: 13px 13px 13px 4px;
   background: linear-gradient(120deg, #d597a312, #d597a306);
 }
-:is(.jy-reading-cute, .custom-jy-reading-cute)::before {
+:is(.bgt-reading-cute, .custom-bgt-reading-cute)::before {
   content: '✿';
   position: absolute;
   top: 14px;
@@ -38,18 +38,18 @@
   font-size: 17px;
   color: #bf8792;
 }
-:is(.jy-reading-cute, .custom-jy-reading-cute) :is(.jy-reading-translation, .custom-jy-reading-translation) {
+:is(.bgt-reading-cute, .custom-bgt-reading-cute) :is(.bgt-reading-translation, .custom-bgt-reading-translation) {
   padding-top: .75em;
   border-top: 1px dashed #c88b9538;
 }
-:is(.jy-reading-minimal, .custom-jy-reading-minimal) { padding: 4px 0 4px 18px; border-left: 2px solid #879b923b; }
-:is(.jy-reading-minimal, .custom-jy-reading-minimal) :is(.jy-reading-source, .custom-jy-reading-source) { max-width: 68ch; }
-:is(.jy-reading-minimal, .custom-jy-reading-minimal) :is(.jy-reading-translation, .custom-jy-reading-translation) { margin-top: .65em; }
-:is(.jy-reading-fold, .custom-jy-reading-fold) { padding: 3px 0; }
-:is(.jy-reading-original, .custom-jy-reading-original) { margin: 0; padding: 0; border: 0; background: transparent; }
+:is(.bgt-reading-minimal, .custom-bgt-reading-minimal) { padding: 4px 0 4px 18px; border-left: 2px solid #879b923b; }
+:is(.bgt-reading-minimal, .custom-bgt-reading-minimal) :is(.bgt-reading-source, .custom-bgt-reading-source) { max-width: 68ch; }
+:is(.bgt-reading-minimal, .custom-bgt-reading-minimal) :is(.bgt-reading-translation, .custom-bgt-reading-translation) { margin-top: .65em; }
+:is(.bgt-reading-fold, .custom-bgt-reading-fold) { padding: 3px 0; }
+:is(.bgt-reading-original, .custom-bgt-reading-original) { margin: 0; padding: 0; border: 0; background: transparent; }
 /* Closed, the original is only its chip, and the paragraph's buttons that follow it share its line. */
-:is(.jy-reading-original, .custom-jy-reading-original):not([open]) { display: inline-block; vertical-align: middle; }
-:is(.jy-reading-original, .custom-jy-reading-original) > summary {
+:is(.bgt-reading-original, .custom-bgt-reading-original):not([open]) { display: inline-block; vertical-align: middle; }
+:is(.bgt-reading-original, .custom-bgt-reading-original) > summary {
   width: fit-content;
   padding: 3px 10px;
   border: 1px solid #879b922e;
@@ -62,13 +62,13 @@
   background: #879b920a;
   list-style: revert;
 }
-:is(.jy-reading-original, .custom-jy-reading-original) > summary::marker { color: #91a196; font-size: .8em; }
-:is(.jy-reading-original, .custom-jy-reading-original) > summary:focus-visible { outline: 2px solid #91a196; outline-offset: 3px; }
-:is(.jy-reading-original, .custom-jy-reading-original) > :is(.jy-reading-source, .custom-jy-reading-source) { margin: .8em 0 .2em; padding: .7em 1em; background: #879b920b; border-radius: 6px; }
-:is(.jy-reading-fold, .custom-jy-reading-fold) > :is(.jy-reading-translation, .custom-jy-reading-translation) { margin: .85em 0 0 .3em; padding-left: 1.1em; border-left: 2px solid #879b9233; }
+:is(.bgt-reading-original, .custom-bgt-reading-original) > summary::marker { color: #91a196; font-size: .8em; }
+:is(.bgt-reading-original, .custom-bgt-reading-original) > summary:focus-visible { outline: 2px solid #91a196; outline-offset: 3px; }
+:is(.bgt-reading-original, .custom-bgt-reading-original) > :is(.bgt-reading-source, .custom-bgt-reading-source) { margin: .8em 0 .2em; padding: .7em 1em; background: #879b920b; border-radius: 6px; }
+:is(.bgt-reading-fold, .custom-bgt-reading-fold) > :is(.bgt-reading-translation, .custom-bgt-reading-translation) { margin: .85em 0 0 .3em; padding-left: 1.1em; border-left: 2px solid #879b9233; }
 @media (max-width: 560px) {
-  :is(.jy-reading-cute, .custom-jy-reading-cute) { padding: 13px 15px 14px 18px; }
-  :is(.jy-reading-minimal, .custom-jy-reading-minimal) { padding-left: 13px; }
+  :is(.bgt-reading-cute, .custom-bgt-reading-cute) { padding: 13px 15px 14px 18px; }
+  :is(.bgt-reading-minimal, .custom-bgt-reading-minimal) { padding-left: 13px; }
 }
 
 /* Reading aloud inside the three built-in styles.
@@ -76,32 +76,32 @@
    The generic buttons in host.css take every colour from the text around them, which is right on a bare
    floor and wrong inside a card that has its own accent. Here the play buttons and the highlight take the
    card's accent, and the bar under the floor — which sits after the cards, not inside one — is told the
-   style by data-jy-reading and dresses to match. #chat keeps these above the generic rules. */
+   style by data-bgt-reading and dresses to match. #chat keeps these above the generic rules. */
 
 /* 可爱风: the petal pink of the card border and its flower. */
-#chat :is(.jy-reading-cute, .custom-jy-reading-cute) .jy-tts-play {
+#chat :is(.bgt-reading-cute, .custom-bgt-reading-cute) .bgt-tts-play {
   border-color: #c88b9566;
   background: #d597a31c;
   color: #bf8792;
   -webkit-text-fill-color: #bf8792;
   opacity: .8;
 }
-#chat :is(.jy-reading-cute, .custom-jy-reading-cute) .jy-tts-play:hover,
-#chat :is(.jy-reading-cute, .custom-jy-reading-cute) .jy-tts-play[data-state="playing"] {
+#chat :is(.bgt-reading-cute, .custom-bgt-reading-cute) .bgt-tts-play:hover,
+#chat :is(.bgt-reading-cute, .custom-bgt-reading-cute) .bgt-tts-play[data-state="playing"] {
   background: #d597a33d;
   box-shadow: 0 0 0 3px #d597a31f;
   opacity: 1;
 }
-:is(.jy-reading-cute, .custom-jy-reading-cute)::highlight(jy-tts-current),
-:is(.jy-reading-cute, .custom-jy-reading-cute) *::highlight(jy-tts-current) {
+:is(.bgt-reading-cute, .custom-bgt-reading-cute)::highlight(bgt-tts-current),
+:is(.bgt-reading-cute, .custom-bgt-reading-cute) *::highlight(bgt-tts-current) {
   background-color: #d597a347;
 }
-#chat .jy-tts-bar[data-jy-reading="cute"] {
+#chat .bgt-tts-bar[data-bgt-reading="cute"] {
   margin-top: .4em;
   padding: .55em 0 0 .2em;
   border-top-color: #c88b9538;
 }
-#chat .jy-tts-bar[data-jy-reading="cute"] :is(.jy-tts-bar-play, .jy-tts-bar-stop) {
+#chat .bgt-tts-bar[data-bgt-reading="cute"] :is(.bgt-tts-bar-play, .bgt-tts-bar-stop) {
   border-color: #c88b9566;
   border-radius: 13px 13px 13px 4px;
   background: linear-gradient(120deg, #d597a324, #d597a30d);
@@ -109,41 +109,41 @@
   -webkit-text-fill-color: #bf8792;
 }
 /* The card's flower stands in for the play triangle; two glyphs side by side only read as clutter. */
-#chat .jy-tts-bar[data-jy-reading="cute"] .jy-tts-bar-play::before { content: '✿'; }
-#chat .jy-tts-bar[data-jy-reading="cute"] .jy-tts-bar-play svg { display: none; }
+#chat .bgt-tts-bar[data-bgt-reading="cute"] .bgt-tts-bar-play::before { content: '✿'; }
+#chat .bgt-tts-bar[data-bgt-reading="cute"] .bgt-tts-bar-play svg { display: none; }
 
 /* 极简风: the buttons stay out of the way until the line is under the pointer, and the sentence being
    read is underlined instead of filled, the way the style already separates things with a single rule. */
-#chat :is(.jy-reading-minimal, .custom-jy-reading-minimal) .jy-tts-play {
+#chat :is(.bgt-reading-minimal, .custom-bgt-reading-minimal) .bgt-tts-play {
   border-color: transparent;
   background: transparent;
   color: #879b92;
   -webkit-text-fill-color: #879b92;
   opacity: .3;
 }
-#chat :is(.jy-reading-minimal, .custom-jy-reading-minimal) :is(p, .jy-reading-translation, .custom-jy-reading-translation):hover .jy-tts-play {
+#chat :is(.bgt-reading-minimal, .custom-bgt-reading-minimal) :is(p, .bgt-reading-translation, .custom-bgt-reading-translation):hover .bgt-tts-play {
   opacity: .75;
 }
 /* A phone never hovers, so a button waiting for the pointer would never be found. */
 @media (hover: none) {
-  #chat :is(.jy-reading-minimal, .custom-jy-reading-minimal) .jy-tts-play { opacity: .6; }
+  #chat :is(.bgt-reading-minimal, .custom-bgt-reading-minimal) .bgt-tts-play { opacity: .6; }
 }
-#chat :is(.jy-reading-minimal, .custom-jy-reading-minimal) .jy-tts-play:is(:hover, :focus-visible, [data-state="playing"], [data-state="busy"]) {
+#chat :is(.bgt-reading-minimal, .custom-bgt-reading-minimal) .bgt-tts-play:is(:hover, :focus-visible, [data-state="playing"], [data-state="busy"]) {
   border-color: #879b9280;
   opacity: 1;
 }
-:is(.jy-reading-minimal, .custom-jy-reading-minimal)::highlight(jy-tts-current),
-:is(.jy-reading-minimal, .custom-jy-reading-minimal) *::highlight(jy-tts-current) {
+:is(.bgt-reading-minimal, .custom-bgt-reading-minimal)::highlight(bgt-tts-current),
+:is(.bgt-reading-minimal, .custom-bgt-reading-minimal) *::highlight(bgt-tts-current) {
   background-color: #879b921f;
   text-decoration: underline 2px #879b92b3;
   text-underline-offset: .28em;
 }
-#chat .jy-tts-bar[data-jy-reading="minimal"] {
+#chat .bgt-tts-bar[data-bgt-reading="minimal"] {
   padding: .1em 0 .1em 18px;
   border-top: 0;
   border-left: 2px solid #879b923b;
 }
-#chat .jy-tts-bar[data-jy-reading="minimal"] :is(.jy-tts-bar-play, .jy-tts-bar-stop) {
+#chat .bgt-tts-bar[data-bgt-reading="minimal"] :is(.bgt-tts-bar-play, .bgt-tts-bar-stop) {
   padding: .15em 0;
   border: 0;
   border-radius: 0;
@@ -151,36 +151,36 @@
   color: #879b92;
   -webkit-text-fill-color: #879b92;
 }
-#chat .jy-tts-bar[data-jy-reading="minimal"] :is(.jy-tts-bar-play, .jy-tts-bar-stop):hover {
+#chat .bgt-tts-bar[data-bgt-reading="minimal"] :is(.bgt-tts-bar-play, .bgt-tts-bar-stop):hover {
   text-decoration: underline;
   text-underline-offset: .25em;
 }
 
 /* 原文折叠: the grey-green of the summary chip, and the bar indented on the same rule as the
    translation it plays. */
-#chat :is(.jy-reading-fold, .custom-jy-reading-fold) .jy-tts-play {
+#chat :is(.bgt-reading-fold, .custom-bgt-reading-fold) .bgt-tts-play {
   border-color: #879b9266;
   background: #879b9214;
   color: #91a196;
   -webkit-text-fill-color: #91a196;
   opacity: .75;
 }
-#chat :is(.jy-reading-fold, .custom-jy-reading-fold) .jy-tts-line[data-jy-tts-fold] { margin-left: .5em; vertical-align: middle; }
-#chat :is(.jy-reading-fold, .custom-jy-reading-fold) .jy-tts-play:is(:hover, [data-state="playing"]) {
+#chat :is(.bgt-reading-fold, .custom-bgt-reading-fold) .bgt-tts-line[data-bgt-tts-fold] { margin-left: .5em; vertical-align: middle; }
+#chat :is(.bgt-reading-fold, .custom-bgt-reading-fold) .bgt-tts-play:is(:hover, [data-state="playing"]) {
   background: #879b9238;
   opacity: 1;
 }
-:is(.jy-reading-fold, .custom-jy-reading-fold)::highlight(jy-tts-current),
-:is(.jy-reading-fold, .custom-jy-reading-fold) *::highlight(jy-tts-current) {
+:is(.bgt-reading-fold, .custom-bgt-reading-fold)::highlight(bgt-tts-current),
+:is(.bgt-reading-fold, .custom-bgt-reading-fold) *::highlight(bgt-tts-current) {
   background-color: #91a19642;
 }
-#chat .jy-tts-bar[data-jy-reading="fold"] {
+#chat .bgt-tts-bar[data-bgt-reading="fold"] {
   margin-left: .3em;
   padding: .15em 0 .15em 1.1em;
   border-top: 0;
   border-left: 2px solid #879b9233;
 }
-#chat .jy-tts-bar[data-jy-reading="fold"] :is(.jy-tts-bar-play, .jy-tts-bar-stop) {
+#chat .bgt-tts-bar[data-bgt-reading="fold"] :is(.bgt-tts-bar-play, .bgt-tts-bar-stop) {
   padding: 3px 10px;
   border-color: #879b922e;
   border-radius: 6px;
@@ -198,125 +198,125 @@
    generated palette sheet without touching a single stored message.
 
    Both class spellings are listed because SillyTavern prefixes message classes with custom-. */
-:is(.jy-spk, .custom-jy-spk) { transition: color 120ms ease; }
+:is(.bgt-spk, .custom-bgt-spk) { transition: color 120ms ease; }
 /* The host wraps quoted dialogue in <q> and gives it the theme's quote colour, some themes as a text fill
    or behind a longer selector. A line with a speaker's colour keeps that colour inside its quotes. */
-#chat .mes .mes_text [class*="jy-spk-"] q { color: inherit !important; -webkit-text-fill-color: inherit !important; }
-:is(.jy-spk, .custom-jy-spk)[title] { cursor: help; }
+#chat .mes .mes_text [class*="bgt-spk-"] q { color: inherit !important; -webkit-text-fill-color: inherit !important; }
+:is(.bgt-spk, .custom-bgt-spk)[title] { cursor: help; }
 
-:is(.jy-emo-happy, .custom-jy-emo-happy) { font-weight: 560; }
-:is(.jy-emo-happy, .custom-jy-emo-happy):is(.jy-emo-l2, .custom-jy-emo-l2) { font-weight: 620; }
-:is(.jy-emo-tender, .custom-jy-emo-tender) { font-style: italic; }
-:is(.jy-emo-tender, .custom-jy-emo-tender):is(.jy-emo-l2, .custom-jy-emo-l2) { font-style: italic; font-weight: 360; }
-:is(.jy-emo-sad, .custom-jy-emo-sad) { font-style: italic; font-weight: 360; }
-:is(.jy-emo-sad, .custom-jy-emo-sad):is(.jy-emo-l2, .custom-jy-emo-l2) { font-style: italic; font-weight: 320; }
-:is(.jy-emo-angry, .custom-jy-emo-angry) { font-weight: 640; }
-:is(.jy-emo-angry, .custom-jy-emo-angry):is(.jy-emo-l2, .custom-jy-emo-l2) { font-weight: 760; letter-spacing: -.01em; }
-:is(.jy-emo-fear, .custom-jy-emo-fear) { font-style: italic; letter-spacing: .03em; }
-:is(.jy-emo-fear, .custom-jy-emo-fear):is(.jy-emo-l2, .custom-jy-emo-l2) { font-style: italic; letter-spacing: .06em; font-size: .94em; }
-:is(.jy-emo-shy, .custom-jy-emo-shy) { letter-spacing: .01em; font-size: .98em; }
-:is(.jy-emo-shy, .custom-jy-emo-shy):is(.jy-emo-l2, .custom-jy-emo-l2) { letter-spacing: .02em; font-size: .96em; }
-:is(.jy-emo-surprise, .custom-jy-emo-surprise) { font-weight: 620; }
-:is(.jy-emo-surprise, .custom-jy-emo-surprise):is(.jy-emo-l2, .custom-jy-emo-l2) { font-weight: 700; font-size: 1.06em; }
-:is(.jy-emo-serious, .custom-jy-emo-serious) { font-weight: 540; }
-:is(.jy-emo-serious, .custom-jy-emo-serious):is(.jy-emo-l2, .custom-jy-emo-l2) { font-weight: 620; letter-spacing: -.02em; }
-:is(.jy-emo-resolute, .custom-jy-emo-resolute) { font-weight: 600; }
-:is(.jy-emo-resolute, .custom-jy-emo-resolute):is(.jy-emo-l2, .custom-jy-emo-l2) { font-weight: 700; }
-:is(.jy-emo-whisper, .custom-jy-emo-whisper) { font-style: italic; font-weight: 340; font-size: .95em; }
-:is(.jy-emo-whisper, .custom-jy-emo-whisper):is(.jy-emo-l2, .custom-jy-emo-l2) { font-style: italic; font-weight: 280; font-size: .9em; letter-spacing: .04em; }
-:is(.jy-emo-shout, .custom-jy-emo-shout) { font-weight: 700; font-size: 1.06em; }
-:is(.jy-emo-shout, .custom-jy-emo-shout):is(.jy-emo-l2, .custom-jy-emo-l2) { font-weight: 820; font-size: 1.12em; }
+:is(.bgt-emo-happy, .custom-bgt-emo-happy) { font-weight: 560; }
+:is(.bgt-emo-happy, .custom-bgt-emo-happy):is(.bgt-emo-l2, .custom-bgt-emo-l2) { font-weight: 620; }
+:is(.bgt-emo-tender, .custom-bgt-emo-tender) { font-style: italic; }
+:is(.bgt-emo-tender, .custom-bgt-emo-tender):is(.bgt-emo-l2, .custom-bgt-emo-l2) { font-style: italic; font-weight: 360; }
+:is(.bgt-emo-sad, .custom-bgt-emo-sad) { font-style: italic; font-weight: 360; }
+:is(.bgt-emo-sad, .custom-bgt-emo-sad):is(.bgt-emo-l2, .custom-bgt-emo-l2) { font-style: italic; font-weight: 320; }
+:is(.bgt-emo-angry, .custom-bgt-emo-angry) { font-weight: 640; }
+:is(.bgt-emo-angry, .custom-bgt-emo-angry):is(.bgt-emo-l2, .custom-bgt-emo-l2) { font-weight: 760; letter-spacing: -.01em; }
+:is(.bgt-emo-fear, .custom-bgt-emo-fear) { font-style: italic; letter-spacing: .03em; }
+:is(.bgt-emo-fear, .custom-bgt-emo-fear):is(.bgt-emo-l2, .custom-bgt-emo-l2) { font-style: italic; letter-spacing: .06em; font-size: .94em; }
+:is(.bgt-emo-shy, .custom-bgt-emo-shy) { letter-spacing: .01em; font-size: .98em; }
+:is(.bgt-emo-shy, .custom-bgt-emo-shy):is(.bgt-emo-l2, .custom-bgt-emo-l2) { letter-spacing: .02em; font-size: .96em; }
+:is(.bgt-emo-surprise, .custom-bgt-emo-surprise) { font-weight: 620; }
+:is(.bgt-emo-surprise, .custom-bgt-emo-surprise):is(.bgt-emo-l2, .custom-bgt-emo-l2) { font-weight: 700; font-size: 1.06em; }
+:is(.bgt-emo-serious, .custom-bgt-emo-serious) { font-weight: 540; }
+:is(.bgt-emo-serious, .custom-bgt-emo-serious):is(.bgt-emo-l2, .custom-bgt-emo-l2) { font-weight: 620; letter-spacing: -.02em; }
+:is(.bgt-emo-resolute, .custom-bgt-emo-resolute) { font-weight: 600; }
+:is(.bgt-emo-resolute, .custom-bgt-emo-resolute):is(.bgt-emo-l2, .custom-bgt-emo-l2) { font-weight: 700; }
+:is(.bgt-emo-whisper, .custom-bgt-emo-whisper) { font-style: italic; font-weight: 340; font-size: .95em; }
+:is(.bgt-emo-whisper, .custom-bgt-emo-whisper):is(.bgt-emo-l2, .custom-bgt-emo-l2) { font-style: italic; font-weight: 280; font-size: .9em; letter-spacing: .04em; }
+:is(.bgt-emo-shout, .custom-bgt-emo-shout) { font-weight: 700; font-size: 1.06em; }
+:is(.bgt-emo-shout, .custom-bgt-emo-shout):is(.bgt-emo-l2, .custom-bgt-emo-l2) { font-weight: 820; font-size: 1.12em; }
 
 /* Motion is opt-out for anyone who asked the system not to animate. */
 @media (prefers-reduced-motion: reduce) {
-  :is(.jy-spk, .custom-jy-spk) { transition: none; }
+  :is(.bgt-spk, .custom-bgt-spk) { transition: none; }
 }
 
 /* The cue button beside the play button takes each card's accent the same way. */
-#chat :is(.jy-reading-cute, .custom-jy-reading-cute) .jy-tts-edit { border-color: #c88b9544; color: #bf8792; -webkit-text-fill-color: #bf8792; opacity: .55; }
-#chat :is(.jy-reading-cute, .custom-jy-reading-cute) .jy-tts-edit:hover { background: #d597a33d; opacity: 1; }
-#chat :is(.jy-reading-minimal, .custom-jy-reading-minimal) .jy-tts-edit { border-color: transparent; color: #879b92; -webkit-text-fill-color: #879b92; opacity: .2; }
-#chat :is(.jy-reading-minimal, .custom-jy-reading-minimal) :is(p, .jy-reading-translation, .custom-jy-reading-translation):hover .jy-tts-edit { opacity: .6; }
+#chat :is(.bgt-reading-cute, .custom-bgt-reading-cute) .bgt-tts-edit { border-color: #c88b9544; color: #bf8792; -webkit-text-fill-color: #bf8792; opacity: .55; }
+#chat :is(.bgt-reading-cute, .custom-bgt-reading-cute) .bgt-tts-edit:hover { background: #d597a33d; opacity: 1; }
+#chat :is(.bgt-reading-minimal, .custom-bgt-reading-minimal) .bgt-tts-edit { border-color: transparent; color: #879b92; -webkit-text-fill-color: #879b92; opacity: .2; }
+#chat :is(.bgt-reading-minimal, .custom-bgt-reading-minimal) :is(p, .bgt-reading-translation, .custom-bgt-reading-translation):hover .bgt-tts-edit { opacity: .6; }
 @media (hover: none) {
-  #chat :is(.jy-reading-minimal, .custom-jy-reading-minimal) .jy-tts-edit { opacity: .45; }
+  #chat :is(.bgt-reading-minimal, .custom-bgt-reading-minimal) .bgt-tts-edit { opacity: .45; }
 }
-#chat :is(.jy-reading-minimal, .custom-jy-reading-minimal) .jy-tts-edit:is(:hover, :focus-visible) { border-color: #879b9280; opacity: 1; }
-#chat :is(.jy-reading-fold, .custom-jy-reading-fold) .jy-tts-edit { border-color: #879b9244; color: #91a196; -webkit-text-fill-color: #91a196; opacity: .5; }
-#chat :is(.jy-reading-fold, .custom-jy-reading-fold) .jy-tts-edit:hover { background: #879b9238; opacity: 1; }
-#chat .jy-tts-bar[data-jy-reading="fold"] .jy-tts-bar-panel { color: #91a196; -webkit-text-fill-color: #91a196; }
-#chat .jy-tts-bar[data-jy-reading="cute"] .jy-tts-bar-panel { color: #bf8792; -webkit-text-fill-color: #bf8792; }
-#chat .jy-tts-bar[data-jy-reading="minimal"] .jy-tts-bar-panel { color: #879b92; -webkit-text-fill-color: #879b92; }
+#chat :is(.bgt-reading-minimal, .custom-bgt-reading-minimal) .bgt-tts-edit:is(:hover, :focus-visible) { border-color: #879b9280; opacity: 1; }
+#chat :is(.bgt-reading-fold, .custom-bgt-reading-fold) .bgt-tts-edit { border-color: #879b9244; color: #91a196; -webkit-text-fill-color: #91a196; opacity: .5; }
+#chat :is(.bgt-reading-fold, .custom-bgt-reading-fold) .bgt-tts-edit:hover { background: #879b9238; opacity: 1; }
+#chat .bgt-tts-bar[data-bgt-reading="fold"] .bgt-tts-bar-panel { color: #91a196; -webkit-text-fill-color: #91a196; }
+#chat .bgt-tts-bar[data-bgt-reading="cute"] .bgt-tts-bar-panel { color: #bf8792; -webkit-text-fill-color: #bf8792; }
+#chat .bgt-tts-bar[data-bgt-reading="minimal"] .bgt-tts-bar-panel { color: #879b92; -webkit-text-fill-color: #879b92; }
 
-</style></head><body><main><header><span class="brand">镜译 · MIRROR TRANSLATE</span><button class="theme" type="button" aria-pressed="false">切换为夜间</button></header><div class="hero"><h1>同一段话，三种阅读心情。</h1><p>原文与译文各有位置，故事自然连在一起。</p></div><div class="grid"><article><div class="card-heading"><span class="number">01</span><div><h2>可爱风</h2><p>一点桃粉，一枚小花。</p></div></div><div class="sample"><div class="jy-reading jy-reading-cute">
-<div class="jy-reading-source">
+</style></head><body><main><header><span class="brand">测试翻译 · MIRROR TRANSLATE</span><button class="theme" type="button" aria-pressed="false">切换为夜间</button></header><div class="hero"><h1>同一段话，三种阅读心情。</h1><p>原文与译文各有位置，故事自然连在一起。</p></div><div class="grid"><article><div class="card-heading"><span class="number">01</span><div><h2>可爱风</h2><p>一点桃粉，一枚小花。</p></div></div><div class="sample"><div class="bgt-reading bgt-reading-cute">
+<div class="bgt-reading-source">
 
 雨上がりの窓辺で、彼女は小さく笑った。
 
 </div>
-<div class="jy-reading-translation">
+<div class="bgt-reading-translation">
 
 雨后的窗边，她轻轻笑了。
 
 </div>
 </div>
 
-<div class="jy-reading jy-reading-cute">
-<div class="jy-reading-source">
+<div class="bgt-reading bgt-reading-cute">
+<div class="bgt-reading-source">
 
 「明日も、ここで会える？」
 
 </div>
-<div class="jy-reading-translation">
+<div class="bgt-reading-translation">
 
 “明天，也能在这里见到你吗？”
 
 </div>
 </div></div></article>
-<article><div class="card-heading"><span class="number">02</span><div><h2>极简风</h2><p>淡化原文，留白分隔。</p></div></div><div class="sample"><div class="jy-reading jy-reading-minimal">
-<div class="jy-reading-source">
+<article><div class="card-heading"><span class="number">02</span><div><h2>极简风</h2><p>淡化原文，留白分隔。</p></div></div><div class="sample"><div class="bgt-reading bgt-reading-minimal">
+<div class="bgt-reading-source">
 
 雨上がりの窓辺で、彼女は小さく笑った。
 
 </div>
-<div class="jy-reading-translation">
+<div class="bgt-reading-translation">
 
 雨后的窗边，她轻轻笑了。
 
 </div>
 </div>
 
-<div class="jy-reading jy-reading-minimal">
-<div class="jy-reading-source">
+<div class="bgt-reading bgt-reading-minimal">
+<div class="bgt-reading-source">
 
 「明日も、ここで会える？」
 
 </div>
-<div class="jy-reading-translation">
+<div class="bgt-reading-translation">
 
 “明天，也能在这里见到你吗？”
 
 </div>
 </div></div></article>
-<article><div class="card-heading"><span class="number">03</span><div><h2>原文折叠</h2><p>原文可展开，译文缩进。</p></div></div><div class="sample"><div class="jy-reading jy-reading-fold">
-<details class="jy-reading-original"><summary>原文</summary><div class="jy-reading-source">
+<article><div class="card-heading"><span class="number">03</span><div><h2>原文折叠</h2><p>原文可展开，译文缩进。</p></div></div><div class="sample"><div class="bgt-reading bgt-reading-fold">
+<details class="bgt-reading-original"><summary>原文</summary><div class="bgt-reading-source">
 
 雨上がりの窓辺で、彼女は小さく笑った。
 
 </div></details>
-<div class="jy-reading-translation">
+<div class="bgt-reading-translation">
 
 雨后的窗边，她轻轻笑了。
 
 </div>
 </div>
 
-<div class="jy-reading jy-reading-fold">
-<details class="jy-reading-original"><summary>原文</summary><div class="jy-reading-source">
+<div class="bgt-reading bgt-reading-fold">
+<details class="bgt-reading-original"><summary>原文</summary><div class="bgt-reading-source">
 
 「明日も、ここで会える？」
 
 </div></details>
-<div class="jy-reading-translation">
+<div class="bgt-reading-translation">
 
 “明天，也能在这里见到你吗？”
 

@@ -681,23 +681,23 @@ test('utterances are found on the rendered floor after markdown and quote wrappi
   assert.deepEqual(gappyFound.get(1), { start: { node: 0, offset: 0 }, end: { node: 2, offset: 10 } });
 });
 
-test('tag fallback reads literal jy-translation blocks and sheds markup and boundaries', () => {
-  const text = '<story>原文</story>\n<jy-translation>\n蓝蓝的天空。\n<b>泰罗</b>说：「好热！」&nbsp;\n\n</jy-translation>\n<jy-translation>第二段。</jy-translation>';
-  assert.deepEqual(linesFromTaggedText(text, ['jy-translation']), [
+test('tag fallback reads literal bgt-translation blocks and sheds markup and boundaries', () => {
+  const text = '<story>原文</story>\n<bgt-translation>\n蓝蓝的天空。\n<b>泰罗</b>说：「好热！」&nbsp;\n\n</bgt-translation>\n<bgt-translation>第二段。</bgt-translation>';
+  assert.deepEqual(linesFromTaggedText(text, ['bgt-translation']), [
     { lineId: 1, text: '蓝蓝的天空。' },
     { lineId: 2, text: '泰罗说：「好热！」' },
     { lineId: 3, text: '第二段。' },
   ]);
   assert.deepEqual(linesFromTaggedText(text, ['nope', 'bad tag']), []);
-  assert.deepEqual(linesFromTaggedText('<jy-translation>\n<!-- 计划：\n[张力]: 7\n-->\n她笑了。\n</jy-translation>', ['jy-translation']).map(line => line.text), ['她笑了。'], 'a comment is not read');
-  assert.deepEqual(linesFromTaggedText('<jy-translation>\n![正文插图](/user/images/a.png)\n![插图](/b.png)她笑了。\n</jy-translation>', ['jy-translation']).map(line => line.text), ['她笑了。'], 'a picture is seen, not read');
+  assert.deepEqual(linesFromTaggedText('<bgt-translation>\n<!-- 计划：\n[张力]: 7\n-->\n她笑了。\n</bgt-translation>', ['bgt-translation']).map(line => line.text), ['她笑了。'], 'a comment is not read');
+  assert.deepEqual(linesFromTaggedText('<bgt-translation>\n![正文插图](/user/images/a.png)\n![插图](/b.png)她笑了。\n</bgt-translation>', ['bgt-translation']).map(line => line.text), ['她笑了。'], 'a picture is seen, not read');
   const pictured = '<content>\n她笑了。\n<image>image###[Mage].\nA woman smiles at a statue.###</image>\n她点了点头。\n</content>';
   assert.deepEqual(linesFromTaggedText(pictured, ['content'], { excludedTags: ['image'] }).map(line => line.text), ['她笑了。', '她点了点头。'], 'what an excluded tag holds is not read, over several lines too');
   assert.equal(linesFromTaggedText(pictured, ['content']).length, 4, 'without the exclusion it is read as before');
   // The same built-in decorative shapes segmentSource itself never sends translating or reading — see
   // isDecorativeLine — are skipped here too, not just where segmentSource ran.
-  const card = '<jy-translation>风停了。\n▶ 01:02 / 03:45\nılılıllıılı\n「走吧。」</jy-translation>';
-  assert.deepEqual(linesFromTaggedText(card, ['jy-translation']).map(line => line.text), ['风停了。', '「走吧。」'], 'a play-time readout and a pseudo waveform are neither read as prose');
+  const card = '<bgt-translation>风停了。\n▶ 01:02 / 03:45\nılılıllıılı\n「走吧。」</bgt-translation>';
+  assert.deepEqual(linesFromTaggedText(card, ['bgt-translation']).map(line => line.text), ['风停了。', '「走吧。」'], 'a play-time readout and a pseudo waveform are neither read as prose');
 });
 
 test('read-aloud settings normalise, clamp, migrate and follow the character card', () => {
@@ -744,7 +744,7 @@ test('read-aloud settings normalise, clamp, migrate and follow the character car
   assert.equal(normalizeVoiceList([{ name: '樱井', console: { breath: 50 } }])[0].console, null, 'a console left in the middle is no console');
   assert.deepEqual(settings.voiceLibrary, [{ id: 'voice-1', name: '少年', voiceId: 'lib-1', lang: 'zh', title: '' }]);
   assert.deepEqual(mergeSettings({}).tts, { ...normalizeTts(undefined), deepChannelId: 'follow' }, 'a fresh install analyses through the host connection, as its translation does');
-  assert.deepEqual(mergeSettings({}).tts.sourceTags, ['jy-translation']);
+  assert.deepEqual(mergeSettings({}).tts.sourceTags, ['bgt-translation']);
   assert.deepEqual(mergeSettings({}).tts.quotePairs, ['「」', '『』', '“”', '""']);
   assert.equal(mergeSettings({ tts: { quotePairs: '' } }).tts.quotePairs.length, 0, 'an emptied field means no quote pairs');
   // Ordinary mode is the default: nothing about reading aloud is on until someone turns it on.
@@ -817,12 +817,12 @@ test('the run log is read back at once and written to storage in one go, not onc
   assert.equal(writes, 0, 'a burst of lines does not rewrite storage line by line');
   flushDiagnostics();
   assert.equal(writes, 1);
-  assert.equal(JSON.parse(values.get('jingyi-translator.diagnostics.v1')).length, 20, 'what is saved is the whole burst');
+  assert.equal(JSON.parse(values.get('beagle-test-translator.diagnostics.v1')).length, 20, 'what is saved is the whole burst');
   clearDiagnostics(adapter);
 });
 
 test('two tabs saving the same log keep each other\'s lines', () => {
-  const key = 'jingyi-translator.diagnostics.v1';
+  const key = 'beagle-test-translator.diagnostics.v1';
   const values = new Map();
   const adapter = { getItem: name => values.get(name) ?? null, setItem: (name, value) => values.set(name, value), removeItem: name => values.delete(name) };
   clearDiagnostics(adapter);

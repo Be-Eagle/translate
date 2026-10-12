@@ -76,14 +76,14 @@ function makeChannelPageRoot() {
   const root = {
     dataset: {},
     querySelector(selector) {
-      if (selector === '[data-jy-channel-use-row="follow"]') return followRow;
-      if (selector === '[data-jy-channel-cards]') return host;
-      if (selector === '[data-jy-channel-detail]') return detail;
-      if (selector === '[data-jy-channel-detail-holder]') return holder;
+      if (selector === '[data-bgt-channel-use-row="follow"]') return followRow;
+      if (selector === '[data-bgt-channel-cards]') return host;
+      if (selector === '[data-bgt-channel-detail]') return detail;
+      if (selector === '[data-bgt-channel-detail-holder]') return holder;
       return null;
     },
     querySelectorAll(selector) {
-      if (selector === '[data-jy-channel-card]') return host.children;
+      if (selector === '[data-bgt-channel-card]') return host.children;
       return [];
     },
   };
@@ -113,12 +113,12 @@ function testSettings() {
 }
 
 function cardFor(host, id) {
-  return host.children.find(card => card.dataset.jyChannelCard === id);
+  return host.children.find(card => card.dataset.bgtChannelCard === id);
 }
 
 function chevronOf(card) {
-  const head = card.children.find(el => el.className === 'jy-channel-card-head');
-  return head?.children.find(el => el.className === 'jy-channel-card-chevron');
+  const head = card.children.find(el => el.className === 'bgt-channel-card-head');
+  return head?.children.find(el => el.className === 'bgt-channel-card-chevron');
 }
 
 // --- renderChannelCards ---------------------------------------------------------------------------
@@ -148,12 +148,12 @@ test('renderChannelCards opens the matching card: detail attached, its chevron e
   assert.equal(chevronB.getAttribute('aria-label'), '展开这条连接');
   assert.equal(chevronB.textContent, '▸');
 
-  // Review finding index.js:8246: the chevron used to share its toggle's exact data-jy-action/
-  // data-jy-channel-id pair, so focusIdentity() (test/console-panel.test.mjs) built the same selector
+  // Review finding index.js:8246: the chevron used to share its toggle's exact data-bgt-action/
+  // data-bgt-channel-id pair, so focusIdentity() (test/console-panel.test.mjs) built the same selector
   // for both and a keyboard Enter on the chevron ended up refocusing the toggle instead.
-  const toggleA = cardA.children.find(el => el.className === 'jy-channel-card-head').children[0];
-  assert.equal(chevronA.dataset.jyChannelChevron, 'true', '箭头带着自己专属的标记');
-  assert.equal(toggleA.dataset.jyChannelChevron, undefined, '展开按钮本身没有这个标记，两者才分得开');
+  const toggleA = cardA.children.find(el => el.className === 'bgt-channel-card-head').children[0];
+  assert.equal(chevronA.dataset.bgtChannelChevron, 'true', '箭头带着自己专属的标记');
+  assert.equal(toggleA.dataset.bgtChannelChevron, undefined, '展开按钮本身没有这个标记，两者才分得开');
 });
 
 test('renderChannelCards with editing === "" collapses every card and parks the detail node in the hidden holder, not losing it', () => {
@@ -201,7 +201,7 @@ test('syncChannelFields({ rebuildCards: false }) updates the open card\'s headin
   configureForTest({ editingChannelId: 'a' });
 
   const cardA = cardFor(host, 'a');
-  const headA = cardA.children.find(el => el.className === 'jy-channel-card-head');
+  const headA = cardA.children.find(el => el.className === 'bgt-channel-card-head');
   const toggleA = headA.children[0];
   const chevronA = chevronOf(cardA);
 
@@ -209,13 +209,13 @@ test('syncChannelFields({ rebuildCards: false }) updates the open card\'s headin
   syncChannelFields(root, renamed, { rebuildCards: false });
 
   assert.equal(cardFor(host, 'a'), cardA, '连接卡节点没有被换成新的');
-  assert.equal(cardA.children.find(el => el.className === 'jy-channel-card-head'), headA, '卡头节点没有被换掉');
+  assert.equal(cardA.children.find(el => el.className === 'bgt-channel-card-head'), headA, '卡头节点没有被换掉');
   assert.equal(headA.children[0], toggleA, '展开/收起按钮没有被换掉——一次正在进行中的点击不会被吞掉');
   assert.equal(chevronOf(cardA), chevronA, '箭头按钮没有被换掉');
 
   const heading = findDescendant(cardA, el => el.tagName === 'H2');
   assert.equal(heading.textContent, '改名后的连接', '卡片标题跟着新名字更新');
-  assert.equal(root.dataset.jyEditingChannelId, 'a');
+  assert.equal(root.dataset.bgtEditingChannelId, 'a');
 });
 
 test('syncChannelFields() with no options still rebuilds the cards (add/delete/switch/collapse keep going through the full render)', () => {

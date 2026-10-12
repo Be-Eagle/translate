@@ -52,8 +52,8 @@ function fakeHelperRoot() {
   const input = fakeElement();
   const root = {
     querySelector(selector) {
-      if (selector === '[data-jy-helper-conversation]') return conversation;
-      if (selector === '[data-jy-helper-input]') return input;
+      if (selector === '[data-bgt-helper-conversation]') return conversation;
+      if (selector === '[data-bgt-helper-input]') return input;
       return null;
     },
   };
@@ -195,7 +195,7 @@ test('extractControlCenterKnowledge files a bare <summary> (no nested <h2>) as i
   );
 });
 
-test('extractControlCenterKnowledge now contributes at least one line for 微调, the page a class-list-only jy-muted paragraph used to shut out entirely', () => {
+test('extractControlCenterKnowledge now contributes at least one line for 微调, the page a class-list-only bgt-muted paragraph used to shut out entirely', () => {
   const lines = extractControlCenterKnowledge(CONTROL_CENTER_MARKUP);
   assert.ok(lines.some(line => line.startsWith('微调 › ')), '微调页应该至少有一行知识（此前是 0 行）');
 });
@@ -348,7 +348,7 @@ function helperTestSettings(overrides = {}) {
 test('askHelper unwraps the { content, reasoning } object an independent (saved) connection returns before parsing suggestions — the real request path, not just parseHelperReply in isolation (review finding helper.js:616, high)', async () => {
   clearDiagnostics();
   configureForTest({ settings: helperTestSettings(), panel: null, resetHelper: true });
-  const reply = '这样试试。\n\n```jingyi-suggest\n[{"type":"set","field":"autoGeneration","value":false,"why":"你不想自动翻"}]\n```';
+  const reply = '这样试试。\n\n```beagle-test-suggest\n[{"type":"set","field":"autoGeneration","value":false,"why":"你不想自动翻"}]\n```';
   const beforeSillyTavern = globalThis.SillyTavern;
   globalThis.SillyTavern = {
     getContext: () => ({
@@ -531,7 +531,7 @@ test('extractControlCenterKnowledge scopes a row title to its own row, against t
   assert.ok(!lines.some(line => /改过$/.test(line)));
 });
 
-test('extractControlCenterKnowledge files a card whose heading sits in a jy-card-head wrapper under that heading', () => {
+test('extractControlCenterKnowledge files a card whose heading sits in a bgt-card-head wrapper under that heading', () => {
   const lines = extractControlCenterKnowledge(CONTROL_CENTER_MARKUP);
   assert.ok(lines.includes('翻译台 › 朗读 · Fish Audio › 分析模式'));
   assert.ok(!lines.includes('翻译台 › 翻译台 › 分析模式'));

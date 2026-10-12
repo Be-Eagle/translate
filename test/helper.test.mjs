@@ -179,7 +179,7 @@ test('buildHelperContext\'s final redactSecrets pass reaches every input it acce
     },
     runLog: [{ time: 't', level: 'error', scope: 's', message: `失败：${plantedInRunLog}` }],
     regex: { expected: 1, surplus: 0 },
-    knowledgeMarkup: `<section class="jy-page" data-jy-page="main"><h1>翻译台</h1><p class="jy-muted">说明 ${plantedInKnowledge}</p></section>`,
+    knowledgeMarkup: `<section class="bgt-page" data-bgt-page="main"><h1>翻译台</h1><p class="bgt-muted">说明 ${plantedInKnowledge}</p></section>`,
     manual: `手册里写着 ${plantedInManual}`,
   });
   for (const planted of [plantedInHostVersion, plantedInFloorPreview, plantedInFloorError, plantedInRunLog, plantedInKnowledge, plantedInManual]) {
@@ -229,16 +229,16 @@ test('buildRunLogLines keeps only the last 30 entries and never invents one when
 
 test('extractControlCenterKnowledge reads "页 › 区 › 文字" lines straight from the markup, grouped by the nearest heading', () => {
   const markup = `
-<section class="jy-page" data-jy-page="main" role="tabpanel">
+<section class="bgt-page" data-bgt-page="main" role="tabpanel">
 <h1>翻译台</h1>
 <h2>你自己的设置</h2>
-<p class="jy-muted">提取标签只取每种标签的最后一组完整内容。</p>
+<p class="bgt-muted">提取标签只取每种标签的最后一组完整内容。</p>
 <button title="从这里去改">改</button>
 </section>
-<section class="jy-page" data-jy-page="tts" role="tabpanel" hidden>
+<section class="bgt-page" data-bgt-page="tts" role="tabpanel" hidden>
 <h1>朗读</h1>
 <h2>Fish Audio</h2>
-<p class="jy-muted">需要 Fish Audio 的 API Key。</p>
+<p class="bgt-muted">需要 Fish Audio 的 API Key。</p>
 </section>`;
   const lines = extractControlCenterKnowledge(markup);
   assert.ok(lines.some(line => line === '翻译台 › 你自己的设置 › 提取标签只取每种标签的最后一组完整内容。'));
@@ -247,8 +247,8 @@ test('extractControlCenterKnowledge reads "页 › 区 › 文字" lines straigh
 });
 
 test('extractControlCenterKnowledge caps how many lines one page can contribute, and never duplicates a line', () => {
-  const manyParagraphs = Array.from({ length: 80 }, (_, i) => `<p class="jy-muted">重复说明 ${i % 5}</p>`).join('');
-  const markup = `<section class="jy-page" data-jy-page="main"><h1>翻译台</h1>${manyParagraphs}</section>`;
+  const manyParagraphs = Array.from({ length: 80 }, (_, i) => `<p class="bgt-muted">重复说明 ${i % 5}</p>`).join('');
+  const markup = `<section class="bgt-page" data-bgt-page="main"><h1>翻译台</h1>${manyParagraphs}</section>`;
   const lines = extractControlCenterKnowledge(markup);
   assert.ok(lines.length <= 40, `单页不应贡献超过上限的行数，实际 ${lines.length}`);
   assert.equal(new Set(lines).size, lines.length, '不重复同一行');
@@ -263,7 +263,7 @@ test('buildHelperContext never exceeds its cap, even when every section is overs
     floor: { messageId: 1, role: '角色', swipeLabel: '1/1', segmentCount: 1, translationState: '已译', bodyTagsFound: [], replaceTagsFound: [], excludedTagsFound: [], errors: hugeErrors, preview: 'p'.repeat(1200) },
     runLog: Array.from({ length: 500 }, (_, i) => ({ time: 't', level: 'info', scope: 's', message: 'm'.repeat(300) + i })),
     regex: { expected: 0, surplus: 0 },
-    knowledgeMarkup: `<section class="jy-page" data-jy-page="main"><h1>翻译台</h1>${Array.from({ length: 200 }, (_, i) => `<p class="jy-muted">${'k'.repeat(150)}${i}</p>`).join('')}</section>`,
+    knowledgeMarkup: `<section class="bgt-page" data-bgt-page="main"><h1>翻译台</h1>${Array.from({ length: 200 }, (_, i) => `<p class="bgt-muted">${'k'.repeat(150)}${i}</p>`).join('')}</section>`,
     manual: 'm'.repeat(300000),
     cap: HELPER_CONTEXT_CAP,
   });
@@ -294,7 +294,7 @@ test('buildHelperContext reports no truncation when everything comfortably fits'
     floor: null,
     runLog: [{ time: 't', level: 'info', scope: 's', message: 'ok' }],
     regex: { expected: 1, surplus: 0 },
-    knowledgeMarkup: '<section class="jy-page" data-jy-page="main"><h1>翻译台</h1><p class="jy-muted">说明</p></section>',
+    knowledgeMarkup: '<section class="bgt-page" data-bgt-page="main"><h1>翻译台</h1><p class="bgt-muted">说明</p></section>',
     manual: '短短的手册摘录',
   });
   assert.deepEqual(ctx.truncated, { manual: false, knowledge: false, runLog: false });
@@ -312,7 +312,7 @@ test('buildHelperContext keeps the whole manual when the total comfortably fits 
     floor: null,
     runLog,
     regex: { expected: 1, surplus: 0 },
-    knowledgeMarkup: '<section class="jy-page" data-jy-page="main"><h1>翻译台</h1><p class="jy-muted">说明</p></section>',
+    knowledgeMarkup: '<section class="bgt-page" data-bgt-page="main"><h1>翻译台</h1><p class="bgt-muted">说明</p></section>',
     manual,
     cap: HELPER_CONTEXT_CAP,
   });
@@ -328,7 +328,7 @@ test('buildHelperContext trims the manual before ever touching the run log or th
     floor: null,
     runLog,
     regex: { expected: 0, surplus: 0 },
-    knowledgeMarkup: '<section class="jy-page" data-jy-page="main"><h1>翻译台</h1><p class="jy-muted">控制中心说明文字</p></section>',
+    knowledgeMarkup: '<section class="bgt-page" data-bgt-page="main"><h1>翻译台</h1><p class="bgt-muted">控制中心说明文字</p></section>',
     manual: 'm'.repeat(300000),
     cap: HELPER_CONTEXT_CAP,
   });
@@ -350,7 +350,7 @@ test('buildHelperContext never loses 可用建议\'s own tail to the final cap s
     floor: null,
     runLog,
     regex: { expected: 1, surplus: 0 },
-    knowledgeMarkup: '<section class="jy-page" data-jy-page="main"><h1>翻译台</h1><p class="jy-muted">说明</p></section>',
+    knowledgeMarkup: '<section class="bgt-page" data-bgt-page="main"><h1>翻译台</h1><p class="bgt-muted">说明</p></section>',
     manual: 'm'.repeat(300000),
     cap: HELPER_CONTEXT_CAP,
   });
@@ -389,8 +389,8 @@ test('buildRegexLines mentions surplus across every scope and how many fixed rul
 
 // --- reply parsing --------------------------------------------------------------------------------
 
-test('parseHelperReply strips a trailing jingyi-suggest block and reads its JSON array leniently', () => {
-  const reply = '第一步这样做。第二步那样做。\n\n```jingyi-suggest\n[{"type":"set","field":"autoGeneration","value":false,"why":"你不想自动翻"}]\n```';
+test('parseHelperReply strips a trailing beagle-test-suggest block and reads its JSON array leniently', () => {
+  const reply = '第一步这样做。第二步那样做。\n\n```beagle-test-suggest\n[{"type":"set","field":"autoGeneration","value":false,"why":"你不想自动翻"}]\n```';
   const parsed = parseHelperReply(reply);
   assert.equal(parsed.text, '第一步这样做。第二步那样做。');
   assert.equal(parsed.rawSuggestions.length, 1);
@@ -404,7 +404,7 @@ test('parseHelperReply returns the whole reply with no suggestions when there is
 });
 
 test('parseHelperReply strips a trailing comma before parsing and actually recovers the suggestion, not just avoids throwing (review finding helper.js:533)', () => {
-  const reply = '回答。\n```jingyi-suggest\n这里模型多写了几句话\n[{"type":"set","field":"autoSwipe","value":true,"why":"更方便"},]\n```';
+  const reply = '回答。\n```beagle-test-suggest\n这里模型多写了几句话\n[{"type":"set","field":"autoSwipe","value":true,"why":"更方便"},]\n```';
   const parsed = parseHelperReply(reply);
   assert.doesNotThrow(() => parseHelperReply(reply));
   assert.equal(parsed.text, '回答。');
@@ -413,14 +413,14 @@ test('parseHelperReply strips a trailing comma before parsing and actually recov
 });
 
 test('parseHelperReply wraps a lone suggestion object (not wrapped in an array) into one, rather than dropping it', () => {
-  const reply = '回答。\n```jingyi-suggest\n{"type":"set","field":"autoGeneration","value":false,"why":"单个对象，没包数组"}\n```';
+  const reply = '回答。\n```beagle-test-suggest\n{"type":"set","field":"autoGeneration","value":false,"why":"单个对象，没包数组"}\n```';
   const parsed = parseHelperReply(reply);
   assert.equal(parsed.rawSuggestions.length, 1);
   assert.equal(parsed.rawSuggestions[0].field, 'autoGeneration');
 });
 
 test('parseHelperReply matches a block truncated at the reply\'s own end (no closing fence, as a maxTokens cutoff leaves it), and never leaks its raw JSON into the display text', () => {
-  const reply = '第一步这样做。\n\n```jingyi-suggest\n[{"type":"set","field":"autoSwipe","value":true,"why":"更方便"}';
+  const reply = '第一步这样做。\n\n```beagle-test-suggest\n[{"type":"set","field":"autoSwipe","value":true,"why":"更方便"}';
   const parsed = parseHelperReply(reply);
   assert.equal(parsed.text, '第一步这样做。', '截断的建议块不该整段原样出现在给读者看的正文里');
   assert.equal(parsed.rawSuggestions.length, 1);
@@ -428,7 +428,7 @@ test('parseHelperReply matches a block truncated at the reply\'s own end (no clo
 });
 
 test('parseHelperReply unwraps the { content, reasoning } object an independent connection returns, the same way parseJsonCandidates/recoverStructuredTranslations already do (review finding helper.js:616, high)', () => {
-  const reply = '这样试试。\n\n```jingyi-suggest\n[{"type":"set","field":"autoGeneration","value":false,"why":"你不想自动翻"}]\n```';
+  const reply = '这样试试。\n\n```beagle-test-suggest\n[{"type":"set","field":"autoGeneration","value":false,"why":"你不想自动翻"}]\n```';
   const parsed = parseHelperReply({ content: reply, reasoning: '模型的思考过程，不该出现在回答里' });
   assert.equal(parsed.text, '这样试试。', '不该是 "[object Object]"');
   assert.equal(parsed.rawSuggestions.length, 1);
@@ -436,7 +436,7 @@ test('parseHelperReply unwraps the { content, reasoning } object an independent 
 });
 
 test('parseHelperReply reads an envelope with blank content as an empty reply: its reasoning is not an answer, nor a suggestion drafted there', () => {
-  const parsed = parseHelperReply({ content: '', reasoning: '只想了这些，没有正文。\n```jingyi-suggest\n[{"type":"action","action":"open-page","value":"settings"}]\n```' });
+  const parsed = parseHelperReply({ content: '', reasoning: '只想了这些，没有正文。\n```beagle-test-suggest\n[{"type":"action","action":"open-page","value":"settings"}]\n```' });
   assert.equal(parsed.text, '');
   assert.deepEqual(parsed.rawSuggestions, []);
 });
@@ -593,7 +593,7 @@ test('parseHelperReply strips only a leading reasoning block and keeps tags the 
   const { parseHelperReply } = await import('../helper.js');
   assert.equal(parseHelperReply('<think>先想想</think>\n1. 去正文处理页。').text, '1. 去正文处理页。');
   assert.equal(parseHelperReply('<thinking>先想想</thinking>1. 好。').text, '1. 好。');
-  const quoted = '1. 你的正文包在 <thinking>…</thinking> 里，镜译默认只取 <content>。';
+  const quoted = '1. 你的正文包在 <thinking>…</thinking> 里，测试翻译默认只取 <content>。';
   assert.equal(parseHelperReply(quoted).text, quoted, '正文里提到的标签不能被当成思考块删掉');
   const fenced = '排除标签可以写 <think> 或 <thinking>：\n```\n<thinking>思考</thinking>\n```';
   assert.equal(parseHelperReply(fenced).text, fenced);

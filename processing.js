@@ -9,13 +9,13 @@ export const PROCESSING_FIELDS = Object.freeze([
   'lyricLineRules', 'musicCardRules',
 ]);
 export const VISUAL_FIELDS = Object.freeze(['segmentPrefix', 'segmentSuffix', 'translationPrefix', 'translationSuffix']);
-export const PROCESSING_FORMAT = 'jingyi-processing-profile';
-export const REGEX_OWNER_KEY = 'jingyi_managed';
+export const PROCESSING_FORMAT = 'beagle-test-processing-profile';
+export const REGEX_OWNER_KEY = 'beagle_test_managed';
 const MAX_PROFILES = 40;
 const MAX_RULES = 100;
 
 export function processingId() {
-  return globalThis.crypto?.randomUUID?.() || `jy-${Date.now()}-${Math.random().toString(36).slice(2)}`;
+  return globalThis.crypto?.randomUUID?.() || `bgt-${Date.now()}-${Math.random().toString(36).slice(2)}`;
 }
 
 export function processingSnapshot(settings) {
@@ -145,27 +145,27 @@ export function exportProcessingProfile(profile) {
 }
 
 export function importProcessingProfile(data) {
-  if (data?.format !== PROCESSING_FORMAT || data.version !== 1) throw new Error('请选择镜译导出的正文方案文件。');
+  if (data?.format !== PROCESSING_FORMAT || data.version !== 1) throw new Error('请选择测试翻译导出的正文方案文件。');
   return normalizeProcessingProfile(data.profile, { newId: true, strict: true });
 }
 
 // SillyTavern's own regex editor rebuilds a script from its own form fields whenever the reader
 // opens one of ours and presses Save, even with nothing changed, and that rebuilt object carries
-// none of our unknown fields -- jingyi_managed included (SillyTavern 1.18.0, extensions/regex/
+// none of our unknown fields -- beagle_test_managed included (SillyTavern 1.18.0, extensions/regex/
 // index.js: the editor's popup builds `newRegexScript` from scratch off the form, and
 // saveRegexScript's `array[existingScriptIndex] = regexScript` swaps in the whole new object). The
 // id is the one part of that swap the host keeps: the editor reuses `existingId` for a script it
 // already knows, so a rule that lost its marker this way still carries the id we minted for it. A
 // rule recognised only by the marker, then, is one crash away (any host rewrite that drops unknown
 // fields) from being mistaken for the reader's own on the very next sync and getting a second copy
-// installed beside it -- which is how "镜译 · 可爱风 2 · 可爱风" ends up six deep in a real global
+// installed beside it -- which is how "测试翻译 · 可爱风 2 · 可爱风" ends up six deep in a real global
 // list: six times the reader opened it in 酒馆's own editor and saved, six orphaned copies stayed
 // behind, unrecognisable, while a fresh one grew beside each. The id prefix is checked first for
 // that reason: nothing else could carry it, so it is trusted even where the marker is gone.
 function hasManagedRegexId(id) {
   return typeof id === 'string' && id.startsWith(`${MODULE_ID}:`);
 }
-export function isJingyiRegex(rule) {
+export function isTestTranslatorRegex(rule) {
   return Boolean(rule) && (rule?.[REGEX_OWNER_KEY]?.owner === MODULE_ID || hasManagedRegexId(rule.id));
 }
 // A managed rule's id is `${MODULE_ID}:${profileId}:${ruleId}`; a fixed rule's is `${MODULE_ID}:`
@@ -184,18 +184,18 @@ export function syncNativeRegex(existing, profile) {
   const managed = profile ? profile.regexScripts.map(rule => ({
     ...deepClone(rule),
     id: `${MODULE_ID}:${profile.id}:${rule.id}`,
-    scriptName: `镜译 · ${profile.name} · ${rule.scriptName}`,
+    scriptName: `测试翻译 · ${profile.name} · ${rule.scriptName}`,
     [REGEX_OWNER_KEY]: { owner: MODULE_ID, profileId: profile.id, ruleId: rule.id },
   })) : [];
   const fixed = profile ? [{
-    id: `${MODULE_ID}:display-boundaries`, scriptName: '镜译 · 显示边界清理',
+    id: `${MODULE_ID}:display-boundaries`, scriptName: '测试翻译 · 显示边界清理',
     findRegex: `/${[SOURCE_START, SOURCE_END, TRANSLATION_START, TRANSLATION_END, AFFIX_START, AFFIX_END].join('|')}/g`,
     replaceString: '', trimStrings: [], placement: [2], disabled: false, markdownOnly: true, promptOnly: false,
     runOnEdit: true, substituteRegex: 0, minDepth: null, maxDepth: null,
     [REGEX_OWNER_KEY]: { owner: MODULE_ID, internal: true },
   }, {
     // Replace-tag regions: the hidden original vanishes from the rendered floor but stays in mes.
-    id: `${MODULE_ID}:hidden-source`, scriptName: '镜译 · 隐藏原文块',
+    id: `${MODULE_ID}:hidden-source`, scriptName: '测试翻译 · 隐藏原文块',
     findRegex: `/\\n?${HIDDEN_START}[\\s\\S]*?${HIDDEN_END}/g`,
     replaceString: '', trimStrings: [], placement: [2], disabled: false, markdownOnly: true, promptOnly: false,
     runOnEdit: true, substituteRegex: 0, minDepth: null, maxDepth: null,
@@ -203,9 +203,9 @@ export function syncNativeRegex(existing, profile) {
   }, ...speechQuoteRules(), speechMarkRule(), ...PROMPT_GUARD_RULES] : [];
   const fixedIds = new Set(fixed.map(rule => rule.id));
   const isFixed = rule => fixedIds.has(rule?.id) || Boolean(rule?.[REGEX_OWNER_KEY]?.internal);
-  const first = originals.findIndex(rule => isJingyiRegex(rule) && !isFixed(rule));
-  const kept = originals.filter(rule => !isJingyiRegex(rule));
-  const insertion = first < 0 ? kept.length : originals.slice(0, first).filter(rule => !isJingyiRegex(rule)).length;
+  const first = originals.findIndex(rule => isTestTranslatorRegex(rule) && !isFixed(rule));
+  const kept = originals.filter(rule => !isTestTranslatorRegex(rule));
+  const insertion = first < 0 ? kept.length : originals.slice(0, first).filter(rule => !isTestTranslatorRegex(rule)).length;
   kept.splice(insertion, 0, ...managed);
   kept.unshift(...fixed);
   return kept;
@@ -221,7 +221,7 @@ const SPEECH_QUOTE_PAIRS = Object.freeze([['「', '」'], ['『', '』'], ['“'
 function speechQuoteRules() {
   return SPEECH_QUOTE_PAIRS.map(([open, close]) => ({
     id: `${MODULE_ID}:speech-quote-${close.codePointAt(0).toString(16)}`,
-    scriptName: `镜译 · 说话人标记引号配对 ${open}${close}`,
+    scriptName: `测试翻译 · 说话人标记引号配对 ${open}${close}`,
     // The middle group used to exclude '<' along with the other quote marks, so a line the preset had
     // already painted — <say…>「<big><b>…</b></big>」</say> with no closer before </say> — never matched
     // and kept its dangling quote. Tags carry no quote characters of their own, so letting them through
@@ -242,7 +242,7 @@ function speechQuoteRules() {
 // A fresh object every time: the host's regex panel edits rules in place.
 function speechMarkRule() {
   return {
-    id: `${MODULE_ID}:speech-marks`, scriptName: '镜译 · 隐藏说话人标记',
+    id: `${MODULE_ID}:speech-marks`, scriptName: '测试翻译 · 隐藏说话人标记',
     findRegex: '/<\\/?say(?=[\\s/>])[^<>]*>/gi',
     replaceString: '', trimStrings: [], placement: [2], disabled: false, markdownOnly: true, promptOnly: false,
     runOnEdit: true, substituteRegex: 0, minDepth: null, maxDepth: null,
@@ -257,28 +257,28 @@ function speechMarkRule() {
 // Order matters: the host applies scripts in list order, so whole blocks go before bare boundaries.
 const PROMPT_GUARD_RULES = Object.freeze([
   {
-    id: `${MODULE_ID}:prompt-translation`, scriptName: '镜译 · 提示词清理 · 译文块',
+    id: `${MODULE_ID}:prompt-translation`, scriptName: '测试翻译 · 提示词清理 · 译文块',
     findRegex: `/\\n?${TRANSLATION_START}[\\s\\S]*?${TRANSLATION_END}/g`,
     replaceString: '', trimStrings: [], placement: [2], disabled: false, markdownOnly: false, promptOnly: true,
     runOnEdit: false, substituteRegex: 0, minDepth: null, maxDepth: null,
     [REGEX_OWNER_KEY]: { owner: MODULE_ID, internal: true },
   },
   {
-    id: `${MODULE_ID}:prompt-hidden`, scriptName: '镜译 · 提示词清理 · 隐藏原文块',
+    id: `${MODULE_ID}:prompt-hidden`, scriptName: '测试翻译 · 提示词清理 · 隐藏原文块',
     findRegex: `/\\n?${HIDDEN_START}[\\s\\S]*?${HIDDEN_END}/g`,
     replaceString: '', trimStrings: [], placement: [2], disabled: false, markdownOnly: false, promptOnly: true,
     runOnEdit: false, substituteRegex: 0, minDepth: null, maxDepth: null,
     [REGEX_OWNER_KEY]: { owner: MODULE_ID, internal: true },
   },
   {
-    id: `${MODULE_ID}:prompt-affix`, scriptName: '镜译 · 提示词清理 · 装饰前后缀',
+    id: `${MODULE_ID}:prompt-affix`, scriptName: '测试翻译 · 提示词清理 · 装饰前后缀',
     findRegex: `/${AFFIX_START}[\\s\\S]*?${AFFIX_END}/g`,
     replaceString: '', trimStrings: [], placement: [2], disabled: false, markdownOnly: false, promptOnly: true,
     runOnEdit: false, substituteRegex: 0, minDepth: null, maxDepth: null,
     [REGEX_OWNER_KEY]: { owner: MODULE_ID, internal: true },
   },
   {
-    id: `${MODULE_ID}:prompt-boundaries`, scriptName: '镜译 · 提示词清理 · 边界字符',
+    id: `${MODULE_ID}:prompt-boundaries`, scriptName: '测试翻译 · 提示词清理 · 边界字符',
     findRegex: `/${[SOURCE_START, SOURCE_END, TRANSLATION_START, TRANSLATION_END, AFFIX_START, AFFIX_END, HIDDEN_START, HIDDEN_END].join('|')}/g`,
     replaceString: '', trimStrings: [], placement: [2], disabled: false, markdownOnly: false, promptOnly: true,
     runOnEdit: false, substituteRegex: 0, minDepth: null, maxDepth: null,
@@ -305,8 +305,8 @@ function regexScriptContentKey(rule) {
 // Same scriptName/findRegex/replaceString/placement/flags, whatever id or scriptName prefix each one
 // carries: collapses a profile's own regexScripts list back to one entry per distinct rule. Exists for
 // the state a reader can already be sitting on from before this file's id-based recognition landed --
-// 酒馆's own regex panel assigns a fresh id on every import (see isJingyiRegex above), so a batch
-// export-then-reimport of 镜译's rules used to leave the *profile itself* holding N differently-id'd
+// 酒馆's own regex panel assigns a fresh id on every import (see isTestTranslatorRegex above), so a batch
+// export-then-reimport of 测试翻译's rules used to leave the *profile itself* holding N differently-id'd
 // copies of what is really one rule; no amount of re-syncing the native mirror converges that away, since
 // each of the N ids is, by that point, genuinely something the profile asks for. Order-preserving: the
 // first-seen copy of each distinct rule survives.
@@ -324,12 +324,12 @@ export function dedupeManagedRegexScripts(regexScripts) {
 
 export function readNativeRegexEdits(existing, profile) {
   const managedId = ruleId => `${MODULE_ID}:${profile.id}:${ruleId}`;
-  const namePrefix = `镜译 · ${profile.name} · `;
+  const namePrefix = `测试翻译 · ${profile.name} · `;
   const stripName = name => (name?.startsWith(namePrefix) ? name.slice(namePrefix.length) : name);
   // The marker is read first since a still-marked rule already carries this pair; the id is only parsed
   // when the marker is gone, so an edit the reader made in 酒馆's own editor right before it silently
   // stripped the marker is still picked up instead of quietly lost. A candidate whose own id equals the
-  // one 镜译 minted for this ruleId (`sameId`) occupies that one deterministic slot -- an in-place edit
+  // one 测试翻译 minted for this ruleId (`sameId`) occupies that one deterministic slot -- an in-place edit
   // keeps this id even once the marker is gone, because 酒馆's editor reuses `existingId` on Save. A
   // candidate under any other id (`variant`) only got here through its marker, which survives 酒馆's own
   // "export, then re-import" (a fresh uuid, everything else including the marker untouched) -- that is a
@@ -394,33 +394,33 @@ export function readNativeRegexEdits(existing, profile) {
 // missing fixed rules nets to zero and the button reports nothing to clean, and a reader who has
 // deleted more fixed rules than there are surplus copies sees a negative count. `expected` is exactly
 // what syncNativeRegex would install for this profile alone (fixed rules plus one native copy per
-// regexScripts entry); toRemove counts existing 镜译 rules that are not the one kept copy of an expected
+// regexScripts entry); toRemove counts existing 测试翻译 rules that are not the one kept copy of an expected
 // id; toInstall counts expected ids missing from the native list entirely.
 export function planRegexCleanup(existingRegex, profile) {
-  const existingJingyi = (Array.isArray(existingRegex) ? existingRegex : []).filter(isJingyiRegex);
-  const expected = syncNativeRegex([], profile).filter(isJingyiRegex);
+  const existingTestTranslator = (Array.isArray(existingRegex) ? existingRegex : []).filter(isTestTranslatorRegex);
+  const expected = syncNativeRegex([], profile).filter(isTestTranslatorRegex);
   const expectedIds = new Set(expected.map(rule => rule.id));
   const seen = new Set();
   let toRemove = 0;
-  for (const rule of existingJingyi) {
+  for (const rule of existingTestTranslator) {
     if (expectedIds.has(rule.id) && !seen.has(rule.id)) { seen.add(rule.id); continue; }
     toRemove++;
   }
-  const toInstall = expected.filter(rule => !existingJingyi.some(item => item.id === rule.id)).length;
+  const toInstall = expected.filter(rule => !existingTestTranslator.some(item => item.id === rule.id)).length;
   return { expected, toRemove, toInstall };
 }
 
 // A character's own scoped regex and a preset's own regex are two more places a reader can move a
-// 镜译-owned rule with 酒馆's own "移到角色 / 预设" -- and syncNativeRegex only ever writes to the
-// global list, so the moved copy is never the one live copy of anything: 镜译 reinstalls a fresh
+// 测试翻译-owned rule with 酒馆's own "移到角色 / 预设" -- and syncNativeRegex only ever writes to the
+// global list, so the moved copy is never the one live copy of anything: 测试翻译 reinstalls a fresh
 // global copy on the very next sync regardless of where the reader dragged the old one away to, and
 // the moved copy just sits there, orphaned, forever afterwards. Unlike planRegexCleanup there is no
-// "expected" set to reconcile against here -- 镜译 never expects a rule of its own in either scope --
-// so every rule isJingyiRegex claims in the given list is surplus and is removed outright; anything
+// "expected" set to reconcile against here -- 测试翻译 never expects a rule of its own in either scope --
+// so every rule isTestTranslatorRegex claims in the given list is surplus and is removed outright; anything
 // else, id or scriptName lookalikes included, is left exactly as it was.
 export function planScopedRegexCleanup(scripts) {
   const list = Array.isArray(scripts) ? scripts : [];
-  const kept = list.filter(rule => !isJingyiRegex(rule));
+  const kept = list.filter(rule => !isTestTranslatorRegex(rule));
   return { kept, toRemove: list.length - kept.length };
 }
 
@@ -433,10 +433,10 @@ export function planScopedRegexCleanup(scripts) {
 // pasted card writes <DIV> as often as <div>.
 const BALANCED_BLOCK_TAGS = '(?:details|summary|section|article|header|footer|ul|ol|li|table|thead|tbody|tr|td|th|blockquote|pre|h[1-6]|dl|dd|dt|div|p)';
 // '<' is only "safe" text when it starts neither a block tag nor one of this pattern's own boundaries —
-// without the second lookahead a greedy match happily read straight through </jy-source> looking for
+// without the second lookahead a greedy match happily read straight through </bgt-source> looking for
 // the nearest closing block tag, and one wrap ate two floors' segments whole (source and translation
 // swapped in).
-const BALANCED_SAFE = `(?:[^<]|<(?!\\/?${BALANCED_BLOCK_TAGS}\\b)(?!\\/?jy-(?:source|translation)\\b))`;
+const BALANCED_SAFE = `(?:[^<]|<(?!\\/?${BALANCED_BLOCK_TAGS}\\b)(?!\\/?bgt-(?:source|translation)\\b))`;
 // Nesting is allowed up to three deep — a named group per level (`t1`/`t2`/`t3`) so each open only
 // closes on a `</tag>` of that exact same name, never a sibling's. A card nested any deeper is left
 // alone entirely, the same as one that is not balanced at all: conservative rather than guessing.
@@ -447,9 +447,9 @@ const BALANCED_INNER_3 = `(?:${BALANCED_SAFE}|${BALANCED_PAIR_2})`;
 const BALANCED_PAIR_3 = `<(?<t3>${BALANCED_BLOCK_TAGS})\\b[^<>]*>${BALANCED_INNER_3}*<\\/\\k<t3>\\s*>`;
 const BALANCED_SOURCE = `${BALANCED_SAFE}*(?:${BALANCED_PAIR_3}${BALANCED_SAFE}*)*`;
 // Named rather than $1/$2: the nesting groups above (t1/t2/t3) are capturing groups of their own, so the
-// two groups the replaceString actually needs are named here and referenced as $<jySource>/$<jyTranslation>
+// two groups the replaceString actually needs are named here and referenced as $<bgtSource>/$<bgtTranslation>
 // instead, immune to however many more numbered groups BALANCED_SOURCE ends up defining.
-const readingPattern = `<jy-source>(?<jySource>${BALANCED_SOURCE})<\\/jy-source>\\n<jy-translation>(?<jyTranslation>[\\s\\S]*?)<\\/jy-translation>`;
+const readingPattern = `<bgt-source>(?<bgtSource>${BALANCED_SOURCE})<\\/bgt-source>\\n<bgt-translation>(?<bgtTranslation>[\\s\\S]*?)<\\/bgt-translation>`;
 export const BUILTIN_READING_STYLES = Object.freeze([
   { id: 'cute', name: '可爱风', description: '一点桃粉，一枚小花。' },
   { id: 'minimal', name: '极简风', description: '淡化原文，留白分隔。' },
@@ -461,9 +461,9 @@ export const BUILTIN_READING_STYLES = Object.freeze([
 // whole profile (and risking calling back into normalizeProcessingProfile) just to read this one string.
 function builtinReadingReplaceString(styleId) {
   const before = styleId === 'fold'
-    ? '<details class="jy-reading-original"><summary>原文</summary><div class="jy-reading-source">\n\n$<jySource>\n\n</div></details>'
-    : '<div class="jy-reading-source">\n\n$<jySource>\n\n</div>';
-  return `<div class="jy-reading jy-reading-${styleId}">\n${before}\n<div class="jy-reading-translation">\n\n$<jyTranslation>\n\n</div>\n</div>`;
+    ? '<details class="bgt-reading-original"><summary>原文</summary><div class="bgt-reading-source">\n\n$<bgtSource>\n\n</div></details>'
+    : '<div class="bgt-reading-source">\n\n$<bgtSource>\n\n</div>';
+  return `<div class="bgt-reading bgt-reading-${styleId}">\n${before}\n<div class="bgt-reading-translation">\n\n$<bgtTranslation>\n\n</div>\n</div>`;
 }
 
 // The reverse of makeBuiltinReadingProfile: which built-in style (if any) a profile's own prefixes
@@ -473,8 +473,8 @@ function builtinReadingReplaceString(styleId) {
 // to just stay on the style it already showed).
 export function detectBuiltinReadingStyle(profile) {
   const values = profile?.settings;
-  if (!values || values.segmentPrefix !== '<jy-source>' || values.segmentSuffix !== '</jy-source>'
-    || values.translationPrefix !== '<jy-translation>' || values.translationSuffix !== '</jy-translation>') return null;
+  if (!values || values.segmentPrefix !== '<bgt-source>' || values.segmentSuffix !== '</bgt-source>'
+    || values.translationPrefix !== '<bgt-translation>' || values.translationSuffix !== '</bgt-translation>') return null;
   const rule = (profile.regexScripts ?? []).find(item => BUILTIN_READING_STYLES.some(style => item.replaceString === builtinReadingReplaceString(style.id)));
   if (!rule) return null;
   return BUILTIN_READING_STYLES.find(style => rule.replaceString === builtinReadingReplaceString(style.id))?.id ?? null;
@@ -485,7 +485,7 @@ export function makeBuiltinReadingProfile(settings, styleId) {
   if (!style) throw new Error('没有找到这个内置美化。');
   return normalizeProcessingProfile({
     id: processingId(), name: style.name,
-    settings: { ...processingSnapshot(settings), segmentPrefix: '<jy-source>', segmentSuffix: '</jy-source>', translationPrefix: '<jy-translation>', translationSuffix: '</jy-translation>' },
+    settings: { ...processingSnapshot(settings), segmentPrefix: '<bgt-source>', segmentSuffix: '</bgt-source>', translationPrefix: '<bgt-translation>', translationSuffix: '</bgt-translation>' },
     regexScripts: [{
       id: processingId(), scriptName: style.name,
       findRegex: `/${readingPattern}/gi`,
@@ -502,7 +502,7 @@ export function makeBuiltinReadingProfile(settings, styleId) {
 // exactly as makeBuiltinReadingProfile used to emit — this findRegex, and a replaceString that is still
 // one of the three built-in styles' own template, neither touched since — picks up the new findRegex
 // here; a rule the reader edited, in either field, is left exactly as they wrote it.
-const LEGACY_READING_FIND_REGEX = '/<jy-source>([\\s\\S]*?)<\\/jy-source>\\n<jy-translation>([\\s\\S]*?)<\\/jy-translation>/g';
+const LEGACY_READING_FIND_REGEX = '/<bgt-source>([\\s\\S]*?)<\\/bgt-source>\\n<bgt-translation>([\\s\\S]*?)<\\/bgt-translation>/g';
 function migrateLegacyReadingRule(rule) {
   if (rule.findRegex !== LEGACY_READING_FIND_REGEX) return rule;
   const style = BUILTIN_READING_STYLES.find(item => legacyReadingReplaceString(item.id) === rule.replaceString);
@@ -514,5 +514,5 @@ function migrateLegacyReadingRule(rule) {
 
 // What makeBuiltinReadingProfile wrote before v0.36.1: the same template, reading its two groups by number.
 function legacyReadingReplaceString(styleId) {
-  return builtinReadingReplaceString(styleId).replace('$<jySource>', '$1').replace('$<jyTranslation>', '$2');
+  return builtinReadingReplaceString(styleId).replace('$<bgtSource>', '$1').replace('$<bgtTranslation>', '$2');
 }

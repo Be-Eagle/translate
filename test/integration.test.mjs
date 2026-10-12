@@ -628,8 +628,8 @@ test('a coloured run paints the floor, keeps the prompt clean and stores the lab
   const colors = [...message.mes.matchAll(/["';]color:(#[0-9a-f]{6})/g)].map(match => match[1]);
   assert.equal(colors.length, 2);
   assert.notEqual(colors[0], colors[1]);
-  assert.match(message.mes, /class="jy-spk jy-spk-[a-z0-9]+ jy-emo-angry jy-emo-l2"/);
-  assert.match(message.mes, /class="jy-spk jy-spk-[a-z0-9]+ jy-emo-whisper jy-emo-l1"/);
+  assert.match(message.mes, /class="bgt-spk bgt-spk-[a-z0-9]+ bgt-emo-angry bgt-emo-l2"/);
+  assert.match(message.mes, /class="bgt-spk bgt-spk-[a-z0-9]+ bgt-emo-whisper bgt-emo-l1"/);
   assert.match(message.mes, /title="英梨梨 · 愤怒"/);
 
   // Host themes set message text colour with !important, so every declaration has to outrank them.
@@ -823,7 +823,7 @@ test('one character spelled two ways in one floor wears one colour', async t => 
   ]);
   const result = await __testing.startTranslation(0, { quiet: true, force: true });
   assert.equal(result.skipped, false);
-  const slugs = [...message.mes.matchAll(/class="jy-spk (jy-spk-[a-z0-9]+)/g)].map(match => match[1]);
+  const slugs = [...message.mes.matchAll(/class="bgt-spk (bgt-spk-[a-z0-9]+)/g)].map(match => match[1]);
   assert.equal(slugs.length, 2);
   assert.equal(slugs[0], slugs[1], '同一个人不该穿两种颜色');
   assert.doesNotMatch(message.mes, /title="艾莉丝·伯雷亚斯/);
@@ -844,8 +844,8 @@ test('colouring off writes exactly the floor the extension has always written', 
   };
   const painted = await write(coloringSettings.coloring);
   const plain = await write({ ...coloringSettings.coloring, speakers: false, emotions: false });
-  assert.match(painted, /jy-spk/);
-  assert.doesNotMatch(plain, /jy-spk|<span|color:/);
+  assert.match(painted, /bgt-spk/);
+  assert.doesNotMatch(plain, /bgt-spk|<span|color:/);
   assert.equal(stripGeneratedTranslationLines(plain), '<story_scene>\n雨が降っている。\n</story_scene>');
 });
 
@@ -861,7 +861,7 @@ test('a floor whose band was never measured is written plain rather than guessed
   });
   globalThis.fetch = async () => completionResponse([{ id: 1, text: '下雨了。', speaker: '英梨梨', emotion: 'angry' }]);
   await __testing.startTranslation(0, { quiet: true, force: true });
-  assert.doesNotMatch(message.mes, /jy-spk|color:/);
+  assert.doesNotMatch(message.mes, /bgt-spk|color:/);
   assert.match(message.mes, /下雨了。/);
 });
 
@@ -877,18 +877,18 @@ test('the built-in reading style renders the speaker wrapper instead of eating i
   const doc = segmentSource('坂本竜司であった。\n\n「――っはぁぁぁ！」', settings);
   const translations = new Map(doc.segments.map((segment, index) => [segment.id, index ? '「——哈啊啊！」' : '声音来自坂本龙司。']));
   const styleFor = ids => (ids.includes(2)
-    ? { open: '<span class="jy-spk jy-emo-shout" style="color:#cac256;font-weight:800">', close: '</span>' }
+    ? { open: '<span class="bgt-spk bgt-emo-shout" style="color:#cac256;font-weight:800">', close: '</span>' }
     : null);
 
   const floor = assembleBilingual(doc.layout, translations, { ...settings, styleFor });
   const rendered = display.reduce((text, rule) => text.replace(compileNativeRegex(rule.findRegex), rule.replaceString), floor);
 
   // The boundary-cleanup rule must run first, or the reading pattern never matches at all.
-  assert.equal(display[0].scriptName, '镜译 · 显示边界清理');
-  assert.match(rendered, /<div class="jy-reading jy-reading-cute">/);
-  assert.match(rendered, /<span class="jy-spk jy-emo-shout" style="color:#cac256;font-weight:800">「——哈啊啊！」<\/span>/);
+  assert.equal(display[0].scriptName, '测试翻译 · 显示边界清理');
+  assert.match(rendered, /<div class="bgt-reading bgt-reading-cute">/);
+  assert.match(rendered, /<span class="bgt-spk bgt-emo-shout" style="color:#cac256;font-weight:800">「——哈啊啊！」<\/span>/);
   // The unlabelled segment keeps the plain shape, so an absent label costs nothing but its colour.
-  assert.match(rendered, /<div class="jy-reading-translation">\n\n声音来自坂本龙司。\n\n<\/div>/);
+  assert.match(rendered, /<div class="bgt-reading-translation">\n\n声音来自坂本龙司。\n\n<\/div>/);
   // And the floor still strips back to the original for the main model.
   assert.equal(stripGeneratedTranslationLines(floor), doc.source);
 });
@@ -901,7 +901,7 @@ test('句内节奏 writes inside the translation without disturbing what reads b
   const doc = segmentSource(line, {});
   const translations = new Map([[1, line]]);
   const styleFor = () => ({
-    open: '<span class="jy-spk" style="color:#c8a2c8 !important">',
+    open: '<span class="bgt-spk" style="color:#c8a2c8 !important">',
     close: '</span>',
     emphasis: text => emphasisContour(text, { emotion: 'angry', intensity: 2 })
       ?.map(piece => ({ text: piece.text, css: `font-size:${piece.scale.toFixed(3)}em !important` })) ?? null,
@@ -1082,7 +1082,7 @@ test('a speaker the palette has never heard of is still painted, not silently le
   await __testing.startTranslation(0, { quiet: true, force: true });
 
   assert.match(message.mes, /color:#[0-9a-f]{6} !important/, '名单外的说话人也要有颜色');
-  assert.match(message.mes, /class="jy-spk jy-spk-[a-z0-9]+ jy-emo-happy/);
+  assert.match(message.mes, /class="bgt-spk bgt-spk-[a-z0-9]+ bgt-emo-happy/);
   assert.match(message.mes, /title="星野爱 · 喜悦"/);
   // The main model still reads the original and nothing else.
   const prompt = [{ mes: message.mes, extra: message.extra }];
@@ -1128,7 +1128,7 @@ test('turning auto-colouring off leaves the emotion but says why the colour is g
 
   // Emotion typography stays; the colour does not. That combination is exactly what the bug report
   // looked like, so it has to be written down rather than left to be guessed at.
-  assert.match(message.mes, /jy-emo-happy/);
+  assert.match(message.mes, /bgt-emo-happy/);
   assert.doesNotMatch(message.mes, /color:#[0-9a-f]{6} !important/);
   const warned = readDiagnostics().filter(entry => entry.scope === 'coloring.speaker-unpainted').at(-1);
   assert.ok(warned, '没有报出未上色的说话人');
@@ -1311,7 +1311,7 @@ test('a continued floor is an ordinary floor again, and a floor changed by hand 
   const edited = await __testing.readMessageSnapshot(0);
   assert.equal(edited.diverged, true);
   assert.equal((await __testing.startTranslation(0, { quiet: true, force: true })).reason, 'diverged');
-  await assert.rejects(__testing.editTranslationSegment(0, 1, '别的'), error => error.code === 'JY_FLOOR_DIVERGED');
+  await assert.rejects(__testing.editTranslationSegment(0, 1, '别的'), error => error.code === 'BGT_FLOOR_DIVERGED');
   assert.equal(asked.length, 1, 'nothing was sent');
   assert.equal(message.extra[MESSAGE_META_KEY].mirror, mirror, 'the kept text is untouched');
   // The main model is shown the floor as it now is; the kept text no longer describes it.
@@ -1633,7 +1633,7 @@ test('a calm line does not cancel the angry one beside it, and a line of narrati
     { id: 2, text: '「你到底在想什么！」', speaker: '英梨梨', emotion: 'angry', intensity: 2 },
   ]);
   await __testing.startTranslation(0, { quiet: true, force: true });
-  assert.match(spoken.mes, /jy-emo-angry/, 'the anger is still shown');
+  assert.match(spoken.mes, /bgt-emo-angry/, 'the anger is still shown');
   // A narrated line and a line of dialogue in one unit: the colour goes on the dialogue, and the
   // typography of the anger does not spill onto words nobody said.
   const narrated = { mes: '<story_scene>\n英梨梨は顔を上げた。\n「何を考えてるの！」\n</story_scene>', swipe_id: 0 };
@@ -1645,7 +1645,7 @@ test('a calm line does not cancel the angry one beside it, and a line of narrati
   ]);
   await __testing.startTranslation(0, { quiet: true, force: true });
   assert.match(narrated.mes, /color:#[0-9a-f]{6}[^>]*>[^<「]*「你到底在想什么！」/);
-  assert.doesNotMatch(narrated.mes, /jy-emo-|font-weight/);
+  assert.doesNotMatch(narrated.mes, /bgt-emo-|font-weight/);
 });
 
 test('the roster names the card\'s character and the reader, and a pronoun is nobody\'s name', async t => {
@@ -1786,7 +1786,7 @@ test('a floor restyled again and again keeps each run\'s colour, the carried for
   const before = paintedRuns(message.mes);
   assert.equal(before.length, 2);
   // The default prefix ends in `{`, which is no reason to keep the record of the affixes before it.
-  for (const [prefix, suffix] of [['【', '】'], ['{', '}'], ['<jy-t>', '</jy-t>']]) {
+  for (const [prefix, suffix] of [['【', '】'], ['{', '}'], ['<bgt-t>', '</bgt-t>']]) {
     await __testing.restyleCurrentChat({ ...settings, translationPrefix: prefix, translationSuffix: suffix });
     const meta = message.extra[MESSAGE_META_KEY];
     assert.deepEqual([meta.translation_prefix, meta.translation_suffix], [prefix, suffix]);
@@ -1802,7 +1802,7 @@ test('a segment prefix ending in `{` does not leave an old translation prefix in
   const settings = __testing.configureForTest({ settings: { segmentPrefix: '{', segmentSuffix: '}', translationPrefix: '', translationSuffix: '' } });
   context.chat.push(await translatedFloor('雨が降っている。', [[1, '下雨了。']], settings));
   const message = context.chat[0];
-  for (const [prefix, suffix] of [['<jy-t>', '</jy-t>'], ['【', '】'], ['<jy-u>', '</jy-u>'], ['<jy-v>', '</jy-v>']]) {
+  for (const [prefix, suffix] of [['<bgt-t>', '</bgt-t>'], ['【', '】'], ['<bgt-u>', '</bgt-u>'], ['<bgt-v>', '</bgt-v>']]) {
     await __testing.restyleCurrentChat({ ...settings, translationPrefix: prefix, translationSuffix: suffix });
     assert.equal(message.extra[MESSAGE_META_KEY].translation_prefix, prefix);
     const shown = message.mes.replace(/[\u200b-\u200d\u2060-\u2064\ufeff]/g, '');
@@ -1814,13 +1814,13 @@ test('on a host with no record per swipe, another swipe\'s record never puts its
   const previousHost = globalThis.SillyTavern;
   t.after(() => { globalThis.SillyTavern = previousHost; });
   const context = mockHost();
-  const settings = __testing.configureForTest({ settings: { translationPrefix: '<jy-t>', translationSuffix: '</jy-t>' } });
+  const settings = __testing.configureForTest({ settings: { translationPrefix: '<bgt-t>', translationSuffix: '</bgt-t>' } });
   const shown = await translatedFloor('雨が降っている。', [[1, '下雨了。']], settings);
   // The other swipe was translated last, with empty affixes, and the host kept only that record.
   const other = await translatedFloor('風が強い。', [[1, '风很大。']], { ...settings, translationPrefix: '', translationSuffix: '' });
   context.chat.push({ mes: shown.mes, swipe_id: 0, swipes: [shown.mes, other.mes], extra: { [MESSAGE_META_KEY]: { ...other.extra[MESSAGE_META_KEY], swipe_id: 1 } } });
   const message = context.chat[0];
-  for (const [prefix, suffix] of [['【', '】'], ['<jy-u>', '</jy-u>']]) {
+  for (const [prefix, suffix] of [['【', '】'], ['<bgt-u>', '</bgt-u>']]) {
     await __testing.restyleCurrentChat({ ...settings, translationPrefix: prefix, translationSuffix: suffix });
     const text = message.mes.replace(/[\u200b-\u200d\u2060-\u2064\ufeff]/g, '');
     assert.match(text, new RegExp(`\n${prefix}下雨了。${suffix}\n`), `after ${prefix}${suffix}`);
@@ -2213,7 +2213,7 @@ test('a restyle while a floor is still translating redraws only the floors it re
   const previousHost = globalThis.SillyTavern;
   t.after(() => { globalThis.SillyTavern = previousHost; __testing.configureForTest({ inflight: new Map() }); });
   const context = mockHost();
-  const settings = __testing.configureForTest({ settings: { translationPrefix: '<jy-t>', translationSuffix: '</jy-t>' } });
+  const settings = __testing.configureForTest({ settings: { translationPrefix: '<bgt-t>', translationSuffix: '</bgt-t>' } });
   context.chat.push({ mes: 'こんにちは', is_user: true, extra: {} });
   context.chat.push(await translatedFloor('雨が降っている。', [[1, '下雨了。']], settings));
   context.chat.push({ mes: 'まだ訳していない。', extra: {} });
@@ -2227,7 +2227,7 @@ test('a restyle while a floor is still translating redraws only the floors it re
   assert.deepEqual(drawn, [1], '纯取色只重绘这次改写过的那一楼');
   // A regex or affix change can change how a floor renders without changing its text, so it draws every floor.
   drawn.length = 0;
-  await __testing.restyleCurrentChat({ ...settings, translationPrefix: '<jy-u>', translationSuffix: '</jy-u>' });
+  await __testing.restyleCurrentChat({ ...settings, translationPrefix: '<bgt-u>', translationSuffix: '</bgt-u>' });
   assert.equal(reloads, 0);
   assert.deepEqual(drawn, [0, 1, 2], '改正则、前后缀时每一楼都重绘');
 });

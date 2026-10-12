@@ -11,7 +11,7 @@ globalThis.document = {
 const toasts = [];
 globalThis.toastr = Object.fromEntries(['success', 'error', 'warning', 'info'].map(kind => [kind, message => toasts.push([kind, message])]));
 
-const { onActivate, __testing } = await import('../index.js');
+const { BeEagleTestTranslator_onActivate, __testing } = await import('../index.js');
 
 class Emitter {
   constructor() { this.events = {}; }
@@ -38,13 +38,13 @@ const chat = [];
 // Every request to the model waits until the test answers it.
 const calls = [];
 const context = {
-  chat, chatId: 'moves-chat', extensionSettings: { 'jingyi-translator': { showFloatingButton: false } }, characters: [{ name: '樱井' }], characterId: 0,
+  chat, chatId: 'moves-chat', extensionSettings: { 'beagle-test-translator': { showFloatingButton: false } }, characters: [{ name: '樱井' }], characterId: 0,
   substituteParams: value => String(value ?? ''), saveChat: async () => {}, updateMessageBlock: () => {}, getRequestHeaders: () => ({}),
   saveSettingsDebounced: () => {}, eventTypes: T, eventSource, streamingProcessor: null,
   generateRaw: ({ prompt }) => new Promise(resolve => calls.push({ prompt: JSON.stringify(prompt), answer: resolve })),
 };
 globalThis.SillyTavern = { getContext: () => context };
-await onActivate();
+await BeEagleTestTranslator_onActivate();
 await eventSource.emit(T.CHAT_CHANGED, 'moves-chat');
 __testing.configureForTest({ settings: { apiMode: 'follow', streamingWriteback: false, retries: 1, autoGeneration: false } });
 

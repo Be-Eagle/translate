@@ -229,7 +229,7 @@ test('splitPiecesByRuns only carves the first occurrence, and rawOpen/rawClose r
   const out = splitPiecesByRuns(pieces, [{ text: '红莲拳', rawOpen: '<b>', rawClose: '</b>' }]);
   assert.equal(out.filter(piece => piece.rawOpen).length, 1);
   const styleFor = () => ({
-    open: '<span class="jy-spk">', close: '</span>',
+    open: '<span class="bgt-spk">', close: '</span>',
     emphasis: translation => splitPiecesByRuns([{ text: translation }], [{ text: '红莲拳', rawOpen: '<b>', rawClose: '</b>' }]),
   });
   const options = { translationPrefix: '{', translationSuffix: '}', styleFor };
@@ -313,11 +313,11 @@ test('a tier-3 move carved out of a carried <big>/<small> fragment keeps its fon
   const newStyle = styleAt(newBand);
   assert.match(newStyle.css, /font-size:1\.12em/, '前提：三级招式本身确实带字号');
   // The span as a fresh render would have written it: carved out of a carried <big>, so `styledBody`
-  // already left `data-jy-move-nosize="1"` on it and dropped font-size from its own (old) style.
-  const moveOpen = `<span data-jy-move-element="雷电" data-jy-move-name="究极奥义" data-jy-move-tier="3" style="${oldStyle.css}" data-jy-move-nosize="1">`;
+  // already left `data-bgt-move-nosize="1"` on it and dropped font-size from its own (old) style.
+  const moveOpen = `<span data-bgt-move-element="雷电" data-bgt-move-name="究极奥义" data-bgt-move-tier="3" style="${oldStyle.css}" data-bgt-move-nosize="1">`;
   const body = `最后，他终于使出了<big>${moveOpen}究极奥义</span></big>。`;
   const restyled = recolorMoveSpans(body, { coloring: { speakers: true, effects: true, band: newBand, vividness: 0.7 } });
-  assert.doesNotMatch(restyled, /font-size/, '标了 data-jy-move-nosize 的招式重新上色后不该把字号加回来');
+  assert.doesNotMatch(restyled, /font-size/, '标了 data-bgt-move-nosize 的招式重新上色后不该把字号加回来');
   const expectedCss = newStyle.css.split(';').map(part => part.trim()).filter(part => part && !/^font-size\s*:/i.test(part)).join(';');
   assert.ok(restyled.includes(`style="${expectedCss}"`), '颜色仍按新背景色重新计算，只是不再带字号');
 });
@@ -533,7 +533,7 @@ test('a restyle recomputes a move span\'s colour against the new band, leaving t
   const oldStyle = resolveMoveStyle({ element: '火焰', name: '红莲拳', tier: 1, band: oldBand, vividness: 0.7 });
   const newStyle = resolveMoveStyle({ element: '火焰', name: '红莲拳', tier: 1, band: newBand, vividness: 0.7 });
   assert.notEqual(oldStyle.hex, newStyle.hex, '两个背景下算出的颜色本身要不同，测试才有意义');
-  const moveOpen = `<span data-jy-move-element="火焰" data-jy-move-name="红莲拳" data-jy-move-tier="1" style="${oldStyle.css}">`;
+  const moveOpen = `<span data-bgt-move-element="火焰" data-bgt-move-name="红莲拳" data-bgt-move-tier="1" style="${oldStyle.css}">`;
   const body = `他打出了${AFFIX_START}${moveOpen}${AFFIX_END}红莲拳${AFFIX_START}</span>${AFFIX_END}，震碎了地面。`;
   const floor = `${renderSourceBlock('原文。')}\n${renderTranslationBlock(body, { translationPrefix: '{', translationSuffix: '}' })}`;
   const metadata = { schema_version: 4, translation_prefix: '{', translation_suffix: '}' };
@@ -544,7 +544,7 @@ test('a restyle recomputes a move span\'s colour against the new band, leaving t
   const restyled = restyleBilingual(floor, options, metadata);
   assert.ok(restyled.includes(`style="${newStyle.css}"`), '招式的颜色要按新背景重新算出');
   assert.ok(!restyled.includes(oldStyle.css), '旧背景算出的颜色不应该继续留着');
-  assert.ok(restyled.includes('data-jy-move-element="火焰"'), '标注属性本身原样保留，供下一次 restyle 使用');
+  assert.ok(restyled.includes('data-bgt-move-element="火焰"'), '标注属性本身原样保留，供下一次 restyle 使用');
   assert.match(restyled, /他打出了.*红莲拳.*，震碎了地面。/s, '文字本身一个字都没有变');
   // 特效字 off: the span is left exactly as it already read, old colour and all.
   const effectsOff = restyleBilingual(floor, { ...options, coloring: { speakers: true, effects: false, band: newBand } }, metadata);
@@ -721,7 +721,7 @@ test('a hidden carried run inside a longer move name still stays hidden, instead
   assert.ok(blacked, '涂黑的搬运片段不能整个消失');
   assert.equal(blacked.text, '红莲', '涂黑片段只盖住自己那两个字');
   assert.doesNotMatch(blacked.css ?? '', /#b55920/, '被涂黑的字不能显出招式颜色');
-  assert.equal(blacked.moveElement, undefined, '涂黑片段不能带着招式的 data-jy-move-* 身份，否则换背景重新上色时又会被点亮');
+  assert.equal(blacked.moveElement, undefined, '涂黑片段不能带着招式的 data-bgt-move-* 身份，否则换背景重新上色时又会被点亮');
   assert.equal(blacked.moveName, undefined);
   const rest = out.find(piece => piece.text === '拳');
   assert.ok(rest, '招式名里没被涂黑的那个字还在');
@@ -810,7 +810,7 @@ test('a restyle recolours a move inside a replace-tag pair instead of leaving th
   const newBand = computeSafeBand(['#101010']);
   const oldStyle = resolveMoveStyle({ element: '火焰', name: '红莲拳', tier: 1, band: oldBand, vividness: 0.7 });
   const newStyle = resolveMoveStyle({ element: '火焰', name: '红莲拳', tier: 1, band: newBand, vividness: 0.7 });
-  const moveOpen = `<span data-jy-move-element="火焰" data-jy-move-name="红莲拳" data-jy-move-tier="1" style="${oldStyle.css}">`;
+  const moveOpen = `<span data-bgt-move-element="火焰" data-bgt-move-name="红莲拳" data-bgt-move-tier="1" style="${oldStyle.css}">`;
   const translation = `他打出了${AFFIX_START}${moveOpen}${AFFIX_END}红莲拳${AFFIX_START}</span>${AFFIX_END}，震碎了地面。`;
   const floor = renderReplacePair(translation, '原文。');
   const options = { coloring: { speakers: true, effects: true, band: newBand, vividness: 0.7 } };
@@ -828,7 +828,7 @@ test('a stripped (只留译文) floor\'s own shown text gets its move recoloured
   const newStyle = resolveMoveStyle({ element: '火焰', name: '红莲拳', tier: 1, band: newBand, vividness: 0.7 });
   // assembleTranslationOnly writes a move's span directly into the shown text, with no translation
   // markers around it for restyleBilingual's own marker-based passes to find.
-  const mes = `他打出了<span data-jy-move-element="火焰" data-jy-move-name="红莲拳" data-jy-move-tier="1" style="${oldStyle.css}">红莲拳</span>，震碎了地面。`;
+  const mes = `他打出了<span data-bgt-move-element="火焰" data-bgt-move-name="红莲拳" data-bgt-move-tier="1" style="${oldStyle.css}">红莲拳</span>，震碎了地面。`;
   const mirror = `${renderSourceBlock('原文。')}\n${renderTranslationBlock('他打出了红莲拳，震碎了地面。', { translationPrefix: '{', translationSuffix: '}' })}`;
   const metadata = {
     schema_version: 4, stripped: true, mirror, projection_hash: hashTextSync(mes),
@@ -931,7 +931,7 @@ test('saveSettings schedules a restyle when only coloring (band/vividness/speake
   const newBand = computeSafeBand(['#101010']);
   const oldStyle = resolveMoveStyle({ element: '火焰', name: '红莲拳', tier: 1, band: oldBand, vividness: 0.7 });
   const newStyle = resolveMoveStyle({ element: '火焰', name: '红莲拳', tier: 1, band: newBand, vividness: 0.7 });
-  const moveOpen = `<span data-jy-move-element="火焰" data-jy-move-name="红莲拳" data-jy-move-tier="1" style="${oldStyle.css}">`;
+  const moveOpen = `<span data-bgt-move-element="火焰" data-bgt-move-name="红莲拳" data-bgt-move-tier="1" style="${oldStyle.css}">`;
   const body = `他打出了${AFFIX_START}${moveOpen}${AFFIX_END}红莲拳${AFFIX_START}</span>${AFFIX_END}，震碎了地面。`;
   const floor = `${renderSourceBlock('原文。')}\n${renderTranslationBlock(body, { translationPrefix: '{', translationSuffix: '}' })}`;
   const message = { mes: floor, is_user: false, extra: { [MESSAGE_META_KEY]: { schema_version: 4, translation_prefix: '{', translation_suffix: '}' } } };
@@ -967,7 +967,7 @@ test('a 彩度 slider drag still triggers a restyle on save, even though the sli
   };
   const oldStyle = styleAt(0.7);
   const newStyle = styleAt(0.2);
-  const moveOpen = `<span data-jy-move-element="火焰" data-jy-move-name="红莲拳" data-jy-move-tier="1" style="${oldStyle.css}">`;
+  const moveOpen = `<span data-bgt-move-element="火焰" data-bgt-move-name="红莲拳" data-bgt-move-tier="1" style="${oldStyle.css}">`;
   const body = `他打出了${AFFIX_START}${moveOpen}${AFFIX_END}红莲拳${AFFIX_START}</span>${AFFIX_END}，震碎了地面。`;
   const floor = `${renderSourceBlock('原文。')}\n${renderTranslationBlock(body, { translationPrefix: '{', translationSuffix: '}' })}`;
   const message = { mes: floor, is_user: false, extra: { [MESSAGE_META_KEY]: { schema_version: 4, translation_prefix: '{', translation_suffix: '}' } } };
@@ -982,7 +982,7 @@ test('a 彩度 slider drag still triggers a restyle on save, even though the sli
   // exactly like production, where initializeSettings (or an earlier saveSettings) always leaves it there.
   context.extensionSettings[MODULE_ID] = base;
 
-  // The 彩度 slider's own `input` handler (index.js onInput, data-jy-field="coloringVividness") is a live
+  // The 彩度 slider's own `input` handler (index.js onInput, data-bgt-field="coloringVividness") is a live
   // preview: it writes the dragged value straight into runtime.settings on every tick, well before the
   // reader lets go and the blur's `change` handler calls saveSettings(collectSettings(root)) — which then
   // reads that very same already-live-previewed value back off the slider.
@@ -1010,7 +1010,7 @@ test('a coloring paint-only save (band/vividness) does not cancel a translation 
   };
   const oldStyle = styleAt(oldBand);
   const newStyle = styleAt(newBand);
-  const moveOpen = `<span data-jy-move-element="火焰" data-jy-move-name="红莲拳" data-jy-move-tier="1" style="${oldStyle.css}">`;
+  const moveOpen = `<span data-bgt-move-element="火焰" data-bgt-move-name="红莲拳" data-bgt-move-tier="1" style="${oldStyle.css}">`;
   const body = `他打出了${AFFIX_START}${moveOpen}${AFFIX_END}红莲拳${AFFIX_START}</span>${AFFIX_END}，震碎了地面。`;
   const floor = `${renderSourceBlock('原文。')}\n${renderTranslationBlock(body, { translationPrefix: '{', translationSuffix: '}' })}`;
   const message = { mes: floor, is_user: false, extra: { [MESSAGE_META_KEY]: { schema_version: 4, translation_prefix: '{', translation_suffix: '}' } } };

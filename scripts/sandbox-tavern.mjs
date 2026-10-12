@@ -1,15 +1,15 @@
-// An isolated SillyTavern for trying 镜译 against the real host without touching anyone's own data.
+// An isolated SillyTavern for trying 测试翻译 against the real host without touching anyone's own data.
 //
 //   node scripts/sandbox-tavern.mjs setup <SillyTavern folder> <sandbox folder>
 //     Writes <sandbox>/config.yaml (port 8811, CORS proxy on, no browser launch, no extension
 //     auto-update) and <sandbox>/data/default-user/settings.json: the chat connection on the local mock
-//     (scripts/mock-services.mjs, port 8812), 镜译 translating every reply automatically and reading
+//     (scripts/mock-services.mjs, port 8812), 测试翻译 translating every reply automatically and reading
 //     aloud through the mock's Fish, every global third-party extension but 酒馆助手 switched off (the
-//     global 镜译 too), a test character 美咲 with a small worldbook of her own. Nothing in the
+//     global 测试翻译 too), a test character 美咲 with a small worldbook of her own. Nothing in the
 //     SillyTavern folder is written.
 //   node scripts/sandbox-tavern.mjs sync <sandbox folder>
 //     Copies this repository's files (tracked, and new ones not ignored) into the sandbox user's
-//     extensions folder as MirrorTranslate-dev. A plain copy, never a link, so deleting the sandbox can
+//     extensions folder as BeEagleTestTranslator-dev. A plain copy, never a link, so deleting the sandbox can
 //     never reach the repository. The folder name differs from the global copy's because the host takes
 //     a same-named extension from the global folder. Run it again after every change, then reload.
 //
@@ -24,8 +24,8 @@ import { fileURLToPath } from 'node:url';
 
 const repo = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const MOCK = 'http://127.0.0.1:8812';
-const EXTENSION = 'MirrorTranslate-dev';
-const WORLD = '镜译测试';
+const EXTENSION = 'BeEagleTestTranslator-dev';
+const WORLD = '测试翻译测试';
 
 const CRC_TABLE = Array.from({ length: 256 }, (_, n) => {
   let c = n;
@@ -80,11 +80,11 @@ function testCard() {
     spec_version: '2.0',
     data: {
       ...fields,
-      creator_notes: '镜译沙盒的测试角色，回复由 scripts/mock-services.mjs 给出。',
+      creator_notes: '测试翻译沙盒的测试角色，回复由 scripts/mock-services.mjs 给出。',
       system_prompt: '',
       post_history_instructions: '',
       alternate_greetings: [],
-      tags: ['镜译测试'],
+      tags: ['测试翻译测试'],
       creator: '',
       character_version: '1',
       extensions: { world: WORLD },
@@ -129,7 +129,7 @@ function setup(stFolder, sandbox) {
     stream_openai: true,
   });
   settings.extension_settings = settings.extension_settings || {};
-  settings.extension_settings['jingyi-translator'] = {
+  settings.extension_settings['beagle-test-translator'] = {
     autoGeneration: true,
     autoSwipe: true,
     tts: {

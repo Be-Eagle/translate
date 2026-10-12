@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>镜译扩展本地宿主预览</title>
+  <title>测试翻译扩展本地宿主预览</title>
   <link rel="stylesheet" href="./host.css">
   <style>
     :root { color-scheme: dark; font-family: system-ui, "Microsoft YaHei", sans-serif; background: #15171c; color: #eceff4; }
@@ -186,7 +186,7 @@
       eventTypes,
       extensionSettings: {
         disabledExtensions: [],
-        'jingyi-translator': { excludedTags: ['image_prompt'] },
+        'beagle-test-translator': { excludedTags: ['image_prompt'] },
         connectionManager: {
           profiles: [{ id: 'preview-profile', name: '副 API 测试配置', model: 'translator-model', api: 'openai' }],
         },
@@ -229,8 +229,8 @@
     };
     globalThis.SillyTavern = { getContext: () => context };
     const extension = await import('./index.js');
-    await extension.onActivate();
-    globalThis.__JINGYI_PREVIEW__ = { context, extension };
+    await extension.BeEagleTestTranslator_onActivate();
+    globalThis.__BE_EAGLE_TEST_PREVIEW__ = { context, extension };
   </script>
 </body>
 </html>
