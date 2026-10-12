@@ -130,6 +130,7 @@ import {
   normalizeGsvVoice,
 } from './core.js?v=0.51.4';
 import { resolveAutosaveWrite, ensureAutosaveIndicator } from './console-autosave.js?v=0.51.4';
+import { BING_TRANSLATION_LABEL, BING_TRANSLATION_PROVIDER, translateBingSegments } from './bing-translate.js?v=0.51.4';
 import {
   FISH_EMOTIONS,
   FISH_MIME,
@@ -562,6 +563,7 @@ const CONTROL_CENTER_MARKUP = `
   <h2>用什么翻</h2>
   <div class="jy-card-row"><div class="jy-card-row-text"><h3>翻译方案</h3><p class="jy-muted" data-jy-active-profile>待读取</p></div><button type="button" class="jy-text-button" data-jy-action="open-prompt">编辑规则 →</button></div>
   <div class="jy-card-row"><div class="jy-card-row-text"><h3>翻译用哪条连接</h3><p class="jy-muted" data-jy-channel-summary></p></div><label class="jy-sr-only" for="jy-desk-channel">翻译用哪条连接</label><select id="jy-desk-channel" data-jy-translation-channel></select></div>
+  <div class="jy-card-row"><div class="jy-card-row-text"><h3>翻译引擎</h3><p class="jy-muted" data-jy-translation-provider-summary></p></div><label class="jy-sr-only" for="jy-translation-provider">翻译引擎</label><select id="jy-translation-provider" data-jy-field="translationProvider"><option value="model">镜译模型翻译</option><option value="bing">Bing 网页翻译（免密钥）</option></select></div>
   <div class="jy-card-row"><p class="jy-muted">连接的地址、密钥、模型在「模型连接」页管理；翻译、分析模式、小助手各用哪条，在那一页最上面的「各功能用哪条连接」里选，互不牵连。</p><button type="button" class="jy-text-button" data-jy-action="open-settings">管理连接（地址、密钥、模型）→</button></div>
   <div class="jy-card-row"><div class="jy-card-row-text"><h3>参考资料</h3><p class="jy-muted" data-jy-context-summary></p></div><button type="button" class="jy-text-button" data-jy-action="open-prompt">改 →</button></div>
  </section>
@@ -2765,6 +2767,21 @@ async function requestSubModelRaw(messages, settings, signal, { limitSec = 0 } =
 }
 
 async function invokeTranslationBatch(segments, settings, signal, packet = {}, phase = 'primary', requestMeta = {}) {
+  if (settings.translationProvider === BING_TRANSLATION_PROVIDER) {
+    const profile = getActivePromptProfile(settings);
+    const stopTicker = startWaitTicker(phase === 'primary' ? 'Bing 网页翻译正在翻译完整正文，' : 'Bing 网页翻译正在补译缺失段落，', 90);
+    try {
+      const translations = await translateBingSegments(segments, {
+        targetLanguage: profile.targetLanguage,
+        signal,
+        useProxy: true,
+        concurrency: 3,
+      });
+      return { translations, annotations: new Map(), warnings: [], response: 'bing' };
+    } finally {
+      stopTicker();
+    }
+  }
   const messages = buildTranslationMessages(segments, settings, packet, phase, requestMeta);
   const channel = getActiveChannel(settings);
   let raw;
@@ -11073,13 +11090,19 @@ function syncChannelFields(root, settings, { rebuildCards = true } = {}) {
 function updateSummary(root, settings) {
   const channel = getActiveChannel(settings);
   const promptProfile = getActivePromptProfile(settings);
+  const provider = settings.translationProvider === BING_TRANSLATION_PROVIDER ? BING_TRANSLATION_LABEL : '镜译模型翻译';
   const independent = settings.apiMode === 'independent';
+  setText(root, '[data-jy-translation-provider-summary]', provider);
   setText(
     root,
     '[data-jy-channel-summary]',
     independent
-      ? `${channel.model || '尚未选择模型'} · 目标：${normalizeTargetLanguage(promptProfile.targetLanguage)} · ${channel.url || '尚未填写地址'}`
-      : `用酒馆当前连接的 API 和模型翻译。目标：${normalizeTargetLanguage(promptProfile.targetLanguage)}。`,
+      ? (settings.translationProvider === BING_TRANSLATION_PROVIDER
+        ? `Bing 网页翻译不需要 API Key · 目标：${normalizeTargetLanguage(promptProfile.targetLanguage)}`
+        : `${channel.model || '尚未选择模型'} · 目标：${normalizeTargetLanguage(promptProfile.targetLanguage)} · ${channel.url || '尚未填写地址'}`)
+      : (settings.translationProvider === BING_TRANSLATION_PROVIDER
+        ? `Bing 网页翻译不需要 API Key。目标：${normalizeTargetLanguage(promptProfile.targetLanguage)}。`
+        : `用酒馆当前连接的 API 和模型翻译。目标：${normalizeTargetLanguage(promptProfile.targetLanguage)}。`),
   );
   const sources = [
     '当前角色',
@@ -11167,6 +11190,8 @@ function collectSettings(root) {
     const element = root.querySelector(`[data-jy-field="${name}"]`);
     if (element) current[name] = element.checked;
   }
+  const providerField = root.querySelector('[data-jy-field="translationProvider"]');
+  if (providerField) current.translationProvider = providerField.value;
   for (const name of ['segmentPrefix', 'segmentSuffix', 'translationPrefix', 'translationSuffix', 'preserveLineRules', 'lyricLineRules', 'floatingStyle', 'floorButtons']) {
     const element = root.querySelector(`[data-jy-field="${name}"]`);
     if (element) current[name] = element.value;
@@ -15533,7 +15558,7 @@ function createControlCenter(rootDocument = document) {
       runtime.mini?.syncQuickPickers?.();
       return;
     }
-    if (event.target.matches('[data-jy-field="autoGeneration"], [data-jy-field="autoSwipe"], [data-jy-field="streamingWriteback"], [data-jy-field="translationOnly"], [data-jy-field="showFloatingButton"], [data-jy-field="includeWorldbook"], [data-jy-field="includeCharacterCard"], [data-jy-field="includeRecentContext"]')) {
+    if (event.target.matches('[data-jy-field="translationProvider"], [data-jy-field="autoGeneration"], [data-jy-field="autoSwipe"], [data-jy-field="streamingWriteback"], [data-jy-field="translationOnly"], [data-jy-field="showFloatingButton"], [data-jy-field="includeWorldbook"], [data-jy-field="includeCharacterCard"], [data-jy-field="includeRecentContext"]')) {
       // twinField() above already carried the new value onto autoGeneration/autoSwipe/translationOnly's
       // 微调 copy (DESIGN §15.3), so every instance already agrees before collectSettings reads any of them.
       saveSettings(collectSettings(root));
@@ -16366,7 +16391,8 @@ async function openMiniWindow() {
   <div class="jy-mini-more" data-jy-mini-more hidden>
     <div class="jy-mini-more-head"><strong>更多</strong><button type="button" class="jy-mini-inspect-close" data-jy-action="mini-more-close" aria-label="收起" title="收起">×</button></div>
     <div class="jy-mini-quick">
-      <label title="只管翻译走哪条连接，和控制中心「翻译台」里那个是同一个选择。分析模式、小助手用哪条在「模型连接」页最上面另选，互不影响。"><span class="jy-label">翻译模型</span><select data-jy-mini-channel></select></label>
+      <label title="Bing 网页翻译不需要 API Key；镜译模型翻译沿用下面的连接选择。"><span class="jy-label">翻译引擎</span><select data-jy-mini-provider><option value="model">镜译模型翻译</option><option value="bing">Bing 网页翻译（免密钥）</option></select></label>
+      <label title="仅镜译模型翻译使用这条连接。"><span class="jy-label">模型连接</span><select data-jy-mini-channel></select></label>
       <label><span class="jy-label">方案</span><select data-jy-mini-profile></select></label>
       <button type="button" class="jy-text-button" data-jy-action="mini-translate-all" data-jy-mini-untranslated hidden></button>
       <button type="button" class="jy-text-button" data-jy-action="mini-clear-floor" hidden title="清除这一楼的译文，正文恢复成原文">清除这一楼的译文</button>
@@ -16514,6 +16540,7 @@ async function openMiniWindow() {
   const scratch = win.querySelector('[data-jy-mini-scratch]');
   const scratchSummary = scratch.querySelector('summary');
   const channelSelect = win.querySelector('[data-jy-mini-channel]');
+  const providerSelect = win.querySelector('[data-jy-mini-provider]');
   const profileSelect = win.querySelector('[data-jy-mini-profile]');
   const rowsList = win.querySelector('[data-jy-mini-rows]');
   const tabs = win.querySelector('[data-jy-mini-tabs]');
@@ -16667,6 +16694,7 @@ async function openMiniWindow() {
 
   const syncQuickPickers = () => {
     const current = runtime.settings;
+    if (providerSelect) providerSelect.value = current.translationProvider === BING_TRANSLATION_PROVIDER ? BING_TRANSLATION_PROVIDER : 'model';
     // The translation's choice, the same one as the desk's: the host's connection or any saved one.
     fillChannelPicker(channelSelect, current, translationChannelChoice(current));
     channelSelect.disabled = false;
@@ -18242,6 +18270,7 @@ async function openMiniWindow() {
     document.removeEventListener('keydown', onWindowKeydown, true);
     document.removeEventListener('focusin', onOutsideFocus, true);
     channelSelect.removeEventListener('change', onQuickChange);
+    providerSelect?.removeEventListener('change', onQuickChange);
     profileSelect.removeEventListener('change', onQuickChange);
     tabs.removeEventListener('click', onTabClick);
     tagBox.removeEventListener('pointerdown', onTagPointerDown);
@@ -18352,7 +18381,8 @@ async function openMiniWindow() {
   };
   const onQuickChange = event => {
     const next = mergeSettings(runtime.settings);
-    if (event.target === channelSelect) applyTranslationChoice(next, channelSelect.value);
+    if (event.target === providerSelect) next.translationProvider = providerSelect.value === BING_TRANSLATION_PROVIDER ? BING_TRANSLATION_PROVIDER : 'model';
+    else if (event.target === channelSelect) applyTranslationChoice(next, channelSelect.value);
     else next.selectedPromptProfileId = profileSelect.value;
     saveSettings(next);
     syncQuickPickers();
@@ -18702,7 +18732,7 @@ async function openMiniWindow() {
           output.textContent = translated;
           const channel = getActiveChannel(runtime.settings);
           const seconds = ((globalThis.performance.now() - started) / 1000).toFixed(1);
-          setText(win, '[data-jy-mini-meta]', `${seconds} 秒 · ${channel.model || '跟随酒馆'}`);
+          setText(win, '[data-jy-mini-meta]', `${seconds} 秒 · ${runtime.settings.translationProvider === BING_TRANSLATION_PROVIDER ? BING_TRANSLATION_LABEL : (channel.model || '跟随酒馆')}`);
           resultBox.hidden = false;
           setScratchOpen(true);
         } finally {
@@ -18731,6 +18761,7 @@ async function openMiniWindow() {
   document.addEventListener('keydown', onWindowKeydown, true);
   document.addEventListener('focusin', onOutsideFocus, true);
   channelSelect.addEventListener('change', onQuickChange);
+  providerSelect?.addEventListener('change', onQuickChange);
   profileSelect.addEventListener('change', onQuickChange);
   tabs.addEventListener('click', onTabClick);
   tagBox.addEventListener('pointerdown', onTagPointerDown);

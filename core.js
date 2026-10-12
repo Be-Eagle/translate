@@ -1153,6 +1153,7 @@ export const DEFAULT_SETTINGS = Object.freeze({
   // 「只留译文」: a finished floor holds only its translation; the bilingual text goes into its metadata.
   translationOnly: false,
   apiMode: 'follow',
+  translationProvider: 'model',
   selectedChannelId: DEFAULT_CHANNEL.id,
   channels: [DEFAULT_CHANNEL],
   showFloatingButton: true,
@@ -2276,6 +2277,7 @@ export function mergeSettings(value = {}) {
   delete merged.chunkSegments;
   merged.retries = clampInteger(merged.retries, 0, 5, DEFAULT_SETTINGS.retries);
   merged.apiMode = ['follow', 'independent'].includes(merged.apiMode) ? merged.apiMode : DEFAULT_SETTINGS.apiMode;
+  merged.translationProvider = merged.translationProvider === 'bing' ? 'bing' : DEFAULT_SETTINGS.translationProvider;
   const hasLegacyChannel = ['apiUrl', 'apiKey', 'apiModel'].some(key => String(source[key] ?? '').trim());
   const legacyChannel = normalizeChannel({
     id: DEFAULT_CHANNEL.id,
