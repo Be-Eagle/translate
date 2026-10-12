@@ -128,9 +128,9 @@ import {
   isGsvVoiceId,
   languageBase,
   normalizeGsvVoice,
-} from './core.js?v=0.52.0-test';
-import { resolveAutosaveWrite, ensureAutosaveIndicator } from './console-autosave.js?v=0.52.0-test';
-import { BING_TRANSLATION_LABEL, BING_TRANSLATION_PROVIDER, translateBingSegments } from './bing-translate.js?v=0.52.0-test';
+} from './core.js?v=0.53.0-test';
+import { resolveAutosaveWrite, ensureAutosaveIndicator } from './console-autosave.js?v=0.53.0-test';
+import { BING_TRANSLATION_LABEL, BING_TRANSLATION_PROVIDER, translateBingSegments } from './bing-translate.js?v=0.53.0-test';
 import {
   FISH_EMOTIONS,
   FISH_MIME,
@@ -203,10 +203,10 @@ import {
   gsvVoiceFor,
   scaleWavVolume,
   wavInfo,
-} from './tts.js?v=0.52.0-test';
-import { createTtsStore } from './tts-store.js?v=0.52.0-test';
-import { SPEAKER_SOURCE_LABELS, discoverSpeakerAliases, pinSpeakers, refineCast, resolveSpeakers, speakerHints, speakersOf } from './tts-speakers.js?v=0.52.0-test';
-import { DEEP_PROMPT, DEEP_STATUS, acousticCallRules, acousticCallUtterances, buildDeepAnalysisMessages, buildDeepRefineMessages, deepRequestSettings, intimateAllowed, isAcousticPrompt, parseDeepAnalysis, pauseDisplay, stressDisplay } from './tts-deep.js?v=0.52.0-test';
+} from './tts.js?v=0.53.0-test';
+import { createTtsStore } from './tts-store.js?v=0.53.0-test';
+import { SPEAKER_SOURCE_LABELS, discoverSpeakerAliases, pinSpeakers, refineCast, resolveSpeakers, speakerHints, speakersOf } from './tts-speakers.js?v=0.53.0-test';
+import { DEEP_PROMPT, DEEP_STATUS, acousticCallRules, acousticCallUtterances, buildDeepAnalysisMessages, buildDeepRefineMessages, deepRequestSettings, intimateAllowed, isAcousticPrompt, parseDeepAnalysis, pauseDisplay, stressDisplay } from './tts-deep.js?v=0.53.0-test';
 
 // The built-in prompts by name: the deep reading's comes from its own module.
 const TTS_PROMPT_DEFAULTS = Object.freeze({ ...DEFAULT_TTS_PROMPTS, deep: DEEP_PROMPT });
@@ -216,7 +216,7 @@ import {
   captureProcessingProfile, selectProcessingProfile, exportProcessingProfile, importProcessingProfile,
   importNativeRegex, makeBuiltinReadingProfile, detectBuiltinReadingStyle, syncNativeRegex, readNativeRegexEdits,
   dedupeManagedRegexScripts, planRegexCleanup, planScopedRegexCleanup,
-} from './processing.js?v=0.52.0-test';
+} from './processing.js?v=0.53.0-test';
 import {
   CORE_TRANSLATION_SPEC,
   DEFAULT_AVOID_PHRASES,
@@ -234,15 +234,15 @@ import {
   normalizeTargetLanguage,
   promptOptionLabel,
   resolvePromptVariables,
-} from './prompts.js?v=0.52.0-test';
-import { buildTranslationMessages, collectTranslationContext } from './workflow.js?v=0.52.0-test';
-import { SCENE_TONES, mergeScenes, normalizeScene, recoverScene } from './scene.js?v=0.52.0-test';
-import { READING_API_VERSION, READING_STATES, readingPositions, readingSnapshot, readingState } from './reading.js?v=0.52.0-test';
-import { describeLog, describeRemaining, estimateRemaining, filterLogs, floorRows, floorState, segmentAnchors, segmentAtPosition, untranslatedFloors } from './mini.js?v=0.52.0-test';
-import { mergeStreamText, readableStreamText, takeStreamPieces } from './tts-stream.js?v=0.52.0-test';
-import { callAppNames, callAppSummary, callMissing, callReminder, createCall, createCallApps, createCallHistory } from './call.js?v=0.52.0-test';
-import { createPcmPlayer, createWavStreamFeed, pcmDataOffset } from './pcm-player.js?v=0.52.0-test';
-import { CLOUD_VOICE_LABELS, spacedLatin, cloudBodyFailure, cloudFailure, cloudRequestGroups, createCloudAudioReader, doubaoRequest, minimaxRequest, parseVoiceMap } from './tts-cloud.js?v=0.52.0-test';
+} from './prompts.js?v=0.53.0-test';
+import { buildTranslationMessages, collectTranslationContext } from './workflow.js?v=0.53.0-test';
+import { SCENE_TONES, mergeScenes, normalizeScene, recoverScene } from './scene.js?v=0.53.0-test';
+import { READING_API_VERSION, READING_STATES, readingPositions, readingSnapshot, readingState } from './reading.js?v=0.53.0-test';
+import { describeLog, describeRemaining, estimateRemaining, filterLogs, floorRows, floorState, segmentAnchors, segmentAtPosition, untranslatedFloors } from './mini.js?v=0.53.0-test';
+import { mergeStreamText, readableStreamText, takeStreamPieces } from './tts-stream.js?v=0.53.0-test';
+import { callAppNames, callAppSummary, callMissing, callReminder, createCall, createCallApps, createCallHistory } from './call.js?v=0.53.0-test';
+import { createPcmPlayer, createWavStreamFeed, pcmDataOffset } from './pcm-player.js?v=0.53.0-test';
+import { CLOUD_VOICE_LABELS, spacedLatin, cloudBodyFailure, cloudFailure, cloudRequestGroups, createCloudAudioReader, doubaoRequest, minimaxRequest, parseVoiceMap } from './tts-cloud.js?v=0.53.0-test';
 import {
   DEFAULT_MIN_CONTRAST,
   EMOTION_STYLES,
@@ -260,8 +260,8 @@ import {
   spreadHues,
   srgbToOklch,
   toHex,
-} from './palette.js?v=0.52.0-test';
-import { sampleThemeBackground } from './theme-probe.js?v=0.52.0-test';
+} from './palette.js?v=0.53.0-test';
+import { sampleThemeBackground } from './theme-probe.js?v=0.53.0-test';
 import {
   addDiagnostic,
   clearDiagnostics,
@@ -269,7 +269,7 @@ import {
   formatFullDiagnosticReport,
   listDiagnosticFloors,
   readDiagnostics,
-} from './diagnostics.js?v=0.52.0-test';
+} from './diagnostics.js?v=0.53.0-test';
 import {
   DEFAULT_HELPER_PROMPT,
   HELPER_QUICK_QUESTIONS,
@@ -280,7 +280,7 @@ import {
   resolveHelperPrompt,
   validateHelperSuggestion,
   validateHelperSuggestions,
-} from './helper.js?v=0.52.0-test';
+} from './helper.js?v=0.53.0-test';
 
 const MENU_ENTRY_ID = `${MODULE_ID}-menu-entry`;
 const SETTINGS_ID = `${MODULE_ID}-settings`;
@@ -2774,7 +2774,7 @@ async function invokeTranslationBatch(segments, settings, signal, packet = {}, p
       const translations = await translateBingSegments(segments, {
         targetLanguage: profile.targetLanguage,
         signal,
-        useProxy: true,
+        useProxy: detectTtsHost() !== 'tauritavern',
         concurrency: 3,
       });
       return { translations, annotations: new Map(), warnings: [], response: 'bing' };

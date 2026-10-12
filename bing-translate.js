@@ -72,6 +72,7 @@ function decodePageSource(value) {
 function pageSummary(source) {
   const title = source.match(/<title[^>]*>([\s\S]*?)<\/title>/i)?.[1]?.replace(/\s+/g, ' ').trim();
   const markers = [
+    ['tauriShell', /<title[^>]*>\s*TauriTavern\s*<\/title>/i],
     ['captcha', /captcha|showcaptcha/i],
     ['代理错误', /cors proxy|proxy is disabled|cannot get \/proxy|error in cors proxy/i],
     ['访问拒绝', /access denied|forbidden|unusual traffic|robot/i],
@@ -82,6 +83,9 @@ function pageSummary(source) {
 
 function sessionError(source, page) {
   const detail = pageSummary(source);
+  if (/<title[^>]*>\s*TauriTavern\s*<\/title>/i.test(source)) {
+    return new Error(`请求命中了 TauriTavern 首页，而不是 Bing（${detail}）。已自动切换直连；如果随后仍失败，请确认 TauriTavern 允许外部网络请求。`);
+  }
   if (/cors proxy|proxy is disabled|cannot get \/proxy|error in cors proxy/i.test(source)) {
     return new Error(`酒馆代理没有返回 Bing 页面（${detail}）。请确认 SillyTavern 已开启 enableCorsProxy。`);
   }

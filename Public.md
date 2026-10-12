@@ -9,7 +9,7 @@
 | 入口 | `manifest.json` → `index.js`（生命周期钩子 `BeEagleTestTranslator_onActivate` / `BeEagleTestTranslator_onDisable` / `BeEagleTestTranslator_onClean`，生成拦截器 `BeEagleTestTranslator_interceptGeneration`）；宿主页面样式 `host.css`（引入 `reading.css`）；控制中心、悬浮窗和弹出的对话框用的 `style.css` 由脚本读进各自的 shadow root |
 | 设置存放 | `SillyTavern.getContext().extensionSettings['beagle-test-translator']`，`schemaVersion: 13`，读入时由 `core.js` 的 `mergeSettings` 补默认值并迁移旧字段 |
 | 公开接口 | `window.__BE_EAGLE_TEST_TRANSLATOR__`：`tts`（`status` / `voices` / `speak` / `read` / `stream` / `stop`）、`stt`（`status` / `start`）、`llm`（`status` / `stream`）、`call.connect`、`scene`（`get` / `list` / `onChange`）、`floor.original`、`reading`（`get` / `onChange` / `status`）。能不能用看 `features` |
-| 当前版本 | 0.1.0-test。版本号写在 `core.js` 的 `APP_VERSION`、`manifest.json`（`version` 和两个 `?v=`）、`package.json`，以及每个模块导入路径的 `?v=` |
+| 当前版本 | 0.2.1-test。版本号写在 `core.js` 的 `APP_VERSION`、`manifest.json`（`version` 和两个 `?v=`）、`package.json`，以及每个模块导入路径的 `?v=` |
 | 当前未做 | 场景只记录、界面里还没有用它的功能（配乐、大纲、配图，配图字段关着）；豆包语音、MiniMax 只用于边写边读和通话；TauriTavern 真机和豆包、MiniMax 的真实接口没有实测；「只留译文」的楼层被插件在正文标签里插入内容（比如图片）后算作手改过（`conflict`），不再自动翻译；v0.51.4 只在沙盒酒馆里验证过；`使用手册.md`、`VALIDATION.md` 停在 v0.32.3 |
 | 接手先看 | `交接.md`（交接时的状态和待办）、`AGENT_LOG.md` 末尾（开发记录，只追加）、`DESIGN.md`（界面与动效规约） |
 

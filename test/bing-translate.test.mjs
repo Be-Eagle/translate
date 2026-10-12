@@ -32,6 +32,13 @@ test('parses JSON-escaped Bing HTML', () => {
     { key: '1791777766319', token: 'token-json', ig: '', iid: 'translator.5028.1' },
   );
 });
+test('explains when the proxy returned the TauriTavern shell', () => {
+  assert.throws(
+    () => parseBingSession('<title>TauriTavern</title><main>访问拒绝</main>'),
+    /请求命中了 TauriTavern 首页，而不是 Bing/,
+  );
+});
+
 test('builds a no-key web translator request', () => {
   const request = buildBingRequest('こんにちは', parseBingSession(sessionHtml), { targetLanguage: '简体中文' });
   assert.match(request.url, /ttranslatev3\?/);
