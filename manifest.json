@@ -2,9 +2,9 @@
   "display_name": "测试翻译",
   "loading_order": 100,
   "dependencies": [],
-  "js": "index.js?v=0.1.0-test",
+  "js": "index.js?v=0.1.1-test",
   "author": "Be-Eagle",
-  "version": "0.1.0-test",
+  "version": "0.1.1-test",
   "homePage": "https://github.com/Be-Eagle/translate",
   "auto_update": true,
   "generate_interceptor": "BeEagleTestTranslator_interceptGeneration",
@@ -13,5 +13,5 @@
     "disable": "BeEagleTestTranslator_onDisable",
     "clean": "BeEagleTestTranslator_onClean"
   },
-  "css": "host.css?v=0.1.0-test"
+  "css": "host.css?v=0.1.1-test"
 }

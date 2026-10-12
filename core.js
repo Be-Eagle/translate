@@ -21,7 +21,7 @@ import { DOUBAO_RESOURCES, MINIMAX_HOSTS, MINIMAX_MODELS } from './tts-cloud.js?
 
 export const MODULE_ID = 'beagle-test-translator';
 export const APP_NAME = '测试翻译 · 正文翻译器';
-export const APP_VERSION = '0.1.0-test';
+export const APP_VERSION = '0.1.1-test';
 // How a floor's own segmentation rules read: 1 is v0.36.0 and older (a <br> mid-line glues its words,
 // a <say> shell or a custom preserve rule's indentation is matched literally). 2 adds the v0.36.1
 // built-in-regex fixes. 3 adds v0.40.0's 「音乐卡片」 tightening: a run of <br> rows is only treated as a
