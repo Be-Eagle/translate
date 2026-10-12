@@ -46,10 +46,11 @@ export function normalizeBingLanguage(value) {
 
 export function parseBingSession(html) {
   const source = String(html ?? '')
+    .replace(/\\u([0-9a-f]{4})/gi, (_, code) => String.fromCharCode(Number.parseInt(code, 16)))
+    .replace(/\\"/g, '"')
+    .replace(/\\'/g, "'")
     .replace(/&quot;|&#34;|&#x22;/gi, '"')
-    .replace(/&#39;|&#x27;/gi, "'")
-    .replace(/\\u0022/gi, '"')
-    .replace(/\\u0027/gi, "'");
+    .replace(/&#39;|&#x27;/gi, "'");
   const helper = source.match(/["']?params_AbusePreventionHelper["']?\s*[:=]\s*\[\s*(?:["']([^"']+)["']|([^,\]\s]+))\s*,\s*(?:["']([^"']+)["']|([^,\]\s]+))/i);
   if (!helper) throw new Error('Bing 网页翻译没有返回可用的会话信息，请检查酒馆网络或代理是否能访问 Bing。');
   const ig = source.match(/(?:["']?IG["']?\s*[:=]\s*["'])([^"']+)/i)?.[1] || '';
