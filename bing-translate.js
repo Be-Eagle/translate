@@ -45,16 +45,23 @@ export function normalizeBingLanguage(value) {
 }
 
 export function parseBingSession(html) {
-  const source = String(html ?? '');
-  const helper = source.match(/params_AbusePreventionHelper\s*=\s*\[\s*(?:["']([^"']+)["']|([^,\s]+))\s*,\s*(?:["']([^"']+)["']|([^,\s]+))/i);
-  if (!helper) throw new Error('Bing 网页翻译没有返回可用的会话信息。');
+  const source = String(html ?? '')
+    .replace(/&quot;|&#34;|&#x22;/gi, '"')
+    .replace(/&#39;|&#x27;/gi, "'")
+    .replace(/\\u0022/gi, '"')
+    .replace(/\\u0027/gi, "'");
+  const helper = source.match(/["']?params_AbusePreventionHelper["']?\s*[:=]\s*\[\s*(?:["']([^"']+)["']|([^,\]\s]+))\s*,\s*(?:["']([^"']+)["']|([^,\]\s]+))/i);
+  if (!helper) throw new Error('Bing 网页翻译没有返回可用的会话信息，请检查酒馆网络或代理是否能访问 Bing。');
   const ig = source.match(/(?:["']?IG["']?\s*[:=]\s*["'])([^"']+)/i)?.[1] || '';
-  const iid = source.match(/data-iid=["']([^"']+)["']/i)?.[1] || 'translator.5028.1';
+  const iid = source.match(/data-iid\s*=\s*["']([^"']+)["']/i)?.[1] || 'translator.5028.1';
   return { key: helper[1] || helper[2], token: helper[3] || helper[4], ig, iid };
 }
 
 export function buildBingRequest(text, session, { fromLanguage = 'auto-detect', targetLanguage = 'zh-Hans' } = {}) {
-  const query = new URLSearchParams({ isVertical: '1', IID: session?.iid || 'translator.5028.1' });
+  const query = new URLSearchParams({
+    isVertical: '1', IID: session?.iid || 'translator.5028.1',
+    SFX: String(session?.sfx ?? 1), ref: 'TThis', edgepdftranslator: '1',
+  });
   if (session?.ig) query.set('IG', session.ig);
   const body = new URLSearchParams({
     fromLang: normalizeBingLanguage(fromLanguage), to: normalizeBingLanguage(targetLanguage),
@@ -65,13 +72,24 @@ export function buildBingRequest(text, session, { fromLanguage = 'auto-detect', 
 
 export function extractBingTranslation(payload) {
   const data = typeof payload === 'string' ? JSON.parse(payload) : payload;
+  if (data?.ShowCaptcha === true) throw new Error('Bing 网页翻译要求验证码，请稍后再试或更换网络。');
+  if (data?.StatusCode === 401 || data?.statusCode === 401) throw new Error('Bing 网页翻译暂时限制了请求，请稍后再试。');
   const text = Array.isArray(data) ? data[0]?.translations?.[0]?.text : data?.translations?.[0]?.text;
   if (typeof text !== 'string' || !text.trim()) throw new Error('Bing 网页翻译返回了空结果。');
   return text.trim();
 }
 
 async function loadBingSession(fetchImpl, signal, useProxy) {
-  return parseBingSession(await request(fetchImpl, BING_TRANSLATOR_PAGE, { method: 'GET' }, { useProxy, signal }));
+  let lastError = null;
+  for (const page of [BING_TRANSLATOR_PAGE, 'https://cn.bing.com/translator']) {
+    try {
+      return parseBingSession(await request(fetchImpl, page, { method: 'GET' }, { useProxy, signal }));
+    } catch (error) {
+      if (signal?.aborted) throw error;
+      lastError = error;
+    }
+  }
+  throw lastError || new Error('无法读取 Bing 网页翻译会话。');
 }
 
 export async function translateBingText(text, { sourceLanguage = 'auto-detect', targetLanguage = 'zh-Hans', signal, fetchImpl = globalThis.fetch, useProxy = true, session = null } = {}) {

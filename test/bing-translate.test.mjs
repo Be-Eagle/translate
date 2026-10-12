@@ -20,6 +20,12 @@ test('parses Bing web translator session data', () => {
   assert.deepEqual(parseBingSession(sessionHtml), { key: '123456', token: 'token-456', ig: 'ig-789', iid: 'translator.9000.1' });
 });
 
+test('parses escaped and colon-delimited Bing session data', () => {
+  assert.deepEqual(
+    parseBingSession('&quot;params_AbusePreventionHelper&quot;: [1791777766319, &quot;token-escaped&quot;, 3600000];'),
+    { key: '1791777766319', token: 'token-escaped', ig: '', iid: 'translator.5028.1' },
+  );
+});
 test('builds a no-key web translator request', () => {
   const request = buildBingRequest('こんにちは', parseBingSession(sessionHtml), { targetLanguage: '简体中文' });
   assert.match(request.url, /ttranslatev3\?/);
